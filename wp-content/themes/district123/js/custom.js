@@ -743,7 +743,7 @@ var $selector = '*';
 				    itemSelector : '.isobrick',     // selector for all items you'll retrieve
 				    loading: {
 				        finishedMsg: '',
-				        img: 'http://localhost/identity/wp-content/themes/district/images/loader.gif',
+				        img: 'http://district.test/wp-content/themes/district123/images/loader.gif',
 				        msgText: ''
 				      }
 				    },
