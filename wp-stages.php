@@ -1,2 +1,2 @@
 <?php
-$stage["dsitrict.test"] = "dev";
+$stage["district.test"] = "dev";
