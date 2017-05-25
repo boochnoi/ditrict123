@@ -791,7 +791,7 @@ var $selector = '*';
 
                     tpj('.fullwidthbanner').revolution(
                         {    
-                        	                            delay:99999999999999999999999,                                                
+                        	                            delay:7000,                                                
                             startheight:400,                            
                             startwidth:960,
                            

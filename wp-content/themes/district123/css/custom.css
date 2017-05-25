@@ -39,7 +39,7 @@ font-family:"Source Sans Pro", arial, sans-serif;font-weight: bold; letter-spaci
 /* Button Fonts */
 
 .button, a.button, a.more-link, #submit, input[type='submit'] {
-font-family:"Source Sans Pro", arial, sans-serif;font-weight: bold;text-transform:Normal;}
+font-family:"Source Sans Pro", arial, sans-serif;font-weight: bold;text-transform:none;}
 
 /* Tiny Details Font */
 
