@@ -1,4 +1,4 @@
-php_value error_reporting 2039
+#php_value error_reporting 2039
 Options -Indexes
 
 # BEGIN WordPress
