@@ -1,5 +1,5 @@
-php_flag display_errors off
-#Options -Indexes
+#php_flag display_errors off
+Options -Indexes
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
