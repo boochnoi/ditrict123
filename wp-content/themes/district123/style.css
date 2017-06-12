@@ -4505,3 +4505,8 @@ margin-left: 10px !important;
     background-color: #00a498 !important;
     color:#ffffff !important;
 }
+
+#footer .button, #footer a.button, #footer a.more-link {
+    background-color: #00a498 !important;
+    color:#ffffff !important;
+}
