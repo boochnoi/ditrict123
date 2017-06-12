@@ -4492,3 +4492,16 @@ margin-left: 10px !important;
 }
 
 }
+
+.woocommerce form .form-row .input-text, .woocommerce-page form .form-row .input-text{
+    height:33.8px;
+}
+
+.woocommerce form .form-row select, .woocommerce-page form .form-row select{
+    height:33.8px;
+}
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button{
+    background-color: #00a498 !important;
+    color:#ffffff !important;
+}
