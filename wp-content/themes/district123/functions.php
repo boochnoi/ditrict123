@@ -1854,4 +1854,16 @@ endforeach;
 }
 add_action('register_post','custom_validation');
 }
+
+function wpse_131562_redirect() {
+    if (
+        ! is_user_logged_in()
+        && (is_woocommerce() || is_cart() || is_checkout())
+    ) {
+        // feel free to customize the following line to suit your needs
+        wp_redirect(site_url('my-account/'));
+        exit;
+    }
+}
+add_action('template_redirect', 'wpse_131562_redirect');
 ?>
