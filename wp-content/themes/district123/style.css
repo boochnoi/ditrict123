@@ -4514,3 +4514,7 @@ margin-left: 10px !important;
     background-color: #00a498 !important;
     color:#ffffff !important;
 }
+
+.woocommerce-cart td.product-thumbnail, .woocommerce-cart td.product-name {
+    pointer-events: none;
+}
