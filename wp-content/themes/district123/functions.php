@@ -1909,4 +1909,15 @@ function is_bought_items() {
         return true;
     }
 }
+// remove default sorting dropdown
+
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+// remove default sorting dropdown in StoreFront Theme
+ 
+add_action('init','delay_remove');
+ 
+function delay_remove() {
+remove_action( 'woocommerce_after_shop_loop', 'woocommerce_catalog_ordering', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10 );
+}
 ?>

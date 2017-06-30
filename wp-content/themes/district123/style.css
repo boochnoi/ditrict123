@@ -123,6 +123,7 @@ a {color:#000;}
 ================================================== */
 
     .container                                  { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+    .shop-container                             { position: relative; width: 950px; margin: 0 auto; padding: 0; }
     .column, .columns                           { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
     .row                                        { margin-bottom: 20px; }
 
@@ -178,6 +179,7 @@ a {color:#000;}
 
     @media only screen and (min-width: 768px) and (max-width: 959px) {
         .container                                  { width: 768px; }
+        .shop-container                             { width: 768px; }
         .container .column,
         .container .columns                         { margin-left: 10px; margin-right: 10px;  }
         .column.alpha, .columns.alpha               { margin-left: 0; margin-right: 10px; }
@@ -231,6 +233,7 @@ a {color:#000;}
 
     @media only screen and (max-width: 767px) {
         .container { width: 300px; }
+        .shop-container { width: 300px; }
         .columns, .column { margin: 0; }
         .container .one.column,
         .container .two.columns,
@@ -280,6 +283,7 @@ a {color:#000;}
 
     @media only screen and (min-width: 480px) and (max-width: 767px) {
         .container { width: 420px; }
+        .shop-container { width: 420px; }
         .columns, .column { margin: 0; }
         .container .one.column,
         .container .two.columns,
@@ -308,7 +312,7 @@ a {color:#000;}
 
     /* Self Clearing Goodness */
     .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
-
+    .shop-container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
     /* Use clearfix class on parent to clear nested columns,
     or wrap each row of columns in a <div class="row"> */
     .clearfix:before,
