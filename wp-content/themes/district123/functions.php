@@ -1952,4 +1952,24 @@ function order_fields($fields) {
 
 }
 
+add_action( 'woocommerce_email_after_order_table', 'add_order_email_instructions', 10, 2 );
+ 
+function add_order_email_instructions( $order, $sent_to_admin ) {
+  
+  if ( ! $sent_to_admin ) {
+ 
+    if ( 'cod' == $order->payment_method ) {
+      // cash on delivery method
+      echo '<p><strong>Instructions:</strong> Full payment is due immediately upon delivery: <em>cash only, no exceptions</em>.</p>';
+    } else {
+      // other methods (ie credit card)
+      echo '<p><strong>Thank you for subscribing.  This will be your assigned Shipping Address:</strong></p>';
+      echo '<p>Diane Brake PPS Ltd MYNZ.SHOP</p>';
+      echo '<p>127 Elmore Road 0793</p>';
+      echo '<p>Albany, Auckland</p>';
+      echo '<p>New Zealand</p>';
+      echo '<p>(64 9)414 6477</p>';
+    }
+  }
+}
 ?>
