@@ -1960,12 +1960,9 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
  
       // custom message for order of product subscription type
       echo '<p></p>';
-      echo '<p><strong>Thank you for subscribing.<b/>This will be your assigned Shipping Address:</strong></p>';
-      echo '<p>Diane Brake PPS Ltd MYNZ.SHOP</p>';
-      echo '<p>127 Elmore Road 0793</p>';
-      echo '<p>Albany, Auckland</p>';
-      echo '<p>New Zealand</p>';
-      echo '<p>(64 9)414 6477</p>';
+      echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
+      echo '<p></p>';
+      echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
   }
 }
 ?>
