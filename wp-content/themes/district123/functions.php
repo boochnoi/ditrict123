@@ -1959,13 +1959,13 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
   if ( ! $sent_to_admin ) {
       echo 'order '. $order->ID;
       // custom message for order of product subscription type
-      if( function_exists ('wcs_order_contains_subscription')){
-          if ( wcs_order_contains_subscription ($order->ID)){
-        echo '<p></p>';
+      //if( function_exists ('wcs_order_contains_subscription')){
+      //    if ( wcs_order_contains_subscription ($order->ID)){
+      if (WC_Subscriptions_Order::order_contains_subscription($order_id)) {
+      echo '<p></p>';
         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
         echo '<p></p>';
         echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-          }
         }
   }
 }
