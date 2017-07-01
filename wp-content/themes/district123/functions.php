@@ -1959,7 +1959,8 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
   if ( ! $sent_to_admin ) {
  
       // custom message for order of product subscription type
-      echo '<p><strong>Thank you for subscribing.  This will be your assigned Shipping Address:</strong></p>';
+      echo '<p></p>';
+      echo '<p><strong>Thank you for subscribing.<b/>This will be your assigned Shipping Address:</strong></p>';
       echo '<p>Diane Brake PPS Ltd MYNZ.SHOP</p>';
       echo '<p>127 Elmore Road 0793</p>';
       echo '<p>Albany, Auckland</p>';
