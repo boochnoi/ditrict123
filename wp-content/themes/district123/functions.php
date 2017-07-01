@@ -1959,12 +1959,67 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
   if ( ! $sent_to_admin ) {
       
       // custom message for order of product subscription type
-      if( class_exists( 'WC_Subscriptions_Product' ) && WC_Subscriptions_Product::is_subscription( $product ) ) {
+      if( function_exists ('wcs_order_contacins_subscription')){
+          if ( wcs_order_contains_subscription ($order->ID)){
         echo '<p></p>';
         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
         echo '<p></p>';
         echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-      }
+          }
+        }
   }
+}
+
+function has_an_active_subscriber( $product_id = null ){
+
+    // Empty array to store ALL existing Subscription PRODUCTS
+    $products_arr = array();
+
+
+    $products_subscr = get_posts( array(
+        'numberposts' => -1,
+        'post_status' => 'publish',
+        'post_type'   => array( 'product', 'product_variation' ),
+        'meta_key' => '_subscription_price',
+    ) );
+    foreach( $products_subscr as $prod_subs ) {
+        $products_arr[] = $prod_subs->ID;
+    }
+
+    // Testing if current product is a subscription product
+    if (in_array( $product_id, $products_arr) ){
+
+        // Declaring empties arrays
+        $subscribers_arr = array(); // ALL subscribers IDS
+        $active_subscriptions_arr = array(); // ALL actives subscriptions
+        $active_subscription_products_arr = array(); // ALL actif subscription products IDS IDS
+        $subscriber_subscriptions = array();
+
+        // Getting arrays of "active" IDS for subscribers, subscriptions orders and subscription products
+        $subscribers = get_users( array( 'role' => 'subscriber') );
+        foreach( $subscribers as $subscriber ) {
+            $subscriber_arr[] = $subscriber->ID;
+            $subscriptions = wcs_get_users_subscriptions($subscriber->ID);
+            foreach ($subscriptions as  $key => $subscription ){
+                $subscription_status = $subscription->post->post_status;
+                if ( $subscription_status == 'wc-active' ) { // active subscriptions only
+                    $subscription_id = $subscription->post->ID;
+                    $order_id = $subscription->order->post->ID; // order ID (corresponding to the subscription ID)
+                    $active_subscriptions_arr[] = $subscription->post->ID;
+                    $order_items = $subscription->order->get_items();
+                    // Getting all the products in the Order
+                    foreach ( $order_items as $item ) {
+                        // $item_id = $item[product_id];
+
+                        // Avoiding to add existing products in the array 
+                        if( !in_array( $product_id, $active_subscription_products_arr ))
+                            $active_subscription_products_arr[] = $item[product_id];
+                    }
+                }
+            }
+        }
+    }
+    if (in_array( $product_id, $active_subscription_products_arr ) ) return true;
+    else return false;
 }
 ?>
