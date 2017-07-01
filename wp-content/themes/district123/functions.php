@@ -1959,7 +1959,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
   if ( ! $sent_to_admin ) {
       echo 'order '. $order->ID;
       // custom message for order of product subscription type
-      if( function_exists ('wcs_order_contacins_subscription')){
+      if( function_exists ('wcs_order_contains_subscription')){
           if ( wcs_order_contains_subscription ($order->ID)){
         echo '<p></p>';
         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
