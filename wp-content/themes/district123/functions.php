@@ -1935,7 +1935,6 @@ function order_fields($fields) {
         "billing_company", 
         "billing_address_1", 
         "billing_address_2",
-        "billing_town", 
         "billing_city", 
         "billing_postcode", 
         "billing_country", 
