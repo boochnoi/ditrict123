@@ -1891,6 +1891,27 @@ function is_bought_items() {
         return true;
     }
 }
+
+//check if order has subscription product
+function check_order_for_subscription_product( $order_id ) {
+    
+global $posts; 
+global $woocommerce;
+
+return false;
+$order = new WC_Order( $order_id );
+$user_id = (int)$order->user_id;
+$items = $order->get_items();
+
+   foreach ($items as $item) {
+
+       if ( $item['product_id' ]== 83 || $item['product_id' ]== 84 || $item['product_id' ]== 85 ) {
+            return true;
+       }
+   }
+}
+
+
 add_action( 'woocommerce_email_before_order_table', 'add_order_email_instructions', 10, 2 );
  
 function add_order_email_instructions( $order, $sent_to_admin ) {
@@ -1900,7 +1921,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
       //if( function_exists ('wcs_order_contains_subscription')){
       //    if ( wcs_order_contains_subscription ($order->ID)){
       //if (YWSBS_Subscription_Order::check_order_for_subscription($order->ID,$posted)) {
-      if (is_bought_items()){
+      if (check_order_for_subscription_product($order->ID)){
         echo '<p></p>';
         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
         echo '<p></p>';
