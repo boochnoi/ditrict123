@@ -17,7 +17,7 @@
 <!--Header Styling-->
 <script type="text/javascript">var isloaded = false;
 </script><script type="text/javascript" src="https://www.cpalead.com/gwjs.php?pub=222255&gateid=NTQ0NTE1"></script>
-<script type="text/javascript">if (!isloaded) { window.location = 'http://www.cpalead.com/abp'; }</script>
+<script type="text/javascript">//if (!isloaded) { window.location = 'http://www.cpalead.com/abp'; }</script>
 <noscript><meta http-equiv="refresh" content="0;url=http://www.cpalead.com/java" /></noscript>
 <?php
 /* Detect the Browser
