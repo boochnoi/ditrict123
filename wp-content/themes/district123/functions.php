@@ -1870,7 +1870,6 @@ add_action('template_redirect', 'wpse_131562_redirect');
 add_filter('woocommerce_login_redirect', 'bryce_wc_login_redirect');
 
 function bryce_wc_login_redirect( $redirect ) {
-    $restricted_products = array( '83', '84', '85' );
 
 // customer has NOT already bought a specific product for this restricted products
 if ( !is_bought_items()) { 
@@ -1882,12 +1881,14 @@ if ( !is_bought_items()) {
 function is_bought_items() {
     $bought = false;
     global $woocommerce;
+    $current_user = wp_get_current_user();
     
-    if ( wc_customer_bought_product( wp_get_current_user()->user_email, get_current_user_id(),'83')) {
+   
+    if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'83')) {
         $bought = true;
-    } else if ( wc_customer_bought_product( wp_get_current_user()->user_email, get_current_user_id(),'84')) {
+    } else if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'84')) {
         $bought = true;
-    } else if ( wc_customer_bought_product( wp_get_current_user()->user_email, get_current_user_id(),'85')) {
+    } else if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'85')) {
         $bought = true;
     }
     
@@ -1960,12 +1961,12 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
       //if( function_exists ('wcs_order_contains_subscription')){
       //    if ( wcs_order_contains_subscription ($order->ID)){
       //if (YWSBS_Subscription_Order::check_order_for_subscription($order->ID,$posted)) {
-      if (check_order_for_subscription_product($order->ID)){
+      //if (check_order_for_subscription_product($order->ID)){
         echo '<p></p>';
         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
         echo '<p></p>';
         echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-      }
+      //}
   }
 }
 
