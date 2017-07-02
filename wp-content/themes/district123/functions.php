@@ -1873,7 +1873,7 @@ function bryce_wc_login_redirect( $redirect ) {
     $restricted_products = array( '83', '84', '85' );
 
 // customer has NOT already bought a specific product for this restricted products
-if ( !is_bought_items() && in_array( $product->id, $restricted_products ) ) { 
+if ( !is_bought_items()) { 
         $redirect = '/shop';
        return $redirect;
     }
