@@ -1935,6 +1935,7 @@ function is_bought_items_order() {
 
         // Going through each current customer products bought in the order
         foreach ($items as $item) {
+                echo 'Items '.$item;
                 $bought = true; // Corrected mistake in variable name
         }
     }
