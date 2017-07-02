@@ -1882,7 +1882,7 @@ function is_bought_items() {
 
     // setting the IDs of specific products that are needed to be bought by the customer
     // => Replace the example numbers by your specific product IDs
-    $prod_arr = array( '21', '67' );
+    $prod_arr = array( '83', '84','85' );
 
     // Get all customer orders
     $customer_orders = get_posts( array(
@@ -1897,6 +1897,42 @@ function is_bought_items() {
     foreach ( $customer_orders as $customer_order ) {
         $order = wc_get_order( $customer_order );
         // $order_id = $order->id;
+
+        // Going through each current customer products bought in the order
+        foreach ($items as $item) {
+                $bought = true; // Corrected mistake in variable name
+        }
+    }
+
+    // return "true" if one the specifics products have been bought before by customer
+    if ( $bought ) {
+        return true;
+    }
+}
+
+//check product if exist on specific order
+
+function is_bought_items_order() {
+
+    $bought = false;
+
+    // setting the IDs of specific products that are needed to be bought by the customer
+    // => Replace the example numbers by your specific product IDs
+    $prod_arr = array( '83', '84','85' );
+
+    // Get all customer orders
+    $customer_orders = get_posts( array(
+        'numberposts' => -1,
+        'meta_key'    => '_customer_user',
+        'meta_value'  => get_current_user_id(),
+        'post_type'   => 'shop_order', // WC orders post type
+        'post_status' => 'wc-completed' // Only orders with status "completed"
+    ) );
+
+    // Going through each current customer orders
+    foreach ( $customer_orders as $customer_order ) {
+        $order = wc_get_order( $customer_order );
+        $order_id = $order->id;
 
         // Going through each current customer products bought in the order
         foreach ($items as $item) {
@@ -1962,11 +1998,12 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
       //if( function_exists ('wcs_order_contains_subscription')){
       //    if ( wcs_order_contains_subscription ($order->ID)){
       //if (YWSBS_Subscription_Order::check_order_for_subscription($order->ID,$posted)) {
+      if (is_bought_items_order()){
         echo '<p></p>';
         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
         echo '<p></p>';
         echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-      //}
+      }
   }
 }
 
