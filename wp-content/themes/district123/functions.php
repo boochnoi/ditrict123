@@ -1899,8 +1899,13 @@ function is_bought_items() {
         // $order_id = $order->id;
 
         // Going through each current customer products bought in the order
-        if ( in_array( $item['product_id'], $prod_arr ) ) {
-            $bought = true; // Corrected mistake in variable name
+        foreach ($items as $item) {
+
+            // Your condition related to your 2 specific products Ids
+            if ( in_array( $item['product_id'], $prod_arr ) ) {
+
+                $bought = true; // Corrected mistake in variable name
+            }
         }
     }
 
