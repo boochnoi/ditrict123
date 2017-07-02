@@ -1882,15 +1882,12 @@ if ( !is_bought_items()) {
 function is_bought_items() {
     $bought = false;
     global $woocommerce;
-    $user_id = get_current_user_id();
-    $current_user= wp_get_current_user();
-    $customer_email = $current_user->email;
     
-    if ( wc_customer_bought_product( $customer_email, $user_id,'83')) {
+    if ( wc_customer_bought_product( wp_get_current_user()->user_email, get_current_user_id(),'83')) {
         $bought = true;
-    } else if ( wc_customer_bought_product( $customer_email, $user_id,'84')) {
+    } else if ( wc_customer_bought_product( wp_get_current_user()->user_email, get_current_user_id(),'84')) {
         $bought = true;
-    } else if ( wc_customer_bought_product( $customer_email, $user_id,'85')) {
+    } else if ( wc_customer_bought_product( wp_get_current_user()->user_email, get_current_user_id(),'85')) {
         $bought = true;
     }
     
