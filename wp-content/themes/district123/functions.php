@@ -1913,8 +1913,7 @@ function is_bought_items() {
 //check product if exist on specific order
 
 function is_bought_items_order() {
-    echo 'ryan';
-    $bought = true;
+    $bought = false;
 
     // setting the IDs of specific products that are needed to be bought by the customer
     // => Replace the example numbers by your specific product IDs
@@ -1931,8 +1930,10 @@ function is_bought_items_order() {
 
     // Going through each current customer orders
     foreach ( $customer_orders as $customer_order ) {
-        $order = wc_get_order( $order->ID );
-
+        $order = wc_get_order( $customer_order );
+        $order_id = $order->id;
+        
+        echo 'order ' .$order_id .'<br>';
         // Going through each current customer products bought in the order
         foreach ($items as $item) {
                 $bought = true; // Corrected mistake in variable name
@@ -1992,7 +1993,6 @@ add_action( 'woocommerce_email_before_order_table', 'add_order_email_instruction
 function add_order_email_instructions( $order, $sent_to_admin ) {
   
   if ( ! $sent_to_admin ) {
-      echo 'order '. $order->ID;
       // custom message for order of product subscription type
       //if( function_exists ('wcs_order_contains_subscription')){
       //    if ( wcs_order_contains_subscription ($order->ID)){
