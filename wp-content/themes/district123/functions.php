@@ -1913,8 +1913,8 @@ function is_bought_items() {
 //check product if exist on specific order
 
 function is_bought_items_order() {
-
-    $bought = false;
+    echo 'ryan';
+    $bought = true;
 
     // setting the IDs of specific products that are needed to be bought by the customer
     // => Replace the example numbers by your specific product IDs
@@ -1935,8 +1935,6 @@ function is_bought_items_order() {
 
         // Going through each current customer products bought in the order
         foreach ($items as $item) {
-                var_dump ('Items '.$item);
-                die();
                 $bought = true; // Corrected mistake in variable name
         }
     }
