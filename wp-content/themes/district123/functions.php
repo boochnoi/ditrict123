@@ -1931,8 +1931,7 @@ function is_bought_items_order() {
 
     // Going through each current customer orders
     foreach ( $customer_orders as $customer_order ) {
-        $order = wc_get_order( $customer_order );
-        $order_id = $order->id;
+        $order = wc_get_order( $order->ID );
 
         // Going through each current customer products bought in the order
         foreach ($items as $item) {
