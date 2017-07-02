@@ -1880,7 +1880,7 @@ if ( !is_bought_items()) {
 }
 
 function is_bought_items() {
-/**    $bought = false;
+    $bought = false;
     global $woocommerce;
     $user_id = get_current_user_id();
     $current_user= wp_get_current_user();
@@ -1896,8 +1896,8 @@ function is_bought_items() {
     
     if ($bought){
         return true;
-    }*/
-    $bought = false;
+    }
+    /*$bought = false;
 
     // setting the IDs of specific products that are needed to be bought by the customer
     // => Replace the example numbers by your specific product IDs
@@ -1931,7 +1931,7 @@ function is_bought_items() {
     // return "true" if one the specifics products have been bought before by customer
     if ( $bought ) {
         return true;
-    }
+    }*/
 }
 
 //check if order has subscription product
