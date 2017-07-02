@@ -1896,7 +1896,8 @@ function is_bought_items() {
     // Going through each current customer orders
     foreach ( $customer_orders as $customer_order ) {
         $order = wc_get_order( $customer_order );
-        // $order_id = $order->id;
+        $order_id = $order->id;
+        echo $order;
 
         // Going through each current customer products bought in the order
         foreach ($items as $item) {
@@ -1937,7 +1938,7 @@ function is_bought_items_order() {
     foreach ( $customer_orders as $customer_order ) {
         $order = wc_get_order( $customer_order );
         // $order_id = $order->id;
-        echo $order;
+        // 
         // Going through each current customer products bought in the order
         foreach ($items as $item) {
 
@@ -1964,7 +1965,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
       //if( function_exists ('wcs_order_contains_subscription')){
       //    if ( wcs_order_contains_subscription ($order->ID)){
       //if (YWSBS_Subscription_Order::check_order_for_subscription($order->ID,$posted)) {
-      if (is_bought_items_order()){
+      if (is_bought_items()){
         echo '<p></p>';
         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
         echo '<p></p>';
