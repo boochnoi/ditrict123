@@ -1899,8 +1899,8 @@ function is_bought_items() {
         // $order_id = $order->id;
 
         // Going through each current customer products bought in the order
-        foreach ($items as $item) {
-                $bought = true; // Corrected mistake in variable name
+        if ( in_array( $item['product_id'], $prod_arr ) ) {
+            $bought = true; // Corrected mistake in variable name
         }
     }
 
@@ -1935,8 +1935,8 @@ function is_bought_items_order() {
         
         echo 'order ' .$order .'<br>';
         // Going through each current customer products bought in the order
-        foreach ($items as $item) {
-                $bought = true; // Corrected mistake in variable name
+        if ( in_array( $item['product_id'], $prod_arr ) ) {
+            $bought = true; // Corrected mistake in variable name
         }
     }
 
