@@ -1931,9 +1931,9 @@ function is_bought_items_order() {
     // Going through each current customer orders
     foreach ( $customer_orders as $customer_order ) {
         $order = wc_get_order( $customer_order );
-        $order_id = $order->id;
+        //$order_id = $order->id;
         
-        echo 'order ' .$order_id .'<br>';
+        echo 'order ' .$order .'<br>';
         // Going through each current customer products bought in the order
         foreach ($items as $item) {
                 $bought = true; // Corrected mistake in variable name
@@ -1945,11 +1945,28 @@ function is_bought_items_order() {
         return true;
     }
 }
-// remove default sorting dropdown
 
+add_action( 'woocommerce_email_before_order_table', 'add_order_email_instructions', 10, 2 );
+ 
+function add_order_email_instructions( $order, $sent_to_admin ) {
+  
+  if ( ! $sent_to_admin ) {
+      // custom message for order of product subscription type
+      //if( function_exists ('wcs_order_contains_subscription')){
+      //    if ( wcs_order_contains_subscription ($order->ID)){
+      //if (YWSBS_Subscription_Order::check_order_for_subscription($order->ID,$posted)) {
+      if (is_bought_items_order()){
+        echo '<p></p>';
+        echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
+        echo '<p></p>';
+        echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
+      }
+  }
+}
+
+// remove default sorting dropdown
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 // remove default sorting dropdown in StoreFront Theme
- 
 add_action('init','delay_remove');
  
 function delay_remove() {
@@ -1986,24 +2003,6 @@ function order_fields($fields) {
     $fields["billing"] = $ordered_fields;
     return $fields;
 
-}
-
-add_action( 'woocommerce_email_before_order_table', 'add_order_email_instructions', 10, 2 );
- 
-function add_order_email_instructions( $order, $sent_to_admin ) {
-  
-  if ( ! $sent_to_admin ) {
-      // custom message for order of product subscription type
-      //if( function_exists ('wcs_order_contains_subscription')){
-      //    if ( wcs_order_contains_subscription ($order->ID)){
-      //if (YWSBS_Subscription_Order::check_order_for_subscription($order->ID,$posted)) {
-      if (is_bought_items_order()){
-        echo '<p></p>';
-        echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
-        echo '<p></p>';
-        echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-      }
-  }
 }
 
 function has_an_active_subscriber( $product_id = null ){
