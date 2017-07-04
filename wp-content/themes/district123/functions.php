@@ -1963,6 +1963,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
         $user_id = (int)$order->user_id;
         $items = $order->get_items();
            foreach ($items as $item) {
+               echo 'items: ' . ['product_id' ];
                if ( $item['product_id' ]=== 83 ){ 
                     echo '<p></p>';
                     echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
