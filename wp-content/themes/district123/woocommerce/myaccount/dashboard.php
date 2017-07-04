@@ -39,6 +39,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 		esc_url( wc_get_endpoint_url( 'edit-address' ) ),
 		esc_url( wc_get_endpoint_url( 'edit-account' ) )
 	);
+        
+?></p>
+
+<p><?php
+        if (has_woocommerce_subscription){
+            printf(_('<strong>Your MyNZ Address</strong>'));
+        }
+?></p>
+
+<p><?php
+        if (has_woocommerce_subscription){
+            printf(_('Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477'));
+        }
 ?></p>
 
 <?php
