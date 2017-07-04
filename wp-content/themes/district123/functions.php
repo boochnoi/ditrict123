@@ -1955,13 +1955,21 @@ add_action( 'woocommerce_email_before_order_table', 'add_order_email_instruction
 function add_order_email_instructions( $order, $sent_to_admin ) {
   
   if ( ! $sent_to_admin ) {
-       if (check_order_for_subscription_product) {;
-        
-        echo '<p></p>';
-        echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
-        echo '<p></p>';
-        echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-       }
+        global $posts; 
+        global $woocommerce;
+
+        return false;
+        $order = new WC_Order($order->ID);
+        $user_id = (int)$order->user_id;
+        $items = $order->get_items();
+           foreach ($items as $item) {
+               if ( $item['product_id' ]== 83 || $item['product_id' ]== 84 || $item['product_id' ]== 85 ) {
+                    echo '<p></p>';
+                    echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
+                    echo '<p></p>';
+                    echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
+               }         
+           }
   }
 }
 
