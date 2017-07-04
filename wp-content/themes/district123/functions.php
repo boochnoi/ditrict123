@@ -1934,14 +1934,23 @@ function order_fields($fields) {
 
 }
 
-function has_woocommerce_subscription($the_user_id, $the_product_id, $the_status) {
-	$current_user = wp_get_current_user();
-	if (empty($the_user_id)) {
-		$the_user_id = $current_user->ID;
-	}
-	if (WC_Subscriptions_Manager::user_has_subscription( $the_user_id, $the_product_id, $the_status)) {
-		return true;
-	}
+function has_woocommerce_subscription($user_id=null) {
+	// if the user_id is not set in function argument we get the current user ID
+    if( null == $user_id )
+        $user_id = get_current_user_id();
+
+    // Get all active subscrptions for a user ID
+    $active_subscriptions = get_posts( array(
+        'numberposts' => -1,
+        'meta_key'    => '_customer_user',
+        'meta_value'  => $user_id,
+        'post_type'   => 'shop_subscription', // Subscription post type
+        'post_status' => 'wc-active', // Active subscription
+
+    ) );
+    // if
+    if(!empty($active_subscriptions)) return true;
+    else return false;
 }
 
 add_action('wp_logout','auto_redirect_after_logout');
