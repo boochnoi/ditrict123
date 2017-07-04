@@ -1933,18 +1933,16 @@ function is_bought_items() {
 }
 
 //check if order has subscription product
-function check_order_for_subscription_product( $order_id ) {
+function check_order_for_subscription_product() {
     
 global $posts; 
 global $woocommerce;
 
 return false;
-$order = new WC_Order( $order_id );
+$order = new WC_Order($order->ID);
 $user_id = (int)$order->user_id;
 $items = $order->get_items();
-
    foreach ($items as $item) {
-
        if ( $item['product_id' ]== 83 || $item['product_id' ]== 84 || $item['product_id' ]== 85 ) {
             return true;
        }
@@ -1957,16 +1955,13 @@ add_action( 'woocommerce_email_before_order_table', 'add_order_email_instruction
 function add_order_email_instructions( $order, $sent_to_admin ) {
   
   if ( ! $sent_to_admin ) {
-      // custom message for order of product subscription type
-      //if( function_exists ('wcs_order_contains_subscription')){
-      //    if ( wcs_order_contains_subscription ($order->ID)){
-      //if (YWSBS_Subscription_Order::check_order_for_subscription($order->ID,$posted)) {
-      //if (check_order_for_subscription_product($order->ID)){
+       if (check_order_for_subscription_product) {;
+        
         echo '<p></p>';
         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
         echo '<p></p>';
         echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-      //}
+       }
   }
 }
 
