@@ -1963,21 +1963,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
         $items = $order->get_items();
            foreach ($items as $item) {
                echo 'items: ' . ['product_id' ];
-               if ( $item['product_id' ]=== 83 ){ 
-                    echo '<p></p>';
-                    echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
-                    echo '<p></p>';
-                    echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-                    break;
-               }
-               if ( $item['product_id' ]=== 84 ){ 
-                    echo '<p></p>';
-                    echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
-                    echo '<p></p>';
-                    echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
-                    break;
-               }
-               if ( $item['product_id' ]=== 85 ){ 
+               if ( $item['product_id' ]== 83  || $item['product_id' ]== 84  || $item['product_id' ]== 85 ){ 
                     echo '<p></p>';
                     echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
                     echo '<p></p>';
