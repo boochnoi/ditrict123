@@ -1959,6 +1959,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
         global $woocommerce;
         
         $order = new WC_Order($order->ID);
+        echo $order;
         $user_id = (int)$order->user_id;
         $items = $order->get_items();
            foreach ($items as $item) {
