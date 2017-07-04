@@ -1957,8 +1957,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
   if ( ! $sent_to_admin ) {
         global $posts; 
         global $woocommerce;
-
-        return false;
+        
         $order = new WC_Order($order->ID);
         $user_id = (int)$order->user_id;
         $items = $order->get_items();
