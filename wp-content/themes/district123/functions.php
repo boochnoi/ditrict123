@@ -1934,8 +1934,9 @@ function order_fields($fields) {
 
 }
 
-function has_woocommerce_subscription($user_id=null) {
+function has_woocommerce_subscription($user) {
 	// if the user_id is not set in function argument we get the current user ID
+    $user_id = $user->ID;
     if( null == $user_id )
         $user_id = get_current_user_id();
 
