@@ -1870,12 +1870,42 @@ add_action('template_redirect', 'wpse_131562_redirect');
 add_filter('woocommerce_login_redirect', 'bryce_wc_login_redirect');
 
 function bryce_wc_login_redirect( $redirect ) {
-
 // customer has NOT already bought a specific product for this restricted products
-if ( !is_bought_items) { 
-        $redirect = '/shop';
-       return $redirect;
+//global $woocommerce;
+//$current_user = wp_get_current_user();
+//    if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'83')) {
+//        $redirect = '/shop';
+//    } else if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'84')) {
+//        $redirect = '/shop';
+//    } else if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'85')) {
+//        $redirect = '/shop';
+//    }
+    $prod_arr = array( '83', '84','85' );
+
+    // Get all customer orders
+    $customer_orders = get_posts( array(
+        'numberposts' => -1,
+        'meta_key'    => '_customer_user',
+        'meta_value'  => get_current_user_id(),
+        'post_type'   => 'shop_order', // WC orders post type
+        'post_status' => 'wc-completed' // Only orders with status "completed"
+    ) );    
+    // Going through each current customer orders
+    foreach ( $customer_orders as $customer_order ) {
+        $order = wc_get_order( $customer_order );
+        // $order_id = $order->id;
+
+        // Going through each current customer products bought in the order
+        foreach ($items as $item) {
+
+            // Your condition related to your 2 specific products Ids
+            if ( in_array( $item['product_id'], $prod_arr ) ) {
+
+                $redirect = '/shop'; // Corrected mistake in variable name
+            }
+        }
     }
+    return $redirect;
 }
 
 function is_bought_items() {
@@ -1931,24 +1961,6 @@ function is_bought_items() {
         return true;
     }*/
 }
-
-//check if order has subscription product
-function check_order_for_subscription_product() {
-    
-global $posts; 
-global $woocommerce;
-
-return false;
-$order = new WC_Order($order->ID);
-$user_id = (int)$order->user_id;
-$items = $order->get_items();
-   foreach ($items as $item) {
-       if ( $item['product_id' ]== 83 || $item['product_id' ]== 84 || $item['product_id' ]== 85 ) {
-            return true;
-       }
-   }
-}
-
 
 add_action( 'woocommerce_email_before_order_table', 'add_order_email_instructions', 10, 2 );
  
