@@ -1872,7 +1872,7 @@ add_filter('woocommerce_login_redirect', 'bryce_wc_login_redirect');
 function bryce_wc_login_redirect( $redirect ) {
 
 // customer has NOT already bought a specific product for this restricted products
-if ( !is_bought_items()) { 
+if ( !is_bought_items) { 
         $redirect = '/shop';
        return $redirect;
     }
