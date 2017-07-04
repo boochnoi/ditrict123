@@ -1968,6 +1968,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
                     echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
                     echo '<p></p>';
                     echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
+                    break;
                }         
            }
   }
