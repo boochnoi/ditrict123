@@ -43,13 +43,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?></p>
 
 <p><?php
-        if (has_woocommerce_subscription()){
+        if (has_woocommerce_subscription){
             printf(_('<strong>Your MyNZ Address</strong>'));
         }
 ?></p>
 
 <p><?php
-        if (has_woocommerce_subscription()){
+        if (has_woocommerce_subscription){
             printf(_('Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477'));
         }
 ?></p>
