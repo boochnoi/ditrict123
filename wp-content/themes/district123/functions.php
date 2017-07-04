@@ -1867,99 +1867,23 @@ function wpse_131562_redirect() {
 }
 add_action('template_redirect', 'wpse_131562_redirect');
 
-add_filter('woocommerce_login_redirect', 'bryce_wc_login_redirect');
+add_filter('woocommerce_login_redirect', 'wc_custom_redirect',10,2);
 
-function bryce_wc_login_redirect( $redirect ) {
-// customer has NOT already bought a specific product for this restricted products
-//global $woocommerce;
-//$current_user = wp_get_current_user();
-//    if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'83')) {
-//        $redirect = '/shop';
-//    } else if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'84')) {
-//        $redirect = '/shop';
-//    } else if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'85')) {
-//        $redirect = '/shop';
-//    }
-    $prod_arr = array( '83', '84','85' );
-
-    // Get all customer orders
-    $customer_orders = get_posts( array(
-        'numberposts' => -1,
-        'meta_key'    => '_customer_user',
-        'meta_value'  => get_current_user_id(),
-        'post_type'   => 'shop_order', // WC orders post type
-        'post_status' => 'wc-completed' // Only orders with status "completed"
-    ) );    
-    // Going through each current customer orders
-    foreach ( $customer_orders as $customer_order ) {
-        $order = wc_get_order( $customer_order );
-        // $order_id = $order->id;
-
-        // Going through each current customer products bought in the order
-        foreach ($items as $item) {
-
-            // Your condition related to your 2 specific products Ids
-            if ( in_array( $item['product_id'], $prod_arr ) ) {
-
-                $redirect = '/shop'; // Corrected mistake in variable name
-            }
-        }
+function wc_custom_redirect( $redirect, $user ) {
+    $bought=false;
+    $userid = $user->ID;
+    if ( wc_customer_bought_product( $user->user_email, $user->ID,'83')) {
+        $bought=true;
+    } else if ( wc_customer_bought_product( $user->user_email, $user->ID,'84')) {
+        $bought=true;
+    } else if ( wc_customer_bought_product( $user->user_email, $user->ID,'85')) {
+        $bought=true;
+    }
+    
+    if (!$bought) {
+        $redirect ='/shop';
     }
     return $redirect;
-}
-
-function is_bought_items() {
-    $bought = false;
-    global $woocommerce;
-    $current_user = wp_get_current_user();
-    
-   
-    if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'83')) {
-        $bought = true;
-    } else if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'84')) {
-        $bought = true;
-    } else if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID,'85')) {
-        $bought = true;
-    }
-    
-    if ($bought){
-        return true;
-    }
-    /*$bought = false;
-
-    // setting the IDs of specific products that are needed to be bought by the customer
-    // => Replace the example numbers by your specific product IDs
-    $prod_arr = array( '83', '84','85' );
-
-    // Get all customer orders
-    $customer_orders = get_posts( array(
-        'numberposts' => -1,
-        'meta_key'    => '_customer_user',
-        'meta_value'  => get_current_user_id(),
-        'post_type'   => 'shop_order', // WC orders post type
-        'post_status' => 'wc-completed' // Only orders with status "completed"
-    ) );
-
-    // Going through each current customer orders
-    foreach ( $customer_orders as $customer_order ) {
-        $order = wc_get_order( $customer_order );
-        // $order_id = $order->id;
-
-        // Going through each current customer products bought in the order
-        foreach ($items as $item) {
-
-            // Your condition related to your 2 specific products Ids
-            if ( in_array( $item['product_id'], $prod_arr ) ) {
-
-                $bought = true; // Corrected mistake in variable name
-            }
-        }
-    }
-
-    // return "true" if one the specifics products have been bought before by customer
-    if ( $bought ) {
-        return true;
-    }*/
 }
 
 add_action( 'woocommerce_email_before_order_table', 'add_order_email_instructions', 10, 2 );
@@ -2079,5 +2003,11 @@ function has_an_active_subscriber( $product_id = null ){
     }
     if (in_array( $product_id, $active_subscription_products_arr ) ) return true;
     else return false;
+}
+
+add_action('wp_logout','auto_redirect_after_logout');
+function auto_redirect_after_logout(){
+  wp_redirect( home_url() );
+  exit();
 }
 ?>
