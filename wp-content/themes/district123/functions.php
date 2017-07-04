@@ -1950,8 +1950,8 @@ function has_woocommerce_subscription($user) {
 
     ) );
     // if
-    if(!empty($active_subscriptions)) return true;
-    else return false;
+    if(!empty($active_subscriptions)) echo 'true';
+    else echo 'false';
 }
 
 add_action('wp_logout','auto_redirect_after_logout');
