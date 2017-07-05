@@ -1949,9 +1949,8 @@ function has_woocommerce_subscription($user_id=null ) {
         'post_status' => 'wc-active', // Active subscription
 
     ) );
-    // if
-    if(!empty($active_subscriptions)) echo 'true';
-    else echo 'false';
+    if(($active_subscriptions)) return true;
+    else return false;
 }
 
 add_action('wp_logout','auto_redirect_after_logout');
