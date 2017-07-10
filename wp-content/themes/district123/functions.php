@@ -1879,13 +1879,16 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
         $order = new WC_Order($order->ID);
         if ($order->status == 'completed'){
             $user_id = (int)$order->user_id;
+            $user_info = get_userdata($user_id);
+            $firstname = $user_info->first_name;
+            $lastname = $user_info->last_name;
             $items = $order->get_items();
                foreach ($items as $item) {
                    if ( $item['product_id' ]== 83  || $item['product_id' ]== 84  || $item['product_id' ]== 85 ){ 
                         echo '<p></p>';
                         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
                         echo '<p></p>';
-                        echo '<p>Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477</p>';
+                        echo '<p>PACIFIC PROCUREMENT SERVICES LTD<br/>Attn: '.strtoupper($firstname).' '.strtoupper($lastname).'<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9) 414 6477</p>';
                         break;
                    }
                }

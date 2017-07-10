@@ -51,8 +51,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <p><?php
         $user= get_current_user_id();
+        $user_info = get_userdata($user);
+        $firstname = $user_info->first_name;
+        $lastname = $user_info->last_name;
         if (has_woocommerce_subscription($user)){
-            printf(_('Diane Brake PPS Ltd MYNZ.SHOP<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9)414 6477'));
+            printf(_('PACIFIC PROCUREMENT SERVICES LTD<br/>Attn: '.strtoupper($firstname).' '.strtoupper($lastname).'<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9) 414 6477'));
         }
 ?></p>
 
