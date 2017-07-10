@@ -1985,11 +1985,11 @@ function wpb_woo_my_account_order() {
  $myorder = array(
  'dashboard' => __( 'Dashboard', 'woocommerce' ),
  'edit-account' => __( 'Change My Details', 'woocommerce' ),
- 'edit-address' => __( 'Addresses', 'woocommerce' ),
- 'subscriptions' => __( 'Subscriptions', 'woocommerce' ),   
+ 'edit-address' => __( 'Addresses', 'woocommerce' ),  
  'action-required' => __( 'Action Required', 'woocommerce' ),
  'in-review' => __( 'In Review', 'woocommerce' ),
  'ready-to-send' => __( 'Ready to Send', 'woocommerce' ),
+ 'subscriptions' => __( 'Subscriptions', 'woocommerce' ), 
  'orders' => __( 'Orders', 'woocommerce' ),
  'customer-logout' => __( 'Logout', 'woocommerce' ),
  );
