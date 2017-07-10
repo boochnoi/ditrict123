@@ -1976,5 +1976,24 @@ function wpb_woo_endpoint_title( $title, $id ) {
 }
 add_filter( 'the_title', 'wpb_woo_endpoint_title', 10, 2 );
 
-
+/*
+ * Change the order of the endpoints that appear in My Account Page - WooCommerce 2.6
+ * The first item in the array is the custom endpoint URL - ie http://mydomain.com/my-account/my-custom-endpoint
+ * Alongside it are the names of the list item Menu name that corresponds to the URL, change these to suit
+ */
+function wpb_woo_my_account_order() {
+ $myorder = array(
+ 'dashboard' => __( 'Dashboard', 'woocommerce' ),
+ 'edit-account' => __( 'Change My Details', 'woocommerce' ),
+ 'edit-address' => __( 'Addresses', 'woocommerce' ),
+ 'subscriptions' => __( 'Subscriptions', 'woocommerce' ),   
+ 'action-required' => __( 'Action Required', 'woocommerce' ),
+ 'in-review' => __( 'In Review', 'woocommerce' ),
+ 'ready-to-send' => __( 'Ready to Send', 'woocommerce' ),
+ 'orders' => __( 'Orders', 'woocommerce' ),
+ 'customer-logout' => __( 'Logout', 'woocommerce' ),
+ );
+ return $myorder;
+}
+add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
 
