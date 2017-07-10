@@ -1997,3 +1997,11 @@ function wpb_woo_my_account_order() {
 }
 add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
 
+function add_my_account_endpoint() {
+ 
+    add_rewrite_endpoint( 'action-required', EP_PAGES );
+    add_rewrite_endpoint( 'in-review', EP_PAGES );
+    add_rewrite_endpoint( 'ready-to-send', EP_PAGES );
+}
+ 
+add_action( 'init', 'add_my_account_endpoint' );
