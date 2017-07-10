@@ -94,7 +94,7 @@ function wc_get_account_menu_items() {
 
 	$items = array(
 		'dashboard'       => __( 'Dashboard', 'woocommerce' ),
-		'orders'          => __( 'Transactions', 'woocommerce' ),
+		'orders'          => __( 'Orders', 'woocommerce' ),
 		//'downloads'       => __( 'Downloads', 'woocommerce' ),
 		'edit-address'    => __( 'Addresses', 'woocommerce' ),
 		'payment-methods' => __( 'Payment methods', 'woocommerce' ),
