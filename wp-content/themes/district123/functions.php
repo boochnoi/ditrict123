@@ -1961,6 +1961,8 @@ function auto_redirect_after_logout(){
   wp_redirect( home_url() );
   exit();
 }
+?>
+<?php
 
 /*
  * Change the entry title of the endpoints that appear in My Account Page - WooCommerce 2.6
@@ -1968,11 +1970,11 @@ function auto_redirect_after_logout(){
  */
 function wpb_woo_endpoint_title( $title, $id ) {
  if ( is_wc_endpoint_url( 'orders' ) && in_the_loop() ) {
- $title = "Shipments";
+    $title = "Shipments";
  }
  return $title;
 }
 add_filter( 'the_title', 'wpb_woo_endpoint_title', 10, 2 );
 
-?>
+
 
