@@ -1837,6 +1837,25 @@ endforeach;
 add_action('register_post','custom_validation');
 }
 
+add_action( 'woocommerce_account_ready-to-send_endpoint', 'ready_to_send_endpoint_content' );
+
+/**
+ * Replace 'customer' role (WooCommerce use by default) with your own one.
+**/
+add_filter('woocommerce_new_customer_data', 'wc_assign_custom_role', 10, 1);
+
+function wc_assign_custom_role($args) {
+    global $wp_roles;
+  
+    $new_role = $args['user_email'];
+    
+    $wp_roles = new WP_Roles(); 
+    $customer_role = $wp_roles->get_role('customer');
+    $wp_roles->add_role($new_role, $new_rol,$customer_role->capabilities);
+    
+    return ($args);
+}
+
 function wpse_131562_redirect() {
     if (
         ! is_user_logged_in()
@@ -2340,4 +2359,3 @@ function ready_to_send_endpoint_content() {
 <?php
 }
  
-add_action( 'woocommerce_account_ready-to-send_endpoint', 'ready_to_send_endpoint_content' );
