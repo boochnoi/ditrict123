@@ -1,0 +1,807 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Table Rate Shipping\n"
+"POT-Creation-Date: 2017-01-12 17:22+0530\n"
+"PO-Revision-Date: 2017-01-12 17:36+0530\n"
+"Last-Translator: \n"
+"Language-Team: WooForce <info@xadapter.com>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.10\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:7
+msgid "Table rate zones"
+msgstr "As zonas de frequência Tabela"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:8
+msgid "Config zones here"
+msgstr "zonas de configuração aqui"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:27 wf-shipping-pro-common.php:157
+msgid "Settings"
+msgstr "Configurações"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:54
+msgid "Zone matrix:"
+msgstr "matriz Zona:"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:136
+#: core/wf-woocommerce-shipping-pro-zone.php:137
+msgid "Zone title"
+msgstr "Título da Zona"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:140
+#: core/woocommerce-shipping-pro-core.php:144
+#: core/woocommerce-shipping-pro-core.php:359
+msgid "Country list"
+msgstr "Lista de países"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:141
+#: core/woocommerce-shipping-pro-core.php:360
+msgid "Select list of countries which this rule will be applicable"
+msgstr "Selecionar lista de países que esta regra será aplicável"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:144
+#: core/woocommerce-shipping-pro-core.php:145
+#: core/woocommerce-shipping-pro-core.php:363
+msgid "State list"
+msgstr "lista de Estado"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:145
+#: core/woocommerce-shipping-pro-core.php:364
+msgid "Select list of states which this rule will be applicable"
+msgstr "Selecionar lista de estados que esta regra será aplicável"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:148
+#: core/woocommerce-shipping-pro-core.php:146
+#: core/woocommerce-shipping-pro-core.php:367
+msgid "Postal code"
+msgstr "Código postal"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:149
+#: core/woocommerce-shipping-pro-core.php:368
+msgid ""
+"Post/Zip code for this rule. Semi-colon (;) separate multiple values. Leave "
+"blank to apply to all areas. Wildcards (*) can be used. Ranges for numeric "
+"postcodes (e.g. 12345-12350) will be expanded into individual postcodes."
+msgstr ""
+"Código Postal para esta regra. Separe vários valore por vírgula. Deixe em "
+"branco para aplicar a todas as áreas. Wildcards (*) podem ser utilizados. As "
+"faixas para postcodes numéricos (por exemplo, 12345-12350) será expandida "
+"dentro códigos postais individuais."
+
+#: core/wf-woocommerce-shipping-pro-zone.php:156
+msgid "Add"
+msgstr "Adicionar"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:157
+msgid "Remove"
+msgstr "Remover"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:158
+msgid "Duplicate"
+msgstr "Duplicar"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:161
+#: core/woocommerce-shipping-pro-core.php:416
+msgid "Import CSV"
+msgstr "Importar CSV"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:162
+#: core/woocommerce-shipping-pro-core.php:417
+msgid "Export CSV"
+msgstr "Exportar CSV"
+
+#: core/wf-woocommerce-shipping-pro-zone.php:162
+#: core/woocommerce-shipping-pro-core.php:417
+msgid "Weight Unit & Dimensions Unit as per WooCommerce settings."
+msgstr ""
+"Unidade Pesos e Dimensões de Unidade de acordo com as configurações "
+"WooCommerce."
+
+#: core/woocommerce-shipping-pro-core.php:106
+msgid "Enable/Disable"
+msgstr "Ativar/Desativar"
+
+#: core/woocommerce-shipping-pro-core.php:108
+msgid "Enable this shipping method"
+msgstr "Habilitar este método de envio"
+
+#: core/woocommerce-shipping-pro-core.php:112
+msgid "Method Title"
+msgstr "Titulo do Método"
+
+#: core/woocommerce-shipping-pro-core.php:114
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+"Isto controla o título que o utilizador vê durante o checkout (finalizar "
+"compra)."
+
+#: core/woocommerce-shipping-pro-core.php:118
+msgid "Performance Mode"
+msgstr "de desempenho máximo"
+
+#: core/woocommerce-shipping-pro-core.php:121
+msgid "Check if you have large number of rows for rate matrix."
+msgstr "Verifique se você tem grande número de linhas de matriz taxa."
+
+#: core/woocommerce-shipping-pro-core.php:127
+msgid "Display/Hide matrix columns"
+msgstr "colunas da matriz Mostrar / Esconder"
+
+#: core/woocommerce-shipping-pro-core.php:129
+msgid ""
+"Select the columns which are used in the matrix. Please Save changes to "
+"reflect the modifications."
+msgstr ""
+"Seleccionar as colunas que são usados ​​na matriz. Por favor, salve alterações "
+"para refletir as modificações."
+
+#: core/woocommerce-shipping-pro-core.php:141
+#: core/woocommerce-shipping-pro-core.php:347
+msgid "Method title"
+msgstr "Titulo do Método"
+
+#: core/woocommerce-shipping-pro-core.php:142
+#: core/woocommerce-shipping-pro-core.php:351
+msgid "Method group"
+msgstr "grupo de método"
+
+#: core/woocommerce-shipping-pro-core.php:143
+msgid "Zone list"
+msgstr "lista de zonas"
+
+#: core/woocommerce-shipping-pro-core.php:147
+#: core/woocommerce-shipping-pro-core.php:371
+msgid "Shipping class"
+msgstr "Tipo de envio"
+
+#: core/woocommerce-shipping-pro-core.php:148
+#: core/woocommerce-shipping-pro-core.php:375
+msgid "Product category"
+msgstr "Categoria do Produto"
+
+#: core/woocommerce-shipping-pro-core.php:149
+msgid "Weight"
+msgstr "Peso"
+
+#: core/woocommerce-shipping-pro-core.php:150
+msgid "Item"
+msgstr "Item"
+
+#: core/woocommerce-shipping-pro-core.php:151
+msgid "Price"
+msgstr "Preço"
+
+#: core/woocommerce-shipping-pro-core.php:152
+msgid "Rate Based on"
+msgstr "Baseado em"
+
+#: core/woocommerce-shipping-pro-core.php:153
+msgid "Base cost"
+msgstr "Base de custo"
+
+#: core/woocommerce-shipping-pro-core.php:154
+msgid "Cost/unit"
+msgstr "Custo/unidade"
+
+#: core/woocommerce-shipping-pro-core.php:155
+#: core/woocommerce-shipping-pro-core.php:403
+msgid "Round"
+msgstr "Redondo"
+
+#: core/woocommerce-shipping-pro-core.php:158
+msgid "Choose matrix columns"
+msgstr "Escolha colunas da matriz"
+
+#: core/woocommerce-shipping-pro-core.php:162
+msgid "Calculation Mode"
+msgstr "Modo de cálculo"
+
+#: core/woocommerce-shipping-pro-core.php:164
+msgid ""
+"Per Order: Shipping calculation will be done on the entire cart together. "
+"Total weight of the cart will be used with the selected rule to calculate "
+"the shipping.  Rule will be satisfied if one of the items in the cart meets "
+"the criteria. Per Item: Shipping calculation will happen on item wise, item "
+"weight multiply with the quantity will be used with the selected rule to "
+"calculate the shipping cost for the item, all the item cost will be summed "
+"to find the final cost."
+msgstr ""
+"Per Order: cálculo de envio será feito em todo o carrinho juntos. Peso total "
+"do carrinho será usado com a regra seleccionada para calcular o transporte. "
+"Regra ficará satisfeito se um dos itens no carrinho de satisfazer os "
+"critérios. Per Item: cálculo do transporte vai acontecer no item de sábio, "
+"peso do item se multiplicam com a quantidade será usada com a regra "
+"selecionada para calcular o custo de transporte para o item, todo o custo do "
+"item serão somadas para encontrar o custo final."
+
+#: core/woocommerce-shipping-pro-core.php:167
+msgid ""
+"Per Line Item Max Cost: Calculate shipping cost per Line item. Choose "
+"maximum rate in case multiple rule."
+msgstr ""
+"Por item de linha Custo Max: Calcule o custo de transporte por item. Escolha "
+"taxa máxima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:168
+msgid ""
+"Per Line Item Min Cost: Calculate shipping cost per Line item. Choose "
+"minimum rate in case multiple rule."
+msgstr ""
+"Por item de linha Min Custo: Calcule o custo de transporte por item. Escolha "
+"taxa mínima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:169
+msgid ""
+"Per Item Max Cost: Calculate shipping cost per item. Choose maximum rate in "
+"case multiple rule."
+msgstr ""
+"Per Item Custo Max: Calcule o custo de transporte por item. Escolha taxa "
+"máxima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:170
+msgid ""
+"Per Item Min Cost: Calculate shipping cost per item. Choose minimum rate in "
+"case multiple rule."
+msgstr ""
+"Per Item Min Custo: Calcule o custo de transporte por item. Escolha taxa "
+"mínima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:171
+msgid ""
+"Per Order Max Cost: Calculate shipping cost per order. Choose maximum rate "
+"in case multiple rule."
+msgstr ""
+"Custo por Ordem Max: Calcule o custo de transporte por pedido. Escolha taxa "
+"máxima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:172
+msgid ""
+"Per Order Min Cost: Calculate shipping cost per order. Choose minimum rate "
+"in case multiple rule."
+msgstr ""
+"Por Pedido Min Custo: Calcule o custo de transporte por pedido. Escolha taxa "
+"mínima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:173
+msgid ""
+"Per Category Max Cost: Calculate shipping cost per category. Choose maximum "
+"rate in case multiple rule."
+msgstr ""
+"Por categoria de custos Max: Calcule o custo de transporte por categoria. "
+"Escolha taxa máxima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:174
+msgid ""
+"Per Category Min Cost: Calculate shipping cost per category. Choose minimum "
+"rate in case multiple rule."
+msgstr ""
+"Por Categoria Min Custo: Calcule o custo de transporte por categoria. "
+"Escolha taxa mínima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:175
+msgid ""
+"Per Shipping class Max Cost: Calculate shipping cost per shipping class. "
+"Choose maximum rate in case multiple rule."
+msgstr ""
+"Por envio classe Custo Max: Calcule o custo de transporte por classe de "
+"transporte. Escolha taxa máxima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:176
+msgid ""
+"Per Shipping class Min Cost: Calculate shipping cost per shipping class. "
+"Choose minimum rate in case multiple rule."
+msgstr ""
+"Por envio classe Min Custo: Calcule o custo de transporte por classe de "
+"transporte. Escolha taxa mínima no caso de regra múltipla."
+
+#: core/woocommerce-shipping-pro-core.php:180
+msgid "Tax Status"
+msgstr "Estado de Imposto"
+
+#: core/woocommerce-shipping-pro-core.php:185
+msgid "Taxable"
+msgstr "Tributável"
+
+#: core/woocommerce-shipping-pro-core.php:186
+msgid "None"
+msgstr "Nenhum"
+
+#: core/woocommerce-shipping-pro-core.php:190
+msgid "Remove Free Text"
+msgstr "Remover Texto Livre"
+
+#: core/woocommerce-shipping-pro-core.php:192
+msgid "Remove default (Free) text from shipping label"
+msgstr "Remover padrão de texto (gratuito) a partir de etiqueta de envio"
+
+#: core/woocommerce-shipping-pro-core.php:196
+msgid "Debug"
+msgstr "Depuração"
+
+#: core/woocommerce-shipping-pro-core.php:198
+msgid "Debug this shipping method"
+msgstr "Depurar este método de envio"
+
+#: core/woocommerce-shipping-pro-core.php:264
+msgid "Rate matrix:"
+msgstr "matriz Classificação:"
+
+#: core/woocommerce-shipping-pro-core.php:348
+msgid ""
+"Would you like this shipping rule to have its own shipping service name? If "
+"so, please choose a name. Leaving it blank will use Method Title as shipping "
+"service name."
+msgstr ""
+"Gostaria esta regra de transporte para ter o seu próprio nome de serviço de "
+"transporte? Se assim for, por favor, escolha um nome. Deixando-o em branco "
+"irá usar Método título como o nome serviço de transporte."
+
+#: core/woocommerce-shipping-pro-core.php:352
+msgid ""
+"Useful if multiple shipping method needs to be returned. All the shipping "
+"rule can be grouped to air and ground by providing Method Group appropriate. "
+"And different shipping rates for air and ground will be provided to the "
+"users. Leaving it blank will only return one shipping rate."
+msgstr ""
+"Útil se o método de envio múltipla precisa ser devolvido. Toda a regra de "
+"transporte podem ser agrupados para o ar e do solo, fornecendo Método Grupo "
+"apropriado. E as taxas de transporte diferentes para o ar eo solo será "
+"fornecido aos usuários. Deixando-o em branco só retornará uma taxa de envio."
+
+#: core/woocommerce-shipping-pro-core.php:355
+msgid "zone list"
+msgstr "lista de zonas"
+
+#: core/woocommerce-shipping-pro-core.php:356
+msgid "You can choose the zones here once you configured"
+msgstr "Você pode escolher as zonas aqui uma vez que você configurou"
+
+#: core/woocommerce-shipping-pro-core.php:372
+msgid "Select list of shipping class which this rule will be applicable"
+msgstr "Selecionar lista de classe de navegação que esta regra será aplicável"
+
+#: core/woocommerce-shipping-pro-core.php:376
+msgid ""
+"Select list of product category which this rule will be applicable. Only the "
+"product category directly assigned to the products will be considered."
+msgstr ""
+"Selecionar lista de categoria de produto que esta regra será aplicável. "
+"Apenas a categoria do produto directamente atribuído aos produtos serão "
+"consideradas."
+
+#: core/woocommerce-shipping-pro-core.php:379
+#: core/woocommerce-shipping-pro-core.php:383
+#: core/woocommerce-shipping-pro-core.php:387
+msgid "Min-Max"
+msgstr "Min-Max"
+
+#: core/woocommerce-shipping-pro-core.php:380
+msgid ""
+"if the min value entered is .25 and the order weight is .25 then this rule "
+"will be ignored. if the min value entered is .25 and the order weight is .26 "
+"then this rule will be be applicable for calculating shipping cost. if the "
+"max value entered is .25 and the order weight is .26 then this rule will be "
+"ignored. if the max value entered is .25 and the order weight is .25 or .24 "
+"then this rule will be be applicable for calculating shipping cost."
+msgstr ""
+"se o valor min introduzido é 0,25 eo peso ordem é 0,25, então esta regra "
+"será ignorada. se o valor min introduzido é 0,25 eo peso ordem é 0,26, então "
+"esta regra serão ser aplicável para o cálculo do custo de transporte. se o "
+"valor máximo introduzido é 0,25 eo peso ordem é 0,26, então esta regra será "
+"ignorada. se o valor máximo introduzido é 0,25 eo peso ordem é 0,25 ou 0,24, "
+"em seguida, esta regra serão ser aplicável para o cálculo do custo de "
+"transporte."
+
+#: core/woocommerce-shipping-pro-core.php:380
+msgid "(weight)"
+msgstr "peso ("
+
+#: core/woocommerce-shipping-pro-core.php:384
+msgid ""
+"if the min value entered is 25 and the item count is 25 then this rule will "
+"be ignored. if the min value entered is 25 and the item count is 26 then "
+"this rule will be be applicable for calculating shipping cost. if the max "
+"value entered is 25 and the item count is 26 then this rule will be ignored. "
+"if the max value entered is 25 and the item count is 25 or 24 then this rule "
+"will be be applicable for calculating shipping cost."
+msgstr ""
+"se o valor min entrou é de 25 ea contagem de itens é de 25, em seguida, esta "
+"regra será ignorada. se o valor min entrou é de 25 ea contagem de itens é de "
+"26, em seguida, esta regra serão ser aplicável para o cálculo do custo de "
+"transporte. se o valor máximo introduzido é 25 ea contagem de itens é de 26, "
+"em seguida, esta regra será ignorada. se o valor máximo introduzido é 25 ea "
+"contagem de itens é de 25 ou 24, em seguida, esta regra serão ser aplicável "
+"para o cálculo do custo de transporte."
+
+#: core/woocommerce-shipping-pro-core.php:384
+msgid "(item count)"
+msgstr "Contagem de itens"
+
+#: core/woocommerce-shipping-pro-core.php:388
+msgid ""
+"if the min value entered is 25 and the price is 25 then this rule will be "
+"ignored. if the min value entered is 25 and the price is 26 then this rule "
+"will be be applicable for calculating shipping cost. if the max value "
+"entered is 25 and the price is 26 then this rule will be ignored. if the max "
+"value entered is 25 and the price is 25 or 24 then this rule will be be "
+"applicable for calculating shipping cost."
+msgstr ""
+"se o valor min inserido é 25 eo preço é 25, então esta regra será ignorada. "
+"se o valor min inserido é 25 eo preço é 26, então esta regra serão ser "
+"aplicável para o cálculo do custo de transporte. se o valor máximo "
+"introduzido é 25 eo preço é 26, então esta regra será ignorada. se o valor "
+"máximo introduzido é 25 eo preço é 25 ou 24, em seguida, esta regra serão "
+"ser aplicável para o cálculo do custo de transporte."
+
+#: core/woocommerce-shipping-pro-core.php:388
+msgid "(price)"
+msgstr "valor"
+
+#: core/woocommerce-shipping-pro-core.php:391
+msgid "Based on"
+msgstr "Baseado em"
+
+#: core/woocommerce-shipping-pro-core.php:392
+msgid "Shipping rate calculation based on Weight/Item/Price."
+msgstr "taxa de envio de cálculo com base no peso / Item / preço."
+
+#: core/woocommerce-shipping-pro-core.php:395
+#: core/woocommerce-shipping-pro-core.php:399
+msgid "Cost"
+msgstr "Custo"
+
+#: core/woocommerce-shipping-pro-core.php:396
+msgid ""
+"Base/Fixed cost of the shipping irrespective of the weight/item count/price"
+msgstr ""
+"Base / Custo fixo do transporte independentemente do peso / contagem de "
+"itens / preço"
+
+#: core/woocommerce-shipping-pro-core.php:396
+msgid "(base)"
+msgstr "Base"
+
+#: core/woocommerce-shipping-pro-core.php:400
+msgid ""
+"Per weight/item count/price unit cost. This cost will be added on above the "
+"base cost.If select Based on as weight, Total shipping Cost = Base cost + "
+"(order weight - minimum weight) * cost per unit"
+msgstr ""
+"Custo por unidade de peso / item de contagem / preço. Este custo será "
+"adicionado em cima da base cost.If selecionar com base em como custo de "
+"peso, o custo total do transporte = Base   (peso ordem - peso mínimo) * "
+"custo por unidade"
+
+#: core/woocommerce-shipping-pro-core.php:400
+msgid "(per unit)"
+msgstr "Por Unidade"
+
+#: core/woocommerce-shipping-pro-core.php:404
+msgid ""
+"How would you like to round weight/item count/price? Lets take an example "
+"with weight. if the value entered is 0.5 and the order weight is 4.4kg then "
+"shipping cost will be calculated for 4.5kg, if the value entered is 1 and "
+"the order weight is 4.4kg then shipping cost will be calculated for 5kg, if "
+"the value entered is 0 and the order weight is 4.4kg then shipping cost will "
+"be calculated for 4.4kg"
+msgstr ""
+"Como você gostaria de arredondar peso / contagem de itens / preço? Vamos dar "
+"um exemplo com o peso. se o valor introduzido é de 0,5 eo peso ordem é 4,4 "
+"kg, em seguida, o custo de transporte será calculado para 4,5 kg, se o valor "
+"introduzido é 1 e o peso ordem é 4,4 kg, em seguida, os custos de envio "
+"serão calculados para 5 kg, se o valor introduzido é 0 eo peso ordem é 4,4 "
+"kg, em seguida, os custos de envio serão calculados para 4,4 kg"
+
+#: core/woocommerce-shipping-pro-core.php:411
+msgid "Add rule"
+msgstr "Adicionar regra"
+
+#: core/woocommerce-shipping-pro-core.php:412
+msgid "Remove rule(es)"
+msgstr "Remover regra (es)"
+
+#: core/woocommerce-shipping-pro-core.php:413
+msgid "Duplicate rule(es)"
+msgstr "regra duplicado (es)"
+
+#: includes/class-wf-admin-importers.php:23
+#: includes/class-wf-admin-importers.php:25
+msgid "Shipping Pro Rate Matrix (CSV)"
+msgstr "Expedição Pro Taxa Matrix (CSV)"
+
+#: includes/class-wf-admin-importers.php:23
+#: includes/class-wf-admin-importers.php:25
+msgid ""
+"Import <strong>Shipping Pro Rate Matrix</strong> to your store via a csv "
+"file."
+msgstr ""
+"Import <strong>envio Pro Taxa Matrix</strong> para a sua loja através de um "
+"arquivo CSV."
+
+#: includes/class-wf-rate-matrix-importer.php:95
+#: includes/class-wf-rate-matrix-importer.php:150
+#: includes/class-wf-rate-matrix-importer.php:190
+#: includes/class-wf-rate-matrix-importer.php:205
+#: includes/class-wf-zone-matrix-importer.php:95
+#: includes/class-wf-zone-matrix-importer.php:133
+#: includes/class-wf-zone-matrix-importer.php:173
+#: includes/class-wf-zone-matrix-importer.php:188
+msgid "Sorry, there has been an error."
+msgstr "Desculpe, houve um erro."
+
+#: includes/class-wf-rate-matrix-importer.php:96
+#: includes/class-wf-zone-matrix-importer.php:96
+msgid "The file does not exist, please try again."
+msgstr "O arquivo não existe, por favor tente novamente."
+
+#: includes/class-wf-rate-matrix-importer.php:151
+#: includes/class-wf-zone-matrix-importer.php:134
+msgid "The CSV is invalid."
+msgstr "O CSV é inválido."
+
+#: includes/class-wf-rate-matrix-importer.php:162
+#, php-format
+msgid ""
+"Import complete - imported <strong>%s</strong> Rate Matrix Rules and skipped "
+"<strong>%s</strong>."
+msgstr ""
+"Importação completa - <strong>importados%s</strong> Regras Matrix Taxa e "
+"<strong>saltou%s.</strong>"
+
+#: includes/class-wf-rate-matrix-importer.php:172
+#: includes/class-wf-zone-matrix-importer.php:155
+msgid "All done!"
+msgstr "Tudo feito!"
+
+#: includes/class-wf-rate-matrix-importer.php:172
+msgid "View Rate Matrix"
+msgstr "Ver Matrix Taxa"
+
+#: includes/class-wf-rate-matrix-importer.php:220
+msgid "Import Shipping Pro Rate Matrix"
+msgstr "Import envio Taxa Matrix Pro"
+
+#: includes/class-wf-rate-matrix-importer.php:236
+msgid ""
+"Hi there! Upload a CSV file containing Shipping Pro Rate Matrix to import "
+"the contents into your shop. Choose a .csv file to upload, then click "
+"\"Upload file and import\"."
+msgstr ""
+"Olá! Fazer upload de um arquivo CSV que contém as taxas de imposto para "
+"importar o conteúdo em sua loja. Escolha um arquivo .csv para upload, em "
+"seguida, clique em \"Enviar arquivo e importar\"."
+
+#: includes/class-wf-rate-matrix-importer.php:238
+#, php-format
+msgid ""
+"Shipping Pro Rate Matrix need to be defined with columns in a specific order "
+"(18 columns). <a href=\"%s\">Click here to download a sample</a>."
+msgstr ""
+"Expedição Matrix Pro Taxa precisam ser definidos com colunas em uma ordem "
+"específica (18 colunas). <a href=\"%s\">Clique aqui para baixar uma amostra</"
+"a> ."
+
+#: includes/class-wf-rate-matrix-importer.php:246
+#: includes/class-wf-zone-matrix-importer.php:229
+msgid ""
+"Before you can upload your import file, you will need to fix the following "
+"error:"
+msgstr "Antes de enviar o arquivo, você deve corrigir o seguinte erro:"
+
+#: includes/class-wf-rate-matrix-importer.php:255
+#: includes/class-wf-zone-matrix-importer.php:238
+msgid "Choose a file from your computer:"
+msgstr "Escolha um arquivo do seu computador:"
+
+#: includes/class-wf-rate-matrix-importer.php:261
+#: includes/class-wf-zone-matrix-importer.php:244
+#, php-format
+msgid "Maximum size: %s"
+msgstr "Tam. Máximo: %s"
+
+#: includes/class-wf-rate-matrix-importer.php:266
+#: includes/class-wf-zone-matrix-importer.php:249
+msgid "OR enter path to file:"
+msgstr "OU insira caminho para o arquivo:"
+
+#: includes/class-wf-rate-matrix-importer.php:273
+#: includes/class-wf-zone-matrix-importer.php:256
+msgid "Delimiter"
+msgstr "Delimitador"
+
+#: includes/class-wf-zone-matrix-importer.php:145
+#, php-format
+msgid ""
+"Import complete - imported <strong>%s</strong> zone Matrix Rules and skipped "
+"<strong>%s</strong>."
+msgstr ""
+"Importação completa - <strong>importados%s</strong> zona Regras Matrix e "
+"<strong>saltou%s.</strong>"
+
+#: includes/class-wf-zone-matrix-importer.php:155
+msgid "View zone Matrix"
+msgstr "Matrix View zona"
+
+#: includes/class-wf-zone-matrix-importer.php:203
+msgid "Import Shipping Pro zone Matrix"
+msgstr "Import envio Matrix zona Pro"
+
+#: includes/class-wf-zone-matrix-importer.php:219
+msgid ""
+"Hi there! Upload a CSV file containing Shipping Pro zone Matrix to import "
+"the contents into your shop. Choose a .csv file to upload, then click "
+"\"Upload file and import\"."
+msgstr ""
+"Olá! Fazer upload de um arquivo CSV que contém as taxas de imposto para "
+"importar o conteúdo em sua loja. Escolha um arquivo .csv para upload, em "
+"seguida, clique em \"Enviar arquivo e importar\"."
+
+#: includes/class-wf-zone-matrix-importer.php:221
+#, php-format
+msgid ""
+"Shipping Pro zone Matrix need to be defined with columns in a specific order "
+"(4 columns). <a href=\"%s\">Click here to download a sample</a>."
+msgstr ""
+"Expedição zona Pro Matrix precisa ser definida com colunas em uma ordem "
+"específica (4 colunas). <a href=\"%s\">Clique aqui para baixar uma amostra</"
+"a> ."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:373
+#, php-format
+msgid ""
+"The license key for %s has expired. You can reactivate or purchase a license "
+"key from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"A chave de licença para %s expirou. Você pode reativar ou comprar uma chave "
+"de licença de sua <a href=\"%s\" target=\"_blank\">conta</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:384
+#, php-format
+msgid ""
+"The subscription for %s is on-hold. You can reactivate the subscription from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"A chave de licença para %s está em espera. Você pode reativar ou comprar uma "
+"chave de licença de sua <a href=\"%s\" target=\"_blank\">conta</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:395
+#, php-format
+msgid ""
+"The subscription for %s has been cancelled. You can renew the subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>. A new "
+"license key will be emailed to you after your order has been completed."
+msgstr ""
+"A inscrição para %s foi cancelada. Você pode renovar a sua inscrição a "
+"partir de sua <a href=\"%s\" target=\"_blank\"> conta </a>.  Uma nova chave "
+"de licença será enviada para você após seu pedido ter sido concluído."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:406
+#, php-format
+msgid ""
+"The subscription for %s has expired. You can reactivate the subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"A inscrição para %s expirou. Você pode reativar a sua inscrição a partir da "
+"sua <a href=\"%s\" target=\"_blank\">conta</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:417
+#, php-format
+msgid ""
+"The subscription for %s has been suspended. You can reactivate the "
+"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
+"a>."
+msgstr ""
+"A inscrição para %s foi suspensa. Você pode reativar a sua inscrição a "
+"partir da sua <a href=\"%s\" target=\"_blank\">conta</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:428
+#, php-format
+msgid ""
+"The subscription for %s is still pending. You can check on the status of the "
+"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
+"a>."
+msgstr ""
+"A inscrição para %s está sendo processada. Você pode acompanhar o status por "
+"sua <a href=\"%s\" target=\"_blank\">conta</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:439
+#, php-format
+msgid ""
+"The subscription for %s has been placed in the trash and will be deleted "
+"soon. You can purchase a new subscription from your account <a href=\"%s\" "
+"target=\"_blank\">dashboard</a>."
+msgstr ""
+"The subscription for %s has been placed in the trash and will be deleted "
+"soon. You can purchase a new subscription from your account <a href=\"%s\" "
+"target=\"_blank\">dashboard</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:450
+#, php-format
+msgid ""
+"A subscription for %s could not be found. You can purchase a subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"A inscrição para %s não foi encontrada. Você pode adquirir uma inscrição por "
+"sua <a href=\"%s\" target=\"_blank\">conta</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:461
+#, php-format
+msgid ""
+"A license key for %s could not be found. Maybe you forgot to enter a license "
+"key when setting up %s, or the key was deactivated in your account. You can "
+"reactivate license key at your plugin <a href=\"%s\" target=\"_blank"
+"\">settings page</a>."
+msgstr ""
+"A license key for %s could not be found. Maybe you forgot to enter a license "
+"key when setting up %s, or the key was deactivated in your account. You can "
+"reactivate or purchase a license key from your account <a href=\"%s\" target="
+"\"_blank\">dashboard</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:472
+#, php-format
+msgid ""
+"Download permission for %s has been revoked possibly due to a license key or "
+"subscription expiring. You can reactivate or purchase a license key from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Download permission for %s has been revoked possibly due to a license key or "
+"subscription expiring. You can reactivate or purchase a license key from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:483
+#, php-format
+msgid ""
+"%s has not been activated. Go to the plugin <a href=\"%s\" target=\"_blank"
+"\">settings page</a> and enter the license key and license email to activate "
+"%s."
+msgstr ""
+"%s has not been activated. Go to the plugin <a href=\"%s\" target=\"_blank"
+"\">settings page</a> and enter the license key and license email to activate "
+"%s."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:494
+#, php-format
+msgid ""
+"You changed the subscription for %s, so you will need to enter your new API "
+"License Key in the settings page. The License Key should have arrived in "
+"your email inbox, if not you can get it by logging into your account <a href="
+"\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"You changed the subscription for %s, so you will need to enter your new API "
+"License Key in the settings page. The License Key should have arrived in "
+"your email inbox, if not you can get it by logging into your account <a href="
+"\"%s\" target=\"_blank\">dashboard</a>."
+
+#: wf-shipping-pro-common.php:158
+msgid "Table rate zone"
+msgstr "Tabela de Taxa"
+
+#: wf-shipping-pro-common.php:159
+msgid "Documentation"
+msgstr "Documentação"
+
+#: wf-shipping-pro-common.php:160
+msgid "Support"
+msgstr "Suporte"
+
+#: woocommerce-shipping-pro.php:26
+msgid "Shipping Pro"
+msgstr "Custo do frete"
+
+#: woocommerce-shipping-pro.php:27
+msgid ""
+"Intuitive Rule Based Shipping Plug-in for WooCommerce. Set shipping rates "
+"based on rules based by Country, State, Post Code, Product Category,Shipping "
+"Class and Weight."
+msgstr ""
+"Regra intuitiva baseada envio Plug-in para WooCommerce. Definir taxas de "
+"envio com base em regras baseadas por país, estado, código postal, categoria "
+"de produto, transporte de classe e peso."

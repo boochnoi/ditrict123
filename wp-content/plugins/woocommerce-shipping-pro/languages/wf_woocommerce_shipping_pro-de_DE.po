@@ -1,0 +1,565 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Shipping PRO\n"
+"POT-Creation-Date: 2015-08-04 16:58+0530\n"
+"PO-Revision-Date: 2015-08-04 17:21+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Basepath: ..\\\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: woocommerce-shipping-pro.php:78
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: woocommerce-shipping-pro.php:79
+msgid "Support"
+msgstr "Unterstützung"
+
+#: woocommerce-shipping-pro.php:88
+msgid "Shipping Pro"
+msgstr "Shipping Pro"
+
+#: woocommerce-shipping-pro.php:89
+msgid ""
+"Intuitive Rule Based Shipping Plug-in for WooCommerce. Set shipping rates "
+"based on rules based by Country, State, Post Code, Product Category,Shipping "
+"Class and Weight."
+msgstr ""
+"Intuitive Regelbasierte Versand Plug-in für WooCommerce . Set Versandkosten "
+"basierend auf Regeln von Land, Bundesland , Postleitzahl , "
+"Produktkategorie , Versandklasse und Gewicht."
+
+#: core/woocommerce-shipping-pro-core.php:85
+msgid "Enable/Disable"
+msgstr "Aktivieren/Deaktivieren"
+
+#: core/woocommerce-shipping-pro-core.php:87
+msgid "Enable this shipping method"
+msgstr "Aktivieren Sie diese Versandart"
+
+#: core/woocommerce-shipping-pro-core.php:91
+msgid "Method Title"
+msgstr "Versandart Titel"
+
+#: core/woocommerce-shipping-pro-core.php:93
+msgid "This controls the title which the user sees during checkout."
+msgstr "Dies steuert den Titel , den der Benutzer bei der Kasse sieht."
+
+#: core/woocommerce-shipping-pro-core.php:101
+msgid "Display/Hide matrix columns"
+msgstr "Matrixspalten ein- / ausblenden"
+
+#: core/woocommerce-shipping-pro-core.php:103
+msgid ""
+"Select the columns which are used in the matrix. Please Save changes to "
+"reflect the modifications."
+msgstr ""
+"Wählen die Spalten , die in der Matrix verwendet werden . Bitte die "
+"Änderungen speichern , um die Änderungen zu aktivieren."
+
+#: core/woocommerce-shipping-pro-core.php:117
+#: core/woocommerce-shipping-pro-core.php:331
+msgid "Method title"
+msgstr "Versandart Titel"
+
+#: core/woocommerce-shipping-pro-core.php:118
+#: core/woocommerce-shipping-pro-core.php:335
+msgid "Method group"
+msgstr "Verfahren Gruppe"
+
+#: core/woocommerce-shipping-pro-core.php:119
+#: core/woocommerce-shipping-pro-core.php:339
+msgid "Country list"
+msgstr "Länderliste"
+
+#: core/woocommerce-shipping-pro-core.php:120
+#: core/woocommerce-shipping-pro-core.php:343
+msgid "State list"
+msgstr "Landesliste"
+
+#: core/woocommerce-shipping-pro-core.php:121
+#: core/woocommerce-shipping-pro-core.php:347
+msgid "Postal code"
+msgstr "Postleitzahl"
+
+#: core/woocommerce-shipping-pro-core.php:122
+#: core/woocommerce-shipping-pro-core.php:351
+msgid "Shipping class"
+msgstr "Versandklasse"
+
+#: core/woocommerce-shipping-pro-core.php:123
+#: core/woocommerce-shipping-pro-core.php:355
+msgid "Product category"
+msgstr "Produktkategorie"
+
+#: core/woocommerce-shipping-pro-core.php:124
+msgid "Weight"
+msgstr "Gewicht"
+
+#: core/woocommerce-shipping-pro-core.php:125
+msgid "Item"
+msgstr "Artikel"
+
+#: core/woocommerce-shipping-pro-core.php:126
+msgid "Price"
+msgstr "Preis"
+
+#: core/woocommerce-shipping-pro-core.php:127
+msgid "Rate Based on"
+msgstr "Basiert auf"
+
+#: core/woocommerce-shipping-pro-core.php:128
+msgid "Base cost"
+msgstr "Grundkosten"
+
+#: core/woocommerce-shipping-pro-core.php:129
+msgid "Cost/unit"
+msgstr "Kosten/Einheit"
+
+#: core/woocommerce-shipping-pro-core.php:130
+#: core/woocommerce-shipping-pro-core.php:383
+msgid "Round"
+msgstr "Runde"
+
+#: core/woocommerce-shipping-pro-core.php:133
+msgid "Choose matrix columns"
+msgstr "Wählen Matrixspalten"
+
+#: core/woocommerce-shipping-pro-core.php:137
+msgid "Calculation Mode"
+msgstr "Berechnungsmodus"
+
+#: core/woocommerce-shipping-pro-core.php:139
+msgid ""
+"Per Order: Shipping calculation will be done on the entire cart together. "
+"Total weight of the cart will be used with the selected rule to calculate "
+"the shipping.  Rule will be satisfied if one of the items in the cart meets "
+"the criteria. Per Item: Shipping calculation will happen on item wise, item "
+"weight multiply with the quantity will be used with the selected rule to "
+"calculate the shipping cost for the item, all the item cost will be summed "
+"to find the final cost."
+msgstr ""
+"Pro Order: Die Versandkostenkalkulation wird aus dem gesamten Warenkorb "
+"zusammengeführt. Für das Gesamtgewicht des Warenkorbes wird die ausgewählten "
+"Regel verwendet, um die Versandkosten zu berechnen. Die Regel ist erfüllt, "
+"wenn eines der Elemente im Warenkorb die Kriterien erfüllt . Preis pro "
+"Artikel: Versandkostenkalkulation auf Artikel passierend, Einzelartikel "
+"Gewicht: Multiplizieren die Menge mit der der ausgewählten Regel, um für das "
+"Element die Versandkosten zu berechnen. Es werden alle Artikel Kosten "
+"summiert, um die endgültigen Kosten zu berechnen."
+
+#: core/woocommerce-shipping-pro-core.php:142
+msgid ""
+"Per Item Max Cost: Calculate shipping cost per item. Choose maximum rate in "
+"case multiple rule."
+msgstr ""
+"Pro Stück Max Cost: Berechnen Sie Transportkosten pro Stück. Wählen Sie "
+"maximale Geschwindigkeit bei Mehrfachregel."
+
+#: core/woocommerce-shipping-pro-core.php:143
+msgid ""
+"Per Item Min Cost: Calculate shipping cost per item. Choose minimum rate in "
+"case multiple rule."
+msgstr ""
+"Pro Stück Min Cost: Berechnen Sie Transportkosten pro Stück. Wählen "
+"Mindestratebei Mehrfachregel."
+
+#: core/woocommerce-shipping-pro-core.php:144
+msgid ""
+"Per Order Max Cost: Calculate shipping cost per order. Choose maximum rate "
+"in case multiple rule."
+msgstr ""
+"Per Sortieren Max Cost: Berechnen Sie Transportkosten pro Bestellung. Wählen "
+"Sie maximale Geschwindigkeit bei Mehrfachregel."
+
+#: core/woocommerce-shipping-pro-core.php:145
+msgid ""
+"Per Order Min Cost: Calculate shipping cost per order. Choose minimum rate "
+"in case multiple rule."
+msgstr ""
+"Per Sortieren Min Cost: Berechnen Sie Transportkosten pro Bestellung. Wählen "
+"Mindestratebei Mehrfachregel."
+
+#: core/woocommerce-shipping-pro-core.php:146
+msgid ""
+"Per Category Max Cost: Calculate shipping cost per category. Choose maximum "
+"rate in case multiple rule."
+msgstr ""
+"Pro Kategorie Max Cost: Berechnen Sie Transportkosten pro Kategorie. Wählen "
+"Sie maximale Geschwindigkeit bei Mehrfachregel."
+
+#: core/woocommerce-shipping-pro-core.php:147
+msgid ""
+"Per Category Min Cost: Calculate shipping cost per category. Choose minimum "
+"rate in case multiple rule."
+msgstr ""
+"Pro Kategorie Min Cost: Berechnen Sie Transportkosten pro Kategorie. Wählen "
+"Mindestratebei Mehrfachregel."
+
+#: core/woocommerce-shipping-pro-core.php:148
+msgid ""
+"Per Shipping class Max Cost: Calculate shipping cost per shipping class. "
+"Choose maximum rate in case multiple rule."
+msgstr ""
+"Per Versandklasse Max Cost: Berechnen Sie Transportkosten pro Versandklasse. "
+"Wählen Sie maximale Geschwindigkeit bei Mehrfachregel."
+
+#: core/woocommerce-shipping-pro-core.php:149
+msgid ""
+"Per Shipping class Min Cost: Calculate shipping cost per shipping class. "
+"Choose minimum rate in case multiple rule."
+msgstr ""
+"Per Versandklasse Min Cost: Berechnen Sie Transportkosten pro Versandklasse. "
+"Wählen Mindestratebei Mehrfachregel."
+
+#: core/woocommerce-shipping-pro-core.php:153
+msgid "Tax Status"
+msgstr "Steuerstatus"
+
+#: core/woocommerce-shipping-pro-core.php:158
+msgid "Taxable"
+msgstr "Steuerpflichtig"
+
+#: core/woocommerce-shipping-pro-core.php:159
+msgid "None"
+msgstr "Keiner"
+
+#: core/woocommerce-shipping-pro-core.php:163
+msgid "Remove Free Text"
+msgstr "Entfernen Free Text"
+
+#: core/woocommerce-shipping-pro-core.php:165
+msgid "Remove default (Free) text from shipping label"
+msgstr "Entfernen Standard (Free) Text von Versandetikett"
+
+#: core/woocommerce-shipping-pro-core.php:169
+msgid "Debug"
+msgstr "Debuggen"
+
+#: core/woocommerce-shipping-pro-core.php:171
+msgid "Debug this shipping method"
+msgstr "Debuggen diese Versandart"
+
+#: core/woocommerce-shipping-pro-core.php:248
+msgid "Rate matrix:"
+msgstr "Bewerten Matrix :"
+
+#: core/woocommerce-shipping-pro-core.php:332
+msgid ""
+"Would you like this shipping rule to have its own shipping service name? If "
+"so, please choose a name. Leaving it blank will use Method Title as shipping "
+"service name."
+msgstr ""
+"Möchten Sie diesen Versand Regel ihre eigenen Versandservice Namen? Wenn "
+"ja , wählen Sie bitte einen Namen . Verlassen Sie es leer wird Method Titel "
+"als Versand-Service -Namen verwenden ."
+
+#: core/woocommerce-shipping-pro-core.php:336
+msgid ""
+"Useful if multiple shipping method needs to be returned. All the shipping "
+"rule can be grouped to air and ground by providing Method Group appropriate. "
+"And different shipping rates for air and ground will be provided to the "
+"users. Leaving it blank will only return one shipping rate."
+msgstr ""
+"Sinnvoll, wenn mehrere Versandverfahreneingeschickt werden muss . All die "
+"Versandregel kann zu Luft und am Boden , indem sie die Verfahrensgruppe "
+"entsprechende gruppiert werden. Und verschiedene Versandkosten für Luft und "
+"am Boden werden den Nutzern zur Verfügung gestellt werden . Verlassen Sie es "
+"leer wird nur eine Versandkostenpauschale zurückzukehren."
+
+#: core/woocommerce-shipping-pro-core.php:340
+msgid "Select list of countries which this rule will be applicable"
+msgstr "Wählen Sie die Liste der Länder, die diese Regel angewendet werden"
+
+#: core/woocommerce-shipping-pro-core.php:344
+msgid "Select list of states which this rule will be applicable"
+msgstr "Wählen Sie die Liste der Staaten, die diese Regel angewendet werden"
+
+#: core/woocommerce-shipping-pro-core.php:348
+msgid ""
+"Post/Zip code for this rule. Semi-colon (;) separate multiple values. Leave "
+"blank to apply to all areas. Wildcards (*) can be used. Ranges for numeric "
+"postcodes (e.g. 12345-12350) will be expanded into individual postcodes."
+msgstr ""
+"Post / Postleitzahl für diese Regel. Semikolon ( ; ) trennen Sie mehrere "
+"Werte . Leer lassen , um auf alle Bereiche anwenden . Platzhalter (* ) "
+"verwendet werden . Bereiche für numerische Postleitzahlen (zB 12.345 bis "
+"12.350 ) wird in einzelne Postleitzahlen erweitert werden."
+
+#: core/woocommerce-shipping-pro-core.php:352
+msgid "Select list of shipping class which this rule will be applicable"
+msgstr ""
+"Wählen Sie die Liste der Liefer Klasse, die diese Regel angewendet werden"
+
+#: core/woocommerce-shipping-pro-core.php:356
+msgid "Select list of product category which this rule will be applicable"
+msgstr ""
+"Wählen Sie die Liste der Produktkategorie , die diese Regel angewendet werden"
+
+#: core/woocommerce-shipping-pro-core.php:359
+#: core/woocommerce-shipping-pro-core.php:363
+#: core/woocommerce-shipping-pro-core.php:367
+msgid "Min-Max"
+msgstr "Min-Max"
+
+#: core/woocommerce-shipping-pro-core.php:360
+msgid ""
+"if the min value entered is .25 and the order weight is .25 then this rule "
+"will be ignored. if the min value entered is .25 and the order weight is .26 "
+"then this rule will be be applicable for calculating shipping cost. if the "
+"max value entered is .25 and the order weight is .26 then this rule will be "
+"ignored. if the max value entered is .25 and the order weight is .25 or .24 "
+"then this rule will be be applicable for calculating shipping cost."
+msgstr ""
+"wenn der eingegebene min -Wert 0,25 und der Auftragsgewicht beträgt 0,25 , "
+"dann wird diese Regel ignoriert. wenn der eingegebene min -Wert 0,25 und der "
+"Auftragsgewicht beträgt 0,26 für diese Regel anwendbar für die Berechnung "
+"der Transportkosten sein werden. Sie die eingegebene max -Wert 0,25 und der "
+"Auftragsgewicht beträgt 0,26 , dann wird diese Regel ignoriert. Sie die "
+"eingegebene max -Wert 0,25 und der Auftragsgewicht beträgt 0,25 bzw. 0,24 "
+"für diese Regel gilt für die Berechnung der Transportkosten sein werden."
+
+#: core/woocommerce-shipping-pro-core.php:360
+msgid "(weight)"
+msgstr "(Gewicht)"
+
+#: core/woocommerce-shipping-pro-core.php:364
+msgid ""
+"if the min value entered is 25 and the item count is 25 then this rule will "
+"be ignored. if the min value entered is 25 and the item count is 26 then "
+"this rule will be be applicable for calculating shipping cost. if the max "
+"value entered is 25 and the item count is 26 then this rule will be ignored. "
+"if the max value entered is 25 and the item count is 25 or 24 then this rule "
+"will be be applicable for calculating shipping cost."
+msgstr ""
+"wenn der eingegebene min Wert ist 25 und die Elementanzahl ist 25 , dann "
+"wird diese Regel ignoriert. wenn der eingegebene min Wert ist 25 und die "
+"Elementanzahl ist 26 das Ergebnis der Regel anwendbar für die Berechnung der "
+"Transportkosten sein werden. Sie die eingegebene max -Wert ist 25 und der "
+"Elementanzahl ist 26 , dann wird diese Regel ignoriert. Sie die eingegebene "
+"max -Wert ist 25 und der Elementanzahl ist 25 oder 24 das Ergebnis der Regel "
+"anwendbar für die Berechnung der Transportkosten sein werden."
+
+#: core/woocommerce-shipping-pro-core.php:364
+msgid "(item count)"
+msgstr "(Artikel zählen)"
+
+#: core/woocommerce-shipping-pro-core.php:368
+msgid ""
+"if the min value entered is 25 and the price is 25 then this rule will be "
+"ignored. if the min value entered is 25 and the price is 26 then this rule "
+"will be be applicable for calculating shipping cost. if the max value "
+"entered is 25 and the price is 26 then this rule will be ignored. if the max "
+"value entered is 25 and the price is 25 or 24 then this rule will be be "
+"applicable for calculating shipping cost."
+msgstr ""
+"wenn der eingegebene Wert ist 25 min und der Preis ist 25 , dann wird diese "
+"Regel ignoriert. wenn der eingegebene Wert ist 25 min und der Preis ist 26 "
+"das Ergebnis der Regel anwendbar für die Berechnung der Transportkosten sein "
+"werden. Sie die eingegebene max -Wert ist 25 und der Preis ist 26 , dann "
+"wird diese Regel ignoriert. Sie die eingegebene max -Wert ist 25 und der "
+"Preis ist 25 oder 24 das Ergebnis der Regel anwendbar für die Berechnung der "
+"Transportkosten sein werden."
+
+#: core/woocommerce-shipping-pro-core.php:368
+msgid "(price)"
+msgstr "(Preis)"
+
+#: core/woocommerce-shipping-pro-core.php:371
+msgid "Based on"
+msgstr "Basierend auf"
+
+#: core/woocommerce-shipping-pro-core.php:372
+msgid "Shipping rate calculation based on Weight/Item/Price."
+msgstr "Versand Berechnung auf Gewicht / Item / Preis basiert ."
+
+#: core/woocommerce-shipping-pro-core.php:375
+#: core/woocommerce-shipping-pro-core.php:379
+msgid "Cost"
+msgstr "Kosten"
+
+#: core/woocommerce-shipping-pro-core.php:376
+msgid ""
+"Base/Fixed cost of the shipping irrespective of the weight/item count/price"
+msgstr ""
+"Base / Festkosten der Versand unabhängig vom Gewicht / Stück Zahl / Preis"
+
+#: core/woocommerce-shipping-pro-core.php:376
+msgid "(base)"
+msgstr "(Basis)"
+
+#: core/woocommerce-shipping-pro-core.php:380
+msgid ""
+"Per weight/item count/price unit cost. This cost will be added on above the "
+"base cost.If select Based on as weight, Total shipping Cost = Base cost + "
+"(order weight - minimum weight) * cost per unit"
+msgstr ""
+"Pro Gewicht / Stück Zahl / Preis Stückkosten . Diese Kosten werden auf über "
+"dem Basis hinzugefügt werden youhave auf Gewicht, Verschiffengesamtkosten = "
+"Basiskosten+ ( um Gewicht - Mindestgewicht ) Basierend SELECT * Kosten pro "
+"Einheit"
+
+#: core/woocommerce-shipping-pro-core.php:380
+msgid "(per unit)"
+msgstr "(per Artikel)"
+
+#: core/woocommerce-shipping-pro-core.php:384
+msgid ""
+"How would you like to round weight/item count/price? Lets take an example "
+"with weight. if the value entered is 0.5 and the order weight is 4.4kg then "
+"shipping cost will be calculated for 4.5kg, if the value entered is 1 and "
+"the order weight is 4.4kg then shipping cost will be calculated for 5kg, if "
+"the value entered is 0 and the order weight is 4.4kg then shipping cost will "
+"be calculated for 4.4kg"
+msgstr ""
+"Wie möchten Sie , Gewicht / Stück Zahl / Preis abrunden ? Nehmen wir ein "
+"Beispiel mit Gewicht. wenn der eingegebene Wert ist 0,5 und das "
+"Auftragsgewicht ist 4.4kg dann Versandkosten werden für 4,5 kg berechnet "
+"werden , wenn der eingegebene Wert ist 1 und das Auftragsgewicht ist 4.4kg "
+"dann die Versandkosten werden für 5 kg berechnet werden , wenn der "
+"eingegebene Wert 0 und das Auftragsgewicht ist 4.4kg dann die Versandkosten "
+"werden für 4.4kg berechnet werden"
+
+#: core/woocommerce-shipping-pro-core.php:391
+msgid "Add rule"
+msgstr "Regel hinzufügen"
+
+#: core/woocommerce-shipping-pro-core.php:392
+msgid "Remove rule(es)"
+msgstr "Entfernen Regel (es)"
+
+#: core/woocommerce-shipping-pro-core.php:393
+msgid "Duplicate rule(es)"
+msgstr "Doppelte Regel (es)"
+
+#: core/woocommerce-shipping-pro-core.php:396
+msgid "Import CSV"
+msgstr "Import CSV"
+
+#: core/woocommerce-shipping-pro-core.php:397
+msgid "Export CSV"
+msgstr "Export CSV"
+
+#: core/woocommerce-shipping-pro-core.php:397
+msgid "Weight Unit & Dimensions Unit as per WooCommerce settings."
+msgstr "Gewicht Einheit & Abmessungen Einheit nach WooCommerce Einstellungen ."
+
+#: includes/class-wf-admin-importers.php:23
+msgid "Shipping Pro Rate Matrix (CSV)"
+msgstr "Versand Pro Rate Matrix (CSV)"
+
+#: includes/class-wf-admin-importers.php:23
+msgid ""
+"Import <strong>Shipping Pro Rate Matrix</strong> to your store via a csv "
+"file."
+msgstr ""
+"Import <strong> Versand Pro Rate Matrix über eine CSV-Datei </ strong> in "
+"Ihr Geschäft."
+
+#: includes/class-wf-rate-matrix-importer.php:95
+#: includes/class-wf-rate-matrix-importer.php:148
+#: includes/class-wf-rate-matrix-importer.php:188
+#: includes/class-wf-rate-matrix-importer.php:203
+msgid "Sorry, there has been an error."
+msgstr "Sorry, es ist ein Fehler aufgetreten."
+
+#: includes/class-wf-rate-matrix-importer.php:96
+msgid "The file does not exist, please try again."
+msgstr "Die Datei ist nicht vorhanden, bitte versuchen Sie es erneut."
+
+#: includes/class-wf-rate-matrix-importer.php:149
+msgid "The CSV is invalid."
+msgstr "Die CSV ist ungültig."
+
+#: includes/class-wf-rate-matrix-importer.php:160
+#, php-format
+msgid ""
+"Import complete - imported <strong>%s</strong> Rate Matrix Rules and skipped "
+"<strong>%s</strong>."
+msgstr ""
+"Import abgeschlossen - importiert <strong>%s </ strong> Rate Matrix Regeln "
+"und übersprungen <strong>%s </ strong>."
+
+#: includes/class-wf-rate-matrix-importer.php:170
+msgid "All done!"
+msgstr "Alles fertig!"
+
+#: includes/class-wf-rate-matrix-importer.php:170
+#, fuzzy
+msgid "View Rate Matrix"
+msgstr "Bewerten Matrix :"
+
+#: includes/class-wf-rate-matrix-importer.php:218
+msgid "Import Shipping Pro Rate Matrix"
+msgstr "Import Shipping Pro Rate Matrix"
+
+#: includes/class-wf-rate-matrix-importer.php:234
+msgid ""
+"Hi there! Upload a CSV file containing Shipping Pro Rate Matrix to import "
+"the contents into your shop. Choose a .csv file to upload, then click "
+"\"Upload file and import\"."
+msgstr ""
+"Hallo! Laden Sie eine CSV-Datei mit Versand Pro Rate Matrix, um den Inhalt "
+"in Ihren Shop importieren. Wählen Sie eine CSV-Datei zu laden, klicken Sie "
+"auf \"Upload-Datei und Import \"."
+
+#: includes/class-wf-rate-matrix-importer.php:236
+#, php-format
+msgid ""
+"Shipping Pro Rate Matrix need to be defined with columns in a specific order "
+"(17 columns). <a href=\"%s\">Click here to download a sample</a>."
+msgstr ""
+"Versand Pro Rate Matrix müssen mit den Spalten in einer bestimmten "
+"Reihenfolge (17 Spalten) definiert werden. <a href=\"%s\"> Klicken Sie hier, "
+"um eine Probe </a> herunterladen."
+
+#: includes/class-wf-rate-matrix-importer.php:244
+msgid ""
+"Before you can upload your import file, you will need to fix the following "
+"error:"
+msgstr ""
+"Bevor Sie Ihre Importdatei hochladen, müssen Sie die folgende Fehlermeldung "
+"zu beheben:"
+
+#: includes/class-wf-rate-matrix-importer.php:253
+msgid "Choose a file from your computer:"
+msgstr "Wählen Sie eine Datei von Ihrem Computer:"
+
+#: includes/class-wf-rate-matrix-importer.php:259
+#, php-format
+msgid "Maximum size: %s"
+msgstr "Maximale Größe:%s"
+
+#: includes/class-wf-rate-matrix-importer.php:264
+msgid "OR enter path to file:"
+msgstr "Oder geben Sie Pfad zur Datei:"
+
+#: includes/class-wf-rate-matrix-importer.php:271
+msgid "Delimiter"
+msgstr "Trennzeichen"
+
+#~ msgid ""
+#~ "Per Order: Shipping calculation will be done on the entire cart together. "
+#~ "Total weight of the cart will be used with the selected rule to calculate "
+#~ "the shipping.  Rule will be satisfied if one of the items in the cart "
+#~ "meets the criteria. Per Item: Shipping calculation will happen on item "
+#~ "wise, item weight multiply with the quantity will be used with the "
+#~ "selected rule to calculate the shipping cost for the item, all the item "
+#~ "cost will be summed to find the final cost. "
+#~ msgstr ""
+#~ "Pro Order: Versandkostenkalkulation wird auf der gesamten Warenkorb "
+#~ "zusammengeführt werden. Gesamtgewicht des Wagens wird mit der "
+#~ "ausgewählten Regel verwendet, um die Versandkosten zu berechnen. Regel "
+#~ "erfüllt, wenn eines der Elemente im Warenkorb die Kriterien erfüllt . "
+#~ "Preis pro Artikel: Versandkostenkalkulation auf Artikel weise passieren , "
+#~ "Einzelteil Gewicht multiplizieren mit der Menge der ausgewählten Regel "
+#~ "verwendet, um für das Element die Versandkosten zu berechnen , werden "
+#~ "alle Artikel Kosten summiert, um die endgültigen Kosten finden werden."

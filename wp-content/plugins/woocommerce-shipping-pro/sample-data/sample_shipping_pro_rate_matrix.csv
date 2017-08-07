@@ -1,0 +1,11 @@
+shipping_name, method_group, country_list, state_list, postal_code, shipping_class, product_category, min_weight, max_weight, min_item, max_item, min_price, max_price, cost_based_on, fee, cost, weigh_rounding
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9
+Method1,group1,any_country;BN;AE,AU:ACT;AU:QLD,1;2;3,book;carb-spacer,12;7,1,2,3,4,5,6,item,7,8,9

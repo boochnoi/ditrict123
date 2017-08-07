@@ -1,0 +1,4 @@
+zone_name,country_list,state_list,postal_code
+zone-1(US),US,US:CA;US:MA,90001;90002;90003
+zone-2(CA),CA,CA:ON,K2A3MP1;K2A3MP2;K2A3MP3
+zone-3(UK),GB,any_state,
