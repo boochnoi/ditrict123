@@ -1847,11 +1847,17 @@ add_filter('woocommerce_new_customer_data', 'wc_assign_custom_role', 10, 1);
 function wc_assign_custom_role($args) {
     global $wp_roles;
   
-    $new_role = $args['user_email'];
+    $email = $args['user_email'];
+    $login = $args['user_login'];
     
-    $wp_roles = new WP_Roles(); 
+    /**$wp_roles = new WP_Roles(); 
     $customer_role = $wp_roles->get_role('customer');
-    $wp_roles->add_role($new_role, $new_rol,$customer_role->capabilities);
+    $wp_roles->add_role($new_role, $new_role,$customer_role->capabilities);**/
+    
+    $term = wp_insert_term( $email.' category', 'product_cat', [
+	'description'=> $email .' Product Category',
+	'slug' => $login.'-category' ]
+    );
     
     return ($args);
 }
