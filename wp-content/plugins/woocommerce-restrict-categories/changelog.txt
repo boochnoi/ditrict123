@@ -1,0 +1,115 @@
+Version 3.5.10 - October 5, 2015
+
+	Suppress PHP warning message
+	
+Version 3.5.9 - January 29, 2015
+
+	Make sure each user restriction is cleared before saving its new settings
+
+Version 3.5.8 - June 17, 2014
+
+	Updated to support only displaying categories on the main shop page ( WooCommerce -> Settings -> Products -> Show Page Display 
+
+Version 3.5.7 - May 14, 2014
+
+	Return array instead of null
+
+Version 3.5.6 - May 12, 2014
+
+	Fixed typo
+
+Version 3.5.5 - May 7, 2014
+
+	Adding settings tab to allow admins to enable / disable user & role settings. 
+
+Version 3.5.4 - April 29, 2014
+
+	Fixed array filtering typo
+
+Version 3.5.3 - April 23, 2014
+
+	Ensure the category list is emptied before being reloaded
+	
+	Added support for Related Products, plugin properly filters out restricted items
+
+Version 3.5.2 - April 18, 2014
+
+	Fixed a typo
+
+Version 3.5.1 - April 18, 2014
+
+	Tweaked array detection
+
+Version 3.5 - April 15, 2014
+
+	Major rewrite of the filtering mechanisms. This prevents the plugin from interfering with nav manus.
+
+Version 3.4.8 - March 24, 2014
+
+	Updated to help filter related products on single product pages
+
+Version 3.4.7 - March 11, 2014
+
+	Fixed tag related query args 
+	
+Version 3.4.6 - March 5, 2014
+
+	Added check for single product pages to ensure they cannot be accessed directly without having been granted access.
+
+Version 3.4.5 - February 14, 2014
+
+	WooCommerce 2.1 compatibility
+	
+	WordPress 3.8.x compatibility
+
+Version 3.4.4 - January 27, 2013
+
+	Tweaked query to use proper database prefix
+
+Version 3.4.3 - December 24, 2013
+	
+	Tweaked query for single products
+
+Version 3.4.2 - December 6, 2013
+
+	Fixed condition where searching posts in the admin area might break due to the plugin running a function unnecessarily in the admin area
+
+Version 3.4.1 - October 17, 2013
+
+	- Fixed bug introduced in previous version related to variable product attribute selection
+
+Version 3.4 - July 1, 2013
+
+	- Added ability to define which categories non-logged in users can see
+
+Version 3.3.5.1 - May 14, 2013
+
+	- Added checks to avoid warning messages
+
+Version 3.3.5 - May 8, 2013
+
+	- Adjusted parsing for categories so the viewing sub-category pages shows items if the user is allowed to see those products
+
+Version 3.3.4 - February 12, 2013
+
+	- Adjusted filters to address search and product tags
+
+Version 3.3.3 - February 10, 2013
+
+	- Changed filters for better compatibility across categories, tags, pages, and search
+	- Added "Select All" and "Unselect All" links for use when configuring restrictions
+
+	
+Version 3.3.2 - February 8, 2013
+
+	- Updated to avoid filtering nav menu items
+	
+Version 3.3.1
+
+	- Initial public release
+
+Version 3.2
+	- Initial testing with WooCommerce
+	- Various tweaks to the  architecture and functionality
+	- Adjusted to work with product category pages, single product pages, and the stock WooCommerce Product Categories widget
+	

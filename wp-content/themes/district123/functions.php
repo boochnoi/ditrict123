@@ -1854,7 +1854,7 @@ function wc_assign_custom_role($args) {
     $customer_role = $wp_roles->get_role('customer');
     $wp_roles->add_role($new_role, $new_role,$customer_role->capabilities);**/
     
-    $term = wp_insert_term( $email.' category', 'product_cat', [
+    $term = wp_insert_term( $email.'-category', 'product_cat', [
 	'description'=> $email .' Product Category',
 	'slug' => $login.'-category' ]
     );
