@@ -514,7 +514,7 @@ class IgniteWoo_Restrict_Product_Categories{
 		<div class="wrap">
 			<?php screen_icon( 'options-general' ); ?>
 			
-			<h2><?php _e('Restrict Categories - W/P/L/O/C/K/E/R/./C/O/M', 'ignitewoo-restrict-categories'); ?></h2>
+			<h2><?php _e('Restrict Categories', 'ignitewoo-restrict-categories'); ?></h2>
 			
 			<h2 class="nav-tab-wrapper">
 				<a href="<?php echo $base_tab; ?>" class="nav-tab <?php echo ( $tab == 'settings' ) ? 'nav-tab-active' : ''; ?>">Settings</a>
