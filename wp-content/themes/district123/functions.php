@@ -1858,7 +1858,12 @@ function wc_assign_custom_role($args) {
 	'description'=> $email .' Product Category',
 	'slug' => $login.'-category' ]
     );
-    
+    //$categ_array = get_option('IgniteWoo_RestrictCats_user_options');
+    //print_r($categ_array);
+    //$arr = $categ_array["ad'n_user_cats"];
+    //$profile_arr = unserialize($arr);
+    //print_r($profile_arr);
+    //die();
     return ($args);
 }
 

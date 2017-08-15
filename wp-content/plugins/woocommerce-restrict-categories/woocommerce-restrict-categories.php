@@ -369,7 +369,7 @@ class IgniteWoo_Restrict_Product_Categories{
 	 * @since 2.4
 	 */
 	public function add_screen_options($current) {
-		global $current_screen;
+            global $current_screen;
 
 		$options = get_option( 'RestrictCats-screen-options' );
 		
