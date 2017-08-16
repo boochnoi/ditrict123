@@ -2019,7 +2019,7 @@ function wpb_woo_my_account_order() {
  'dashboard' => __( 'Dashboard', 'woocommerce' ),
  'edit-account' => __( 'Change My Details', 'woocommerce' ),
  'edit-address' => __( 'Addresses', 'woocommerce' ),  
- 'action-required' => __( 'Your Action is Required', 'woocommerce' ),
+ 'shop' => __( 'Your Action is Required', 'woocommerce' ),
  'in-review' => __( 'In Process', 'woocommerce' ),
  'ready-to-send' => __( 'Ready to Send', 'woocommerce' ),
  'subscriptions' => __( 'Subscriptions', 'woocommerce' ), 
@@ -2031,8 +2031,6 @@ function wpb_woo_my_account_order() {
 add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
 
 function add_my_account_endpoint() {
- 
-    add_rewrite_endpoint( 'action-required', EP_PAGES );
     add_rewrite_endpoint( 'in-review', EP_PAGES );
     add_rewrite_endpoint( 'ready-to-send', EP_PAGES );
 }
