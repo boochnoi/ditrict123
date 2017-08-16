@@ -1842,28 +1842,31 @@ add_action( 'woocommerce_account_ready-to-send_endpoint', 'ready_to_send_endpoin
 /**
  * Replace 'customer' role (WooCommerce use by default) with your own one.
 **/
-add_filter('woocommerce_new_customer_data', 'wc_assign_custom_role', 10, 1);
+add_filter('woocommerce_new_customer_data', 'wc_custom_product_categ', 10, 1);
 
-function wc_assign_custom_role($args) {
+function wc_custom_product_categ($args) {
     global $wp_roles;
   
     $email = $args['user_email'];
     $login = $args['user_login'];
     
-    /**$wp_roles = new WP_Roles(); 
-    $customer_role = $wp_roles->get_role('customer');
-    $wp_roles->add_role($new_role, $new_role,$customer_role->capabilities);**/
-    
     $term = wp_insert_term( $email.'-category', 'product_cat', [
 	'description'=> $email .' Product Category',
 	'slug' => $login.'-category' ]
     );
-    //$categ_array = get_option('IgniteWoo_RestrictCats_user_options');
-    //print_r($categ_array);
-    //$arr = $categ_array["ad'n_user_cats"];
-    //$profile_arr = unserialize($arr);
-    //print_r($profile_arr);
-    //die();
+    
+    /** update options ignitewoo restrict categ user*/
+    $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
+    
+    /** remind to loop on admin user role**/
+    $arr = $categ_array['admin_user_cats'];
+    $last_count = count($arr);
+    $categ_array['admin_user_cats'][$last_count-1] = $login.'-category';
+    $categ_array['admin_user_cats'][$last_count] =' RestrictCategoriesDefault';
+    $new_key = array($login.'_user_cats'=>array('0'=>'general','1'=>$login.'-category','2'=>'RestrictCategoriesDefault'));
+    $new_values = array_merge($new_key,$categ_array);
+    update_option('IgniteWoo_RestrictCats_user_options',$new_values);
+    
     return ($args);
 }
 
