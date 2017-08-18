@@ -2381,12 +2381,21 @@ global $woocommerce;
 if ( is_admin() && ! defined( 'DOING_AJAX' ) )
     return;
 
-    $percentage = 0.03;
-    $taxes = array_sum($woocommerce->cart->taxes);
-    $surcharge = ( $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total + $taxes ) * $percentage;   
+    //loop on cart and get product regular price
+    $items = $woocommerce->cart->get_cart();
+    foreach($items as $item => $values) { 
+        $_product =  wc_get_product( $values['data']->get_id());  
+        $price = get_post_meta($values['product_id'] , '_price', true);
+    } 
+       
     // Make sure that you return false here.  We can't double tax people!
-    $commission =0;
-    $customs_fee = 0;
+    $commission = $price * 0.05;
+    
+    if ($price < 1000) {
+        $customs_fee = 15;
+    }else{
+        $customs_fee = 30;
+    }
     $woocommerce->cart->add_fee( 'Commission', $commission, true, '' );
     $woocommerce->cart->add_fee( 'Customs Exportation Fee', $customs_fee, true, '' );
 
