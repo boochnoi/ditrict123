@@ -2373,3 +2373,21 @@ function ready_to_send_endpoint_content() {
 <?php
 }
  
+/*** Additional Fees on Cart ***/
+add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
+function woocommerce_custom_surcharge() {
+global $woocommerce;
+
+if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+    return;
+
+    $percentage = 0.03;
+    $taxes = array_sum($woocommerce->cart->taxes);
+    $surcharge = ( $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total + $taxes ) * $percentage;   
+    // Make sure that you return false here.  We can't double tax people!
+    $commission =0;
+    $customs_fee = 0;
+    $woocommerce->cart->add_fee( 'Commission', $commission, true, '' );
+    $woocommerce->cart->add_fee( 'Customs Exportation Fee', $customs_fee, true, '' );
+
+}
