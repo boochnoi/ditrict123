@@ -2385,7 +2385,7 @@ if ( is_admin() && ! defined( 'DOING_AJAX' ) )
     $items = $woocommerce->cart->get_cart();
     foreach($items as $item => $values) { 
         $_product =  wc_get_product( $values['data']->get_id());  
-        $price = get_post_meta($values['product_id'] , '_price', true);
+        $price = get_post_meta($values['product_id'] , '_regular_price', true);
     } 
        
     // Make sure that you return false here.  We can't double tax people!
