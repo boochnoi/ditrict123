@@ -164,7 +164,7 @@ class Plugin
             $query['section'] = $section;
         }
 
-        $query = http_build_query($query);
+        $query = http_build_query($query, '', '&');
 
         return admin_url("admin.php?{$query}");
     }

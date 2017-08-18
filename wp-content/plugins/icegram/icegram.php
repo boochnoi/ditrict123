@@ -1,11 +1,11 @@
 <?php
 /*
  * Plugin Name: Icegram - Popups, Optins, CTAs & lot more...
- * Plugin URI: http://www.icegram.com/
+ * Plugin URI: https://www.icegram.com/
  * Description: All in one solution to inspire, convert and engage your audiences. Action bars, Popup windows, Messengers, Toast notifications and more. Awesome themes and powerful rules.
- * Version: 1.10.5
+ * Version: 1.10.8
  * Author: icegram
- * Author URI: http://www.icegram.com/
+ * Author URI: https://www.icegram.com/
  * Copyright (c) 2014-16 Icegram
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -34,7 +34,7 @@ class Icegram {
     
     function __construct() {
 
-        $this->version = "1.10.5";
+        $this->version = "1.10.8";
         $this->shortcode_instances = array();
         $this->mode = 'local';
         $this->plugin_url   = untrailingslashit( plugins_url( '/', __FILE__ ) );
@@ -59,7 +59,7 @@ class Icegram {
             add_action( 'icegram_about_changelog', array( &$this, 'klawoo_subscribe_form' ) ); 
             add_action( 'icegram_settings_after', array( &$this, 'icegram_houskeeping' ) ); 
             add_action( 'admin_notices', array( &$this,'add_admin_notices'));
-            add_filter('plugin_action_links', array($this, 'ig_plugin_settings_link'), 10, 2);
+            add_filter( 'plugin_action_links', array($this, 'ig_plugin_settings_link'), 10, 2);
         } else {
             add_action( 'wp_footer', array( &$this, 'icegram_load_data' ));
         }
@@ -537,9 +537,9 @@ class Icegram {
                     'ig_plan'       => $ig_plan
                 ),
                 'l10n' => array(
-                    'addNew'            => __( 'Ad`d New Gallery Item' ),
-                    'search'            => __( 'Search Installed Gallery Item' ),
-                    'searchPlaceholder' => __( 'Search installed Gallery Item...' ), // placeholder (no ellipsis)
+                    'addNew'            => __( 'Add New Gallery Item' ),
+                    'search'            => __( 'Search Gallery Item' ),
+                    'searchPlaceholder' => __( 'Search Gallery Item...' ), // placeholder (no ellipsis)
                     'themesFound'       => __( 'Number of Gallery Item found: %d' ),
                     'noThemesFound'     => __( 'No Gallery Item found. Try a different search.' ),
                 ),
@@ -1319,7 +1319,7 @@ class Icegram {
         if(!empty($_REQUEST['action']) && $_REQUEST['action'] == 'fetch_messages' && !empty($_REQUEST['campaign_id']) && !empty($_REQUEST['gallery_item'])){    
             $params = $_REQUEST;
             $imported_gallery_items = array();
-            $url = 'http://www.icegram.com/gallery/wp-admin/admin-ajax.php?utm_source=ig_inapp&utm_campaign=ig_gallery&utm_medium='.$_REQUEST['campaign_id']; 
+            $url = 'https://www.icegram.com/gallery/wp-admin/admin-ajax.php?utm_source=ig_inapp&utm_campaign=ig_gallery&utm_medium='.$_REQUEST['campaign_id']; 
             $options = array(
             'timeout' => 15,
             'method' => 'POST',
@@ -1331,7 +1331,7 @@ class Icegram {
                 $new_campaign_ids = $this->import(json_decode($response['body'] ,true));
                 if(!empty($new_campaign_ids)){
                     $imported_gallery_items = get_option('ig_imported_gallery_items');
-                    $imported_gallery_items[] = $_REQUEST['gallery_item'];
+                    $imported_gallery_items[] = $_REQUEST['campaign_id'];
                     update_option( 'ig_imported_gallery_items', $imported_gallery_items);
                     $location = admin_url( 'post.php?post='.$new_campaign_ids[0].'&action=edit');
                     header('Location:'.$location);

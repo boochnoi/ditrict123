@@ -22,7 +22,7 @@ class ApiEndpoint extends SimpleProperties
             function($v) { return isset($v); }
         );
 
-        $query = http_build_query($parameters);
+        $query = http_build_query($parameters, '', '&');
 
         $url = admin_url("admin-ajax.php?{$query}");
 

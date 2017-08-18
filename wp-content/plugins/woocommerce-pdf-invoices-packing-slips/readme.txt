@@ -1,9 +1,10 @@
-=== Plugin Name ===
+=== WooCommerce PDF Invoices & Packing Slips ===
 Contributors: pomegranate
+Donate link: https://wpovernight.com/downloads/woocommerce-pdf-invoices-packing-slips-bundle/
 Tags: woocommerce, pdf, invoices, packing slips, print, delivery notes, invoice, packing slip, export, email, bulk, automatic
 Requires at least: 3.5
-Tested up to: 4.7
-Stable tag: 1.6.5
+Tested up to: 4.8
+Stable tag: 2.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +99,71 @@ There's a setting on the Status tab of the settings page that allows you to togg
 4. Simple packing slip PDF
 
 == Changelog ==
+
+**2.0 is a BIG update! Make a full site backup before upgrading**
+
+= 2.0.7 =
+* Feature: Added button to delete legacy settings
+* Feature: Option to enable font subsetting
+* Fix: Invoice number sequence for databases with alternative auto_increment_increment settings
+* Fix: Fallback function for MB String (mb_stripos)
+
+= 2.0.6 =
+* Feature: Improved third party invoice number filters (`wpo_wcpdf_external_invoice_number_enabled` & `wpo_wcpdf_external_invoice_number`)
+* Fix: Underline position for Open Sans font
+* Fix: Invoice number auto_increment for servers that restarted frequently
+* Fix: Dompdf log file location (preventing open base_dir notices breaking PDF header)
+* Fix: 1.6.6 Settings migration duplicates merging
+* Tweak: Clear fonts folder when manually reinstalling fonts
+
+= 2.0.5 =
+* Feature: Remove temporary files (Status tab)
+* Fix: Page number replacement
+* Tweak: Fallback functions for MB String extension
+* Tweak: Improved wpo_wcpdf_check_privs usability for my account privileges
+* Legacy support: added wc_price alias for format_price method in document
+
+= 2.0.4 =
+* Fix: Apply filters for custom invoice number formatting in document too
+* Fix: Parent fallback for missing dates from refunds
+
+= 2.0.3 =
+* Fix: Better support for legacy invoice number filter (`wpo_wcpdf_invoice_number` -  replaced by `wpo_wcpdf_formatted_document_number`)
+* Fix: Document number formatting fallback to order date if no document date available
+* Fix: Updated classmap: PSR loading didn't work on some installations
+* Fix: Prevent order notes from all orders showing when document is not loaded properly in filter
+* Tweak: Disable deprecation notices during email sending
+* Tweak: ignore outdated language packs
+
+= 2.0.2 =
+* Fix: order notes using correct order_id
+* Fix: WC3.0 deprecation notice for currency
+* Fix: Avoid crashing on PHP5.2 and older
+* Fix: Only use PHP MB String when present
+* Fix: Remote images
+* Fix: Download option
+
+= 2.0.1 =
+* Fix: PHP 5.4 issue
+
+= 2.0.0 =
+* New: Better structured & more advanced settings for documents
+* New: Option to enable & disable Packing Slips or Invoices
+* New: Invoice number sequence stored separately for improved speed & performance
+* New: Completely rewritten codebase for more flexibility & better reliability
+* New: Updated PDF library to DOMPDF 0.8
+* New: PDF Library made pluggable (by using the `wpo_wcpdf_pdf_maker` filter)
+* New: lots of new functions & filters to allow developers to hook into the plugin
+* Changed: **$wpo_wcpdf variable is now deprecated** (legacy mode available & automatically enabled on update)
+* Fix: Improved PHP 7 & 7.1 support
+* Fix: Positive prices for refunds
+* Fix: Use parent for attributes retrieved for product variations
+* Fix: Set content type to PDF for download
+
+= 1.6.6 =
+* Feature: Facilitate downgrading from 2.0 (re-installing fonts & resetting version)
+* Fix: Update currencies font (added Georgian Lari)
+* Translations: Added Indonesian
 
 = 1.6.5 =
 * Fix: Duplicate invoice numbers when bulk completing orders (WC3.0)
@@ -539,5 +605,5 @@ There's a setting on the Status tab of the settings page that allows you to togg
 
 == Upgrade Notice ==
 
-= 1.6.5 =
-Important: Version 1.6 requires PHP 5.3 or higher to run!
+= 2.0.7 =
+**2.0 is a BIG update! Make a full site backup before upgrading!**

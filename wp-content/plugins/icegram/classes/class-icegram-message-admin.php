@@ -376,16 +376,16 @@ if ( !class_exists( 'Icegram_Message_Admin' ) ) {
 										id="message_link" value="'.esc_attr( ( isset($message_data['link']) ? $message_data['link'] : '') ) .'" />
 		              				</p>';		              				
 
+				$target_link_field .= '<p class="message_row  ig_'.implode( ' ig_', $settings["link"] ) .'">
+										<label for="message" class="message_label">&nbsp;</label>
+										<label style="color:#BBB;">&nbsp;<input type="checkbox" disabled checked="checked"/>'. __("Open in new tab ","icegram") .'</label>
+										<span>
+											<a href="https://www.icegram.com/documentation/how-to-open-cta-link-in-a-new-tab-using-icegram/?utm_source=ig_field&utm_medium=ig_inapp_promo&utm_campaign=ig_inapp_promo" target="_blank">'.__("How to do this?", "icegram") .'</a>
+										</span>
+									</p>';
 				$icegram_message_target_link = apply_filters('icegram_message_field_link' , array( 'html' => $target_link_field ,'message_id' => $message_id ,'message_data' => $message_data, 'settings' => $settings) );
 				echo $icegram_message_target_link['html'];
 				?>
-				<p class="message_row  <?php echo "ig_".implode( ' ig_', $settings['link'] )?>">
-					<label for="message" class="message_label">&nbsp;</label>
-					<label style="color:#BBB;">&nbsp;<input type="checkbox" disabled checked="checked"/><?php _e('Open in new tab ','icegram') ?></label>
-					<span>
-						<a href="http://www.icegram.com/documentation/how-to-open-cta-link-in-a-new-tab-using-icegram/?utm_source=ig_field&utm_medium=ig_inapp_promo&utm_campaign=ig_inapp_promo" target="_blank"><?php _e('How to do this?', 'icegram')?></a>
-					</span>
-				</p>
 				<p class="message_row <?php echo "ig_".implode( ' ig_', $show_cta_actions )?>">
 					<label for="message_label" class="message_label"> &nbsp;</label>
 					<span class="ig_admin_hr">&nbsp;</span>

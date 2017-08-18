@@ -1,60 +1,75 @@
 === If Menu ===
 Contributors: andrei.igna
-Tags: menu, if, conditions, hide, show, dispaly, roles, nav menu, menus
-Donate link: https://paypal.me/AndreiIgna
+Tags: menu, if, rules, conditional, statements, hide, show, dispaly, roles, nav menu
 Requires at least: 4
-Tested up to: 4.6
-License: GNU GPLv3
-License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+Tested up to: 4.8
+Stable tag: trunk
+License: GPL2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Display or hide menu items with conditions (user state, user roles, page type or custom ones)
+Display or hide menu items with user-defines rules
 
 == Description ==
 
-Simple plugin that adds extra functionality to Menu Items. It will allow you to display or hide menu items based on conditions (Is single page, User is Logged In and many more).
+**If Menu** is a WordPress plugin which adds extra functionality for menu items, making it easy to hide or display menu items based on user-defined rules. Example:
 
-The management is very easy, each menu item will have a "Enable Conditional Logic" option that will enable the selection of conditions - example in [screenshots](https://wordpress.org/plugins/if-menu/screenshots/).
+* Display a menu item only if current `User is logged in`
+* Hide menu items if `visiting from mobile device`
+* Display menu items just for `Admins and Editors`
 
-Features:
-- Includes conditions for User state (logged in, has read capabilities), User roles (default + custom ones added by plugins), page types (is single page, is homepage, etc) or device type
-- Multi conditions - you can build your own rules for hiding a menu item, example: `hide if user is logged in OR is mobile`, `show if user is logged in AND is single page`
-- Support for custom conditions - add your own conditions in your theme or add extra functionality in your plugin
+The plugin is easy to use, each menu item will have a “Change menu item visibility” option which will enable the selection of rules (example in Screenshots).
+
+## Features
+
+* Basic set of visibility rules
+  * User state `User is logged in`
+  * User roles `Admin` `Editor` `Author` etc
+  * Page type `Front page` `Single page` `Single post`
+  * Device `Is Mobile`
+  * Language `Is RTL`
+  * *more to be added with each plugin update*
+* Multiple rules - mix multiple rules for a menu item visibility
+  * show if `User is logged in` AND `Device is mobile`
+  * show if `User is Admin` AND `Is front page`
+* Support for adding your custom rules
+
+Example of adding a new rule is described in the FAQ section
 
 == Installation ==
 
 To install the plugin, follow the steps below
 
-1. Upload `if-menu` to the `/wp-content/plugins/` directory OR install through admin Plugins page
-2. Activate the plugin in 'Plugins' page in WordPress
-3. Go to Appearance -> Menus
-4. Enable conditions for your menu items, example in [screenshots](https://wordpress.org/plugins/if-menu/screenshots/)
+1. Upload `if-menu` to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Enable visibility rules for your Menu Items in Appearance -> Menus page
 
 == Frequently Asked Questions ==
 
 = If Menu is broken =
 
-The code for modifying the menu items is limited, and if other plugins/themes try to alter the menu items, this plugin will break.
+The code for modifying the menu items is limited and if other plugins/themes try to alter the menu items, this plugin will break.
 
 This is an ongoing [issue with WordPress](http://core.trac.wordpress.org/ticket/18584) which hopefully will be fixed in a future release.
 
-Try to use just one plugin that changes the functionality for menu items.
+Try to use just one plugin that changes functionality for menu items.
 
 
-= How can I add a conditinal statement for menu items? =
+= How can I add a custom rule for menu items? =
 
-Custom conditions can be added easily by any plugins or themes.
+New rules can be added by any other plugin or theme.
 
-Example of adding a new condition for disaplying/hiding a menu item when current page is a custom-post-type.
+Example of adding a new custom rule for displaying/hiding a menu item when current page is a custom-post-type.
 
 `
 // theme's functions.php or plugin file
-add_filter( 'if_menu_conditions', 'my_new_menu_condition' );
+add_filter('if_menu_conditions', 'my_new_menu_conditions');
 
-function my_new_menu_condition( $conditions ) {
+function my_new_menu_conditions($conditions) {
   $conditions[] = array(
-    'name'    =>  'If single custom-post-type', // name of the condition
-    'condition' =>  function($item) {          // callback - must return TRUE or FALSE
-      return is_singular( 'my-custom-post-type' );
+    'id'        =>  'single-my-custom-post-type',                       // unique ID for the rule
+    'name'      =>  __('Single my-custom-post-type', 'i18n-domain'),    // name of the rule
+    'condition' =>  function($item) {                                   // callback - must return Boolean
+      return is_singular('my-custom-post-type');
     }
   );
 
@@ -64,7 +79,7 @@ function my_new_menu_condition( $conditions ) {
 
 = Where do I find conditional functions? =
 
-WordPress provides [a lot of functions](http://codex.wordpress.org/Conditional_Tags) which can be used to create conditions for almost any combination that a theme/plugin developer can think of.
+WordPress provides [a lot of functions](http://codex.wordpress.org/Conditional_Tags) which can be used to create custom rules for almost any combination that a theme/plugin developer can think of.
 
 = Who made that really cool icon =
 
@@ -72,11 +87,29 @@ Got the icons from here https://dribbble.com/shots/1045549-Light-Switches-PSD, s
 
 == Screenshots ==
 
-1. Enable conditions for Menu Items
-2. Display a menu item just for Editors on mobile devices
-2. Example of basic conditions included
+1. Enable visibility rules for Menu Items
+2. Example of visibility rules
 
 == Changelog ==
+
+= 0.6.3 =
+*Release Date - 17 August 2017*
+
+* New visibility rule - Language Is RTL
+* Fix - Single rule works on servers with Eval disabled
+
+= 0.6.2 =
+*Release Date - 8 August 2017*
+
+* Fix - Backwards compatibility with PHP < 5.4
+
+= 0.6.1 =
+*Release Date - 7 August 2017*
+
+* Improvement - Change labels & texts for easier use
+* Improvement - Better compatibility with latest versions of WordPress
+* Improvement - Better compatibility with translation plugins
+* Fix - Detection for conflict with other plugins
 
 = 0.6 =
 *Release Date - 27 August 2016*
@@ -90,7 +123,8 @@ Got the icons from here https://dribbble.com/shots/1045549-Light-Switches-PSD, s
 *Release Date - 20 August 2016*
 
 * Improvement - Support for WordPress 4.6
-* Feature - New condition checking logged in user for current site in Multi Site [requested here](https://wordpress.org/support/topic/multi-site-user-is-logged-in-condition)
+* Feature - New condition checking logged in user for current site in Multi Site [requested here](https://wordpress.org/support/topic/multi-site-user-is-logged-in-conditi
+on)
 * Feature - Added support for multi conditions [thanks for this ideea](https://wordpress.org/support/topic/more-than-one-condition-operators-1)
 * Improvement - RO & DE translations
 
@@ -128,4 +162,4 @@ Update for compatibility with newer versions of WordPress
 * [Fix](http://wordpress.org/support/topic/bugfix-for-readmetxt) - example in Readme (thanks [BramNL](http://wordpress.org/support/profile/bramnl))
 
 = 0.1 =
-* Plugin release. Included basic menu conditions
+* Plugin release. Included basic menu conditional statements

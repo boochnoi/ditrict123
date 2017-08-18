@@ -41,10 +41,6 @@ class RateConverter
 
             $idParts = array();
 
-            if (isset($idPrefix)) {
-                $idParts[] = $idPrefix;
-            }
-
             $hash = substr(md5($title), 0, 8);
             $idParts[] = $hash;
 
@@ -58,9 +54,13 @@ class RateConverter
 
             $id = join('_', $idParts);
 
-            @$wcRateIdsCounters[$id]++;
+            isset($wcRateIdsCounters[$id]) ? $wcRateIdsCounters[$id]++ : ($wcRateIdsCounters[$id]=0);
             if (($count = $wcRateIdsCounters[$id]) > 1) {
                 $id .= '_'.$count;
+            }
+
+            if (isset($idPrefix)) {
+                $id = $idPrefix.$id;
             }
 
             $_rates[] = array(

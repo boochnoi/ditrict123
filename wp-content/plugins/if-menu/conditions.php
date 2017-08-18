@@ -1,64 +1,85 @@
 <?php
 
-add_filter( 'if_menu_conditions', 'if_menu_basic_conditions' );
+add_filter('if_menu_conditions', 'if_menu_basic_conditions');
 
-function if_menu_basic_conditions( $conditions ) {
-  global $wp_roles;
-
-  foreach ($wp_roles->role_names as $roleId => $role) {
-    $conditions[] = array(
-      'name'      =>  sprintf('User is %s', $role),
-      'condition' =>  function() use($roleId) {
-        global $current_user;
-        if( is_user_logged_in() ) return in_array( $roleId, $current_user->roles );
-        return false;
-      },
-      'group'     =>  'User state & roles'
-    );
-  }
+function if_menu_basic_conditions($conditions) {
+	global $wp_roles;
 
 
+	// User roles
+	foreach ($wp_roles->role_names as $roleId => $role) {
+		$conditions[] = array(
+			'id'		=>	'user-is-' . $roleId,
+			'name'		=>	sprintf(__('User is %s', 'if-menu'), $role),
+			'condition'	=>	function() use($roleId) {
+				global $current_user;
+				return is_user_logged_in() && in_array($roleId, $current_user->roles);
+			},
+			'group'		=>	__('User state & roles', 'if-menu')
+		);
+	}
+
+
+	// User state
 	$conditions[] = array(
-		'name'		=>	__( 'User is logged in', 'if-menu' ),
+		'id'		=>	'user-logged-in',
+		'name'		=>	__('User is logged in', 'if-menu'),
 		'condition'	=>	'is_user_logged_in',
-    'group'     =>  'User state & roles'
-	);
-
-	$conditions[] = array(
-		'name'		=>	__( 'Front Page', 'if-menu' ),
-		'condition'	=>	'is_front_page',
-    'group'     =>  'Page type'
-	);
-
-	$conditions[] = array(
-		'name'		=>	__( 'Single Post', 'if-menu' ),
-		'condition'	=>	'is_single',
-    'group'     =>  'Page type'
-	);
-
-  $conditions[] = array(
-    'name'    =>  __( 'Page', 'if-menu' ),
-    'condition' =>  'is_page',
-    'group'     =>  'Page type'
-  );
-
-	$conditions[] = array(
-		'name'		=>	__( 'Mobile', 'if-menu' ),
-		'condition'	=>	'wp_is_mobile',
-    'group'     =>  'Device'
+		'group'		=>	__('User state & roles', 'if-menu')
 	);
 
 	if (defined('WP_ALLOW_MULTISITE') && WP_ALLOW_MULTISITE === true) {
 		$conditions[] = array(
-			'name'			=>	__( 'User is logged in for current site', 'if-menu' ),
-			'condition'	=>	'if_menu_basic_condition_read_cap',
-      'group'     =>  'User state & roles'
+			'id'		=>	'user-logged-in-current-site',
+			'name'		=>	__('User is logged in for current site', 'if-menu'),
+			'condition'	=>	function() {
+				return current_user_can('read');
+			},
+			'group'		=>	__('User state & roles', 'if-menu')
 		);
 	}
 
-	return $conditions;
-}
 
-function if_menu_basic_condition_read_cap() {
-	return current_user_can('read');
+	// Page type
+	$conditions[] = array(
+		'id'		=>	'front-page',
+		'name'		=>	__('Front Page', 'if-menu'),
+		'condition'	=>	'is_front_page',
+		'group'		=>	__('Page type', 'if-menu')
+	);
+
+	$conditions[] = array(
+		'id'		=>	'single-post',
+		'name'		=>	__('Single Post', 'if-menu'),
+		'condition'	=>	'is_single',
+		'group'		=>	__('Page type', 'if-menu')
+	);
+
+	$conditions[] = array(
+		'id'		=>	'single-page',
+		'name'		=>	__('Page', 'if-menu'),
+		'condition'	=>	'is_page',
+		'group'		=>	__('Page type', 'if-menu')
+	);
+
+
+	// Devices
+	$conditions[] = array(
+		'id'		=>	'is-mobile',
+		'name'		=>	__('Mobile', 'if-menu'),
+		'condition'	=>	'wp_is_mobile',
+		'group'		=>	__('Device', 'if-menu')
+	);
+
+
+	// Language
+	$conditions[] = array(
+		'id'		=>	'language-is-rtl',
+		'name'		=>	__('Is RTL', 'if-menu'),
+		'condition'	=>	'is_rtl',
+		'group'		=>	__('Language', 'if-menu')
+	);
+
+
+	return $conditions;
 }

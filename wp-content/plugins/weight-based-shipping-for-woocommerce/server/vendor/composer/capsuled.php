@@ -3,8 +3,8 @@
   array (
     'class' => 
     array (
-      'ComposerAutoloaderInit51f686b33a4fd4fc87f6420f27e1bdb8' => 'WbsVendors_ComposerAutoloaderInit51f686b33a4fd4fc87f6420f27e1bdb8',
-      'Composer\\Autoload\\ComposerStaticInit51f686b33a4fd4fc87f6420f27e1bdb8' => 'WbsVendors\\Composer\\Autoload\\ComposerStaticInit51f686b33a4fd4fc87f6420f27e1bdb8',
+      'ComposerAutoloaderInitb6c4734bec2b5ae13a8843bce9690d4e' => 'WbsVendors_ComposerAutoloaderInitb6c4734bec2b5ae13a8843bce9690d4e',
+      'Composer\\Autoload\\ComposerStaticInitb6c4734bec2b5ae13a8843bce9690d4e' => 'WbsVendors\\Composer\\Autoload\\ComposerStaticInitb6c4734bec2b5ae13a8843bce9690d4e',
       'Composer\\Autoload\\ClassLoader' => 'WbsVendors\\Composer\\Autoload\\ClassLoader',
       'Dgm\\Arrays\\Arrays' => 'WbsVendors\\Dgm\\Arrays\\Arrays',
       'BoxPacking\\Packer' => 'WbsVendors\\BoxPacking\\Packer',
@@ -140,8 +140,8 @@
   array (
     'class' => 
     array (
-      'WbsVendors_ComposerAutoloaderInit51f686b33a4fd4fc87f6420f27e1bdb8' => 'ComposerAutoloaderInit51f686b33a4fd4fc87f6420f27e1bdb8',
-      'WbsVendors\\Composer\\Autoload\\ComposerStaticInit51f686b33a4fd4fc87f6420f27e1bdb8' => 'Composer\\Autoload\\ComposerStaticInit51f686b33a4fd4fc87f6420f27e1bdb8',
+      'WbsVendors_ComposerAutoloaderInitb6c4734bec2b5ae13a8843bce9690d4e' => 'ComposerAutoloaderInitb6c4734bec2b5ae13a8843bce9690d4e',
+      'WbsVendors\\Composer\\Autoload\\ComposerStaticInitb6c4734bec2b5ae13a8843bce9690d4e' => 'Composer\\Autoload\\ComposerStaticInitb6c4734bec2b5ae13a8843bce9690d4e',
       'WbsVendors\\Composer\\Autoload\\ClassLoader' => 'Composer\\Autoload\\ClassLoader',
       'WbsVendors\\Dgm\\Arrays\\Arrays' => 'Dgm\\Arrays\\Arrays',
       'WbsVendors\\BoxPacking\\Packer' => 'BoxPacking\\Packer',

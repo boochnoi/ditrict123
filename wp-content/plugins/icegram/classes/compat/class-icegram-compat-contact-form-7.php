@@ -63,7 +63,17 @@ jQuery(function() {
 				  			}
 					  		form.closest('.ig_form_container').attr('id', form.find('input[name=_wpcf7_unit_tag]').val()); //_wpcf7_unit_tag
 			  			}
-			  			form.wpcf7InitForm();
+			  			if(typeof _wpcf7 !== 'undefined'){
+							form.wpcf7InitForm();
+			  			}else{
+				  	        form.submit( function( event ) {
+								if ( typeof window.FormData !== 'function' ) {
+									return;
+								}
+								wpcf7.submit( form );
+								event.preventDefault();
+							} );
+			  			}
 			  			form.addClass('ig_form_init_done');
 			  		}
 		  		});

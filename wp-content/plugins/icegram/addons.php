@@ -154,7 +154,7 @@
 			<h3 class="pricing__title">Plus</h3>
 			<p class="pricing__sentence">For measuring & improving conversions<br/></p>
 			<div class="pricing__price"><span class="pricing__currency">$27</span><span class="pricing__period">/yr</span></div>
-			<button class="button button-primary large pricing__action"><a href="http://www.icegram.com/?buy-now=19926&qty=1&with-cart=1&utm_source=ig_inapp&utm_medium=ig_plus&utm_campaign=ig_upgrade" target="_blank">Sign Up</a></button>
+			<button class="button button-primary large pricing__action"><a href="https://www.icegram.com/?buy-now=19926&qty=1&with-cart=1&utm_source=ig_inapp&utm_medium=ig_plus&utm_campaign=ig_upgrade" target="_blank">Sign Up</a></button>
 			<div class="pricing__headline">Everything in Free and:</div>
 			<ul class="pricing__feature-list">
 			 	<li class="pricing__feature">+ 1 Site license</li>
@@ -167,7 +167,7 @@
 			<h3 class="pricing__title">Pro</h3>
 			<p class="pricing__sentence">For reducing abandonments</p>
 			<div class="pricing__price"><span class="pricing__currency">$97</span><span class="pricing__period">/yr</span></div>
-			<button class="button button-primary large pricing__action"><a href="http://www.icegram.com/?buy-now=16522&qty=1&coupon=&with-cart=1&utm_source=ig_inapp&utm_medium=ig_pro&utm_campaign=ig_upgrade" target="_blank">Sign Up</a></button>
+			<button class="button button-primary large pricing__action"><a href="https://www.icegram.com/?buy-now=16522&qty=1&coupon=&with-cart=1&utm_source=ig_inapp&utm_medium=ig_pro&utm_campaign=ig_upgrade" target="_blank">Sign Up</a></button>
 			<div class="pricing__headline">Everything in Plus and:</div>
 			<ul class="pricing__feature-list">
 			 	<li class="pricing__feature">+ 1 Site license</li>
@@ -186,7 +186,7 @@
 			<p class="pricing__sentence">For increasing sales & customers</p>
 
 			<div class="pricing__price"><span class="pricing__currency">$147</span><span class="pricing__period">/yr</span></div>
-			<button class="button button-primary large pricing__action"><a href="http://www.icegram.com/?buy-now=16542&qty=1&coupon=&with-cart=1&utm_source=ig_inapp&utm_medium=ig_max&utm_campaign=ig_upgrade" target="_blank">Sign Up</a></button>
+			<button class="button button-primary large pricing__action"><a href="https://www.icegram.com/?buy-now=16542&qty=1&coupon=&with-cart=1&utm_source=ig_inapp&utm_medium=ig_max&utm_campaign=ig_upgrade" target="_blank">Sign Up</a></button>
 			<div class="pricing__headline">Everything in Pro and:</div>
 			<ul class="pricing__feature-list">
 			 	<li class="pricing__feature">+ 3 Site license</li>

@@ -5,7 +5,7 @@ conditional flat rate, table rate shipping, weight, subtotal, country, shipping 
 Requires at least: 4.0
 Tested up to: 4.8
 WC requires at least: 2.3
-WC tested up to: 3.0
+WC tested up to: 3.1
 Stable tag: trunk
 
 
@@ -49,6 +49,15 @@ See <a href="https://wordpress.org/plugins/weight-based-shipping-for-woocommerce
 
 
 == Changelog ==
+
+= 5.1.2 =
+* Fix blank settings page in Firefox when Yoast SEO is active
+
+= 5.1.1 =
+* Fix settings not saved on hosts overriding arg_separator.output php.ini option
+
+= 5.1.0 =
+* Support WooCommerce convention on shipping option ids to fix shipping method detection in third-party code, like Cash On Delivery payment method and Conditional Shipping and Payments plugin.
 
 = 5.0.9 =
 * Show a warning on PHP 5.3 with Zend Guard Loader active known to crash with 500/503 server error.

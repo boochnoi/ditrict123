@@ -100,7 +100,7 @@ msgid "Icegram - Popups, Optins, CTAs & lot more..."
 msgstr ""
 
 #. URI of the plugin
-msgid "http://www.icegram.com"
+msgid "https://www.icegram.com"
 msgstr ""
 
 #. Description of the plugin/theme

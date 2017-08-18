@@ -1,10 +1,10 @@
 === Popups, Welcome Bar, Optins and Lead Generation Plugin - Icegram ===
 Contributors: icegram, storeapps, niravmehta, sandhyam, ravioza, putler 
-Donate link: http://www.icegram.com/
-Tags: popup, hellobar, optin, lead capture, form, marketing, Exit-popup, notification, messenger, targeting, monster, ninja ,wordpress lead generation, wordpress lightbox optin, wordpress lightbox optin form, wordpress lightbox optins, wordpress mobile optin forms, wordpress mobile popup, wordpress mobile popups, wordpress optin form, wordpress overlay popup, wordpress popup, wordpress popup form, wordpress popup plugin, wordpress popup solution, wordpress popups ,  popups, subscribe,  wp popups, optin bars, action grabber, promotion, popup message, leads, lists,  builder, action bar,  floating bar, footer bar, hellobar alternative, pop over, Popup plugin, aweber, campaign monitor, constant contact, email list, exit-intent, onclick popup, analytics, Hubspot, popup ads, optin-popup,  pop-up,  Mailing list pop-up, re-targeting, Animation,Popups with Animation ,Responsive Popup, split testing,  AB testing
+Donate link: https://www.icegram.com/
+Tags: popup, Exit-popup, optin-popup, hellobar, optin, lead capture, form, marketing,  notification, messenger, targeting, monster, ninja ,wordpress lead generation, wordpress lightbox optin, wordpress lightbox optin form, wordpress lightbox optins, wordpress mobile optin forms, wordpress mobile popup, wordpress mobile popups, wordpress optin form, wordpress overlay popup, wordpress popup, wordpress popup form, wordpress popup plugin, wordpress popup solution, wordpress popups ,  popups, subscribe,  wp popups, optin bars, action grabber, promotion, popup message, leads, lists,  builder, action bar,  floating bar, footer bar, hellobar alternative, pop over, Popup plugin, aweber, campaign monitor, constant contact, email list, exit-intent, onclick popup, analytics, Hubspot, popup ads, pop-up,  Mailing list pop-up, re-targeting, Animation,Popups with Animation ,Responsive Popup, split testing,  AB testing
 Requires at least: 3.9
-Tested up to: 4.7.4
-Stable tag: 1.10.5
+Tested up to: 4.8
+Stable tag: 1.10.8
 License: GPLv3
 
 The best WP popup plugin that let's you create a popup within seconds. Customize, target popups to show offers, email signups, social buttons etc and instantly increase conversions on your website.
@@ -35,7 +35,7 @@ Icegram provides not one or two, but four different optin types - **Lightbox Pop
 * **Attention Grabbing Toast Notifications -** Super useful for alerts, invitations, and multi step CTAs.
 * **Appealing Slide-in Messengers -** Welcome new visitors, recommend blog posts, provide links to support resources and more with slide in messengers.
 
-If you want more, Icegram also provides eight more innovative message styles - Sidebars, Overlays, After / Before Post and Inlines, Stickies, Badges, Ribbons, Tabs & Interstitials as premium add-ons.[ Check the premium collection here.](http://www.icegram.com/addons/)
+If you want more, Icegram also provides eight more innovative message styles - Sidebars, Overlays, After / Before Post and Inlines, Stickies, Badges, Ribbons, Tabs & Interstitials as premium add-ons.[ Check the premium collection here.](https://www.icegram.com/addons/)
 
 >Icegram is better than premium plugins! Trust me By [princegift2892](https://profiles.wordpress.org/princegift2892)  
 I have used premium plugins too. But this plugin is better than premium one! So many options, customizations, and best support! I am using this plugin on both of my websites ;)
@@ -109,14 +109,14 @@ An **easy-to-use software** to capture the attention of web visitors, as well to
 
 
 = Convert Abandoning Visitors by Showing them Exit Intent Opt-ins =
-Icegram also gives you an excellent option to target optins at exit intent. This is available in Icegram’s paid addon - [Behavior Triggers and Advanced Targeting](http://www.icegram.com/addons/behavior-triggers-advanced-retargeting/). That is, you can show an optin just before the visitor is leaving your website. Such optins are highly converting and are mostly used by Top Internet Marketers to grow their lists.
+Icegram also gives you an excellent option to target optins at exit intent. This is available in Icegram’s paid addon - [Behavior Triggers and Advanced Targeting](https://www.icegram.com/addons/behavior-triggers-advanced-retargeting/). That is, you can show an optin just before the visitor is leaving your website. Such optins are highly converting and are mostly used by Top Internet Marketers to grow their lists.
 
 > **This Plugins A Lifesafer!**
 By [_Krucial_](https://profiles.wordpress.org/_krucial_)  
 The exit popup addon was just what I needed. I will be using this plugin on many sites, and only have good things to say about it. It is **very very handy** and generous enough to give away features for FREE. **Icegram seriously makes a WP user’s life easy!**
 
 = Create and Test out Optin Variations using Split Testing (A/B Testing) =
-Icegram also has a premium addon [Split Testing](http://www.icegram.com/addons/split-testing/) which allows you to split test various aspects of the optins like - content, headlines, cta, color, design templates etc.
+Icegram also has a premium addon [Split Testing](https://www.icegram.com/addons/split-testing/) which allows you to split test various aspects of the optins like - content, headlines, cta, color, design templates etc.
 
 = Easily integrate with your Email Marketing Service =
 Icegram provides an **easy html based integration** with Email Marketing Services like MailChimp, AWeber, Infusionsoft, GetResponse, ConstantContact, CampaignMonitor, ActiveCampaign, Emma, iContact, MailerLite, MailPoet, MadMimi, Klawoo, e-GOI, SendPress, Email Buddy, My Mail etc.
@@ -128,12 +128,12 @@ Not just Email Marketing Services, Icegram is compatible with most third party l
 
 = Get more Features with Premium Addons =Icegram is an open platform. The core is already powerful, but you can do even more with free and premium add-ons.
 
-* [Split Testing](http://www.icegram.com/addons/split-testing/) - Split test Icegram campaigns and decide which variation works best for your audience.
-* [Behavior Triggers and Advanced Targeting](http://www.icegram.com/addons/behavior-triggers-advanced-retargeting/) - Show and hide campaigns based on visitors on-page behavior. Like on Exit Intent, Scroll Position, Time Delay, JavaScript, On-click of another message…
-* [Geo Targeting](http://www.icegram.com/addons/geo-targeting/) - target optins based on visitor's location - continent, country, city, region or IP address
-* [CTA Actions](http://www.icegram.com/addons/cta-actions/) - Open link in new window, submit form, AJAX submission, show another message, hide this message... New actions for CTA buttons
-* [Remote](http://www.icegram.com/addons/remote/) - Show Icegram messages on Non - WordPress sites.
-* [Additional optin types](http://www.icegram.com/addons/) -  Overlay, Inline, Sidebars, Interstitial, Ribbons, Stickies, Badges, Tabs
+* [Split Testing](https://www.icegram.com/addons/split-testing/) - Split test Icegram campaigns and decide which variation works best for your audience.
+* [Behavior Triggers and Advanced Targeting](https://www.icegram.com/addons/behavior-triggers-advanced-retargeting/) - Show and hide campaigns based on visitors on-page behavior. Like on Exit Intent, Scroll Position, Time Delay, JavaScript, On-click of another message…
+* [Geo Targeting](https://www.icegram.com/addons/geo-targeting/) - target optins based on visitor's location - continent, country, city, region or IP address
+* [CTA Actions](https://www.icegram.com/addons/cta-actions/) - Open link in new window, submit form, AJAX submission, show another message, hide this message... New actions for CTA buttons
+* [Remote](https://www.icegram.com/addons/remote/) - Show Icegram messages on Non - WordPress sites.
+* [Additional optin types](https://www.icegram.com/addons/) -  Overlay, Inline, Sidebars, Interstitial, Ribbons, Stickies, Badges, Tabs
 
 > **Icegram addons are very handy! Definitely recommended** 
 By [vinnymickey](https://profiles.wordpress.org/vinnymickey), January 15, 2016  
@@ -143,19 +143,19 @@ Searched around to accomplish what this plugin does with its addons. And **Icegr
 = Icegram vs It’s Alternatives - Here’s what you need to know.. =
 We compared Icegram with some similar plugins and here’s the complete one-on-one review.
 
-* [Sumo Me vs Icegram - Full Review](http://www.icegram.com/sumo-me-vs-icegram-comparison/)
-* [Optin Monster vs Icegram - Complete Feature Analysis](http://www.icegram.com/optinmonster-vs-icegram-comparison/)
-* [Ninja Popups vs Icegram - Plugin Faceoff](http://www.icegram.com/ninja-popups-vs-icegram-the-better-popup-and-why/)
-* [Hellobar vs Icegram - Comparative Analysis ](http://www.icegram.com/hello-bar-vs-icegram/)
+* [Sumo Me vs Icegram - Full Review](https://www.icegram.com/sumo-me-vs-icegram-comparison/)
+* [Optin Monster vs Icegram - Complete Feature Analysis](https://www.icegram.com/optinmonster-vs-icegram-comparison/)
+* [Ninja Popups vs Icegram - Plugin Faceoff](https://www.icegram.com/ninja-popups-vs-icegram-the-better-popup-and-why/)
+* [Hellobar vs Icegram - Comparative Analysis ](https://www.icegram.com/hello-bar-vs-icegram/)
 
 >**Icegram is the best of them ALL** by Maurits Heijstek  
 I want to say that Icegram is the **best and most simple** solution I have found. I tested everything including Optin Monster, Bloom, Ninja Popup, etc...but Icegram is the best and has the **most potential**.
 
 = Website, Demos, Shop, Social, Love =
-* [Official Icegram website](http://www.icegram.com/)
-* [Dozens of Demos](http://www.icegram.com/demos/) of different Icegram messages
-* [Shop for free and paid add-ons](http://www.icegram.com/addons/)
-* [A few customer reviews](http://www.icegram.com/customers/)
+* [Official Icegram website](https://www.icegram.com/)
+* [Dozens of Demos](https://www.icegram.com/demos/) of different Icegram messages
+* [Shop for free and paid add-ons](https://www.icegram.com/addons/)
+* [A few customer reviews](https://www.icegram.com/customers/)
 * Follow Icegram on Twitter [@icegram](https://twitter.com/icegram/)
 
 == Installation ==
@@ -208,6 +208,15 @@ Contact Us, provide as much detail of the problem as you can. We will try to sol
 5. Target your Icegram message using these display rules
 
 == Upgrade Notice ==
+= 1.10.8 =
+compatibility with Contact Form 7(v4.8)
+
+= 1.10.7 =
+Added more templates in Gallery
+
+= 1.10.6 =
+Search bar, filters added to Icegram's Gallery
+
 = 1.10.5 =
 Improvements in Call To Actions
 
@@ -378,6 +387,16 @@ Initial Release
 
 
 == Changelog ==
+= 1.10.8 =
+* Fix: compatibility with Contact Form 7(v4.8)  
+
+= 1.10.7 =
+* New: Added new templates to Icegram's Gallery
+* Fix: Single gallery template wasn't loading on refresh
+
+= 1.10.6 =
+* Enhancement: Search bar, filters added to Icegram's Gallery
+
 = 1.10.5 =
 * Enhancement: Small improvements for Call To Actions
 

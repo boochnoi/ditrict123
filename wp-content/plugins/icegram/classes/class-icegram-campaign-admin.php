@@ -95,7 +95,7 @@ if ( !class_exists( 'Icegram_Campaign_Admin' ) ) {
 						display:block;
 					}
 			</style>";
-				echo '<h1 class="wp-heading-inline gallery-heading">'. __('Import From beautiful design Templates OR', 'icegram'). '<a href="#" class="page-title-action" id="ig-add-new-campaign">'. __('Add New Campaign', 'icegram'). '</a></h1>';
+				echo '<h1 class="wp-heading-inline gallery-heading">'. __('Import from beautiful design templates - or', 'icegram'). '<a href="#" class="page-title-action" id="ig-add-new-campaign">'. __('Add New Campaign', 'icegram'). '</a></h1>';
 				Icegram::gallery_screen();
 			}
 			

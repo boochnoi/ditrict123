@@ -1,21 +1,31 @@
 <style type="text/css">
+	.ig-gallery-wrap .theme-browser .theme{
+		border-radius: 5px;
+		border: none;
+		margin-bottom: 5%;
+	    box-shadow: 1px 3px 10px 0 rgba(0,0,0,0.15);
+	}
+	.ig-gallery-wrap .theme-browser .theme:hover{
+		    box-shadow: 1px 3px 10px 0 rgba(0,0,0,0.2);
+	}
+	.ig-gallery-wrap.wrap > h2:first-child{
+		padding-left: 0 !important; 
+	}
+	.ig-gallery-wrap .theme-browser .theme .theme-screenshot{
+		border-radius: 5px;
+	}
+	.ig-gallery-wrap .theme-browser .theme .theme-screenshot img{
+		height: 100%;
+	}
 	.ig-gallery-wrap .theme-browser .theme .theme-installed{
-		/*position: relative;*/
 		width: 2em;
   		padding: 0;
   		height: 2em;
 	}
-	.theme-browser .theme .theme-installed:before{
+	.ig-gallery-wrap .theme-browser .theme .theme-installed:before{
 		font-size: 30px;
 		top:-2px;
 		left:-4px;
-	}
-	.ig-gallery-wrap .theme-browser .theme{
-		margin: 0 1% 1% 0;
-		width: 24%;
-	}
-	.ig-gallery-wrap .theme-browser .theme .theme-screenshot img{
-		height: 13em;
 	}
 	.expanded .wp-full-overlay-footer.ig-get-pro-footer{
 		position: fixed;
@@ -33,12 +43,31 @@
 	}
 </style>
 <div class="wrap ig-gallery-wrap">
-	<h2><?php esc_html_e( 'Gallery items' ); ?><span class="title-count theme-count"></span></h2>
+	<h2><?php esc_html_e( 'Icegram design templates' ); ?></h2>
 	<div class="ig-gal-description"><?php _e('Here\'s a collection of some ','icegram') ?><strong><?php _e('beautiful, powerful ready-to-use Icegram Campaigns.','icegram') ?></strong></div>
     <div><?php _e('No coding or special skills required. Simply click to ' ,'icegram')?><strong><?php _e(' Use This ','icegram')?></strong><?php _e('and the campaign will automatically appear in your Icegram dashboard.','icegram')?></div>
 	<br/>
+	<div class="wp-filter hide-if-no-js">
+		<div class="filter-count">
+			<span class="count theme-count"></span>
+		</div>
+
+		<ul class="filter-links">
+			<li><a href="#" data-sort="all"><?php _ex( 'All', 'themes' ); ?></a></li>
+			<li><a href="#" data-sort="17"><?php _ex( 'Optin', 'themes' ); ?></a></li>
+			<li><a href="#" data-sort="19"><?php _ex( 'Offer', 'themes' ); ?></a></li>
+			<li><a href="#" data-sort="20"><?php _ex( 'Social', 'themes' ); ?></a></li>
+		</ul>
+
+		<!-- <button type="button" class="button drawer-toggle" aria-expanded="false"><?php _e( 'Feature Filter' ); ?></button> -->
+
+		<form class="search-form"></form>
+
+
+	</div>
+	
 	<div class="theme-browser">
-		<div class="themes"></div>
+		<div class="themes wp-clearfix"></div>
 	</div>
 	<div class="theme-install-overlay wp-full-overlay expanded"></div>
 <!-- <div class="theme-overlay"></div> -->
@@ -63,7 +92,7 @@
 			<a href="#" class="previous-theme"><span class="screen-reader-text"><?php _ex( 'Previous', 'Button label for a theme' ); ?></span></a>
 			<a href="#" class="next-theme"><span class="screen-reader-text"><?php _ex( 'Next', 'Button label for a theme' ); ?></span></a>
 			<a href="?action=fetch_messages&campaign_id={{data.campaign_id}}&gallery_item={{data.slug}}" class="button button-primary theme-install" style="display:none"><?php _e( 'Use This', 'icegram' ); ?></a>
-			<a href="http://www.icegram.com/pricing/" target="_blank" class="button button-primary ig-get-pro " style="display:none">
+			<a href="https://www.icegram.com/pricing/" target="_blank" class="button button-primary ig-get-pro " style="display:none">
 				<# if(data.plan === '3') { #>
 					<span><?php _e("Get The Max Plan", 'icegram') ?></span>
 				<# } else if(data.plan === '2') { #>
@@ -90,6 +119,8 @@
 					<# } #>
 					<div class="theme-version"><?php printf( __( 'Version: %s' ), '{{ data.version }}' ); ?></div> -->
 					<div class="theme-description">{{{ data.description }}}</div>
+					<!-- <div class="theme-info">Liked this template? <br/>Here's how you can customize it further </div> -->
+					<div class="theme-info" style="padding:0.2em"><?php _e( 'Want to personalize this template to fit your brand?', 'icegram' );?><br/> <a href="https://www.icegram.com/documentation/customize-icegrams-gallery-templates/?utm_source=ig_gallery&utm_medium=ig_inapp_promo&utm_campaign=ig_custom_css" target="_blank" class="button button-primary" style="margin-top:0.4em"><?php _e( 'Personalize It Now' , 'icegram'); ?></a></div>
 				</div>
 			</div>
 		</div>

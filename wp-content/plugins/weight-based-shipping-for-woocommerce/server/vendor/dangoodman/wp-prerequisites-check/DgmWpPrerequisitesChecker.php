@@ -61,7 +61,7 @@ class WbsVendors_DgmWpPrerequisitesChecker
             require_once(__DIR__.'/DgmWpDismissibleNotices.php');
         }
 
-        if (!\WbsVendors_DgmWpDismissibleNotices::isNoticeDismissed($noticeId = 'dgm-zend-guard-loader')) {
+        if (!WbsVendors_DgmWpDismissibleNotices::isNoticeDismissed($noticeId = 'dgm-zend-guard-loader')) {
             if (version_compare($phpv = PHP_VERSION, $minphpv = '5.4', '<') && self::isZendGuardLoaderActive()) {
                 $this->warnings[$noticeId] =
                     "You are running PHP version {$phpv} with Zend Guard Loader extension active.
@@ -73,7 +73,7 @@ class WbsVendors_DgmWpPrerequisitesChecker
         }
 
         if ($this->warnings) {
-            \WbsVendors_DgmWpDismissibleNotices::init();
+            WbsVendors_DgmWpDismissibleNotices::init();
         }
 
         return !$this->errors;

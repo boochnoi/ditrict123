@@ -82,13 +82,38 @@ class Order extends Data {
 		$value = parent::get_prop( $object, $prop, $context, self::$compat_props );
 
 		// 3.0+ date getters return a DateTime object, where previously MySQL date strings were returned
-		if ( WC_Core::is_wc_version_lt_3_0() && in_array( $prop, array( 'date_completed', 'date_paid', 'date_modified', 'date_created' ), true ) && !empty( $value ) ) {
-			if ( is_numeric( $value ) ) {
+		if ( WC_Core::is_wc_version_lt_3_0() && in_array( $prop, array( 'date_completed', 'date_paid', 'date_modified', 'date_created' ), true ) ) {
+			// parent fallback for empty date values in refunds
+			if ( empty( $value ) && $object->order_type == 'refund' ) {
+				$parent_order_id = wp_get_post_parent_id( $object->id );
+				$parent_order = wc_get_order( $parent_order_id );
+				$value = parent::get_prop( $parent_order, $prop, $context, self::$compat_props );
+			}
+
+			// abort mission if still empty
+			if ( empty( $value ) ) {
+				return $value;
+			}
+
+			if ( is_numeric( $value ) ) { // incidental for WC2.7 orders
 				$value = new WC_DateTime( "@{$value}", new \DateTimeZone( 'UTC' ) );
 				$value->setTimezone( new \DateTimeZone( wc_timezone_string() ) );
 			} else {
-				$value = new WC_DateTime( $value, new \DateTimeZone( wc_timezone_string() ) );
+				// Strings are defined in local WP timezone. Convert to UTC.
+				if ( 1 === preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(Z|((-|\+)\d{2}:\d{2}))$/', $value, $date_bits ) ) {
+					$offset    = ! empty( $date_bits[7] ) ? iso8601_timezone_to_offset( $date_bits[7] ) : wc_timezone_offset();
+					$timestamp = gmmktime( $date_bits[4], $date_bits[5], $date_bits[6], $date_bits[2], $date_bits[3], $date_bits[1] ) - $offset;
+				} else {
+					$timestamp = wc_string_to_timestamp( get_gmt_from_date( gmdate( 'Y-m-d H:i:s', wc_string_to_timestamp( $value ) ) ) );
+				}
+				$value = new WC_DateTime( "@{$timestamp}", new \DateTimeZone( 'UTC' ) );
+			}
+
+			// Set local timezone or offset.
+			if ( get_option( 'timezone_string' ) ) {
 				$value->setTimezone( new \DateTimeZone( wc_timezone_string() ) );
+			} else {
+				$value->set_utc_offset( wc_timezone_offset() );
 			}
 		}
 

@@ -331,12 +331,12 @@
     },
     {
         "name": "dangoodman/shengine-wc-converters",
-        "version": "1.2.1",
-        "version_normalized": "1.2.1.0",
+        "version": "1.3.0",
+        "version_normalized": "1.3.0.0",
         "source": {
             "type": "git",
             "url": "git@bitbucket.org:dangoodman/lib-shengine-wc-converters.git",
-            "reference": "e03ebcbef71388d026b50d8e7ee09b194b3be775"
+            "reference": "06c76a88c3119cd901a0ffe78ea1b2d537a3aeaf"
         },
         "require": {
             "dangoodman/arrays": "^1.0",
@@ -344,7 +344,7 @@
             "dangoodman/shengine-wc-item": "^1.0",
             "php": ">=5.3"
         },
-        "time": "2017-04-28T21:55:23+00:00",
+        "time": "2017-07-19T12:51:36+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {

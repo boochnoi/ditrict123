@@ -63,7 +63,7 @@ class ShippingMethod extends WC_Shipping_Method
         $_rates = RateConverter::fromCoreToWoocommerce(
             $rates,
             $this->title,
-            join('_', array_filter(array($this->id, @$this->instance_id)))
+            join(':', array_filter(array($this->id, @$this->instance_id))).':'
         );
 
         foreach ($_rates as $_rate) {
@@ -73,12 +73,7 @@ class ShippingMethod extends WC_Shipping_Method
 
     public function admin_options()
     {
-        if (did_action('admin_enqueue_scripts')) {
-            $this->_enqueueAssets();
-        } else {
-            add_action('admin_enqueue_scripts', array($this, '_enqueueAssets'));
-        }
-
+        WpTools::addActionOrCall('admin_enqueue_scripts', array($this, '_enqueueAssets'), PHP_INT_MAX);
         parent::admin_options();
     }
 
@@ -122,13 +117,20 @@ class ShippingMethod extends WC_Shipping_Method
         $this->init_settings();
     }
 
-    public function _enqueueAssets() {
-
+    public function _enqueueAssets()
+    {
         $plugin = Plugin::instance();
         $version = $plugin->meta->version;
         $paths = $plugin->meta->paths;
 
-        if (defined('WBS_DEV')) {
+        // Firefox, with Yoast SEO active, throws "TypeError: can't convert undefined to object" error
+        if (defined('WPSEO_VERSION') && stripos(@$_SERVER['HTTP_USER_AGENT'], 'firefox') !== false) {
+            WpTools::addActionOrCall('wp_print_scripts', function() use ($paths) {
+                WpTools::removeScripts(array("#(/|\\\\)wp-seo-babel#"), $paths->getAssetUrl());
+	        });
+        }
+
+        if (defined('WBS_DEV') && WBS_DEV) {
             wp_register_script('wbs-polyfills', $paths->getAssetUrl('polyfills.js'));
             wp_register_script('wbs-vendor', $paths->getAssetUrl('vendor.js'), array('wbs-polyfills'));
             wp_enqueue_script('wbs-app', $paths->getAssetUrl('app.js'), array('jquery', 'wbs-polyfills', 'wbs-vendor'));

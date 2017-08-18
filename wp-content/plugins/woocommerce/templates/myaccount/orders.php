@@ -80,7 +80,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 										),
 									);
 
-									if ( !$order->needs_payment() ) {
+									if ( ! $order->needs_payment() ) {
 										unset( $actions['pay'] );
 									}
 
