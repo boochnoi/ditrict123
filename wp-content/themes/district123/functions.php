@@ -2376,6 +2376,7 @@ function ready_to_send_endpoint_content() {
 /*** Additional Fees on Cart ***/
 add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
 function woocommerce_custom_surcharge() {
+$type = 'no';
 global $woocommerce;
 
 if ( is_admin() && ! defined( 'DOING_AJAX' ) )
@@ -2386,17 +2387,20 @@ if ( is_admin() && ! defined( 'DOING_AJAX' ) )
     foreach($items as $item => $values) { 
         $_product =  wc_get_product( $values['data']->get_id());  
         $price = get_post_meta($values['product_id'] , '_regular_price', true);
+        $type = get_post_meta($values['product_id'] , '_ywsbs_subscription', true);
     } 
-       
-    // Make sure that you return false here.  We can't double tax people!
-    $commission = $price * 0.05;
     
-    if ($price < 1000) {
-        $customs_fee = 15;
-    }else{
-        $customs_fee = 30;
-    }
-    $woocommerce->cart->add_fee( 'Commission', $commission, true, '' );
-    $woocommerce->cart->add_fee( 'Customs Exportation Fee', $customs_fee, true, '' );
+    //if cart contacins subscription product skip
+    if ($type == 'no'){
+        // Make sure that you return false here.  We can't double tax people!
+        $commission = $price * 0.05;
 
+        if ($price < 1000) {
+            $customs_fee = 15;
+        }else{
+            $customs_fee = 30;
+        }
+        $woocommerce->cart->add_fee( 'Commission', $commission, true, '' );
+        $woocommerce->cart->add_fee( 'Customs Exportation Fee', $customs_fee, true, '' );
+    }
 }
