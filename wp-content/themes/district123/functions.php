@@ -2390,8 +2390,6 @@ if ( is_admin() && ! defined( 'DOING_AJAX' ) )
         $type = get_post_meta($values['product_id'] , '_ywsbs_subscription', true);
     } 
     
-    print_r('ryan'.$type);
-    //die();
     //if cart contacins subscription product skip
     if ($type != 'yes'){
         // Make sure that you return false here.  We can't double tax people!
