@@ -2376,8 +2376,8 @@ function ready_to_send_endpoint_content() {
 /*** Additional Fees on Cart ***/
 add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
 function woocommerce_custom_surcharge() {
-$type = 'no';
 global $woocommerce;
+$type = 'no';
 
 if ( is_admin() && ! defined( 'DOING_AJAX' ) )
     return;
@@ -2387,11 +2387,11 @@ if ( is_admin() && ! defined( 'DOING_AJAX' ) )
     foreach($items as $item => $values) { 
         $_product =  wc_get_product( $values['data']->get_id());  
         $price = get_post_meta($values['product_id'] , '_regular_price', true);
-        $type = get_post_meta($values['product_id'] , '_ywsbs_subscription', true);
+        $type = get_post_meta($values['product_id'] , '_ywsbs_subscription', false);
     } 
     
     //if cart contacins subscription product skip
-    if ($type != 'no'){
+    if ($type == 'no'){
         // Make sure that you return false here.  We can't double tax people!
         $commission = $price * 0.05;
 
