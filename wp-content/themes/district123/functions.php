@@ -2387,11 +2387,13 @@ if ( is_admin() && ! defined( 'DOING_AJAX' ) )
     foreach($items as $item => $values) { 
         $_product =  wc_get_product( $values['data']->get_id());  
         $price = get_post_meta($values['product_id'] , '_regular_price', true);
-        $type = get_post_meta($values['product_id'] , '_ywsbs_subscription', false);
+        $type = get_post_meta($values['product_id'] , '_ywsbs_subscription', true);
     } 
     
+    print_r('ryan'.$type);
+    //die();
     //if cart contacins subscription product skip
-    if ($type == 'no'){
+    if ($type != 'yes'){
         // Make sure that you return false here.  We can't double tax people!
         $commission = $price * 0.05;
 
