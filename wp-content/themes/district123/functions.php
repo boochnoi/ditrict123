@@ -1856,8 +1856,15 @@ function wc_custom_product_categ($args) {
     );
     
     /** update options ignitewoo restrict categ user*/
-   
     
+    /** remind to loop on admin user role**/
+    $arr = $categ_array['admin_user_cats'];
+    $last_count = count($arr);
+    $categ_array['admin_user_cats'][$last_count-1] = $login.'-category';
+    $categ_array['admin_user_cats'][$last_count] =' RestrictCategoriesDefault';
+    $new_key = array($login.'_user_cats'=>array('0'=>'general','1'=>$login.'-category','2'=>'RestrictCategoriesDefault'));
+    $new_values = array_merge($new_key,$categ_array);
+    update_option('IgniteWoo_RestrictCats_user_options',$new_values);
     
     return ($args);
 }
@@ -2378,6 +2385,7 @@ add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
 function woocommerce_custom_surcharge() {
 global $woocommerce;
 $type = 'no';
+$storage_fee =0;
 
 if ( is_admin() && ! defined( 'DOING_AJAX' ) )
     return;
@@ -2390,7 +2398,7 @@ if ( is_admin() && ! defined( 'DOING_AJAX' ) )
         $type = get_post_meta($values['product_id'] , '_ywsbs_subscription', true);
     } 
     
-    //if cart contacins subscription product skip
+    //if cart contains subscription product skip
     if ($type != 'yes'){
         // Make sure that you return false here.  We can't double tax people!
         $commission = $price * 0.05;
@@ -2430,4 +2438,18 @@ function iconic_hide_out_of_stock_products( $q ) {
 
     remove_action( 'pre_get_posts', 'iconic_hide_out_of_stock_products' );
 
+}
+
+add_action( 'init', 'custom_fix_thumbnail' );
+ 
+function custom_fix_thumbnail() {
+  add_filter('woocommerce_placeholder_img_src', 'custom_woocommerce_placeholder_img_src');
+   
+	function custom_woocommerce_placeholder_img_src( $src ) {
+	$upload_dir = wp_upload_dir();
+	$uploads = untrailingslashit( $upload_dir['baseurl'] );
+	$src = $uploads . '/2017/05/default.jpg';
+	 
+	return $src;
+	}
 }
