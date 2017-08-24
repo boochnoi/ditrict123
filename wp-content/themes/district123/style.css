@@ -4518,3 +4518,7 @@ margin-left: 10px !important;
 .woocommerce-cart td.product-thumbnail, .woocommerce-cart td.product-name {
     pointer-events: none;
 }
+
+.woocommerce ul.products li.product .onsale {
+    display: none !important;
+}
