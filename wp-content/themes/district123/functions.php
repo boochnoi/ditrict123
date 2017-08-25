@@ -2450,3 +2450,11 @@ function custom_fix_thumbnail() {
 	return $src;
 	}
 }
+
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+     $fields['billing']['billing_email']['label'] = 'Billing Email address';
+     return $fields;
+}
