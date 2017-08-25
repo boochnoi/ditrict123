@@ -13,7 +13,7 @@ if ( !function_exists( 'optionsframework_init' ) ) :
 		define('OPTIONS_FRAMEWORK_URL', get_template_directory() . '/admin/');
 		define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/');
 	}
-	require_once (OPTIONS_FRAMEWORK_URL . 'options-product.php');
+	require_once (OPTIONS_FRAMEWORK_URL . 'options-framework.php');
 
 endif;
 
@@ -1856,8 +1856,9 @@ function wc_custom_product_categ($args) {
     );
     
     /** update options ignitewoo restrict categ user*/
-    $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
-    
+     $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
+     
+    /** remind to loop on admin user role**/
     $new_key = array($login.'_user_cats'=>array('0'=>'general','1'=>$login.'-category','2'=>'RestrictCategoriesDefault'));
     $new_values = array_merge($new_key,$categ_array);
     update_option('IgniteWoo_RestrictCats_user_options',$new_values);
