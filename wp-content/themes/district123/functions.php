@@ -2458,3 +2458,7 @@ function custom_override_checkout_fields( $fields ) {
      $fields['billing']['billing_email']['label'] = 'Billing Email address';
      return $fields;
 }
+
+add_action( 'wp_logout', function() {
+        WC()->cart->empty_cart();
+} );
