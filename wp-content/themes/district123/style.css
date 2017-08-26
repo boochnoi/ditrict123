@@ -4522,3 +4522,7 @@ margin-left: 10px !important;
 .woocommerce ul.products li.product .onsale {
     display: none !important;
 }
+
+#add_payment_method #payment ul.payment_methods li, .woocommerce-cart #payment ul.payment_methods li, .woocommerce-checkout #payment ul.payment_methods li {
+    list-style-type:none !important;
+}
