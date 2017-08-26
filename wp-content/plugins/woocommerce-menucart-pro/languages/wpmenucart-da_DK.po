@@ -1,0 +1,205 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Menu Cart\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-19 11:32+0100\n"
+"PO-Revision-Date: 2015-01-19 11:32+0100\n"
+"Last-Translator: Ewout Fernhout <chocolade@extrapuur.nl>\n"
+"Language-Team: WP Overnight <support@wpovernight.com>\n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/wpmenucart-eshop-pro.php:48 includes/wpmenucart-eshop.php:40
+#, php-format
+msgid "%1$s%2$s"
+msgstr ""
+
+#: includes/wpmenucart-eshop-pro.php:48 includes/wpmenucart-eshop.php:40
+msgid "2"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:26
+msgid "Plugin settings"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:33
+msgid "Select which e-commerce plugin you would like Menu Cart to work with"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:46
+msgid "Select the menu(s) in which you want to display the Menu Cart"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:59
+msgid "Always display cart, even if it's empty"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:71
+msgid "Display shopping cart icon."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:83
+msgid "Display cart contents in menu fly-out."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:95
+msgid "Set maximum number of products to display in fly-out"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:120
+msgid "Choose a cart icon."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:149
+msgid "What would you like to display in the menu?"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:157
+msgid "Items Only."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:158
+msgid "Price Only."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:159
+msgid "Both price and items."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:166
+msgid "Select the alignment that looks best with your menu."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:174
+msgid "Align Left."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:175
+msgid "Align Right."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:176
+msgid "Default Menu Alignment."
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:183
+msgid "Enter a custom CSS class (optional)"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:196
+msgid "Use WPML String Translation"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:237
+#: includes/wpmenucart-settings-pro.php:247
+msgid "Menu Cart Pro"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:238
+#: includes/wpmenucart-settings-pro.php:248
+msgid "Menu Cart Pro Setup"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:262
+#: includes/wpmenucart-settings-pro.php:264
+msgid "Settings"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:333
+msgid "WP Menu Cart Pro"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:361
+#, php-format
+msgid ""
+"For our custom CSS service %sClick here%s. Be sure to use the coupon code "
+"<strong>proservice</strong> at checkout. For support, visit %s or email %s"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:519
+msgid "Add menu"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:611
+msgid ""
+"<strong>Please note:</strong> you need to open your website in a new tab/"
+"browser window after updating the cart icon for the change to be visible!"
+msgstr ""
+
+#: includes/wpmenucart-settings-pro.php:659
+msgid "Menu Cart"
+msgstr ""
+
+#: wp-menu-cart-pro.php:217
+msgid ""
+"WP Menu Cart Pro could not detect an active shop plugin. Make sure you have "
+"activated at least one of the supported plugins."
+msgstr ""
+
+#: wp-menu-cart-pro.php:218
+msgid "Hide this notice"
+msgstr ""
+
+#: wp-menu-cart-pro.php:223
+msgid ""
+"An old version of WooCommerce Menu Cart is currently activated, you need to "
+"disable or uninstall it for WP Menu Cart to function properly"
+msgstr ""
+
+#: wp-menu-cart-pro.php:229
+msgid ""
+"The free version of WP Menu Cart is currently activated, you need to disable "
+"or uninstall it for WP Menu Cart Pro to function properly"
+msgstr ""
+
+#: wp-menu-cart-pro.php:455 wp-menu-cart-pro.php:531
+msgid "View your shopping cart"
+msgstr "Se din indkøbskurv"
+
+#: wp-menu-cart-pro.php:456
+msgid "Start shopping"
+msgstr "Til butikken"
+
+#: wp-menu-cart-pro.php:457
+#, php-format
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d produkt"
+msgstr[1] "%d produkter"
+
+#: wp-menu-cart-pro.php:532
+msgid "your cart is currently empty"
+msgstr "Din indkøbskurv er tom"
+
+#~ msgid ""
+#~ "WooCommerce Menu Cart depends on <a href=\"%s\">WooCommerce</a> to work!"
+#~ msgstr ""
+#~ "WooCommerce Menu Cart heeft <a href=\"%s\">WooCommerce</a> om te kunnen "
+#~ "functioneren!"
+
+#~ msgid "Display Flyout."
+#~ msgstr "Geef flyout weer."
+
+#~ msgid "Set the name of the menu you want to display"
+#~ msgstr ""
+#~ "Voer de naam in van het menu waarin je het winkelwagentje wilt weergeven"
+
+#~ msgid ""
+#~ "Let's keep this simple! Just check the boxes next to the features you "
+#~ "want."
+#~ msgstr ""
+#~ "Super eenvoudig: geef simpelweg de vakjes naast de features zoals jij ze "
+#~ "wilt gebruiken een vinkje."
+
+#~ msgid "Save Changes"
+#~ msgstr "Opslaan"
