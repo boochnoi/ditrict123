@@ -1997,7 +1997,20 @@ function has_woocommerce_subscription($user_id=null ) {
 
 add_action('wp_logout','auto_redirect_after_logout');
 function auto_redirect_after_logout(){
-  wp_redirect( home_url() );
+  if( function_exists('WC') ){
+    global $woocommerce;
+    // get user details
+    global $current_user;
+    get_currentuserinfo();
+    $user_id = $current_user->ID;
+    $cart_contents = $woocommerce->cart->get_cart();
+    $meta_key = 'cart-'.$user_id;
+    $meta_value = $cart_contents;
+    //update_user_meta( $user_id, $meta_key, $meta_value);
+    update_option( $meta_key, $meta_value );
+    WC()->cart->empty_cart();
+  }
+  wp_safe_redirect( home_url() );
   exit();
 }
 ?>
@@ -2458,7 +2471,3 @@ function custom_override_checkout_fields( $fields ) {
      $fields['billing']['billing_email']['label'] = 'Billing Email address';
      return $fields;
 }
-
-add_action( 'wp_logout', function() {
-        WC()->cart->empty_cart();
-} );
