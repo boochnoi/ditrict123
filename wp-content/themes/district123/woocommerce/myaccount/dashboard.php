@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         $firstname = $user_info->first_name;
         $lastname = $user_info->last_name;
         if (has_woocommerce_subscription($user)){
-            printf(_('PACIFIC PROCUREMENT SERVICES LTD<br/>Attn: '.strtoupper($firstname).' '.strtoupper($lastname).'<br/>127 Elmore Road 0793<br/>Albany, Auckland<br/>New Zealand<br/>(64 9) 414 6477'));
+            printf(_('PACIFIC PROCUREMENT SERVICES LTD<br/>Attn: '.strtoupper($firstname).' '.strtoupper($lastname).'<br/>127 Elmore Road 0793<br/>Albany Suite#'.$user.', Auckland<br/>New Zealand<br/>(64 9) 414 6477'));
             ?> <br><br><strong><?php printf ('Please checkout your items for shipping by clicking the ');?><a href='/shop'>Your action is required</a><?php printf(' on the left menu');?></strong><?php
             
         }
