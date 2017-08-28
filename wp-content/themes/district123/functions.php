@@ -1918,7 +1918,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
                         echo '<p></p>';
                         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
                         echo '<p></p>';
-                        echo '<p>PACIFIC PROCUREMENT SERVICES LTD<br/>Attn: '.strtoupper($firstname).' '.strtoupper($lastname).'<br/>127 Elmore Road 0793<br/>Albany Suite#'.$user_id.', Auckland<br/>New Zealand<br/>(64 9) 414 6477</p>';
+                        echo '<p>PACIFIC PROCUREMENT SERVICES LTD<br/>Attn: '.strtoupper($firstname).' '.strtoupper($lastname).'<br/>127 Elmore Road 0793<br/>Albany Suite # '.$user_id.', Auckland<br/>New Zealand<br/>(64 9) 414 6477</p>';
                         break;
                    }
                }
