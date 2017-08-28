@@ -2387,8 +2387,7 @@ function subscriptions_endpoint_content() {
 	'numberposts' => $order_count,
 	'meta_key'    => '_customer_user',
 	'meta_value'  => get_current_user_id(),
-	'post_type'   => wc_get_order_types( 'view-orders' ),
-	'post_status' => 'wc-processing',
+	'post_type'   => 'shop_subscription',
     ) ) );
     $customer = wp_get_current_user();
     if ( $customer_orders ) : ?>
