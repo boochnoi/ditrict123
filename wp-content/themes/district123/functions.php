@@ -1883,15 +1883,6 @@ add_filter('woocommerce_login_redirect', 'wc_custom_redirect',10,2);
 function wc_custom_redirect( $redirect, $user ) {
     $bought=false;
     $userid = $user->ID;
-    /*if ( wc_customer_bought_product( $user->user_email, $user->ID,'83')) {
-        $bought=true;
-    } else if ( wc_customer_bought_product( $user->user_email, $user->ID,'84')) {
-        $bought=true;
-    } else if ( wc_customer_bought_product( $user->user_email, $user->ID,'85')) {
-        $bought=true;
-    }*
-     * 
-     */
     $bought = has_woocommerce_subscription($user->ID);
     
     if (!$bought) {
