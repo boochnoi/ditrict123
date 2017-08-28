@@ -2042,7 +2042,7 @@ function wpb_woo_my_account_order() {
  'in-review' => __( 'In Process', 'woocommerce' ),
  'ready-to-send' => __( 'Ready to Send', 'woocommerce' ),
  'subscriptions' => __( 'Subscriptions', 'woocommerce' ), 
- 'orders' => __( 'All Orders', 'woocommerce' ),
+ 'orders' => __( 'All Transactions', 'woocommerce' ),
  'customer-logout' => __( 'Logout', 'woocommerce' ),
  );
  return $myorder;
