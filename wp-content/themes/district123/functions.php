@@ -2383,15 +2383,19 @@ function ready_to_send_endpoint_content() {
 }
 
 function subscriptions_endpoint_content() {
-   $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
-	'numberposts' => $order_count,
-	'meta_key'    => '_customer_user',
-	'meta_value'  => get_current_user_id(),
-	'post_type'   => 'shop_subscription',
-    ) ) );
+   if( null == $user_id )
+        $user_id = get_current_user_id();             
+   $customer_orders = get_posts( array(
+        'numberposts' => -1,
+        'meta_key'    => '_customer_user',
+        'meta_value'  => $user_id,
+        'post_type'   => 'shop_subscription', // Subscription post type
+        'post_status' => 'wc-active', // Active subscription
+
+    ) );
+    
     $customer = wp_get_current_user();
     if ( $customer_orders ) : ?>
-
 	<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
 		<thead>
 			<tr>
