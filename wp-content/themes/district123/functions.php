@@ -1858,8 +1858,8 @@ function wc_custom_product_categ($args) {
     /** update options ignitewoo restrict categ user*/
      $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
      
-    /** remind to loop on admin user role**/
-    $new_key = array($login.'_user_cats'=>array('0'=>'general','1'=>$login.'-category','2'=>'RestrictCategoriesDefault'));
+    /** restrict user to general and its own product categ**/
+    $new_key = array($login.'_user_cats'=>array('0'=>$login.'-category','1'=>'general','2'=>'RestrictCategoriesDefault'));
     $new_values = array_merge($new_key,$categ_array);
     update_option('IgniteWoo_RestrictCats_user_options',$new_values);
     
@@ -2273,6 +2273,7 @@ function in_review_endpoint_content() {
 add_action( 'woocommerce_account_in-review_endpoint', 'in_review_endpoint_content' );
 
 function ready_to_send_endpoint_content() {
+    
     // Get all customer orders
     $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
 	'numberposts' => $order_count,
@@ -2280,6 +2281,7 @@ function ready_to_send_endpoint_content() {
 	'meta_value'  => get_current_user_id(),
 	'post_type'   => wc_get_order_types( 'view-orders' ),
 	'post_status' => 'wc-completed',
+        'post_not_in' => array($customer_subscriptions_orders)
     ) ) );
     $customer = wp_get_current_user();
     if ( $customer_orders ) : ?>
