@@ -1,0 +1,3 @@
+#icons-list{list-style:none;overflow:hidden;}
+#icons-list li{float:left;}
+#icons-list li a{display:block;margin:0 10px 10px 0;width:16px;height:16px;}

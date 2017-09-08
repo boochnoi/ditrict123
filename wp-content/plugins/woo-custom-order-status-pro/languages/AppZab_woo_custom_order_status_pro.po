@@ -1,0 +1,407 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Order Status Pro\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-23 15:24-0400\n"
+"PO-Revision-Date: 2014-05-23 15:25-0400\n"
+"Last-Translator: AppZab <support@appzab.com>\n"
+"Language-Team: AppZab <support@appzab.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: SPAIN\n"
+"X-Poedit-SearchPath-0: /woo-custom-order-status-pro\n"
+
+msgid "Invalid order status"
+msgstr ""
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+msgid "Invalid order id"
+msgstr ""
+
+msgid "Include Order Information?"
+msgstr ""
+
+msgid "Select whether you would like to include the order information i.e. billing and shipping address, order items, total etc."
+msgstr ""
+
+msgid "Display Custom Message"
+msgstr ""
+
+msgid "Custom Message"
+msgstr ""
+
+msgid ""
+"\n"
+"\t\t\t\t\t\t\tFrom Name"
+msgstr ""
+
+msgid "Enter the email name which will appear when the email is sent."
+msgstr ""
+
+msgid "From Email Address"
+msgstr ""
+
+msgid "Enter the email address which will appear when the email is sent."
+msgstr ""
+
+msgid "Cancel Orders"
+msgstr ""
+
+msgid "Choose whether the customer can cancel orders when this status is applied."
+msgstr ""
+
+msgid "Action Icon"
+msgstr ""
+
+msgid "Select an icon you would like to display as the Action button."
+msgstr ""
+
+#, php-format
+msgid "%s order"
+msgstr ""
+
+msgid "Some description goes here."
+msgstr ""
+
+#, php-format
+msgid "Your order is %s"
+msgstr ""
+
+#, php-format
+msgid "Your {site_title} order from {order_date} is %s"
+msgstr ""
+
+msgid "Enable/Disable"
+msgstr ""
+
+msgid "Enable this email notification"
+msgstr ""
+
+msgid "Recipient(s)"
+msgstr ""
+
+#, php-format
+msgid "Enter recipients (comma separated) for this email. Defaults to <code>%s</code>."
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+#: /woo-custom-order-status-pro/class-wc-email-adv-statuses.php:227
+#, php-format
+msgid "This controls the email subject line. Leave blank to use the default subject: <code>%s</code>."
+msgstr ""
+
+#: /woo-custom-order-status-pro/class-wc-email-adv-statuses.php:232
+msgid "Email Heading"
+msgstr ""
+
+#: /woo-custom-order-status-pro/class-wc-email-adv-statuses.php:234
+#, php-format
+msgid "This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>."
+msgstr ""
+
+#: /woo-custom-order-status-pro/class-wc-email-adv-statuses.php:239
+msgid "Email type"
+msgstr ""
+
+#: /woo-custom-order-status-pro/class-wc-email-adv-statuses.php:241
+msgid "Choose which format of email to send."
+msgstr ""
+
+#: /woo-custom-order-status-pro/class-wc-email-adv-statuses.php:245
+msgid "Plain text"
+msgstr ""
+
+#: /woo-custom-order-status-pro/class-wc-email-adv-statuses.php:246
+msgid "HTML"
+msgstr ""
+
+#: /woo-custom-order-status-pro/class-wc-email-adv-statuses.php:247
+msgid "Multipart"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:321
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:323
+msgid "Mark "
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:395
+msgid "Order status changed by bulk edit:"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:459
+msgid "Advance Order Status Manager"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:461
+msgid "These settings control custom order statuses"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:616
+msgid "Status Name"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:617
+msgid "Enter Any Name of Custom Order Status. You can see it on the Orders Page"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:622
+msgid "Background Color"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:623
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:631
+msgid "<span class=\"colorpickdiv\" style=\"display:none\"></span>Enter the hex color code to use when displaying this status in the orders page "
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:630
+msgid "Text Color"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:638
+msgid "Add to Reports"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:639
+msgid "You can add this order status to the Sales Reports"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:645
+msgid "Send Email"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:646
+msgid "Send the message below when an order is set to this status"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:658
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1033
+msgid "Customer"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:659
+msgid "Admin"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:660
+msgid "Customer and Admin"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:661
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1048
+msgid "Custom Email Address"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:666
+msgid "Send To"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:667
+msgid "The Email will be sent to this Email Address. You can leave it blank if you wish to send this email to the Customer."
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:673
+msgid "Email Subject"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:674
+msgid "Enter the Subject of Email"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:679
+msgid "Heading"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:680
+msgid "This Heading is visible on the Top of the Email Message.<br /> You can Add:  %oid = Order ID, %bfname = Billing First Name, %blname = Billing Last Name, %sfname = Shipping First Name, %slname = Shipping Last Name, %m = My Account page URL,%s = Site Name, %u = Site URL "
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:723
+msgid "*** STATUS NOT ADDED ***"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:728
+msgid "ERROR: "
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:743
+msgid "Please enter a name for the status"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:754
+msgid "New Order status added"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:765
+msgid "The Order status has been removed."
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:775
+msgid "Status updated."
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:786
+msgid "Submit"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:787
+msgid "Add Custom Order Status"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:839
+msgid "Update your Custom Order Status"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:841
+msgid "Edit your Custom Order Status"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:888
+msgid "Are you sure you want to remove this status?"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:929
+msgid "Settings"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:932
+msgid "Emails can be customized for Custom Order Statuses from Here. Go to WooCommerce --> Settings --> Emails to customize Emails of default order status"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:937
+msgid "ID"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:939
+msgid "Name"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:941
+msgid "Slug"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:945
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:984
+msgid "Email Sent"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:948
+msgid "Header"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:950
+msgid "Excerpt"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:954
+msgid "Email Recipient"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:957
+#: /woo-custom-order-status-pro/html/admin/metabox-order-actions.php:5
+msgid "Actions"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:990
+msgid "Email Not Sent"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1038
+msgid "Administrator"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1043
+msgid "Customer and Administrator"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1075
+msgid "Remove"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1083
+msgid "Change"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1087
+msgid "Default Order Status"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1102
+msgid "The Name of Custom Order Status is Editable. To Change the Slug, delete this status and create a new one."
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1122
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1130
+msgid "Click on any of the following icons to set it"
+msgstr ""
+
+#: /woo-custom-order-status-pro/woocommerce-advance-order-status.php:1170
+msgid "Click here to change the icon"
+msgstr ""
+
+#: /woo-custom-order-status-pro/templates/emails/printed-order.php:9
+#: /woo-custom-order-status-pro/templates/emails/default-email.php:8
+#, php-format
+msgid "You have received an order from %s. Their order is as follows:"
+msgstr ""
+
+#: /woo-custom-order-status-pro/templates/emails/printed-order.php:15
+#: /woo-custom-order-status-pro/templates/emails/default-email.php:14
+#, php-format
+msgid "Order: %s"
+msgstr ""
+
+#: /woo-custom-order-status-pro/templates/emails/printed-order.php:19
+#: /woo-custom-order-status-pro/templates/emails/default-email.php:18
+msgid "Product"
+msgstr ""
+
+#: /woo-custom-order-status-pro/templates/emails/printed-order.php:20
+#: /woo-custom-order-status-pro/templates/emails/default-email.php:19
+msgid "Quantity"
+msgstr ""
+
+#: /woo-custom-order-status-pro/templates/emails/printed-order.php:21
+#: /woo-custom-order-status-pro/templates/emails/default-email.php:20
+msgid "Price"
+msgstr ""
+
+msgid "Customer details"
+msgstr ""
+
+msgid "Email:"
+msgstr ""
+
+msgid "Tel:"
+msgstr ""
+
+msgid "Resend order emails"
+msgstr ""
+
+msgid "Generate Download Permissions"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Delete Permanently"
+msgstr ""
+
+msgid "Move to Trash"
+msgstr ""
+
+msgid "Save Order"
+msgstr ""
+
+
+msgid "Save/update the order"
+msgstr ""
+
