@@ -1841,30 +1841,32 @@ add_action( 'woocommerce_account_ready-to-send_endpoint', 'ready_to_send_endpoin
 
 /**
  * Replace 'customer' role (WooCommerce use by default) with your own one.
-**/
-add_filter('woocommerce_new_customer_data', 'wc_custom_product_categ', 10, 1);
 
-function wc_custom_product_categ($args) {
-    global $wp_roles;
-  
-    $email = $args['user_email'];
-    $login = $args['user_login'];
+add_filter('woocommerce_new_customer_data', 'wc_custom_product_categ', 10, 1);*/
+
+add_action( 'user_register', 'wc_custom_product_categ', 10, 1 );
+
+function wc_custom_product_categ( $user_id ) {
+    $user_data = get_userdata($user_id);
+    $user_login = $user_data->user_login;
     
-    $term = wp_insert_term( 'apt'.$email.'-category', 'product_cat', [
+    $user_id = sprintf('%04d',$user_id);
+    
+    $term = wp_insert_term( 'apt'.$user_id.'-category', 'product_cat', [
 	'description'=> $email .' Product Category',
-	'slug' => $login.'-category' ]
+	'slug' => 'apt'.$user_id.'-category' ]
     );
     
     /** update options ignitewoo restrict categ user*/
      $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
      
     /** restrict user to general and its own product categ**/
-    $new_key = array($login.'_user_cats'=>array('0'=>$login.'-category','1'=>'general','2'=>'RestrictCategoriesDefault'));
+    $new_key = array($user_login.'_user_cats'=>array('0'=>'apt'.$user_id.'-category','1'=>'general','2'=>'RestrictCategoriesDefault'));
     $new_values = array_merge($new_key,$categ_array);
     update_option('IgniteWoo_RestrictCats_user_options',$new_values);
-    
-    return ($args);
+
 }
+
 
 function wpse_131562_redirect() {
     if (
