@@ -1,0 +1,269 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Shipping Pro with Table Rate (BASIC)\n"
+"POT-Creation-Date: 2017-01-19 16:08+0530\n"
+"PO-Revision-Date: 2017-01-19 16:35+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: weight-country-woocommerce-shipping.php\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: weight-country-woocommerce-shipping.php:21
+msgid "Shipping Pro (BASIC)"
+msgstr "Livraison Pro (BASIC)"
+
+#: weight-country-woocommerce-shipping.php:22
+msgid "Define shipping by country and weight"
+msgstr "Définir l’expédition par pays et par poids"
+
+#: weight-country-woocommerce-shipping.php:51
+msgid "Enable/Disable"
+msgstr "Activer/Désactiver"
+
+#: weight-country-woocommerce-shipping.php:53
+msgid "Enable this shipping method"
+msgstr "Activer ce mode de livraison"
+
+#: weight-country-woocommerce-shipping.php:57
+msgid "Method Title"
+msgstr "Titre de méthode"
+
+#: weight-country-woocommerce-shipping.php:59
+msgid "This controls the title which the user sees during checkout."
+msgstr "Ceci contrôle le titre que l'utilisateur verra durant la commande."
+
+#: weight-country-woocommerce-shipping.php:60
+msgid "Weight Based Fee"
+msgstr "Basé sur le poids"
+
+#: weight-country-woocommerce-shipping.php:66
+msgid "Display/Hide matrix columns"
+msgstr "Afficher/masquer les colonnes de la matrice"
+
+#: weight-country-woocommerce-shipping.php:68
+msgid ""
+"Select the columns which are used in the matrix. Please Save changes to "
+"reflect the modifications."
+msgstr ""
+"Sélectionnez les colonnes qui sont utilisées dans la matrice. S’il vous "
+"plaît enregistrer les modifications pour refléter les modifications."
+
+#: weight-country-woocommerce-shipping.php:81
+#: weight-country-woocommerce-shipping.php:204
+msgid "Method title"
+msgstr "Titre de méthode"
+
+#: weight-country-woocommerce-shipping.php:82
+#: weight-country-woocommerce-shipping.php:208
+msgid "Country list"
+msgstr "Liste des pays"
+
+#: weight-country-woocommerce-shipping.php:83
+msgid "Min weight"
+msgstr "Poids min."
+
+#: weight-country-woocommerce-shipping.php:84
+msgid "Max weight"
+msgstr "Max Poids"
+
+#: weight-country-woocommerce-shipping.php:85
+#: weight-country-woocommerce-shipping.php:220
+msgid "Base cost"
+msgstr "Coût fixe"
+
+#: weight-country-woocommerce-shipping.php:86
+msgid "Cost/weight"
+msgstr "Coût/poids"
+
+#: weight-country-woocommerce-shipping.php:87
+msgid "Weight round"
+msgstr "Poids rond"
+
+#: weight-country-woocommerce-shipping.php:90
+msgid "Choose matrix columns"
+msgstr "Choisir les colonnes de la matrice"
+
+#: weight-country-woocommerce-shipping.php:94
+msgid "Tax Status"
+msgstr "Statut de taxe"
+
+#: weight-country-woocommerce-shipping.php:99
+msgid "Taxable"
+msgstr "Avec taxe"
+
+#: weight-country-woocommerce-shipping.php:100
+msgid "None"
+msgstr "Aucun"
+
+#: weight-country-woocommerce-shipping.php:104
+msgid "Debug"
+msgstr "Debuggen"
+
+#: weight-country-woocommerce-shipping.php:106
+msgid "Debug this shipping method"
+msgstr "Déboguer ce mode de livraison"
+
+#: weight-country-woocommerce-shipping.php:142
+msgid "Rate matrix:"
+msgstr "Matrice de taux :"
+
+#: weight-country-woocommerce-shipping.php:205
+msgid ""
+"Would you like this shipping rule to have its own shipping service name? If "
+"so, please choose a name. Leaving it blank will use Method Title as shipping "
+"service name."
+msgstr ""
+"Vous voulez cette règle expédition d’avoir sa propre appellation "
+"réglementaire de service ? Dans l’affirmative, veuillez choisir un nom. "
+"Laisser vide utilisera la méthode titre comme appellation réglementaire de "
+"service."
+
+#: weight-country-woocommerce-shipping.php:209
+msgid "Select list of countries which this rule will be applicable"
+msgstr "Sélectionnez la liste des pays dont cette règle sera applicable"
+
+#: weight-country-woocommerce-shipping.php:212
+msgid "Min"
+msgstr "Min."
+
+#: weight-country-woocommerce-shipping.php:213
+msgid ""
+"if the value entered is .25 and the order weight is .25 then this rule will "
+"be ignored. if the value entered is .25 and the order weight is .26 then "
+"this rule will be be applicable for calculating shipping cost."
+msgstr ""
+"Si la valeur entrée est.25 et le poids de l’ordre est.25 ensuite cette règle "
+"sera ignorée. Si la valeur entrée est.25 et le poids de la commande est.26 "
+"alors cette règle sera s’appliquent pour le calcul des frais d’expédition."
+
+#: weight-country-woocommerce-shipping.php:216
+msgid "Max"
+msgstr "Max."
+
+#: weight-country-woocommerce-shipping.php:217
+msgid ""
+"if the value entered is .25 and the order weight is .26 then this rule will "
+"be ignored. if the value entered is .25 and the order weight is .25 or .24 "
+"then this rule will be be applicable for calculating shipping cost."
+msgstr ""
+"Si la valeur entrée est.25 et le poids de l’ordre est.26 ensuite cette règle "
+"sera ignorée. Si la valeur entrée est.25 et le poids de la commande est.25 "
+"ou.24 alors cette règle sera s’appliquent pour le calcul des frais "
+"d’expédition."
+
+#: weight-country-woocommerce-shipping.php:221
+msgid "Base/Fixed cost of the shipping irrespective of the weight"
+msgstr "Base/Fixed coût de l’expédition indépendamment du poids"
+
+#: weight-country-woocommerce-shipping.php:224
+msgid "Cost"
+msgstr "Coût"
+
+#: weight-country-woocommerce-shipping.php:225
+msgid ""
+"Per weight unit cost. This cost will be added on above the base cost. Total "
+"shipping Cost = Base cost + (order weight - minimum weight) * cost per unit"
+msgstr ""
+"Coût unitaire de poids. Ce coût s’ajoutera sur supérieur au coût de base. "
+"Total des frais d’expédition = coût de Base + (Réf. poids - poids minimum) * "
+"coût par unité"
+
+#: weight-country-woocommerce-shipping.php:228
+msgid "Rounding"
+msgstr "Arrondi"
+
+#: weight-country-woocommerce-shipping.php:229
+msgid ""
+"How would you like to round weight? if the value entered is 0.5 and the "
+"order weight is 4.4kg then shipping cost will be calculated for 4.5kg, if "
+"the value entered is 1 and the order weight is 4.4kg then shipping cost will "
+"be calculated for 5kg, if the value entered is 0 and the order weight is "
+"4.4kg then shipping cost will be calculated for 4.4kg"
+msgstr ""
+"Comment aimeriez-vous poids vif ? Si la valeur entrée est 0,5 et le poids de "
+"l’ordre est de 4,4 kg puis coût d’expédition sera calculé pour 4,5 kg, si la "
+"valeur entrée est 1 et le poids de l’ordre est 4,4 kg puis coût d’expédition "
+"est calculé pour 5 kg, si la valeur entrée est 0 et que l’ordre pèse 4,4 kg "
+"puis les frais de livraison seront calculé pour 4,4 kg"
+
+#: weight-country-woocommerce-shipping.php:232
+msgid "Note"
+msgstr "Remarque:"
+
+#: weight-country-woocommerce-shipping.php:233
+msgid ""
+"Summary of the shipping rule defined for better understanding. Save changes "
+"to reflect modifications"
+msgstr ""
+"Résumé de la règle de transport définie pour une meilleure compréhension. "
+"Enregistrer les modifications pour refléter les modifications"
+
+#: weight-country-woocommerce-shipping.php:240
+msgid "Add rule"
+msgstr "Ajouter des règles"
+
+#: weight-country-woocommerce-shipping.php:241
+msgid "Remove rule(es)"
+msgstr "Supprimer rule(es)"
+
+#: weight-country-woocommerce-shipping.php:242
+msgid "Duplicate rule(es)"
+msgstr "Rule(es) en double"
+
+#: weight-country-woocommerce-shipping.php:245
+msgid "Measurements Weight Unit & Dimensions Unit as per woocommerce settings."
+msgstr ""
+"Mesures Poids unité & Dimensions unité selon les paramètres de woocommerce."
+
+#: weight-country-woocommerce-shipping.php:519
+msgid "Settings"
+msgstr "Paramètres"
+
+#: weight-country-woocommerce-shipping.php:520
+msgid "Support"
+msgstr "Assistance"
+
+#: weight-country-woocommerce-shipping.php:521
+msgid "Premium Upgrade"
+msgstr "Mise à niveau Prémium"
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Shipping Pro with Table Rate (BASIC)"
+msgstr "WooCommerce d’expédition Pro avec tableau taux (BASIC)"
+
+#. Plugin URI of the plugin/theme
+msgid ""
+"https://www.xadapter.com/product/woocommerce-table-rate-shipping-pro-plugin/"
+msgstr ""
+"https://www.Xadapter.com/Product/woocommerce-table-rate-Shipping-Pro-plugin/"
+
+#. Description of the plugin/theme
+msgid ""
+"User friendly Weight and Country based WooCommerce Shipping plug-in. Upgrade "
+"to Shipping Pro No.1 WooCommerce Shipping Plugin. Configure your shipping "
+"with the help of our experts!. 30 Day no question asked refund."
+msgstr ""
+"Poids convivial utilisateur et pays basé WooCommerce Shipping plug-in. mise "
+"à niveau vers la marine marchande n ° 1 WooCommerce Shipping Plugin Pro. "
+"Configurez votre navigation à l’aide de nos experts !. Aucune question ne "
+"posée de remboursement de 30 jours."
+
+#. Author of the plugin/theme
+msgid "WooForce"
+msgstr "WooForce"
+
+#. Author URI of the plugin/theme
+msgid "www.xadapter.com/vendor/wooforce/"
+msgstr "http://www.Xadapter.com/Vendor/wooforce/"

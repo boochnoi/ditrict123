@@ -1891,7 +1891,7 @@ function wc_custom_redirect( $redirect, $user ) {
         $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
     
         /** unset subscription categ upon login**/
-        unset($categ_array[$user->user_login.'_user_cats']['0']);
+        unset($categ_array[$user->user_login.'_user_cats']['1']);
         update_option('IgniteWoo_RestrictCats_user_options',$categ_array);
         $redirect ='/my-account';
     }
@@ -2032,6 +2032,8 @@ function wpb_woo_my_account_order() {
  'shop' => __( 'Your Action is Required', 'woocommerce' ),
  'in-review' => __( 'In Process', 'woocommerce' ),
  'ready-to-send' => __( 'Ready to Send', 'woocommerce' ),
+ 'shipped' => __( 'Shipped', 'woocommerce' ),
+ 'picked-up' => __( 'Picked Up', 'woocommerce' ),    
  'subscriptions' => __( 'Subscriptions', 'woocommerce' ), 
  'orders' => __( 'All Transactions', 'woocommerce' ),
  'customer-logout' => __( 'Logout', 'woocommerce' ),
