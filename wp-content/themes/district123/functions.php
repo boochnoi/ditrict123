@@ -2815,9 +2815,9 @@ function custom_override_checkout_fields( $fields ) {
 /*** automatic 0.00 sale price ***/
 function set_default_price( $post_id, $post ) {
 
-    if ( isset( $_POST['_sale_price'] ) && trim( $_POST['_sale_price'] ) == '' ) {
+    //if ( isset( $_POST['_sale_price'] ) && trim( $_POST['_sale_price'] ) == '' ) {
         update_post_meta( $post_id, '_sale_price', '0.00' );
-    }
+    //}
 
 }
 add_action( 'woocommerce_process_product_meta', 'set_default_price' );
