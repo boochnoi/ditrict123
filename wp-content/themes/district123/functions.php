@@ -1888,7 +1888,7 @@ function wc_custom_redirect( $redirect, $user ) {
     $bought = has_woocommerce_subscription($user->ID);
     
     if (!$bought) {
-        $redirect ='/shop';
+        $redirect ='/product-category/general';
     }else{
         $redirect ='/my-account';
     }
