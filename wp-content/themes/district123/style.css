@@ -4528,5 +4528,5 @@ margin-left: 10px !important;
 }
 
 #woocommerce-products-header{
-    visibility: hidden;
+    display: none;
 }
