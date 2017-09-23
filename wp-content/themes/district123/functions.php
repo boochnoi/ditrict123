@@ -1890,11 +1890,6 @@ function wc_custom_redirect( $redirect, $user ) {
     if (!$bought) {
         $redirect ='/shop';
     }else{
-        $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
-    
-        /** unset subscription categ upon login**/
-        unset($categ_array[$user->user_login.'_user_cats']['1']);
-        update_option('IgniteWoo_RestrictCats_user_options',$categ_array);
         $redirect ='/my-account';
     }
     return $redirect;
