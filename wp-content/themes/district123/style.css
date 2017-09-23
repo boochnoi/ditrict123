@@ -4532,5 +4532,8 @@ margin-left: 10px !important;
 }
 
 .gridlist-toggle{
-    display:none;
+    display:none !important;
+}
+ul.products.list li.product img{
+    width:20% !important;
 }
