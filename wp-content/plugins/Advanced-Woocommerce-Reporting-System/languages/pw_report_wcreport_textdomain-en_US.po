@@ -1,0 +1,2040 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PW Advanced Woo Reporting v3.0\n"
+"POT-Creation-Date: 2016-07-01 11:53+0330\n"
+"PO-Revision-Date: 2016-07-01 11:53+0330\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPathExcluded-0: .\n"
+
+#: ../class/addons_report.php:110
+msgid "Activated"
+msgstr ""
+
+#: ../class/addons_report.php:114
+msgid "Activate Here"
+msgstr ""
+
+#: ../class/addons_report.php:120
+msgid "Buy Now"
+msgstr ""
+
+#: ../class/ajax_dashboard.php:10 ../class/billingcountry.php:10
+#: ../class/billingstate.php:9 ../class/brand.php:11
+#: ../class/category.php:11 ../class/country_per_month.php:10
+#: ../class/coupon.php:10 ../class/custom_taxonomy.php:11
+#: ../class/customer.php:11 ../class/customerbuyproducts.php:10
+#: ../class/details.php:10 ../class/details_tax_field.php:10
+#: ../class/ord_status_per_month.php:9 ../class/orderstatus.php:10
+#: ../class/payment_per_month.php:9 ../class/paymentgateway.php:10
+#: ../class/prod_per_country.php:10 ../class/prod_per_month.php:9
+#: ../class/prod_per_state.php:9 ../class/product.php:11
+#: ../class/projected_actual_sale.php:9 ../class/recentorder.php:10
+#: ../class/refunddetails.php:9 ../class/reports.php:8
+#: ../class/stock_list.php:9 ../class/summary_per_month.php:9
+#: ../class/tax_reports.php:9 ../class/taxreport.php:9
+#: ../class/variation.php:9 ../class/variation_per_month.php:9
+#: ../class/variation_stock.php:9
+msgid "Configuration"
+msgstr ""
+
+#: ../class/dashboard.php:38
+msgid "Totals"
+msgstr ""
+
+#: ../class/dashboard.php:120
+msgid "SUMMERY"
+msgstr ""
+
+#: ../class/dashboard.php:203
+msgid "SUMMERY CHARTS"
+msgstr ""
+
+#: ../class/dashboard.php:212
+msgid "Sale By Months"
+msgstr ""
+
+#: ../class/dashboard.php:213
+msgid "Sale By Days"
+msgstr ""
+
+#: ../class/dashboard.php:214
+msgid "Sale By Week"
+msgstr ""
+
+#: ../class/dashboard.php:215 ../class/dashboard_report.php:133
+msgid "Top Products"
+msgstr ""
+
+#: ../class/dashboard.php:261 ../class/dashboard_report.php:216
+#: ../class/reports.php:61
+msgid "Map"
+msgstr ""
+
+#: ../class/dashboard_report.php:114
+msgid "Sales By Months"
+msgstr ""
+
+#: ../class/dashboard_report.php:121
+msgid "Sales By Days"
+msgstr ""
+
+#: ../class/dashboard_report.php:127
+msgid "3D Month Chart"
+msgstr ""
+
+#: ../class/dashboard_report.php:701
+msgid "Country Orders Amount"
+msgstr ""
+
+#: ../class/dashboard_report.php:709 ../class/dashboard_report.php:748
+msgid "Less than"
+msgstr ""
+
+#: ../class/dashboard_report.php:717 ../class/dashboard_report.php:763
+msgid "and"
+msgstr ""
+
+#: ../class/dashboard_report.php:724 ../class/dashboard_report.php:777
+msgid "More than"
+msgstr ""
+
+#: ../class/dashboard_report.php:734
+msgid "State Orders Amount"
+msgstr ""
+
+#: ../class/dashboard_report.php:808
+msgid "Hide Oldest News !"
+msgstr ""
+
+#: ../class/dashboard_report.php:811 ../class/report_news.php:119
+msgid "Show Oldest News !"
+msgstr ""
+
+#: ../class/pages_fetch_dashboards.php:75
+msgid "Basics"
+msgstr ""
+
+#: ../class/pages_fetch_dashboards.php:86
+msgid "All Order with Taxonomies & Fields"
+msgstr ""
+
+#: ../class/pages_fetch_dashboards.php:96 ../class/setting_report.php:718
+#: ../main.php:835
+msgid "More Reports"
+msgstr ""
+
+#: ../class/pages_fetch_dashboards.php:107
+msgid "CrossTab"
+msgstr ""
+
+#: ../class/pages_fetch_dashboards.php:117
+msgid "Other"
+msgstr ""
+
+#: ../class/pages_fetch_dashboards.php:122
+msgid "WOOCommerce Advance Reporting System"
+msgstr ""
+
+#: ../class/pages_fetch_dashboards.php:137 ../main.php:777
+msgid "Activate Plugin"
+msgstr ""
+
+#: ../class/plugin_active.php:22
+msgid "Domain Name"
+msgstr ""
+
+#: ../class/plugin_active.php:23
+msgid "Enter Your Domain Name"
+msgstr ""
+
+#: ../class/plugin_active.php:33
+msgid "Purchase Code"
+msgstr ""
+
+#: ../class/plugin_active.php:34
+msgid "Enter Your Purchase Code"
+msgstr ""
+
+#: ../class/plugin_active.php:148
+msgid "Congratulation, The Plugin has been Activated Successfully !"
+msgstr ""
+
+#: ../class/plugin_active.php:155
+msgid "Unfortunately, The Purchase code is Wrong, Please try Again !"
+msgstr ""
+
+#: ../class/plugin_active.php:212
+msgid "Plugin Activate"
+msgstr ""
+
+#: ../class/report_news.php:119
+msgid "There is no unread news, "
+msgstr ""
+
+#: ../class/report_news.php:122
+msgid "There is no news !"
+msgstr ""
+
+#: ../class/reportclass.php:509 ../class/reportclass.php:652
+#: ../class/reportclass.php:871 ../class/reportclass.php:1033
+msgid "Completed"
+msgstr ""
+
+#: ../class/reportclass.php:510 ../class/reportclass.php:653
+#: ../class/reportclass.php:872 ../class/reportclass.php:1034
+msgid "On Hold"
+msgstr ""
+
+#: ../class/reportclass.php:511 ../class/reportclass.php:654
+#: ../class/reportclass.php:873 ../class/reportclass.php:1035
+msgid "Cancelled"
+msgstr ""
+
+#: ../class/reportclass.php:512 ../class/reportclass.php:655
+#: ../class/reportclass.php:874 ../class/reportclass.php:1036
+msgid "Refunded"
+msgstr ""
+
+#: ../class/reportclass.php:513 ../class/reportclass.php:656
+#: ../class/reportclass.php:875 ../class/reportclass.php:1037
+msgid "Failed"
+msgstr ""
+
+#: ../class/reportclass.php:514 ../class/reportclass.php:657
+#: ../class/reportclass.php:876 ../class/reportclass.php:1038
+msgid "Pending"
+msgstr ""
+
+#: ../class/reportclass.php:515 ../class/reportclass.php:658
+#: ../class/reportclass.php:877 ../class/reportclass.php:1039
+msgid "Processing"
+msgstr ""
+
+#: ../class/reports.php:42
+msgid "Chart"
+msgstr ""
+
+#: ../class/setting_report.php:6 ../includes/actions.php:41
+msgid "EQUALS"
+msgstr ""
+
+#: ../class/setting_report.php:7 ../includes/actions.php:42
+msgid "NOT EQUALS"
+msgstr ""
+
+#: ../class/setting_report.php:8 ../includes/actions.php:43
+msgid "LESS THEN"
+msgstr ""
+
+#: ../class/setting_report.php:9 ../includes/actions.php:44
+msgid "MORE THEN"
+msgstr ""
+
+#: ../class/setting_report.php:10 ../includes/actions.php:45
+msgid "EQUAL AND MORE"
+msgstr ""
+
+#: ../class/setting_report.php:11 ../includes/actions.php:46
+msgid "LESS AND EQUAL"
+msgstr ""
+
+#: ../class/setting_report.php:14 ../includes/actions.php:49
+msgid "EXACTLY LIKE"
+msgstr ""
+
+#: ../class/setting_report.php:15 ../includes/actions.php:50
+msgid "LIKE"
+msgstr ""
+
+#: ../class/setting_report.php:37
+msgid "Dashboard Setting"
+msgstr ""
+
+#: ../class/setting_report.php:43
+msgid "Taxonomy & Fields"
+msgstr ""
+
+#: ../class/setting_report.php:49 ../includes/datatable_generator.php:228
+#: ../includes/datatable_generator.php:730
+msgid "Target Sales"
+msgstr ""
+
+#: ../class/setting_report.php:55
+msgid "Translate"
+msgstr ""
+
+#: ../class/setting_report.php:61
+msgid "License info"
+msgstr ""
+
+#: ../class/setting_report.php:84
+msgid "Dashboard Status"
+msgstr ""
+
+#: ../class/setting_report.php:85
+msgid ""
+"You can enable/disable dashboard and set another report as default report"
+msgstr ""
+
+#: ../class/setting_report.php:91
+msgid "Enable, please"
+msgstr ""
+
+#: ../class/setting_report.php:95
+msgid "Disable, please"
+msgstr ""
+
+#: ../class/setting_report.php:101
+msgid "Alternative Report"
+msgstr ""
+
+#: ../class/setting_report.php:102
+msgid "Choose which one of reports that you want to display insted dashboard"
+msgstr ""
+
+#: ../class/setting_report.php:112
+msgid "Dashboard Date"
+msgstr ""
+
+#: ../class/setting_report.php:113
+msgid "Do you want to set customize date for dashboard search ?"
+msgstr ""
+
+#: ../class/setting_report.php:119
+msgid "No, I want use default date"
+msgstr ""
+
+#: ../class/setting_report.php:123
+msgid "Yes, please"
+msgstr ""
+
+#: ../class/setting_report.php:133
+#: ../includes/fetch_data_billingcountry.php:129
+#: ../includes/fetch_data_billingstate.php:138
+#: ../includes/fetch_data_brand.php:197
+#: ../includes/fetch_data_category.php:190
+#: ../includes/fetch_data_country_per_month.php:265
+#: ../includes/fetch_data_coupon.php:190
+#: ../includes/fetch_data_custom_order_per_country.php:239
+#: ../includes/fetch_data_custom_taxonomy.php:194
+#: ../includes/fetch_data_customer.php:149
+#: ../includes/fetch_data_customerbuyproducts.php:247
+#: ../includes/fetch_data_ord_status_per_month.php:258
+#: ../includes/fetch_data_orderstatus.php:132
+#: ../includes/fetch_data_payment_per_month.php:282
+#: ../includes/fetch_data_paymentgateway.php:118
+#: ../includes/fetch_data_prod_per_country.php:411
+#: ../includes/fetch_data_prod_per_month.php:418
+#: ../includes/fetch_data_prod_per_state.php:439
+#: ../includes/fetch_data_recentorder.php:254
+#: ../includes/fetch_data_refunddetails.php:721
+#: ../includes/fetch_data_summary_per_month.php:239
+#: ../includes/fetch_data_tax_reports.php:398
+#: ../includes/fetch_data_taxreport.php:247
+#: ../includes/fetch_data_variation.php:549
+#: ../includes/fetch_data_variation_per_month.php:412
+msgid "From Date"
+msgstr ""
+
+#: ../class/setting_report.php:134
+msgid "Set from date for dashboard search"
+msgstr ""
+
+#: ../class/setting_report.php:146
+#: ../includes/fetch_data_billingcountry.php:138
+#: ../includes/fetch_data_billingstate.php:145
+#: ../includes/fetch_data_brand.php:205
+#: ../includes/fetch_data_category.php:198
+#: ../includes/fetch_data_country_per_month.php:272
+#: ../includes/fetch_data_coupon.php:197
+#: ../includes/fetch_data_custom_order_per_country.php:248
+#: ../includes/fetch_data_custom_taxonomy.php:202
+#: ../includes/fetch_data_customer.php:157
+#: ../includes/fetch_data_customerbuyproducts.php:255
+#: ../includes/fetch_data_ord_status_per_month.php:265
+#: ../includes/fetch_data_orderstatus.php:140
+#: ../includes/fetch_data_payment_per_month.php:289
+#: ../includes/fetch_data_paymentgateway.php:126
+#: ../includes/fetch_data_prod_per_country.php:418
+#: ../includes/fetch_data_prod_per_month.php:425
+#: ../includes/fetch_data_prod_per_state.php:446
+#: ../includes/fetch_data_recentorder.php:262
+#: ../includes/fetch_data_refunddetails.php:729
+#: ../includes/fetch_data_summary_per_month.php:246
+#: ../includes/fetch_data_tax_reports.php:406
+#: ../includes/fetch_data_taxreport.php:255
+#: ../includes/fetch_data_variation.php:557
+#: ../includes/fetch_data_variation_per_month.php:419
+msgid "To Date"
+msgstr ""
+
+#: ../class/setting_report.php:147
+msgid "Set to date for dashboard search"
+msgstr ""
+
+#: ../class/setting_report.php:159
+msgid "Disable Map in Dashboard ?"
+msgstr ""
+
+#: ../class/setting_report.php:160 ../class/setting_report.php:171
+msgid "Yes, Please"
+msgstr ""
+
+#: ../class/setting_report.php:170
+msgid "Disable Charts in Dashboard ?"
+msgstr ""
+
+#: ../class/setting_report.php:181 ../includes/datatable_generator.php:786
+#: ../main.php:749 ../main.php:928
+msgid "Recent Order"
+msgstr ""
+
+#: ../class/setting_report.php:182
+msgid "Set Minimum page number for Recent Order table"
+msgstr ""
+
+#: ../class/setting_report.php:192
+msgid "Top Product"
+msgstr ""
+
+#: ../class/setting_report.php:193
+msgid "Set Minimum page number for Top Product table"
+msgstr ""
+
+#: ../class/setting_report.php:203
+msgid "Top Category"
+msgstr ""
+
+#: ../class/setting_report.php:204
+msgid "Set Minimum page number for Top Category table"
+msgstr ""
+
+#: ../class/setting_report.php:214
+msgid "Top Customer"
+msgstr ""
+
+#: ../class/setting_report.php:215
+msgid "Set Minimum page number for Top Customer table"
+msgstr ""
+
+#: ../class/setting_report.php:225
+msgid "Top Billing Country"
+msgstr ""
+
+#: ../class/setting_report.php:226
+msgid "Set Minimum page number for Top Billing Country table"
+msgstr ""
+
+#: ../class/setting_report.php:236
+msgid "Top State Country"
+msgstr ""
+
+#: ../class/setting_report.php:237
+msgid "Set Minimum page number for Top State Country table"
+msgstr ""
+
+#: ../class/setting_report.php:247
+msgid "Top Payment Gateway"
+msgstr ""
+
+#: ../class/setting_report.php:248
+msgid "Set Minimum page number for Top Payment Gateway table"
+msgstr ""
+
+#: ../class/setting_report.php:258
+msgid "Top Coupon"
+msgstr ""
+
+#: ../class/setting_report.php:259
+msgid "Set Minimum page number for Top Coupon table"
+msgstr ""
+
+#: ../class/setting_report.php:275
+msgid "Custom Taxonomy & Fields"
+msgstr ""
+
+#: ../class/setting_report.php:276
+msgid ""
+"In this section you can choose which WooCommerce Taxonomy and which Custom "
+"fields appear in Report."
+msgstr ""
+
+#: ../class/setting_report.php:282
+msgid "Custom Taxonmy"
+msgstr ""
+
+#: ../class/setting_report.php:289
+#: ../includes/fetch_data_details_tax_field.php:2528
+msgid "Custom Fields"
+msgstr ""
+
+#: ../class/setting_report.php:290
+msgid ""
+"Select your custom fields for serach query, This fields just will be "
+"displayed in All Orders Reort (Based on Taxonomies)"
+msgstr ""
+
+#: ../class/setting_report.php:347
+msgid "Projected Sales Year"
+msgstr ""
+
+#: ../class/setting_report.php:348
+msgid "Choose Year"
+msgstr ""
+
+#: ../class/setting_report.php:356 ../class/setting_report.php:362
+msgid "Set Sales of monthes"
+msgstr ""
+
+#: ../class/setting_report.php:375
+msgid "Set Your Translate(s)"
+msgstr ""
+
+#: ../class/setting_report.php:381
+msgid "Set Translate for January"
+msgstr ""
+
+#: ../class/setting_report.php:388
+msgid "Set Translate for February"
+msgstr ""
+
+#: ../class/setting_report.php:395
+msgid "Set Translate for March"
+msgstr ""
+
+#: ../class/setting_report.php:402
+msgid "Set Translate for April"
+msgstr ""
+
+#: ../class/setting_report.php:409
+msgid "Set Translate for May"
+msgstr ""
+
+#: ../class/setting_report.php:416
+msgid "Set Translate for June"
+msgstr ""
+
+#: ../class/setting_report.php:423
+msgid "Set Translate for July"
+msgstr ""
+
+#: ../class/setting_report.php:430
+msgid "Set Translate for August"
+msgstr ""
+
+#: ../class/setting_report.php:437
+msgid "Set Translate for September"
+msgstr ""
+
+#: ../class/setting_report.php:444
+msgid "Set Translate for October"
+msgstr ""
+
+#: ../class/setting_report.php:451
+msgid "Set Translate for November"
+msgstr ""
+
+#: ../class/setting_report.php:458
+msgid "Set Translate for December"
+msgstr ""
+
+#: ../class/setting_report.php:471
+msgid "Plugin Info"
+msgstr ""
+
+#: ../class/setting_report.php:561
+msgid "Settings saved"
+msgstr ""
+
+#: ../class/setting_report.php:568
+msgid "Woo Report Settings"
+msgstr ""
+
+#: ../class/setting_report.php:710
+msgid "General Reports"
+msgstr ""
+
+#: ../class/setting_report.php:714
+msgid "Taxonomy Reports"
+msgstr ""
+
+#: ../class/setting_report.php:722
+msgid "CrossTab Reports"
+msgstr ""
+
+#: ../class/setting_report.php:726
+msgid "Other Reports"
+msgstr ""
+
+#: ../class/setting_report.php:738
+msgid "Taxonomies All Order"
+msgstr ""
+
+#: ../class/setting_report.php:739 ../includes/datatable_generator.php:779
+#: ../includes/fetch_data_details.php:1417
+#: ../includes/fetch_data_details_per_country.php:1453
+#: ../includes/fetch_data_details_tax_field.php:2210
+#: ../includes/fetch_data_prod_per_country.php:558
+#: ../includes/fetch_data_prod_per_month.php:563
+#: ../includes/fetch_data_prod_per_state.php:585
+#: ../includes/fetch_data_product.php:437
+#: ../includes/fetch_data_stock_list.php:679
+#: ../includes/fetch_data_variation.php:634
+#: ../includes/fetch_data_variation_per_month.php:482
+#: ../includes/fetch_data_variation_stock.php:740 ../main.php:96
+#: ../main.php:109 ../main.php:137 ../main.php:166 ../main.php:198
+#: ../main.php:213 ../main.php:223 ../main.php:233 ../main.php:244
+#: ../main.php:742 ../main.php:886
+msgid "Product"
+msgstr ""
+
+#: ../class/setting_report.php:778
+msgid "'CrossTab Add-on' is needed! Please Purchase/Active it. <br />click "
+msgstr ""
+
+#: ../class/setting_report.php:778 ../includes/fetch_data_brand.php:185
+msgid "Here"
+msgstr ""
+
+#: ../class/setting_report.php:778
+msgid " For more info !"
+msgstr ""
+
+#: ../class/setting_report.php:846
+msgid "Set Label, Leave blank to use from default label"
+msgstr ""
+
+#: ../class/setting_report.php:1057
+msgid "Translate Fields / Done"
+msgstr ""
+
+#: ../class/setting_report.php:1064
+msgid "Translate Fields"
+msgstr ""
+
+#: ../class/setting_report.php:1231
+msgid "Choose a Page"
+msgstr ""
+
+#: ../class/setting_report.php:1249
+msgid "Choose Post Type"
+msgstr ""
+
+#: ../class/setting_report.php:1287
+msgid "Choose Live Search"
+msgstr ""
+
+#: ../class/setting_report.php:1354
+msgid "Choose Image"
+msgstr ""
+
+#: ../class/setting_report.php:1398
+msgid "Choose Shorcode"
+msgstr ""
+
+#: ../class/setting_report.php:1414
+msgid "Name (From) Field"
+msgstr ""
+
+#: ../class/setting_report.php:1416
+msgid "Name (To) Field"
+msgstr ""
+
+#: ../class/setting_report.php:1418
+msgid "Email (To) Field"
+msgstr ""
+
+#: ../class/setting_report.php:1420
+msgid "Description Field"
+msgstr ""
+
+#: ../includes/actions.php:100
+msgid "Please add custom field to left site"
+msgstr ""
+
+#: ../includes/datatable_generator.php:227
+#: ../includes/datatable_generator.php:538
+#: ../includes/datatable_generator.php:594
+#: ../includes/datatable_generator.php:729
+msgid "Month"
+msgstr ""
+
+#: ../includes/datatable_generator.php:229
+#: ../includes/datatable_generator.php:731
+msgid "Actual Sales"
+msgstr ""
+
+#: ../includes/datatable_generator.php:230
+#: ../includes/datatable_generator.php:732
+msgid "Difference"
+msgstr ""
+
+#: ../includes/datatable_generator.php:231
+#: ../includes/datatable_generator.php:733
+msgid "%"
+msgstr ""
+
+#: ../includes/datatable_generator.php:232
+#, php-format
+msgid "% of Total YR PROJ"
+msgstr ""
+
+#: ../includes/datatable_generator.php:233
+#: ../includes/datatable_generator.php:734
+msgid "Refund Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:234
+#: ../includes/datatable_generator.php:735
+msgid "Part Refund Amount"
+msgstr ""
+
+#: ../includes/datatable_generator.php:235
+#: ../includes/datatable_generator.php:326
+#: ../includes/datatable_generator.php:473
+#: ../includes/datatable_generator.php:736
+#: ../includes/fetch_data_details.php:567
+#: ../includes/fetch_data_details_per_country.php:572
+#: ../includes/fetch_data_details_tax_field.php:874
+msgid "Total Discount Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:236
+msgid "Tax Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:237
+msgid "Shipping Order Tax"
+msgstr ""
+
+#: ../includes/datatable_generator.php:238
+msgid "Total Shipping Tax"
+msgstr ""
+
+#: ../includes/datatable_generator.php:244
+msgid "Sales Order"
+msgstr ""
+
+#: ../includes/datatable_generator.php:245
+#: ../includes/datatable_generator.php:253
+#: ../includes/datatable_generator.php:277
+#: ../includes/datatable_generator.php:285
+#: ../includes/datatable_generator.php:294
+#: ../includes/datatable_generator.php:310
+#: ../includes/datatable_generator.php:427
+#: ../includes/datatable_generator.php:435
+#: ../includes/datatable_generator.php:443
+#: ../includes/datatable_generator.php:450
+#: ../includes/datatable_generator.php:457
+#: ../includes/datatable_generator.php:487
+#: ../includes/fetch_data_tax_reports.php:204
+#: ../includes/fetch_data_tax_reports.php:220
+#: ../includes/fetch_data_tax_reports.php:235
+#: ../includes/fetch_data_tax_reports.php:249
+#: ../includes/fetch_data_tax_reports.php:263
+#: ../includes/fetch_data_tax_reports.php:278
+#: ../includes/fetch_data_tax_reports.php:288
+#: ../includes/fetch_data_tax_reports.php:298
+msgid "Order Count"
+msgstr ""
+
+#: ../includes/datatable_generator.php:246
+#: ../includes/datatable_generator.php:254
+#: ../includes/datatable_generator.php:262
+#: ../includes/datatable_generator.php:270
+#: ../includes/datatable_generator.php:278
+#: ../includes/datatable_generator.php:286
+#: ../includes/datatable_generator.php:295
+#: ../includes/datatable_generator.php:303
+#: ../includes/datatable_generator.php:311
+#: ../includes/datatable_generator.php:364
+#: ../includes/datatable_generator.php:372
+#: ../includes/datatable_generator.php:409
+#: ../includes/datatable_generator.php:417
+#: ../includes/datatable_generator.php:428
+#: ../includes/datatable_generator.php:436
+#: ../includes/datatable_generator.php:444
+#: ../includes/datatable_generator.php:451
+#: ../includes/datatable_generator.php:458
+#: ../includes/datatable_generator.php:506
+#: ../includes/datatable_generator.php:715
+msgid "Amount"
+msgstr ""
+
+#: ../includes/datatable_generator.php:252
+#: ../includes/datatable_generator.php:456
+#: ../includes/datatable_generator.php:514
+#: ../includes/datatable_generator.php:560
+#: ../includes/datatable_generator.php:570
+#: ../includes/datatable_generator.php:785 ../main.php:748 ../main.php:922
+msgid "Order Status"
+msgstr ""
+
+#: ../includes/datatable_generator.php:260
+msgid "Item Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:261
+#: ../includes/datatable_generator.php:269
+msgid "Qty"
+msgstr ""
+
+#: ../includes/datatable_generator.php:268
+#: ../includes/datatable_generator.php:362
+#: ../includes/datatable_generator.php:370
+#: ../includes/datatable_generator.php:415
+msgid "Category Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:276
+#: ../includes/datatable_generator.php:434
+#: ../includes/datatable_generator.php:442
+#: ../includes/datatable_generator.php:782 ../main.php:745 ../main.php:904
+msgid "Billing Country"
+msgstr ""
+
+#: ../includes/datatable_generator.php:284
+#: ../includes/datatable_generator.php:441 ../main.php:746 ../main.php:910
+msgid "Billing State"
+msgstr ""
+
+#: ../includes/datatable_generator.php:292
+msgid "Billing Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:293
+#: ../includes/datatable_generator.php:426
+msgid "Billing Email"
+msgstr ""
+
+#: ../includes/datatable_generator.php:301
+#: ../includes/datatable_generator.php:611
+#: ../includes/fetch_data_details.php:536
+#: ../includes/fetch_data_details.php:562
+#: ../includes/fetch_data_details_per_country.php:540
+#: ../includes/fetch_data_details_per_country.php:567
+#: ../includes/fetch_data_details_tax_field.php:813
+#: ../includes/fetch_data_details_tax_field.php:869
+msgid "Coupon Code"
+msgstr ""
+
+#: ../includes/datatable_generator.php:302
+msgid "Coupon Used Count"
+msgstr ""
+
+#: ../includes/datatable_generator.php:309
+#: ../includes/datatable_generator.php:449
+#: ../includes/fetch_data_details.php:560
+#: ../includes/fetch_data_details_per_country.php:565
+#: ../includes/fetch_data_details_tax_field.php:867
+msgid "Payment Method"
+msgstr ""
+
+#: ../includes/datatable_generator.php:317
+#: ../includes/datatable_generator.php:464
+#: ../includes/datatable_generator.php:512
+#: ../includes/datatable_generator.php:558
+#: ../includes/datatable_generator.php:568
+#: ../includes/fetch_data_details.php:531
+#: ../includes/fetch_data_details.php:553
+#: ../includes/fetch_data_details.php:1324
+#: ../includes/fetch_data_details_per_country.php:534
+#: ../includes/fetch_data_details_per_country.php:557
+#: ../includes/fetch_data_details_per_country.php:1360
+#: ../includes/fetch_data_details_tax_field.php:808
+#: ../includes/fetch_data_details_tax_field.php:860
+#: ../includes/fetch_data_details_tax_field.php:2111
+msgid "Order ID"
+msgstr ""
+
+#: ../includes/datatable_generator.php:318
+#: ../includes/datatable_generator.php:339
+#: ../includes/datatable_generator.php:465
+#: ../includes/fetch_data_details.php:532
+#: ../includes/fetch_data_details.php:554
+#: ../includes/fetch_data_details_per_country.php:535
+#: ../includes/fetch_data_details_per_country.php:558
+#: ../includes/fetch_data_details_tax_field.php:809
+#: ../includes/fetch_data_details_tax_field.php:861
+msgid "Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:319
+#: ../includes/datatable_generator.php:466
+#: ../includes/fetch_data_details.php:533
+#: ../includes/fetch_data_details.php:555
+#: ../includes/fetch_data_details.php:1720
+#: ../includes/fetch_data_details_per_country.php:536
+#: ../includes/fetch_data_details_per_country.php:559
+#: ../includes/fetch_data_details_per_country.php:1756
+#: ../includes/fetch_data_details_tax_field.php:810
+#: ../includes/fetch_data_details_tax_field.php:862
+#: ../includes/fetch_data_details_tax_field.php:2514
+msgid "Email"
+msgstr ""
+
+#: ../includes/datatable_generator.php:320
+#: ../includes/datatable_generator.php:467
+#: ../includes/fetch_data_details.php:534
+#: ../includes/fetch_data_details.php:556
+#: ../includes/fetch_data_details_per_country.php:537
+#: ../includes/fetch_data_details_per_country.php:560
+#: ../includes/fetch_data_details_tax_field.php:811
+#: ../includes/fetch_data_details_tax_field.php:863
+msgid "Date"
+msgstr ""
+
+#: ../includes/datatable_generator.php:321
+#: ../includes/datatable_generator.php:468
+#: ../includes/fetch_data_country_per_month.php:342
+#: ../includes/fetch_data_details.php:535
+#: ../includes/fetch_data_details.php:557
+#: ../includes/fetch_data_details.php:1493
+#: ../includes/fetch_data_details_per_country.php:538
+#: ../includes/fetch_data_details_per_country.php:562
+#: ../includes/fetch_data_details_per_country.php:1529
+#: ../includes/fetch_data_details_tax_field.php:812
+#: ../includes/fetch_data_details_tax_field.php:864
+#: ../includes/fetch_data_details_tax_field.php:2287
+#: ../includes/fetch_data_ord_status_per_month.php:280
+#: ../includes/fetch_data_payment_per_month.php:335
+#: ../includes/fetch_data_prod_per_country.php:509
+#: ../includes/fetch_data_prod_per_month.php:516
+#: ../includes/fetch_data_prod_per_state.php:537
+#: ../includes/fetch_data_product.php:486
+#: ../includes/fetch_data_summary_per_month.php:284
+#: ../includes/fetch_data_tax_reports.php:549
+#: ../includes/fetch_data_variation.php:707
+#: ../includes/fetch_data_variation_per_month.php:528 ../main.php:99
+#: ../main.php:110 ../main.php:128 ../main.php:156 ../main.php:170
+#: ../main.php:201 ../main.php:212 ../main.php:222 ../main.php:232
+#: ../main.php:243
+msgid "Status"
+msgstr ""
+
+#: ../includes/datatable_generator.php:322
+#: ../includes/datatable_generator.php:469
+#: ../includes/fetch_data_custom_taxonomy.php:329
+#: ../includes/fetch_data_details.php:563
+#: ../includes/fetch_data_details_per_country.php:568
+#: ../includes/fetch_data_details_tax_field.php:870
+msgid "Items"
+msgstr ""
+
+#: ../includes/datatable_generator.php:323
+#: ../includes/datatable_generator.php:470
+#: ../includes/datatable_generator.php:489
+#: ../includes/fetch_data_details.php:564
+#: ../includes/fetch_data_details_per_country.php:569
+#: ../includes/fetch_data_details_tax_field.php:871
+#: ../includes/fetch_data_tax_reports.php:206
+#: ../includes/fetch_data_tax_reports.php:222
+#: ../includes/fetch_data_tax_reports.php:237
+#: ../includes/fetch_data_tax_reports.php:251
+#: ../includes/fetch_data_tax_reports.php:265
+msgid "Gross Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:324
+#: ../includes/datatable_generator.php:471
+#: ../includes/fetch_data_details.php:565
+#: ../includes/fetch_data_details_per_country.php:570
+#: ../includes/fetch_data_details_tax_field.php:872
+msgid "Order Discount Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:325
+#: ../includes/datatable_generator.php:472
+#: ../includes/fetch_data_details.php:566
+#: ../includes/fetch_data_details_per_country.php:571
+#: ../includes/fetch_data_details_tax_field.php:873
+msgid "Cart Discount Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:327
+#: ../includes/datatable_generator.php:474
+msgid "Shipping Amt.."
+msgstr ""
+
+#: ../includes/datatable_generator.php:328
+#: ../includes/datatable_generator.php:475
+#: ../includes/fetch_data_details.php:569
+#: ../includes/fetch_data_details_per_country.php:574
+#: ../includes/fetch_data_details_tax_field.php:876
+msgid "Shipping Tax Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:329
+#: ../includes/datatable_generator.php:476
+#: ../includes/fetch_data_details.php:570
+#: ../includes/fetch_data_details_per_country.php:575
+#: ../includes/fetch_data_details_tax_field.php:877
+msgid "Order Tax Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:330
+#: ../includes/datatable_generator.php:477
+#: ../includes/fetch_data_details.php:571
+#: ../includes/fetch_data_details_per_country.php:576
+#: ../includes/fetch_data_details_tax_field.php:878
+msgid "Total Tax Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:331
+#: ../includes/datatable_generator.php:478
+#: ../includes/fetch_data_details.php:572
+#: ../includes/fetch_data_details_per_country.php:577
+#: ../includes/fetch_data_details_tax_field.php:879
+msgid "Part Refund Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:332
+#: ../includes/datatable_generator.php:479
+#: ../includes/datatable_generator.php:490
+#: ../includes/fetch_data_details.php:545
+#: ../includes/fetch_data_details.php:573
+#: ../includes/fetch_data_details_per_country.php:549
+#: ../includes/fetch_data_details_per_country.php:578
+#: ../includes/fetch_data_details_tax_field.php:822
+#: ../includes/fetch_data_details_tax_field.php:880
+#: ../includes/fetch_data_tax_reports.php:207
+#: ../includes/fetch_data_tax_reports.php:223
+#: ../includes/fetch_data_tax_reports.php:238
+#: ../includes/fetch_data_tax_reports.php:252
+#: ../includes/fetch_data_tax_reports.php:266
+msgid "Net Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:338
+#: ../includes/datatable_generator.php:709
+msgid "Product ID"
+msgstr ""
+
+#: ../includes/datatable_generator.php:340
+#: ../includes/datatable_generator.php:623
+#: ../includes/datatable_generator.php:670
+#: ../includes/datatable_generator.php:678
+#: ../includes/datatable_generator.php:780
+#: ../includes/fetch_data_details.php:537
+#: ../includes/fetch_data_details.php:1348
+#: ../includes/fetch_data_details_per_country.php:541
+#: ../includes/fetch_data_details_per_country.php:1384
+#: ../includes/fetch_data_details_tax_field.php:815
+#: ../includes/fetch_data_details_tax_field.php:2142
+#: ../includes/fetch_data_prod_per_country.php:442
+#: ../includes/fetch_data_prod_per_month.php:450
+#: ../includes/fetch_data_prod_per_state.php:471
+#: ../includes/fetch_data_product.php:372
+#: ../includes/fetch_data_stock_list.php:330
+#: ../includes/fetch_data_stock_list.php:344
+#: ../includes/fetch_data_stock_list.php:734
+#: ../includes/fetch_data_variation.php:574
+#: ../includes/fetch_data_variation_per_month.php:436
+#: ../includes/fetch_data_variation_stock.php:768 ../main.php:95
+#: ../main.php:108 ../main.php:118 ../main.php:127 ../main.php:136
+#: ../main.php:167 ../main.php:197 ../main.php:211 ../main.php:221
+#: ../main.php:231 ../main.php:242 ../main.php:743 ../main.php:892
+msgid "Category"
+msgstr ""
+
+#: ../includes/datatable_generator.php:341
+#: ../includes/fetch_data_details.php:541
+#: ../includes/fetch_data_details_per_country.php:545
+#: ../includes/fetch_data_details_tax_field.php:818
+msgid "Qty."
+msgstr ""
+
+#: ../includes/datatable_generator.php:342
+#: ../includes/fetch_data_stock_list.php:331
+#: ../includes/fetch_data_stock_list.php:348
+msgid "Stock"
+msgstr ""
+
+#: ../includes/datatable_generator.php:343
+msgid "Price"
+msgstr ""
+
+#: ../includes/datatable_generator.php:344
+msgid "Total Amount"
+msgstr ""
+
+#: ../includes/datatable_generator.php:363
+#: ../includes/datatable_generator.php:371
+#: ../includes/datatable_generator.php:416
+msgid "Quantity"
+msgstr ""
+
+#: ../includes/datatable_generator.php:386
+#: ../includes/fetch_data_country_per_month.php:289
+#: ../includes/fetch_data_details.php:1539
+#: ../includes/fetch_data_details_per_country.php:539
+#: ../includes/fetch_data_details_per_country.php:561
+#: ../includes/fetch_data_details_per_country.php:1575
+#: ../includes/fetch_data_details_tax_field.php:2333
+#: ../includes/fetch_data_prod_per_country.php:609
+#: ../includes/fetch_data_prod_per_state.php:637
+#: ../includes/fetch_data_tax_reports.php:421 ../main.php:97 ../main.php:154
+#: ../main.php:168 ../main.php:199 ../main.php:234 ../main.php:245
+#: ../main.php:254
+msgid "Country"
+msgstr ""
+
+#: ../includes/datatable_generator.php:387
+msgid "Number of Items sold"
+msgstr ""
+
+#: ../includes/datatable_generator.php:388
+msgid "Net Sale"
+msgstr ""
+
+#: ../includes/datatable_generator.php:389
+#: ../includes/datatable_generator.php:790 ../main.php:753 ../main.php:952
+msgid "Coupon"
+msgstr ""
+
+#: ../includes/datatable_generator.php:390
+msgid "Shipping"
+msgstr ""
+
+#: ../includes/datatable_generator.php:391
+msgid "Refunds"
+msgstr ""
+
+#: ../includes/datatable_generator.php:392
+msgid "Finaly Sale Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:404
+#: ../includes/datatable_generator.php:500
+#: ../includes/datatable_generator.php:621
+#: ../includes/datatable_generator.php:648
+#: ../includes/datatable_generator.php:668
+#: ../includes/datatable_generator.php:676
+#: ../includes/datatable_generator.php:710
+#: ../includes/fetch_data_stock_list.php:813
+#: ../includes/fetch_data_variation.php:873
+#: ../includes/fetch_data_variation_stock.php:856
+msgid "Product SKU"
+msgstr ""
+
+#: ../includes/datatable_generator.php:405
+#: ../includes/datatable_generator.php:503
+#: ../includes/datatable_generator.php:622
+#: ../includes/datatable_generator.php:649
+#: ../includes/datatable_generator.php:669
+#: ../includes/datatable_generator.php:677
+#: ../includes/datatable_generator.php:711
+#: ../includes/fetch_data_stock_list.php:329
+#: ../includes/fetch_data_stock_list.php:342
+#: ../includes/fetch_data_stock_list.php:603
+#: ../includes/fetch_data_variation_stock.php:671
+msgid "Product Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:406
+msgid "Categories"
+msgstr ""
+
+#: ../includes/datatable_generator.php:407
+#: ../includes/datatable_generator.php:504
+#: ../includes/datatable_generator.php:713
+msgid "Sales Qty."
+msgstr ""
+
+#: ../includes/datatable_generator.php:408
+#: ../includes/datatable_generator.php:505
+#: ../includes/datatable_generator.php:714
+msgid "Current Stock"
+msgstr ""
+
+#: ../includes/datatable_generator.php:424
+msgid "Billing First Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:425
+msgid "Billing Last Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:485
+#: ../includes/fetch_data_details.php:558
+#: ../includes/fetch_data_details_per_country.php:563
+#: ../includes/fetch_data_details_tax_field.php:865
+#: ../includes/fetch_data_tax_reports.php:201
+#: ../includes/fetch_data_tax_reports.php:217
+#: ../includes/fetch_data_tax_reports.php:232
+#: ../includes/fetch_data_tax_reports.php:246
+#: ../includes/fetch_data_tax_reports.php:261
+msgid "Tax Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:486
+#: ../includes/fetch_data_tax_reports.php:203
+#: ../includes/fetch_data_tax_reports.php:219
+#: ../includes/fetch_data_tax_reports.php:234
+#: ../includes/fetch_data_tax_reports.php:248
+#: ../includes/fetch_data_tax_reports.php:262
+#: ../includes/fetch_data_tax_reports.php:307
+msgid "Tax Rate"
+msgstr ""
+
+#: ../includes/datatable_generator.php:488
+#: ../includes/fetch_data_details.php:568
+#: ../includes/fetch_data_details_per_country.php:573
+#: ../includes/fetch_data_details_tax_field.php:875
+#: ../includes/fetch_data_tax_reports.php:205
+#: ../includes/fetch_data_tax_reports.php:221
+#: ../includes/fetch_data_tax_reports.php:236
+#: ../includes/fetch_data_tax_reports.php:250
+#: ../includes/fetch_data_tax_reports.php:264
+msgid "Shipping Amt."
+msgstr ""
+
+#: ../includes/datatable_generator.php:491
+#: ../includes/fetch_data_tax_reports.php:208
+#: ../includes/fetch_data_tax_reports.php:224
+#: ../includes/fetch_data_tax_reports.php:239
+#: ../includes/fetch_data_tax_reports.php:253
+#: ../includes/fetch_data_tax_reports.php:267
+#: ../includes/fetch_data_tax_reports.php:279
+#: ../includes/fetch_data_tax_reports.php:289
+#: ../includes/fetch_data_tax_reports.php:299
+#: ../includes/fetch_data_tax_reports.php:308
+msgid "Shipping Tax"
+msgstr ""
+
+#: ../includes/datatable_generator.php:492
+#: ../includes/datatable_generator.php:2436
+#: ../includes/fetch_data_dashboard_report.php:264
+#: ../includes/fetch_data_summary_per_month.php:101
+#: ../includes/fetch_data_summary_per_month.php:260
+#: ../includes/fetch_data_tax_reports.php:209
+#: ../includes/fetch_data_tax_reports.php:225
+#: ../includes/fetch_data_tax_reports.php:240
+#: ../includes/fetch_data_tax_reports.php:254
+#: ../includes/fetch_data_tax_reports.php:268
+#: ../includes/fetch_data_tax_reports.php:280
+#: ../includes/fetch_data_tax_reports.php:290
+#: ../includes/fetch_data_tax_reports.php:300
+#: ../includes/fetch_data_tax_reports.php:309
+msgid "Order Tax"
+msgstr ""
+
+#: ../includes/datatable_generator.php:493
+#: ../includes/fetch_data_dashboard_report.php:234
+#: ../includes/fetch_data_tax_reports.php:210
+#: ../includes/fetch_data_tax_reports.php:226
+#: ../includes/fetch_data_tax_reports.php:241
+#: ../includes/fetch_data_tax_reports.php:255
+#: ../includes/fetch_data_tax_reports.php:269
+#: ../includes/fetch_data_tax_reports.php:281
+#: ../includes/fetch_data_tax_reports.php:291
+#: ../includes/fetch_data_tax_reports.php:301
+#: ../includes/fetch_data_tax_reports.php:310
+msgid "Total Tax"
+msgstr ""
+
+#: ../includes/datatable_generator.php:501
+msgid "Customer Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:502
+msgid "Customer Email"
+msgstr ""
+
+#: ../includes/datatable_generator.php:513
+#: ../includes/datatable_generator.php:559
+#: ../includes/datatable_generator.php:569
+msgid "Order Date"
+msgstr ""
+
+#: ../includes/datatable_generator.php:515
+#: ../includes/datatable_generator.php:523
+#: ../includes/datatable_generator.php:531
+#: ../includes/datatable_generator.php:539
+#: ../includes/datatable_generator.php:547
+#: ../includes/datatable_generator.php:587
+msgid "Order Counts"
+msgstr ""
+
+#: ../includes/datatable_generator.php:516
+#: ../includes/datatable_generator.php:524
+#: ../includes/datatable_generator.php:532
+#: ../includes/datatable_generator.php:540
+#: ../includes/datatable_generator.php:548
+#: ../includes/datatable_generator.php:562
+#: ../includes/datatable_generator.php:572
+#: ../includes/datatable_generator.php:580
+#: ../includes/datatable_generator.php:588
+#: ../includes/datatable_generator.php:596
+#: ../includes/datatable_generator.php:604
+msgid "Refund Amount"
+msgstr ""
+
+#: ../includes/datatable_generator.php:522
+#: ../includes/datatable_generator.php:578
+msgid "Refunded By"
+msgstr ""
+
+#: ../includes/datatable_generator.php:530
+#: ../includes/datatable_generator.php:555
+#: ../includes/datatable_generator.php:586
+msgid "Refund Date"
+msgstr ""
+
+#: ../includes/datatable_generator.php:546
+#: ../includes/datatable_generator.php:602
+msgid "Year"
+msgstr ""
+
+#: ../includes/datatable_generator.php:554
+msgid "Refund ID"
+msgstr ""
+
+#: ../includes/datatable_generator.php:556
+msgid "Refund Status"
+msgstr ""
+
+#: ../includes/datatable_generator.php:557
+msgid "Refund By"
+msgstr ""
+
+#: ../includes/datatable_generator.php:561
+msgid "Refund Note"
+msgstr ""
+
+#: ../includes/datatable_generator.php:571
+#: ../includes/datatable_generator.php:579
+#: ../includes/datatable_generator.php:595
+#: ../includes/datatable_generator.php:603
+msgid "Refund Counts"
+msgstr ""
+
+#: ../includes/datatable_generator.php:612
+msgid "Coupon Count"
+msgstr ""
+
+#: ../includes/datatable_generator.php:613
+msgid "Coupon Amount"
+msgstr ""
+
+#: ../includes/datatable_generator.php:685
+msgid "Country Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:690
+#: ../includes/datatable_generator.php:784 ../main.php:747 ../main.php:916
+msgid "Payment Gateway"
+msgstr ""
+
+#: ../includes/datatable_generator.php:696
+msgid "Status Name"
+msgstr ""
+
+#: ../includes/datatable_generator.php:702
+#: ../includes/fetch_data_summary_per_month.php:254
+msgid "Reports"
+msgstr ""
+
+#: ../includes/datatable_generator.php:766
+msgid "Summary"
+msgstr ""
+
+#: ../includes/datatable_generator.php:767
+#: ../includes/datatable_generator.php:794
+msgid "Monthly Summary"
+msgstr ""
+
+#: ../includes/datatable_generator.php:768
+msgid "Order Summary"
+msgstr ""
+
+#: ../includes/datatable_generator.php:769
+msgid "Sales Order Status"
+msgstr ""
+
+#: ../includes/datatable_generator.php:777
+msgid "Recent 5 Orders"
+msgstr ""
+
+#: ../includes/datatable_generator.php:778 ../main.php:828
+msgid "All Orders"
+msgstr ""
+
+#: ../includes/datatable_generator.php:781
+#: ../includes/fetch_data_details.php:1332
+#: ../includes/fetch_data_details.php:1463
+#: ../includes/fetch_data_details_per_country.php:1368
+#: ../includes/fetch_data_details_per_country.php:1499
+#: ../includes/fetch_data_details_tax_field.php:2119
+#: ../includes/fetch_data_details_tax_field.php:2258
+#: ../includes/fetch_data_variation.php:669 ../main.php:744 ../main.php:898
+msgid "Customer"
+msgstr ""
+
+#: ../includes/datatable_generator.php:783
+msgid "Billing Satate"
+msgstr ""
+
+#: ../includes/datatable_generator.php:787 ../main.php:750 ../main.php:934
+msgid "Tax Report"
+msgstr ""
+
+#: ../includes/datatable_generator.php:788
+msgid "Custom Member Buy Products"
+msgstr ""
+
+#: ../includes/datatable_generator.php:789 ../main.php:752
+msgid "Refund Details"
+msgstr ""
+
+#: ../includes/datatable_generator.php:791 ../main.php:763 ../main.php:844
+msgid "Stock List"
+msgstr ""
+
+#: ../includes/datatable_generator.php:792 ../main.php:765 ../main.php:851
+msgid "Target Sale vs Actual Sale"
+msgstr ""
+
+#: ../includes/datatable_generator.php:793 ../main.php:766 ../main.php:857
+msgid "Tax Reports"
+msgstr ""
+
+#: ../includes/datatable_generator.php:2435
+#: ../includes/fetch_data_summary_per_month.php:100
+#: ../includes/fetch_data_summary_per_month.php:259
+msgid "Order Total"
+msgstr ""
+
+#: ../includes/datatable_generator.php:2437
+#: ../includes/fetch_data_summary_per_month.php:102
+#: ../includes/fetch_data_summary_per_month.php:261
+msgid "Order Discount"
+msgstr ""
+
+#: ../includes/datatable_generator.php:2438
+#: ../includes/fetch_data_summary_per_month.php:103
+#: ../includes/fetch_data_summary_per_month.php:262
+msgid "Cart Discount"
+msgstr ""
+
+#: ../includes/datatable_generator.php:2439
+#: ../includes/fetch_data_summary_per_month.php:104
+#: ../includes/fetch_data_summary_per_month.php:263
+msgid "Order Shipping"
+msgstr ""
+
+#: ../includes/datatable_generator.php:2440
+#: ../includes/fetch_data_dashboard_report.php:266
+#: ../includes/fetch_data_summary_per_month.php:105
+#: ../includes/fetch_data_summary_per_month.php:264
+msgid "Order Shipping Tax"
+msgstr ""
+
+#: ../includes/datatable_generator.php:2441
+#: ../includes/fetch_data_summary_per_month.php:106
+#: ../includes/fetch_data_summary_per_month.php:265
+msgid "Product Sales"
+msgstr ""
+
+#: ../includes/fetch_data_brand.php:185
+msgid ""
+"'Woocommerce Brands Plugin' is needed. Please Purchase/Active it. <br /"
+">click "
+msgstr ""
+
+#: ../includes/fetch_data_brand.php:185
+msgid " For purchase !"
+msgstr ""
+
+#: ../includes/fetch_data_brand.php:226
+msgid "Parent Brand"
+msgstr ""
+
+#: ../includes/fetch_data_brand.php:254
+#: ../includes/fetch_data_category.php:247
+#: ../includes/fetch_data_country_per_month.php:319
+#: ../includes/fetch_data_country_per_month.php:363
+#: ../includes/fetch_data_coupon.php:221
+#: ../includes/fetch_data_details.php:1394
+#: ../includes/fetch_data_details.php:1447
+#: ../includes/fetch_data_details.php:1474
+#: ../includes/fetch_data_details.php:1518
+#: ../includes/fetch_data_details.php:1568
+#: ../includes/fetch_data_details.php:1655
+#: ../includes/fetch_data_details_per_country.php:1430
+#: ../includes/fetch_data_details_per_country.php:1483
+#: ../includes/fetch_data_details_per_country.php:1510
+#: ../includes/fetch_data_details_per_country.php:1554
+#: ../includes/fetch_data_details_per_country.php:1604
+#: ../includes/fetch_data_details_per_country.php:1691
+#: ../includes/fetch_data_details_tax_field.php:2187
+#: ../includes/fetch_data_details_tax_field.php:2241
+#: ../includes/fetch_data_details_tax_field.php:2269
+#: ../includes/fetch_data_details_tax_field.php:2312
+#: ../includes/fetch_data_details_tax_field.php:2363
+#: ../includes/fetch_data_details_tax_field.php:2450
+#: ../includes/fetch_data_ord_status_per_month.php:305
+#: ../includes/fetch_data_payment_per_month.php:317
+#: ../includes/fetch_data_payment_per_month.php:361
+#: ../includes/fetch_data_prod_per_country.php:486
+#: ../includes/fetch_data_prod_per_country.php:535
+#: ../includes/fetch_data_prod_per_country.php:587
+#: ../includes/fetch_data_prod_per_country.php:638
+#: ../includes/fetch_data_prod_per_month.php:494
+#: ../includes/fetch_data_prod_per_month.php:540
+#: ../includes/fetch_data_prod_per_month.php:590
+#: ../includes/fetch_data_prod_per_state.php:515
+#: ../includes/fetch_data_prod_per_state.php:562
+#: ../includes/fetch_data_prod_per_state.php:614
+#: ../includes/fetch_data_prod_per_state.php:666
+#: ../includes/fetch_data_prod_per_state.php:719
+#: ../includes/fetch_data_product.php:416
+#: ../includes/fetch_data_product.php:465
+#: ../includes/fetch_data_product.php:510
+#: ../includes/fetch_data_stock_list.php:705
+#: ../includes/fetch_data_stock_list.php:778
+#: ../includes/fetch_data_stock_list.php:824
+#: ../includes/fetch_data_summary_per_month.php:274
+#: ../includes/fetch_data_summary_per_month.php:297
+#: ../includes/fetch_data_tax_reports.php:450
+#: ../includes/fetch_data_tax_reports.php:503
+#: ../includes/fetch_data_tax_reports.php:574
+#: ../includes/fetch_data_variation.php:618
+#: ../includes/fetch_data_variation.php:659
+#: ../includes/fetch_data_variation.php:680
+#: ../includes/fetch_data_variation.php:730
+#: ../includes/fetch_data_variation.php:763
+#: ../includes/fetch_data_variation.php:884
+#: ../includes/fetch_data_variation.php:910
+#: ../includes/fetch_data_variation_per_month.php:459
+#: ../includes/fetch_data_variation_per_month.php:505
+#: ../includes/fetch_data_variation_per_month.php:552
+#: ../includes/fetch_data_variation_per_month.php:581
+#: ../includes/fetch_data_variation_stock.php:758
+#: ../includes/fetch_data_variation_stock.php:812
+#: ../includes/fetch_data_variation_stock.php:837
+#: ../includes/fetch_data_variation_stock.php:867
+#: ../includes/fetch_data_variation_stock.php:896 ../main.php:419
+msgid "Select All"
+msgstr ""
+
+#: ../includes/fetch_data_category.php:219
+msgid "Parent Category"
+msgstr ""
+
+#: ../includes/fetch_data_country_per_month.php:170
+#: ../includes/fetch_data_ord_status_per_month.php:155
+#: ../includes/fetch_data_payment_per_month.php:186
+#: ../includes/fetch_data_prod_per_country.php:278
+#: ../includes/fetch_data_prod_per_month.php:277
+#: ../includes/fetch_data_prod_per_state.php:310
+#: ../includes/fetch_data_variation_per_month.php:280
+msgid "Total"
+msgstr ""
+
+#: ../includes/fetch_data_coupon.php:217
+msgid "Coupon Codes"
+msgstr ""
+
+#: ../includes/fetch_data_coupon.php:230
+msgid "Discount Type"
+msgstr ""
+
+#: ../includes/fetch_data_custom_taxonomy.php:287 ../main.php:478
+msgid "Custom Taxonomy"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:230
+msgid "Total Sales"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:232
+msgid "Total Refund"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:236
+msgid "Total Coupons"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:238
+msgid "Total Registered"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:240
+msgid "Total Guest Customers"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:248
+msgid "Cur. Yr Proj. Sales"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:250
+msgid "Current Year Sales"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:252
+msgid "Average Sales Per Order"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:254
+msgid "Average Sales Per Day"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:256
+msgid "Current Month Sales"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:258
+msgid "Cur. Month Proj. Sales"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:260
+msgid "Average Sales/Day"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:262
+msgid "Forecasted Sales"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:268
+msgid "ORDER SHIPPING TOTAL"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:272
+#: ../includes/fetch_data_dashboard_report.php:274
+msgid "0"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:276
+msgid "Last Order Date"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:284
+msgid "Todays Total Sales"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:287
+msgid "Todays Average Sales"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:291
+msgid "Todays Total Refund"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:295
+msgid "Todays Total Coupons"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:298
+msgid "Todays Order Tax"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:301
+msgid "Todays Shipping Tax"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:304
+msgid "Todays Total Tax"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:308
+msgid "Todays Registered Customers"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:312
+msgid "Todays Guest Customers"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:326
+msgid "Total Summary"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:331
+msgid "Other summary"
+msgstr ""
+
+#: ../includes/fetch_data_dashboard_report.php:336
+msgid "Today summary"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:538
+#: ../includes/fetch_data_details_per_country.php:542
+#: ../includes/fetch_data_details_tax_field.php:814
+msgid "Products"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:539
+#: ../includes/fetch_data_details_per_country.php:543
+#: ../includes/fetch_data_details_tax_field.php:816
+#: ../includes/fetch_data_stock_list.php:328
+#: ../includes/fetch_data_stock_list.php:341
+msgid "SKU"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:540
+#: ../includes/fetch_data_details_per_country.php:544
+#: ../includes/fetch_data_details_tax_field.php:817
+msgid "Variation"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:542
+#: ../includes/fetch_data_details_per_country.php:546
+#: ../includes/fetch_data_details_tax_field.php:819
+msgid "Rate"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:543
+#: ../includes/fetch_data_details_per_country.php:547
+#: ../includes/fetch_data_details_tax_field.php:820
+msgid "Prod. Amt."
+msgstr ""
+
+#: ../includes/fetch_data_details.php:544
+#: ../includes/fetch_data_details_per_country.php:548
+#: ../includes/fetch_data_details_tax_field.php:821
+msgid "Prod. Discount"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:559
+#: ../includes/fetch_data_details_per_country.php:564
+#: ../includes/fetch_data_details_tax_field.php:866
+msgid "Shipping Method"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:561
+#: ../includes/fetch_data_details_per_country.php:566
+#: ../includes/fetch_data_details_tax_field.php:868
+msgid "Order Currency"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1308
+#: ../includes/fetch_data_details_per_country.php:1344
+#: ../includes/fetch_data_details_tax_field.php:2095
+#: ../includes/fetch_data_product.php:339
+msgid "Date From"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1316
+#: ../includes/fetch_data_details_per_country.php:1352
+#: ../includes/fetch_data_details_tax_field.php:2103
+#: ../includes/fetch_data_product.php:347
+msgid "Date To"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1627
+#: ../includes/fetch_data_details_per_country.php:1663
+#: ../includes/fetch_data_details_tax_field.php:2422 ../main.php:98
+#: ../main.php:155 ../main.php:169 ../main.php:200 ../main.php:246
+#: ../main.php:255 ../main.php:263 ../main.php:271
+msgid "State"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1672
+#: ../includes/fetch_data_details_per_country.php:1708
+#: ../includes/fetch_data_details_tax_field.php:2466
+msgid "Postcode(Zip)"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1681
+#: ../includes/fetch_data_details_per_country.php:1717
+#: ../includes/fetch_data_details_tax_field.php:2475
+msgid "Min & Max By"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1692
+#: ../includes/fetch_data_details.php:1703
+#: ../includes/fetch_data_details.php:1714
+#: ../includes/fetch_data_details_per_country.php:1728
+#: ../includes/fetch_data_details_per_country.php:1739
+#: ../includes/fetch_data_details_per_country.php:1750
+#: ../includes/fetch_data_details_tax_field.php:2486
+#: ../includes/fetch_data_details_tax_field.php:2497
+#: ../includes/fetch_data_details_tax_field.php:2508
+msgid "Enable this selection by uncheck 'Show Order Item Details'\n"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1698
+#: ../includes/fetch_data_details_per_country.php:1734
+#: ../includes/fetch_data_details_tax_field.php:2492
+msgid "Min Amount"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1709
+#: ../includes/fetch_data_details_per_country.php:1745
+#: ../includes/fetch_data_details_tax_field.php:2503
+msgid "Max Amount"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1728
+#: ../includes/fetch_data_details_per_country.php:1764
+#: ../includes/fetch_data_details_tax_field.php:2551
+#: ../includes/fetch_data_variation.php:924
+msgid "Order By"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1753
+#: ../includes/fetch_data_details_per_country.php:1789
+#: ../includes/fetch_data_details_tax_field.php:2576
+msgid "Show Order Item Details"
+msgstr ""
+
+#: ../includes/fetch_data_details.php:1762
+#: ../includes/fetch_data_details_per_country.php:1798
+#: ../includes/fetch_data_details_tax_field.php:2585
+msgid "Coupon Used Only"
+msgstr ""
+
+#: ../includes/fetch_data_payment_per_month.php:297
+msgid "Payment Gatway"
+msgstr ""
+
+#: ../includes/fetch_data_prod_per_state.php:689
+#: ../includes/fetch_data_tax_reports.php:472
+msgid "Satate"
+msgstr ""
+
+#: ../includes/fetch_data_projected_actual_sale.php:278
+msgid "Select Year"
+msgstr ""
+
+#: ../includes/fetch_data_refunddetails.php:740
+msgid "Refund Type"
+msgstr ""
+
+#: ../includes/fetch_data_refunddetails.php:752
+msgid "Show Refund Note"
+msgstr ""
+
+#: ../includes/fetch_data_refunddetails.php:761
+#: ../includes/fetch_data_variation.php:942
+msgid "Group By"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:343
+#: ../includes/fetch_data_stock_list.php:795
+msgid "Product Type"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:346
+msgid "Created Date"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:347
+msgid "Modified Date"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:349
+msgid "Regular Price"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:350
+msgid "Sale Price"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:352
+msgid "Downloadable"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:353
+msgid "Virtual"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:354
+#: ../includes/fetch_data_stock_list.php:659
+#: ../includes/fetch_data_variation_stock.php:727
+msgid "Manage Stock"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:355
+msgid "Backorders"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:356
+#: ../includes/fetch_data_stock_list.php:647
+#: ../includes/fetch_data_variation_stock.php:715
+msgid "Stock Status"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:568
+msgid "In stock"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:568
+msgid "Out of stock"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:595
+#: ../includes/fetch_data_variation_stock.php:663
+msgid "SKU No"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:611
+#: ../includes/fetch_data_variation_stock.php:679
+msgid "Min Stock"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:619
+#: ../includes/fetch_data_variation_stock.php:687
+msgid "Max Stock"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:627
+#: ../includes/fetch_data_variation_stock.php:695
+msgid "Product Stock"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:635
+#: ../includes/fetch_data_variation_stock.php:703
+msgid "Show all sub-types"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:838
+#: ../includes/fetch_data_variation_stock.php:906
+msgid "Basic Column"
+msgstr ""
+
+#: ../includes/fetch_data_stock_list.php:847
+#: ../includes/fetch_data_variation_stock.php:914
+msgid "Zero Stock"
+msgstr ""
+
+#: ../includes/fetch_data_tax_reports.php:198
+#: ../includes/fetch_data_tax_reports.php:215
+#: ../includes/fetch_data_tax_reports.php:231
+#: ../includes/fetch_data_tax_reports.php:275
+#: ../includes/fetch_data_tax_reports.php:286
+#: ../includes/fetch_data_tax_reports.php:297
+msgid "Tax Country"
+msgstr ""
+
+#: ../includes/fetch_data_tax_reports.php:199
+#: ../includes/fetch_data_tax_reports.php:216
+#: ../includes/fetch_data_tax_reports.php:276
+#: ../includes/fetch_data_tax_reports.php:287
+msgid "Tax State"
+msgstr ""
+
+#: ../includes/fetch_data_tax_reports.php:200
+#: ../includes/fetch_data_tax_reports.php:277
+msgid "Tax City"
+msgstr ""
+
+#: ../includes/fetch_data_tax_reports.php:202
+#: ../includes/fetch_data_tax_reports.php:218
+#: ../includes/fetch_data_tax_reports.php:233
+#: ../includes/fetch_data_tax_reports.php:247
+msgid "Tax Rate Code"
+msgstr ""
+
+#: ../includes/fetch_data_tax_reports.php:522
+msgid "Tax Group By"
+msgstr ""
+
+#: ../includes/fetch_data_variation.php:690
+msgid "Postcode(zip)"
+msgstr ""
+
+#: ../includes/fetch_data_variation.php:747
+#: ../includes/fetch_data_variation_per_month.php:569
+#: ../includes/fetch_data_variation_stock.php:881
+msgid "Variations"
+msgstr ""
+
+#: ../includes/fetch_data_variation.php:776
+msgid "Show "
+msgstr ""
+
+#: ../includes/fetch_data_variation.php:857
+msgid "Style"
+msgstr ""
+
+#: ../includes/fetch_data_variation.php:900
+#: ../includes/fetch_data_variation_stock.php:827
+msgid "Variation SKU"
+msgstr ""
+
+#: ../main.php:178
+msgid "Brand"
+msgstr ""
+
+#: ../main.php:187
+msgid "Product Taxonimies"
+msgstr ""
+
+#: ../main.php:415
+msgid "Choose Inclulde "
+msgstr ""
+
+#: ../main.php:422
+msgid "Choose Exclude"
+msgstr ""
+
+#: ../main.php:725
+msgid "Woo Reporting"
+msgstr ""
+
+#: ../main.php:727 ../main.php:771 ../main.php:863
+msgid "Settings"
+msgstr ""
+
+#: ../main.php:730 ../main.php:822
+msgid "Dashboard"
+msgstr ""
+
+#: ../main.php:732
+msgid "My Dashboard"
+msgstr ""
+
+#: ../main.php:734
+msgid "Details"
+msgstr ""
+
+#: ../main.php:751
+msgid "Customer Buy Products"
+msgstr ""
+
+#: ../main.php:771
+msgid "Report Settings"
+msgstr ""
+
+#: ../main.php:773 ../main.php:869
+msgid "Add-ons"
+msgstr ""
+
+#: ../main.php:773
+msgid "Report Add-ons"
+msgstr ""
+
+#: ../main.php:775 ../main.php:875
+msgid "Proword"
+msgstr ""
+
+#: ../main.php:775
+msgid "Other Useful Plugins"
+msgstr ""
+
+#: ../main.php:777
+msgid "Active Plugin"
+msgstr ""
+
+#: ../main.php:816
+msgid "All Menus"
+msgstr ""
+
+#: ../main.php:940
+msgid "Customer Buy Product"
+msgstr ""
+
+#: ../main.php:946
+msgid "Refund Detail"
+msgstr ""
