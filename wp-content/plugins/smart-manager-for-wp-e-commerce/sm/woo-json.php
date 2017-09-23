@@ -2751,20 +2751,21 @@ function variable_product_price_sync($id) {
 }
 
 function get_price($regular_price, $sale_price, $sale_price_dates_from, $sale_price_dates_to) {
+        //remove other code to accept 0 sales price on smart manager
         // Get price if on sale
-        if ($sale_price && $sale_price_dates_to == '' && $sale_price_dates_from == '') {
+        //if ($sale_price && $sale_price_dates_to == '' && $sale_price_dates_from == '') {
             $price = $sale_price;
-        } else { 
-            $price = $regular_price;
-        }   
+        //} else { 
+        //    $price = $regular_price;
+        //}   
 
-        if ($sale_price_dates_from && strtotime($sale_price_dates_from) < strtotime('NOW')) {
-            $price = $sale_price;
-        }
+        //if ($sale_price_dates_from && strtotime($sale_price_dates_from) < strtotime('NOW')) {
+        //    $price = $sale_price;
+        //}
         
-        if ($sale_price_dates_to && strtotime($sale_price_dates_to) < strtotime('NOW')) {
-            $price = $regular_price;
-        }
+        //if ($sale_price_dates_to && strtotime($sale_price_dates_to) < strtotime('NOW')) {
+        //    $price = $regular_price;
+        //}
     
     return $price;
 }
