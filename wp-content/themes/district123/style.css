@@ -4526,3 +4526,7 @@ margin-left: 10px !important;
 #add_payment_method #payment ul.payment_methods li, .woocommerce-cart #payment ul.payment_methods li, .woocommerce-checkout #payment ul.payment_methods li {
     list-style-type:none !important;
 }
+
+#woocommerce-products-header{
+    visibility: hidden;
+}
