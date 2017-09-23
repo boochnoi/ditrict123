@@ -2812,12 +2812,15 @@ function custom_override_checkout_fields( $fields ) {
      return $fields;
 }
 
-/*** automatic 0.00 sale price ***/
-function set_default_price( $post_id, $post ) {
+/*** redirect to checkout for subscription ***/
 
-    //if ( isset( $_POST['_sale_price'] ) && trim( $_POST['_sale_price'] ) == '' ) {
-        update_post_meta( $post_id, '_sale_price', '0.00' );
-    //}
+function eg_redirect_to_cart_page( $url ) {
 
+	// If product is of the subscription type
+	if ( is_numeric( $_REQUEST['add-to-cart'] ) && WC_Subscriptions_Product::is_subscription( (int) $_REQUEST['add-to-cart'] ) ) {
+		// Redirect to cart instead
+		$url = WC()->cart->get_checkout_url();
+	}
+	return $url;
 }
-add_action( 'woocommerce_process_product_meta', 'set_default_price' );
+add_filter( 'woocommerce_add_to_cart_redirect', 'eg_redirect_to_cart_page', 20 );
