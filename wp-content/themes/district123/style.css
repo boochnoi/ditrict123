@@ -4530,3 +4530,7 @@ margin-left: 10px !important;
 .woocommerce-products-header{
     display: none;
 }
+
+.gridlist-toggle{
+    display:none;
+}
