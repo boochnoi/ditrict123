@@ -1,0 +1,15 @@
+<wpml-config>
+	<admin-texts>
+		<key name="woocommerce_availability_instock_notification" />
+		<key name="woocommerce_availability_lowstock_notification" />
+		<key name="woocommerce_availability_outofstock_notification" />
+		<key name="woocommerce_availability_backorder_notification" />
+	</admin-texts>
+	
+	<custom-fields>
+		<custom-field action="translate">_availability_instock_notification</custom-field>
+		<custom-field action="translate">_availability_lowstock_notification</custom-field>
+		<custom-field action="translate">_availability_outofstock_notification</custom-field>
+		<custom-field action="translate">_availability_backorder_notification</custom-field>
+	</custom-fields>
+</wpml-config>

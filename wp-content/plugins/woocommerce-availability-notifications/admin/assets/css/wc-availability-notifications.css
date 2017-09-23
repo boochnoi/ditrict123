@@ -1,0 +1,27 @@
+#wpbody-content .bulk-edit-row fieldset .inline-edit-group.availability-notifications label {
+	max-width: inherit;
+	width: 100%;
+}
+.inline-edit-group.availability-notifications label span.title {
+	display: inline-block;
+	width: auto;
+}
+
+.inline-edit-group.availability-notifications .availability-instock-notification input[type="checkbox"],
+.inline-edit-group.availability-notifications .availability-lowstock-notification input[type="checkbox"],
+.inline-edit-group.availability-notifications .availability-outofstock-notification input[type="checkbox"],
+.inline-edit-group.availability-notifications .availability-backorder-notification input[type="checkbox"] {
+	margin-left: 10px;
+}
+
+.inline-edit-group.availability-notifications .availability-instock-notification textarea,
+.inline-edit-group.availability-notifications .availability-lowstock-notification textarea,
+.inline-edit-group.availability-notifications .availability-outofstock-notification textarea,
+.inline-edit-group.availability-notifications .availability-backorder-notification textarea {
+	display: none;
+}
+
+
+.inline-edit-row fieldset .availability-notifications-fields label span.title {
+	width: auto;
+}
