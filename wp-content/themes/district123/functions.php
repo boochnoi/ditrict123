@@ -2026,7 +2026,7 @@ function wpb_woo_my_account_order() {
  'dashboard' => __( 'Dashboard', 'woocommerce' ),
  'edit-account' => __( 'Change My Details', 'woocommerce' ),
  'edit-address' => __( 'Addresses', 'woocommerce' ),  
- 'product-category/'.'apt'.sprintf('%04d',get_current_user_id()).'-category' => __( 'Your Action is Required', 'woocommerce' ),
+ '../product-category/'.'apt'.sprintf('%04d',get_current_user_id()).'-category' => __( 'Your Action is Required', 'woocommerce' ),
  'in-review' => __( 'In Process', 'woocommerce' ),
  'ready-to-send' => __( 'Ready to Send', 'woocommerce' ),
  'shipped' => __( 'For Pick-up', 'woocommerce' ),
