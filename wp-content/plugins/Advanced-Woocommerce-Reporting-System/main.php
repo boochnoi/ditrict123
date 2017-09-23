@@ -1217,7 +1217,7 @@ if(!class_exists('pw_report_wcreport_class')){
 		}
 		
 		function dashboard($item_id){
-
+			return true;
 			$username = 'proword'; 
 			$api_key = 't0kbg3ez6pl5yo1ojhhoja9d64swh6wi';
 			
