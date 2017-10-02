@@ -2092,8 +2092,6 @@ if (!function_exists('ag_comment')) :
         wp_safe_redirect(home_url());
         exit();
     }
-    ?>
-                    <?php
                     /*
                      * Change the entry title of the endpoints that appear in My Account Page - WooCommerce 2.6
                      * Using the_title filter
