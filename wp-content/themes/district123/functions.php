@@ -661,11 +661,11 @@ if (!function_exists('ag_comment')) :
                     <div class="reply"><?php echo comment_reply_link(array('depth' => $depth, 'max_depth' => $args['max_depth'])); ?></div>
                     <div class="name"><?php comment_author_link() ?></div>
                 </div>
-            <?php if ($comment->comment_approved == '0') : ?>
+                <?php if ($comment->comment_approved == '0') : ?>
                     <p class="moderation"><?php _e('Your comment is awaiting moderation.', 'framework') ?></p>
-            <?php endif; ?>
+                <?php endif; ?>
                 <div class="commenttext">
-            <?php comment_text() ?>
+                    <?php comment_text() ?>
                 </div>
             </div>
             <?php
@@ -1266,10 +1266,10 @@ if (!function_exists('ag_comment')) :
                     background-color: <?php echo ($page_bg_color = get_option('page_bg_color')) ? $page_bg_color : '#f3f3f3'; ?>;	
                 }
 
-            <?php
-            // If Page Content is White, make some corrections
-            if (get_option('page_bg_color') == '#fff' || get_option('page_bg_color') == '#ffffff') {
-                ?>
+                <?php
+                // If Page Content is White, make some corrections
+                if (get_option('page_bg_color') == '#fff' || get_option('page_bg_color') == '#ffffff') {
+                    ?>
                     .singlecomment {
                         background:#f3f3f3;
                         background: rgba(0,0,0,0.05);	
@@ -1279,18 +1279,18 @@ if (!function_exists('ag_comment')) :
                         border: 1px solid #ffffff;
                     }
 
-            <?php } ?>
+                <?php } ?>
 
                 body, p, ul, ol, ul.filter li a, .author p a, .date p a, .widget a, .widget_nav_menu a:hover, .widget_recent_entries a:hover,
                 .sf-menu a, .sf-menu a:visited {
                     color: <?php echo ($body_color = get_option('body_color')) ? $body_color : '#555555'; ?>
                 } 
 
-            <?php
-            // Custom CSS Box
-            //==========================
-            echo ($customcss = of_get_option('of_custom_css')) ? "/* Custom CSS */ \n" . $customcss : '';
-            ?>
+                <?php
+                // Custom CSS Box
+                //==========================
+                echo ($customcss = of_get_option('of_custom_css')) ? "/* Custom CSS */ \n" . $customcss : '';
+                ?>
 
             </style>
             <?php
@@ -2066,7 +2066,7 @@ if (!function_exists('ag_comment')) :
             'meta_value' => $user_id,
             'post_type' => 'shop_subscription', // Subscription post type
             'post_status' => 'wc-active', // Active subscription
-                ));
+        ));
         if (($active_subscriptions))
             return true;
         else
@@ -2092,212 +2092,99 @@ if (!function_exists('ag_comment')) :
         wp_safe_redirect(home_url());
         exit();
     }
-                    /*
-                     * Change the entry title of the endpoints that appear in My Account Page - WooCommerce 2.6
-                     * Using the_title filter
-                     */
 
-                    function wpb_woo_endpoint_title($title, $id) {
-                        if (is_wc_endpoint_url('orders') && in_the_loop()) {
-                            $title = "Shipments";
-                        }
-                        return $title;
-                    }
+    /*
+     * Change the entry title of the endpoints that appear in My Account Page - WooCommerce 2.6
+     * Using the_title filter
+     */
 
-                    add_filter('the_title', 'wpb_woo_endpoint_title', 10, 2);
-
-                    /*
-                     * Change the order of the endpoints that appear in My Account Page - WooCommerce 2.6
-                     * The first item in the array is the custom endpoint URL - ie http://mydomain.com/my-account/my-custom-endpoint
-                     * Alongside it are the names of the list item Menu name that corresponds to the URL, change these to suit
-                     */
-
-                    function wpb_woo_my_account_order() {
-                        $myorder = array(
-                            'dashboard' => __('Dashboard', 'woocommerce'),
-                            'edit-account' => __('Change My Details', 'woocommerce'),
-                            'edit-address' => __('Addresses', 'woocommerce'),
-                            '../product-category/' . 'apt' . sprintf('%04d', get_current_user_id()) . '-category' => __('Your Action is Required', 'woocommerce'),
-                            'in-review' => __('In Process', 'woocommerce'),
-                            'ready-to-send' => __('Ready to Send', 'woocommerce'),
-                            'shipped' => __('For Pick-up', 'woocommerce'),
-                            'picked-up' => __('Picked Up', 'woocommerce'),
-                            'subscriptions' => __('Subscriptions', 'woocommerce'),
-                            'orders' => __('All Transactions', 'woocommerce'),
-                            'customer-logout' => __('Logout', 'woocommerce'),
-                        );
-                        return $myorder;
-                    }
-
-                    add_filter('woocommerce_account_menu_items', 'wpb_woo_my_account_order');
-
-                    function add_my_account_endpoint() {
-                        add_rewrite_endpoint('in-review', EP_PAGES);
-                        add_rewrite_endpoint('ready-to-send', EP_PAGES);
-                        add_rewrite_endpoint('subscriptions', EP_PAGES);
-                        add_rewrite_endpoint('shipped', EP_PAGES);
-                        add_rewrite_endpoint('picked-up', EP_PAGES);
-                    }
-
-                    add_action('init', 'add_my_account_endpoint');
-
-                    function action_required_endpoint_content() {
-                        $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
-                            'numberposts' => $order_count,
-                            'meta_key' => '_customer_user',
-                            'meta_value' => get_current_user_id(),
-                            'post_type' => wc_get_order_types('view-orders'),
-                            'post_status' => 'wc-pending',
-                                )));
-                        $customer = wp_get_current_user();
-                        if ($customer_orders) :
-                            ?>
-
-            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-                <thead>
-                    <tr>
-            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
-                            <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-            <?php endforeach; ?>
-                    </tr>
-                </thead>
-
-                <tbody>
-            <?php
-            foreach ($customer_orders as $customer_order) :
-                $order = wc_get_order($customer_order);
-                $item_count = $order->get_item_count();
-                ?>
-                        <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
-                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
-                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
-                                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
-
-                                <?php elseif ('order-number' === $column_id) : ?>
-                                        <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
-                                        </a>
-
-                            <?php elseif ('order-date' === $column_id) : ?>
-                                        <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
-
-                            <?php elseif ('order-status' === $column_id) : ?>
-                                <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
-
-                                <?php elseif ('order-total' === $column_id) : ?>
-                                        <?php
-                                        /* translators: 1: formatted order total 2: total order items */
-                                        printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
-                                        ?>
-
-                                        <?php elseif ('order-actions' === $column_id) : ?>
-                                            <?php
-                                            $actions = array(
-                                                'pay' => array(
-                                                    'url' => $order->get_checkout_payment_url(),
-                                                    'name' => __('Pay', 'woocommerce'),
-                                                ),
-                                                'view' => array(
-                                                    'url' => $order->get_view_order_url(),
-                                                    'name' => __('View', 'woocommerce'),
-                                                ),
-                                                'cancel' => array(
-                                                    'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
-                                                    'name' => __('Cancel', 'woocommerce'),
-                                                ),
-                                            );
-
-                                            if (!$order->needs_payment()) {
-                                                unset($actions['pay']);
-                                            }
-
-                                            if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
-                                                unset($actions['cancel']);
-                                            }
-
-                                            if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
-                                                foreach ($actions as $key => $action) {
-                                                    echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
-                                                }
-                                            }
-                                            ?>
-                                    <?php endif; ?>
-                                </td>
-                                <?php endforeach; ?>
-                        </tr>
-                            <?php endforeach; ?>
-                </tbody>
-            </table>
-                            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
-
-                            <?php if (1 < $customer_orders->max_num_pages) : ?>
-                <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-                                <?php if (1 !== $current_page) : ?>
-                        <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
-                                <?php endif; ?>
-
-                                <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
-                        <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-                            <?php endif; ?>
-                </div>
-                    <?php endif; ?>
-
-    <?php else : ?>
-            <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-            <?php _e('No transaction that requires action.', 'woocommerce'); ?>
-            </div>
-        <?php endif; ?>
-
-            <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
-            <?php
+    function wpb_woo_endpoint_title($title, $id) {
+        if (is_wc_endpoint_url('orders') && in_the_loop()) {
+            $title = "Shipments";
         }
+        return $title;
+    }
 
-        add_action('woocommerce_account_action-required_endpoint', 'action_required_endpoint_content');
+    add_filter('the_title', 'wpb_woo_endpoint_title', 10, 2);
 
-        function in_review_endpoint_content() {
-            $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
-                'numberposts' => $order_count,
-                'meta_key' => '_customer_user',
-                'meta_value' => get_current_user_id(),
-                'post_type' => wc_get_order_types('view-orders'),
-                'post_status' => 'wc-processing',
-                    )));
-            $customer = wp_get_current_user();
-            if ($customer_orders) :
-                ?>
+    /*
+     * Change the order of the endpoints that appear in My Account Page - WooCommerce 2.6
+     * The first item in the array is the custom endpoint URL - ie http://mydomain.com/my-account/my-custom-endpoint
+     * Alongside it are the names of the list item Menu name that corresponds to the URL, change these to suit
+     */
+
+    function wpb_woo_my_account_order() {
+        $myorder = array(
+            'dashboard' => __('Dashboard', 'woocommerce'),
+            'edit-account' => __('Change My Details', 'woocommerce'),
+            'edit-address' => __('Addresses', 'woocommerce'),
+            '../product-category/' . 'apt' . sprintf('%04d', get_current_user_id()) . '-category' => __('Your Action is Required', 'woocommerce'),
+            'in-review' => __('In Process', 'woocommerce'),
+            'ready-to-send' => __('Ready to Send', 'woocommerce'),
+            'shipped' => __('For Pick-up', 'woocommerce'),
+            'picked-up' => __('Picked Up', 'woocommerce'),
+            'subscriptions' => __('Subscriptions', 'woocommerce'),
+            'orders' => __('All Transactions', 'woocommerce'),
+            'customer-logout' => __('Logout', 'woocommerce'),
+        );
+        return $myorder;
+    }
+
+    add_filter('woocommerce_account_menu_items', 'wpb_woo_my_account_order');
+
+    function add_my_account_endpoint() {
+        add_rewrite_endpoint('in-review', EP_PAGES);
+        add_rewrite_endpoint('ready-to-send', EP_PAGES);
+        add_rewrite_endpoint('subscriptions', EP_PAGES);
+        add_rewrite_endpoint('shipped', EP_PAGES);
+        add_rewrite_endpoint('picked-up', EP_PAGES);
+    }
+
+    add_action('init', 'add_my_account_endpoint');
+
+    function action_required_endpoint_content() {
+        $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+            'numberposts' => $order_count,
+            'meta_key' => '_customer_user',
+            'meta_value' => get_current_user_id(),
+            'post_type' => wc_get_order_types('view-orders'),
+            'post_status' => 'wc-pending',
+        )));
+        $customer = wp_get_current_user();
+        if ($customer_orders) :
+            ?>
 
             <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
                 <thead>
                     <tr>
-            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
                     </tr>
                 </thead>
 
                 <tbody>
-            <?php
-            foreach ($customer_orders as $customer_order) :
-                $order = wc_get_order($customer_order);
-                $item_count = $order->get_item_count();
-                ?>
+                    <?php
+                    foreach ($customer_orders as $customer_order) :
+                        $order = wc_get_order($customer_order);
+                        $item_count = $order->get_item_count();
+                        ?>
                         <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                                <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
-                                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
-                                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+                                    <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                        <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                <?php elseif ('order-number' === $column_id) : ?>
+                                        <?php elseif ('order-number' === $column_id) : ?>
                                         <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
                     <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                         </a>
 
-                            <?php elseif ('order-date' === $column_id) : ?>
+                <?php elseif ('order-date' === $column_id) : ?>
                                         <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
-                                <?php elseif ('order-status' === $column_id) : ?>
-                                    <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+                                    <?php elseif ('order-status' === $column_id) : ?>
+                                        <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
 
                                     <?php elseif ('order-total' === $column_id) : ?>
                                         <?php
@@ -2305,7 +2192,7 @@ if (!function_exists('ag_comment')) :
                                         printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
                                         ?>
 
-                <?php elseif ('order-actions' === $column_id) : ?>
+                                    <?php elseif ('order-actions' === $column_id) : ?>
                                         <?php
                                         $actions = array(
                                             'pay' => array(
@@ -2336,78 +2223,78 @@ if (!function_exists('ag_comment')) :
                                             }
                                         }
                                         ?>
-                                    <?php endif; ?>
+                                <?php endif; ?>
                                 </td>
-                                <?php endforeach; ?>
+                        <?php endforeach; ?>
                         </tr>
-                            <?php endforeach; ?>
+        <?php endforeach; ?>
                 </tbody>
             </table>
-                            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                            <?php if (1 < $customer_orders->max_num_pages) : ?>
+                <?php if (1 < $customer_orders->max_num_pages) : ?>
                 <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-                                <?php if (1 !== $current_page) : ?>
+                    <?php if (1 !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
-                                <?php endif; ?>
+                    <?php endif; ?>
 
-                            <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                    <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-                        <?php endif; ?>
+                <?php endif; ?>
                 </div>
-        <?php endif; ?>
-
-        <?php else : ?>
-            <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-            <?php _e('No transaction that is currently in-process.', 'woocommerce'); ?>
-            </div>
             <?php endif; ?>
 
-            <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
-            <?php
-        }
+            <?php else : ?>
+            <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+            <?php _e('No transaction that requires action.', 'woocommerce'); ?>
+            </div>
+        <?php endif; ?>
 
-        add_action('woocommerce_account_in-review_endpoint', 'in_review_endpoint_content');
+        <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+        <?php
+    }
 
-        function shipped_endpoint_content() {
-            $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
-                'numberposts' => $order_count,
-                'meta_key' => '_customer_user',
-                'meta_value' => get_current_user_id(),
-                'post_type' => wc_get_order_types('view-orders'),
-                'post_status' => 'wc-shipped',
-                    )));
-            $customer = wp_get_current_user();
-            if ($customer_orders) :
-                ?>
+    add_action('woocommerce_account_action-required_endpoint', 'action_required_endpoint_content');
+
+    function in_review_endpoint_content() {
+        $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+            'numberposts' => $order_count,
+            'meta_key' => '_customer_user',
+            'meta_value' => get_current_user_id(),
+            'post_type' => wc_get_order_types('view-orders'),
+            'post_status' => 'wc-processing',
+        )));
+        $customer = wp_get_current_user();
+        if ($customer_orders) :
+            ?>
 
             <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
                 <thead>
                     <tr>
-            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
                     </tr>
                 </thead>
 
                 <tbody>
-            <?php
-            foreach ($customer_orders as $customer_order) :
-                $order = wc_get_order($customer_order);
-                $item_count = $order->get_item_count();
-                ?>
+                    <?php
+                    foreach ($customer_orders as $customer_order) :
+                        $order = wc_get_order($customer_order);
+                        $item_count = $order->get_item_count();
+                        ?>
                         <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                                <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
-                                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
-                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+                                    <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                        <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                <?php elseif ('order-number' === $column_id) : ?>
+                                        <?php elseif ('order-number' === $column_id) : ?>
                                         <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                                <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                         </a>
 
-                            <?php elseif ('order-date' === $column_id) : ?>
+                <?php elseif ('order-date' === $column_id) : ?>
                                         <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
                                     <?php elseif ('order-status' === $column_id) : ?>
@@ -2420,172 +2307,286 @@ if (!function_exists('ag_comment')) :
                                         ?>
 
                                     <?php elseif ('order-actions' === $column_id) : ?>
-                    <?php
-                    $actions = array(
-                        'pay' => array(
-                            'url' => $order->get_checkout_payment_url(),
-                            'name' => __('Pay', 'woocommerce'),
-                        ),
-                        'view' => array(
-                            'url' => $order->get_view_order_url(),
-                            'name' => __('View', 'woocommerce'),
-                        ),
-                        'cancel' => array(
-                            'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
-                            'name' => __('Cancel', 'woocommerce'),
-                        ),
-                    );
+                                        <?php
+                                        $actions = array(
+                                            'pay' => array(
+                                                'url' => $order->get_checkout_payment_url(),
+                                                'name' => __('Pay', 'woocommerce'),
+                                            ),
+                                            'view' => array(
+                                                'url' => $order->get_view_order_url(),
+                                                'name' => __('View', 'woocommerce'),
+                                            ),
+                                            'cancel' => array(
+                                                'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                                                'name' => __('Cancel', 'woocommerce'),
+                                            ),
+                                        );
 
-                    if (!$order->needs_payment()) {
-                        unset($actions['pay']);
-                    }
+                                        if (!$order->needs_payment()) {
+                                            unset($actions['pay']);
+                                        }
 
-                    if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
-                        unset($actions['cancel']);
-                    }
+                                        if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                                            unset($actions['cancel']);
+                                        }
 
-                    if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
-                        foreach ($actions as $key => $action) {
-                            echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
-                        }
-                    }
-                    ?>
-                                    <?php endif; ?>
+                                        if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                                            foreach ($actions as $key => $action) {
+                                                echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                                            }
+                                        }
+                                        ?>
+                                <?php endif; ?>
                                 </td>
-                                <?php endforeach; ?>
+                        <?php endforeach; ?>
                         </tr>
-                            <?php endforeach; ?>
+        <?php endforeach; ?>
                 </tbody>
             </table>
-                            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                            <?php if (1 < $customer_orders->max_num_pages) : ?>
+                <?php if (1 < $customer_orders->max_num_pages) : ?>
                 <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-                                <?php if (1 !== $current_page) : ?>
+                    <?php if (1 !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
-                            <?php endif; ?>
+                    <?php endif; ?>
 
-                        <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                    <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-            <?php endif; ?>
+                <?php endif; ?>
                 </div>
             <?php endif; ?>
 
-        <?php else : ?>
+            <?php else : ?>
             <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-                <?php _e('No transaction that is for pick up.', 'woocommerce'); ?>
+            <?php _e('No transaction that is currently in-process.', 'woocommerce'); ?>
             </div>
-            <?php endif; ?>
+        <?php endif; ?>
 
-            <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
-            <?php
-        }
+        <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+        <?php
+    }
 
-        add_action('woocommerce_account_shipped_endpoint', 'shipped_endpoint_content');
+    add_action('woocommerce_account_in-review_endpoint', 'in_review_endpoint_content');
 
-        function picked_up_endpoint_content() {
-            $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
-                'numberposts' => $order_count,
-                'meta_key' => '_customer_user',
-                'meta_value' => get_current_user_id(),
-                'post_type' => wc_get_order_types('view-orders'),
-                'post_status' => 'wc-picked-up',
-                    )));
-            $customer = wp_get_current_user();
-            if ($customer_orders) :
-                ?>
+    function shipped_endpoint_content() {
+        $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+            'numberposts' => $order_count,
+            'meta_key' => '_customer_user',
+            'meta_value' => get_current_user_id(),
+            'post_type' => wc_get_order_types('view-orders'),
+            'post_status' => 'wc-shipped',
+        )));
+        $customer = wp_get_current_user();
+        if ($customer_orders) :
+            ?>
 
             <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
                 <thead>
                     <tr>
-            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
                     </tr>
                 </thead>
 
                 <tbody>
-            <?php
-            foreach ($customer_orders as $customer_order) :
-                $order = wc_get_order($customer_order);
-                $item_count = $order->get_item_count();
-                ?>
+                    <?php
+                    foreach ($customer_orders as $customer_order) :
+                        $order = wc_get_order($customer_order);
+                        $item_count = $order->get_item_count();
+                        ?>
                         <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                                <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
-                                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
-                                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+                                    <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                        <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                <?php elseif ('order-number' === $column_id) : ?>
+                                        <?php elseif ('order-number' === $column_id) : ?>
                                         <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                            <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                         </a>
 
-                        <?php elseif ('order-date' === $column_id) : ?>
+                <?php elseif ('order-date' === $column_id) : ?>
                                         <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
-                                <?php elseif ('order-status' === $column_id) : ?>
-                                    <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+                                    <?php elseif ('order-status' === $column_id) : ?>
+                                        <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
 
-                                <?php elseif ('order-total' === $column_id) : ?>
-                                    <?php
-                                    /* translators: 1: formatted order total 2: total order items */
-                                    printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
-                                    ?>
+                                    <?php elseif ('order-total' === $column_id) : ?>
+                                        <?php
+                                        /* translators: 1: formatted order total 2: total order items */
+                                        printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                        ?>
 
-                                <?php elseif ('order-actions' === $column_id) : ?>
-                    <?php
-                    $actions = array(
-                        'pay' => array(
-                            'url' => $order->get_checkout_payment_url(),
-                            'name' => __('Pay', 'woocommerce'),
-                        ),
-                        'view' => array(
-                            'url' => $order->get_view_order_url(),
-                            'name' => __('View', 'woocommerce'),
-                        ),
-                        'cancel' => array(
-                            'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
-                            'name' => __('Cancel', 'woocommerce'),
-                        ),
-                    );
+                                    <?php elseif ('order-actions' === $column_id) : ?>
+                                        <?php
+                                        $actions = array(
+                                            'pay' => array(
+                                                'url' => $order->get_checkout_payment_url(),
+                                                'name' => __('Pay', 'woocommerce'),
+                                            ),
+                                            'view' => array(
+                                                'url' => $order->get_view_order_url(),
+                                                'name' => __('View', 'woocommerce'),
+                                            ),
+                                            'cancel' => array(
+                                                'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                                                'name' => __('Cancel', 'woocommerce'),
+                                            ),
+                                        );
 
-                    if (!$order->needs_payment()) {
-                        unset($actions['pay']);
-                    }
+                                        if (!$order->needs_payment()) {
+                                            unset($actions['pay']);
+                                        }
 
-                    if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
-                        unset($actions['cancel']);
-                    }
+                                        if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                                            unset($actions['cancel']);
+                                        }
 
-                    if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
-                        foreach ($actions as $key => $action) {
-                            echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
-                        }
-                    }
-                    ?>
+                                        if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                                            foreach ($actions as $key => $action) {
+                                                echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                                            }
+                                        }
+                                        ?>
                                 <?php endif; ?>
                                 </td>
-                            <?php endforeach; ?>
-                        </tr>
                         <?php endforeach; ?>
+                        </tr>
+        <?php endforeach; ?>
                 </tbody>
             </table>
-                        <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                        <?php if (1 < $customer_orders->max_num_pages) : ?>
+                <?php if (1 < $customer_orders->max_num_pages) : ?>
                 <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-                            <?php if (1 !== $current_page) : ?>
+                    <?php if (1 !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
-                        <?php endif; ?>
+                    <?php endif; ?>
 
                     <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-            <?php endif; ?>
+                <?php endif; ?>
                 </div>
+            <?php endif; ?>
+
+            <?php else : ?>
+            <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+            <?php _e('No transaction that is for pick up.', 'woocommerce'); ?>
+            </div>
         <?php endif; ?>
 
-    <?php else : ?>
+        <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+        <?php
+    }
+
+    add_action('woocommerce_account_shipped_endpoint', 'shipped_endpoint_content');
+
+    function picked_up_endpoint_content() {
+        $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+            'numberposts' => $order_count,
+            'meta_key' => '_customer_user',
+            'meta_value' => get_current_user_id(),
+            'post_type' => wc_get_order_types('view-orders'),
+            'post_status' => 'wc-picked-up',
+        )));
+        $customer = wp_get_current_user();
+        if ($customer_orders) :
+            ?>
+
+            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                <thead>
+                    <tr>
+                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
+        <?php endforeach; ?>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    foreach ($customer_orders as $customer_order) :
+                        $order = wc_get_order($customer_order);
+                        $item_count = $order->get_item_count();
+                        ?>
+                        <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
+                                <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
+                                    <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                        <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+
+                                        <?php elseif ('order-number' === $column_id) : ?>
+                                        <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
+                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                        </a>
+
+                <?php elseif ('order-date' === $column_id) : ?>
+                                        <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
+
+                                    <?php elseif ('order-status' === $column_id) : ?>
+                                        <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+
+                                    <?php elseif ('order-total' === $column_id) : ?>
+                                        <?php
+                                        /* translators: 1: formatted order total 2: total order items */
+                                        printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                        ?>
+
+                                    <?php elseif ('order-actions' === $column_id) : ?>
+                                        <?php
+                                        $actions = array(
+                                            'pay' => array(
+                                                'url' => $order->get_checkout_payment_url(),
+                                                'name' => __('Pay', 'woocommerce'),
+                                            ),
+                                            'view' => array(
+                                                'url' => $order->get_view_order_url(),
+                                                'name' => __('View', 'woocommerce'),
+                                            ),
+                                            'cancel' => array(
+                                                'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                                                'name' => __('Cancel', 'woocommerce'),
+                                            ),
+                                        );
+
+                                        if (!$order->needs_payment()) {
+                                            unset($actions['pay']);
+                                        }
+
+                                        if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                                            unset($actions['cancel']);
+                                        }
+
+                                        if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                                            foreach ($actions as $key => $action) {
+                                                echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                                            }
+                                        }
+                                        ?>
+                                <?php endif; ?>
+                                </td>
+                        <?php endforeach; ?>
+                        </tr>
+        <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+
+                <?php if (1 < $customer_orders->max_num_pages) : ?>
+                <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
+                    <?php if (1 !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
+                    <?php endif; ?>
+
+                    <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
+                <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php else : ?>
             <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
             <?php _e('You don\'t have items that are picked up.', 'woocommerce'); ?>
             </div>
@@ -2607,7 +2608,7 @@ if (!function_exists('ag_comment')) :
             'post_type' => wc_get_order_types('view-orders'),
             'post_status' => 'wc-completed',
             'post_not_in' => array($customer_subscriptions_orders)
-                )));
+        )));
         $customer = wp_get_current_user();
         if ($customer_orders) :
             ?>
@@ -2615,40 +2616,40 @@ if (!function_exists('ag_comment')) :
             <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
                 <thead>
                     <tr>
-        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
         <?php endforeach; ?>
                     </tr>
                 </thead>
-        <?php
-        foreach ($customer_orders as $customer_order) :
-            $order = wc_get_order($customer_order);
-            $item_count = $order->get_item_count();
-            ?>
+                <?php
+                foreach ($customer_orders as $customer_order) :
+                    $order = wc_get_order($customer_order);
+                    $item_count = $order->get_item_count();
+                    ?>
                     <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
-                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
-                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+                                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                        <?php elseif ('order-number' === $column_id) : ?>
+                                    <?php elseif ('order-number' === $column_id) : ?>
                                     <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                            <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                     </a>
 
-                            <?php elseif ('order-date' === $column_id) : ?>
+                <?php elseif ('order-date' === $column_id) : ?>
                                     <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
                                 <?php elseif ('order-status' === $column_id) : ?>
                                     <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
 
                                 <?php elseif ('order-total' === $column_id) : ?>
-                                        <?php
-                                        /* translators: 1: formatted order total 2: total order items */
-                                        printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
-                                        ?>
+                                    <?php
+                                    /* translators: 1: formatted order total 2: total order items */
+                                    printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                    ?>
 
-                <?php elseif ('order-actions' === $column_id) : ?>
+                                <?php elseif ('order-actions' === $column_id) : ?>
                                     <?php
                                     $actions = array(
                                         'pay' => array(
@@ -2679,23 +2680,23 @@ if (!function_exists('ag_comment')) :
                                         }
                                     }
                                     ?>
-                                <?php endif; ?>
+                            <?php endif; ?>
                             </td>
-                            <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </tr>
-                        <?php endforeach; ?>
+        <?php endforeach; ?>
             </tbody>
 
         </table>
-                        <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+        <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                        <?php if (1 < $customer_orders->max_num_pages) : ?>
+            <?php if (1 < $customer_orders->max_num_pages) : ?>
             <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-                        <?php if (1 !== $current_page) : ?>
+                <?php if (1 !== $current_page) : ?>
                     <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
-                    <?php endif; ?>
+                <?php endif; ?>
 
-            <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                     <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
             <?php endif; ?>
             </div>
@@ -2703,11 +2704,11 @@ if (!function_exists('ag_comment')) :
 
         <?php else : ?>
         <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-            <?php _e('No completed transaction.', 'woocommerce'); ?>
+        <?php _e('No completed transaction.', 'woocommerce'); ?>
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
 
-        <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+    <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
     <?php
 }
 
@@ -2720,7 +2721,7 @@ function subscriptions_endpoint_content() {
         'meta_value' => $user_id,
         'post_type' => 'shop_subscription', // Subscription post type
         'post_status' => 'wc-active', // Active subscription
-            ));
+    ));
 
     $customer = wp_get_current_user();
     if ($customer_orders) :
@@ -2728,25 +2729,25 @@ function subscriptions_endpoint_content() {
         <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
             <thead>
                 <tr>
-        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                    <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                         <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
         <?php endforeach; ?>
                 </tr>
             </thead>
 
             <tbody>
-        <?php
-        foreach ($customer_orders as $customer_order) :
-            $order = wc_get_order($customer_order);
-            $item_count = $order->get_item_count();
-            ?>
+                <?php
+                foreach ($customer_orders as $customer_order) :
+                    $order = wc_get_order($customer_order);
+                    $item_count = $order->get_item_count();
+                    ?>
                     <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
-                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
-                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+                                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                <?php elseif ('order-number' === $column_id) : ?>
+                                    <?php elseif ('order-number' === $column_id) : ?>
                                     <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
                     <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                     </a>
@@ -2754,68 +2755,68 @@ function subscriptions_endpoint_content() {
                 <?php elseif ('order-date' === $column_id) : ?>
                                     <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
-                <?php elseif ('order-status' === $column_id) : ?>
-                    <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+                                <?php elseif ('order-status' === $column_id) : ?>
+                                    <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
 
-                <?php elseif ('order-total' === $column_id) : ?>
-                    <?php
-                    /* translators: 1: formatted order total 2: total order items */
-                    printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
-                    ?>
+                                <?php elseif ('order-total' === $column_id) : ?>
+                                    <?php
+                                    /* translators: 1: formatted order total 2: total order items */
+                                    printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                    ?>
 
-                <?php elseif ('order-actions' === $column_id) : ?>
-                    <?php
-                    $actions = array(
-                        'pay' => array(
-                            'url' => $order->get_checkout_payment_url(),
-                            'name' => __('Pay', 'woocommerce'),
-                        ),
-                        'view' => array(
-                            'url' => $order->get_view_order_url(),
-                            'name' => __('View', 'woocommerce'),
-                        ),
-                        'cancel' => array(
-                            'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
-                            'name' => __('Cancel', 'woocommerce'),
-                        ),
-                    );
+                                <?php elseif ('order-actions' === $column_id) : ?>
+                                    <?php
+                                    $actions = array(
+                                        'pay' => array(
+                                            'url' => $order->get_checkout_payment_url(),
+                                            'name' => __('Pay', 'woocommerce'),
+                                        ),
+                                        'view' => array(
+                                            'url' => $order->get_view_order_url(),
+                                            'name' => __('View', 'woocommerce'),
+                                        ),
+                                        'cancel' => array(
+                                            'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                                            'name' => __('Cancel', 'woocommerce'),
+                                        ),
+                                    );
 
-                    if (!$order->needs_payment()) {
-                        unset($actions['pay']);
-                    }
+                                    if (!$order->needs_payment()) {
+                                        unset($actions['pay']);
+                                    }
 
-                    if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
-                        unset($actions['cancel']);
-                    }
+                                    if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                                        unset($actions['cancel']);
+                                    }
 
-                    if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
-                        foreach ($actions as $key => $action) {
-                            echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
-                        }
-                    }
-                    ?>
-                <?php endif; ?>
+                                    if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                                        foreach ($actions as $key => $action) {
+                                            echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                                        }
+                                    }
+                                    ?>
+                            <?php endif; ?>
                             </td>
-            <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </tr>
         <?php endforeach; ?>
             </tbody>
         </table>
         <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-        <?php if (1 < $customer_orders->max_num_pages) : ?>
+            <?php if (1 < $customer_orders->max_num_pages) : ?>
             <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-            <?php if (1 !== $current_page) : ?>
+                <?php if (1 !== $current_page) : ?>
                     <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
-            <?php endif; ?>
+                <?php endif; ?>
 
-            <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                     <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
             <?php endif; ?>
             </div>
         <?php endif; ?>
 
-    <?php else : ?>
+        <?php else : ?>
         <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
         <?php _e('No subscription.', 'woocommerce'); ?>
         </div>
