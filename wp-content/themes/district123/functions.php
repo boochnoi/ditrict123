@@ -2933,10 +2933,10 @@ function show_stock() {
     if ($product->stock) { // if manage stock is enabled 
         if (number_format($product->stock, 0, '', '') < 3) { // if stock is low
             echo '<br><br>';
-            echo '<div class="remaining"><strong>' . number_format($product->stock, 0, '', '') . ' in stock!</strong></div>';
+            echo '<div class="remaining"><strong> Quantity: ' . number_format($product->stock, 0, '', '') . '</strong></div>';
         } else {
             echo '<br><br>';
-            echo '<div class="remaining"><strong>' . number_format($product->stock, 0, '', '') . ' in stock</strong></div>';
+            echo '<div class="remaining"><strong> Quantity: ' . number_format($product->stock, 0, '', '') . '</strong></div>';
         }
     }
 }
