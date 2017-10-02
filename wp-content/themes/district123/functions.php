@@ -2972,7 +2972,7 @@ function sv_wc_cogs_add_order_profit_column_content( $column ) {
     if ( 'order_profit' === $column ) {
         $order = $post->ID;
         $user_id = get_post_meta($order,'_customer_user',true);
-        $profir = 'Apt-' . sprintf('%04d',$user_id);
+        $profit = 'Apt-' . sprintf('%04d',$user_id);
         echo $profit;
     }
 }
