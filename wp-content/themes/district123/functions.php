@@ -2941,3 +2941,39 @@ function show_stock() {
 }
 
 add_action('woocommerce_after_shop_loop_item', 'show_stock', 10);
+
+
+/**
+ * Adds 'Profit' column header to 'Orders' page immediately after 'Total' column.
+ *
+ * @param string[] $columns
+ * @return string[] $new_columns
+ */
+function sv_wc_cogs_add_order_profit_column_header( $columns ) {
+
+    $new_columns = array();
+
+    foreach ( $columns as $column_name => $column_info ) {
+
+        $new_columns[ $column_name ] = $column_info;
+
+        if ( 'shipping_address' === $column_name ) {
+            $new_columns['order_profit'] = __( 'Apt Number', 'my-textdomain' );
+        }
+    }
+
+    return $new_columns;
+}
+add_filter( 'manage_edit-shop_order_columns', 'sv_wc_cogs_add_order_profit_column_header', 20 );
+
+function sv_wc_cogs_add_order_profit_column_content( $column ) {
+    global $post;
+
+    if ( 'order_profit' === $column ) {
+        $order = $post->ID;
+        $user_id = get_post_meta($order,'_customer_user',true);
+        $profir = 'Apt-' . sprintf('%04d',$user_id);
+        echo $profit;
+    }
+}
+add_action( 'manage_shop_order_posts_custom_column', 'sv_wc_cogs_add_order_profit_column_content' );
