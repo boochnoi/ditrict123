@@ -1,532 +1,571 @@
-<?php 
+<?php
+if (!function_exists('optionsframework_init')) :
 
-if ( !function_exists( 'optionsframework_init' ) ) :
-
-/*-----------------------------------------------------------------------------------*/
-/* Options Framework Theme
-/*-----------------------------------------------------------------------------------*/
-	/* Set the file path based on whether the Options Framework Theme is a parent theme or child theme */
-	if ( get_stylesheet_directory() == get_template_directory() ) {
-		define('OPTIONS_FRAMEWORK_URL', get_template_directory() . '/admin/');
-		define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/');
-	} else {
-		define('OPTIONS_FRAMEWORK_URL', get_template_directory() . '/admin/');
-		define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/');
-	}
-	require_once (OPTIONS_FRAMEWORK_URL . 'options-framework.php');
+    /* ----------------------------------------------------------------------------------- */
+    /* Options Framework Theme
+      /*----------------------------------------------------------------------------------- */
+    /* Set the file path based on whether the Options Framework Theme is a parent theme or child theme */
+    if (get_stylesheet_directory() == get_template_directory()) {
+        define('OPTIONS_FRAMEWORK_URL', get_template_directory() . '/admin/');
+        define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/');
+    } else {
+        define('OPTIONS_FRAMEWORK_URL', get_template_directory() . '/admin/');
+        define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/');
+    }
+    require_once (OPTIONS_FRAMEWORK_URL . 'options-framework.php');
 
 endif;
 
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
 /* Admin Post Scripts
-/*-----------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------------------------- */
 
 // Post Javascript
 if (!function_exists('ag_load_post_scripts')) :
-	function ag_load_post_scripts() {
-		wp_register_script('post-js', get_template_directory_uri() . '/functions/js/post-javascript.js', 'jquery');
-		wp_enqueue_script( 'post-js' );
-	}
-	add_action('admin_init', 'ag_load_post_scripts');
+
+    function ag_load_post_scripts() {
+        wp_register_script('post-js', get_template_directory_uri() . '/functions/js/post-javascript.js', 'jquery');
+        wp_enqueue_script('post-js');
+    }
+
+    add_action('admin_init', 'ag_load_post_scripts');
 endif;
 
 
 // Add Embed Code to Footer
 if (!function_exists('ag_embed_code')) :
-	function ag_embed_code() { ?>
-		<!-- Google Analytics Code
-		  ================================================== -->
-		<?php echo of_get_option('of_google_analytics'); 
-	}
-	add_action( 'wp_footer', 'ag_embed_code', 1000 );
+
+    function ag_embed_code() {
+        ?>
+        <!-- Google Analytics Code
+          ================================================== -->
+        <?php
+        echo of_get_option('of_google_analytics');
+    }
+
+    add_action('wp_footer', 'ag_embed_code', 1000);
 endif;
 
 // Color Picker Javascript
 if (!function_exists('add_admin_scripts')) :
-	function add_admin_scripts( $hook ) {
-	    global $post;
-	    if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-	        if ( 'section' === $post->post_type ) {     
-	            wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'js/colorpicker.js', array('jquery'));
-	        }
-	    }
-	}
-	add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
+
+    function add_admin_scripts($hook) {
+        global $post;
+        if ($hook == 'post-new.php' || $hook == 'post.php') {
+            if ('section' === $post->post_type) {
+                wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_DIRECTORY . 'js/colorpicker.js', array('jquery'));
+            }
+        }
+    }
+
+    add_action('admin_enqueue_scripts', 'add_admin_scripts', 10, 1);
 endif;
 
 // Admin Color Picker CSS
 if (!function_exists('add_admin_css')) :
-	function add_admin_css( $hook ) {
-		wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_DIRECTORY.'css/colorpicker.css');
-	}
-	add_action( 'admin_print_styles', 'add_admin_css' );
+
+    function add_admin_css($hook) {
+        wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_DIRECTORY . 'css/colorpicker.css');
+    }
+
+    add_action('admin_print_styles', 'add_admin_css');
 endif;
 
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
 /* Add Contextual Help
-/*-----------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------------------------- */
 if (!function_exists('ag_contextual_help')) :
-	function ag_contextual_help( $contextual_help, $screen_id, $screen ) {
-	   // echo 'Screen ID = '.$screen_id.'<br />';
-	    $screen = get_current_screen();
-	    switch( $screen_id ) {
-			
-			/* #Section Help Options
-			================================================== */		
-	        case 'section' :
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/section-general-readme.html' );
 
-			if(!is_wp_error( $section_readme )) {
-				$screen->add_help_tab( array(
-					'id'      => 'ag_general_help_'.$screen_id,
-					'title'   => __( 'What Are Sections', 'framework'),
-					// Tab content
-		   			'content' => $section_readme['body'],
-				));
-			}
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/section-slides-readme.html' );
+    function ag_contextual_help($contextual_help, $screen_id, $screen) {
+        // echo 'Screen ID = '.$screen_id.'<br />';
+        $screen = get_current_screen();
+        switch ($screen_id) {
 
-			if(!is_wp_error( $section_readme )) {
-				$screen->add_help_tab( array(
-					'id'      => 'ag_slides_help_'.$screen_id,
-					'title'   => __( 'Adding Slides', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
+            /* #Section Help Options
+              ================================================== */
+            case 'section' :
 
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/section-video-readme.html' );
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/section-general-readme.html');
 
-			if(!is_wp_error( $section_readme )) {
-				$screen->add_help_tab( array(
-					'id'      => 'ag_video_help_'.$screen_id,
-					'title'   => __( 'Adding Video', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_general_help_' . $screen_id,
+                        'title' => __('What Are Sections', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/section-layout-readme.html' );
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/section-slides-readme.html');
 
-			if(!is_wp_error( $section_readme )) {
-			    $screen->add_help_tab( array(
-					'id'      => 'ag_layout_help_'.$screen_id,
-					'title'   => __( 'Customizing Layout', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_slides_help_' . $screen_id,
+                        'title' => __('Adding Slides', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/section-colors-readme.html' );	
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/section-video-readme.html');
 
-			if(!is_wp_error( $section_readme )) {	
-				$screen->add_help_tab( array(
-					'id'      => 'ag_colors_help_'.$screen_id,
-					'title'   => __( 'Customizing Colors', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_video_help_' . $screen_id,
+                        'title' => __('Adding Video', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/section-button-readme.html' );
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/section-layout-readme.html');
 
-			if(!is_wp_error( $section_readme )) {
-				$screen->add_help_tab( array(
-					'id'      => 'ag_button_help_'.$screen_id,
-					'title'   => __( 'Customizing The Button', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
-			
-	        break;
-			
-			/* #Portfolio Help Options
-			================================================== */
-	        case 'portfolio' :
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/portfolio-general-readme.html' );
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_layout_help_' . $screen_id,
+                        'title' => __('Customizing Layout', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			if(!is_wp_error( $section_readme )) {		
-		        $screen->add_help_tab( array(
-					'id'      => 'ag_general_help_'.$screen_id,
-					'title'   => __( 'What is a Portfolio', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-	    	}
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/portfolio-slides-readme.html' );
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/section-colors-readme.html');
 
-			if(!is_wp_error( $section_readme )) {		
-				$screen->add_help_tab( array(
-					'id'      => 'ag_slides_help_'.$screen_id,
-					'title'   => __( 'Portfolio Slides', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/portfolio-options-readme.html' );
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_colors_help_' . $screen_id,
+                        'title' => __('Customizing Colors', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			if(!is_wp_error( $section_readme )) {		
-				$screen->add_help_tab( array(
-					'id'      => 'ag_options_help_'.$screen_id,
-					'title'   => __( 'Portfolio Options', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/section-button-readme.html');
 
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/page-sections-readme.html' );	
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_button_help_' . $screen_id,
+                        'title' => __('Customizing The Button', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			if(!is_wp_error( $section_readme )) {	
-				$screen->add_help_tab( array(
-					'id'      => 'ag_sections_help_'.$screen_id,
-					'title'   => __( 'Adding Sections', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
-			
-	        break;
-			
-			/* #Slide Help Options
-			================================================== */
-			case 'slide' :
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/slide-general-readme.html' );
+                break;
 
-			if(!is_wp_error( $section_readme )) {		
-		        $screen->add_help_tab( array(
-					'id'      => 'ag_general_help_'.$screen_id,
-					'title'   => __( 'What is a Slide', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-		    }
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/slide-options-readme.html' );	
+            /* #Portfolio Help Options
+              ================================================== */
+            case 'portfolio' :
 
-			if(!is_wp_error( $section_readme )) {	
-				$screen->add_help_tab( array(
-					'id'      => 'ag_options_help_'.$screen_id,
-					'title'   => __( 'Slide Display', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/slide-colors-readme.html' );	
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/portfolio-general-readme.html');
 
-			if(!is_wp_error( $section_readme )) {	
-				$screen->add_help_tab( array(
-					'id'      => 'ag_colors_help_'.$screen_id,
-					'title'   => __( 'Slide Colors', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/slide-button-readme.html' );
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_general_help_' . $screen_id,
+                        'title' => __('What is a Portfolio', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			if(!is_wp_error( $section_readme )) {		
-				$screen->add_help_tab( array(
-					'id'      => 'ag_button_help_'.$screen_id,
-					'title'   => __( 'Customizing The Button', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/portfolio-slides-readme.html');
 
-	        break;
-			
-			/* #Page Help Options
-			================================================== */		
-			case 'page' :
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/page-image-readme.html' );	
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_slides_help_' . $screen_id,
+                        'title' => __('Portfolio Slides', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			if(!is_wp_error( $section_readme )) {	
-		        $screen->add_help_tab( array(
-					'id'      => 'ag_image_help_'.$screen_id,
-					'title'   => __( 'Featured Image', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-		    }
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/portfolio-options-readme.html');
 
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/page-sections-readme.html' );
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_options_help_' . $screen_id,
+                        'title' => __('Portfolio Options', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			if(!is_wp_error( $section_readme )) {		
-				$screen->add_help_tab( array(
-					'id'      => 'ag_sections_help_'.$screen_id,
-					'title'   => __( 'Adding Sections', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/page-button-readme.html' );
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/page-sections-readme.html');
 
-			if(!is_wp_error( $section_readme )) {		
-				$screen->add_help_tab( array(
-					'id'      => 'ag_button_help_'.$screen_id,
-					'title'   => __( 'Customizing The Button', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
-			
-			$section_readme = wp_remote_get( get_template_directory_uri() . '/functions/help/page-options-readme.html' );
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_sections_help_' . $screen_id,
+                        'title' => __('Adding Sections', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
 
-			if(!is_wp_error( $section_readme )) {		
-				$screen->add_help_tab( array(
-					'id'      => 'ag_options_help_'.$screen_id,
-					'title'   => __( 'Page Options', 'framework' ),
-					// Tab content
-					'content' => $section_readme['body'],
-				));
-			}
-			
-	        break;
-	    }
-	   // return $contextual_help;
-	}
-	add_filter('contextual_help', 'ag_contextual_help', 10, 3);
+                break;
+
+            /* #Slide Help Options
+              ================================================== */
+            case 'slide' :
+
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/slide-general-readme.html');
+
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_general_help_' . $screen_id,
+                        'title' => __('What is a Slide', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
+
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/slide-options-readme.html');
+
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_options_help_' . $screen_id,
+                        'title' => __('Slide Display', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
+
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/slide-colors-readme.html');
+
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_colors_help_' . $screen_id,
+                        'title' => __('Slide Colors', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
+
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/slide-button-readme.html');
+
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_button_help_' . $screen_id,
+                        'title' => __('Customizing The Button', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
+
+                break;
+
+            /* #Page Help Options
+              ================================================== */
+            case 'page' :
+
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/page-image-readme.html');
+
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_image_help_' . $screen_id,
+                        'title' => __('Featured Image', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
+
+
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/page-sections-readme.html');
+
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_sections_help_' . $screen_id,
+                        'title' => __('Adding Sections', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
+
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/page-button-readme.html');
+
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_button_help_' . $screen_id,
+                        'title' => __('Customizing The Button', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
+
+                $section_readme = wp_remote_get(get_template_directory_uri() . '/functions/help/page-options-readme.html');
+
+                if (!is_wp_error($section_readme)) {
+                    $screen->add_help_tab(array(
+                        'id' => 'ag_options_help_' . $screen_id,
+                        'title' => __('Page Options', 'framework'),
+                        // Tab content
+                        'content' => $section_readme['body'],
+                    ));
+                }
+
+                break;
+        }
+        // return $contextual_help;
+    }
+
+    add_filter('contextual_help', 'ag_contextual_help', 10, 3);
 endif;
 
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
 /* Add Visual Editor Style
-/*-----------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------------------------- */
 add_editor_style();
-	
-/*-----------------------------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------------------------- */
 /* Add Theme Shortcodes
-/*-----------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------------------------- */
 include("functions/shortcodes.php");
 
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
 /* Add Multiple Thumbnail Support
-/*-----------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------------------------- */
 include("functions/multi-post-thumbnails.php");
 
-if (class_exists('MultiPostThumbnails')) { 
+if (class_exists('MultiPostThumbnails')) {
 
-   if ( $thumbnum = of_get_option('of_thumbnail_number') ) { $thumbnum = ($thumbnum + 1); } else { $thumbnum = 7;}
-   $counter1 = 2;
+    if ($thumbnum = of_get_option('of_thumbnail_number')) {
+        $thumbnum = ($thumbnum + 1);
+    } else {
+        $thumbnum = 7;
+    }
+    $counter1 = 2;
 
-	while ($counter1 < ($thumbnum)) {
-	
-	// Add Slides in Posts	
-	new MultiPostThumbnails( 
-		array( 
-			'label' => 'Slide ' . $counter1, 
-			'id' => $counter1 . '-slide', 
-			'post_type' => 'post' 
-		));
-	
-	// Add Slides in Sections	
-	new MultiPostThumbnails( 
-		array( 
-			'label' => 'Slide ' . $counter1, 
-			'id' => $counter1 . '-slide', 
-			'post_type' => 'section' 
-		));	
-	
-	// Add Slides in Portfolio Items
-	new MultiPostThumbnails( 
-		array( 
-			'label' => 'Slide ' . $counter1, 
-			'id' => $counter1 . '-slide', 
-			'post_type' => 'portfolio' 
-		));	
-	
-	$counter1++;
-	
-	}
+    while ($counter1 < ($thumbnum)) {
+
+        // Add Slides in Posts	
+        new MultiPostThumbnails(
+                array(
+            'label' => 'Slide ' . $counter1,
+            'id' => $counter1 . '-slide',
+            'post_type' => 'post'
+        ));
+
+        // Add Slides in Sections	
+        new MultiPostThumbnails(
+                array(
+            'label' => 'Slide ' . $counter1,
+            'id' => $counter1 . '-slide',
+            'post_type' => 'section'
+        ));
+
+        // Add Slides in Portfolio Items
+        new MultiPostThumbnails(
+                array(
+            'label' => 'Slide ' . $counter1,
+            'id' => $counter1 . '-slide',
+            'post_type' => 'portfolio'
+        ));
+
+        $counter1++;
+    }
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*	Add Widget Shortcode Support
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Add Widget Shortcode Support
+  /*----------------------------------------------------------------------------------- */
 add_filter('widget_text', 'shortcode_unautop');
 add_filter('widget_text', 'do_shortcode');
 
-/*-----------------------------------------------------------------------------------*/
-/*	Add the Custom Fields for Sections and Pages
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Add the Custom Fields for Sections and Pages
+  /*----------------------------------------------------------------------------------- */
 include("functions/customfields.php");
 
-/*-----------------------------------------------------------------------------------*/
-/*	Include Update Notifier
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Include Update Notifier
+  /*----------------------------------------------------------------------------------- */
 include("functions/update_notifier.php");
 
-/*-----------------------------------------------------------------------------------*/
-/*	Include Drag and Drop Slide Order Functionality
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Include Drag and Drop Slide Order Functionality
+  /*----------------------------------------------------------------------------------- */
 include('functions/drag-drop-order.php');
 
-/*-----------------------------------------------------------------------------------*/
-/*	Register and Load JS
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Register and Load JS
+  /*----------------------------------------------------------------------------------- */
 if (!function_exists('ag_register_js')) :
-	function ag_register_js() {
-		if (!is_admin()) {
-			
-			// Register custom javascript
-			wp_register_script('custom', get_template_directory_uri() . '/js/custom.js', 'jquery', '1.2.1', true);
 
-			// Enqueue javascript and custom js file
-			wp_enqueue_script('jquery');
-			wp_enqueue_script('custom');
-		}
-	}
-	add_action('init', 'ag_register_js');
+    function ag_register_js() {
+        if (!is_admin()) {
+
+            // Register custom javascript
+            wp_register_script('custom', get_template_directory_uri() . '/js/custom.js', 'jquery', '1.2.1', true);
+
+            // Enqueue javascript and custom js file
+            wp_enqueue_script('jquery');
+            wp_enqueue_script('custom');
+        }
+    }
+
+    add_action('init', 'ag_register_js');
 endif;
 
-/*-----------------------------------------------------------------------------------*/
-/*	Register Stylesheets
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Register Stylesheets
+  /*----------------------------------------------------------------------------------- */
 
 // CSS Options
 if (!function_exists('custom_enqueue_css')) :
-	function custom_enqueue_css() {
-		wp_register_style('options', get_template_directory_uri() . '/css/custom.css', 'style');
-		wp_enqueue_style( 'options');
-	}
-	add_action('wp_print_styles', 'custom_enqueue_css');
+
+    function custom_enqueue_css() {
+        wp_register_style('options', get_template_directory_uri() . '/css/custom.css', 'style');
+        wp_enqueue_style('options');
+    }
+
+    add_action('wp_print_styles', 'custom_enqueue_css');
 endif;
 
 //IE CSS
 if (!function_exists('ag_register_iecss')) :
-	function ag_register_iecss () {
-		if (!is_admin()) {
-			global $wp_styles;
-			wp_enqueue_style(  "ie7",  get_template_directory_uri() . "/css/ie7.css", false, 'ie7', "all");
-			wp_enqueue_style(  "ie8",  get_template_directory_uri() . "/css/ie8.css", false, 'ie8', "all");
-			$wp_styles->add_data( "ie7", 'conditional', 'IE 7' );
-			$wp_styles->add_data( "ie8", 'conditional', 'IE 8' );
-		}
-	}
-	add_action('init', 'ag_register_iecss');
+
+    function ag_register_iecss() {
+        if (!is_admin()) {
+            global $wp_styles;
+            wp_enqueue_style("ie7", get_template_directory_uri() . "/css/ie7.css", false, 'ie7', "all");
+            wp_enqueue_style("ie8", get_template_directory_uri() . "/css/ie8.css", false, 'ie8', "all");
+            $wp_styles->add_data("ie7", 'conditional', 'IE 7');
+            $wp_styles->add_data("ie8", 'conditional', 'IE 8');
+        }
+    }
+
+    add_action('init', 'ag_register_iecss');
 endif;
 
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
 /* Register Navigation 
-/*-----------------------------------------------------------------------------------*/
+  /*----------------------------------------------------------------------------------- */
 add_theme_support('menus');
 
-if ( function_exists( 'register_nav_menus' ) ) {
+if (function_exists('register_nav_menus')) {
     register_nav_menus(
-        array(
-          'main_nav_menu' => 'Main Navigation Menu'
-        )
+            array(
+                'main_nav_menu' => 'Main Navigation Menu'
+            )
     );
+
     // remove menu container div
-    function my_wp_nav_menu_args( $args = '' ) {
+    function my_wp_nav_menu_args($args = '') {
         $args['container'] = false;
         return $args;
-    } 
-    add_filter( 'wp_nav_menu_args', 'my_wp_nav_menu_args' );
+    }
+
+    add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args');
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*	Automatic Feed Links
-/*-----------------------------------------------------------------------------------*/
-if(function_exists('add_theme_support')) {
+/* ----------------------------------------------------------------------------------- */
+/* 	Automatic Feed Links
+  /*----------------------------------------------------------------------------------- */
+if (function_exists('add_theme_support')) {
     add_theme_support('automatic-feed-links'); //WP Auto Feed Links
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*	Configure Excerpt String, Remove Automatic Periods
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Configure Excerpt String, Remove Automatic Periods
+  /*----------------------------------------------------------------------------------- */
 if (!function_exists('ag_excerpt_more')) :
-	function ag_excerpt_more($excerpt) {
-		return str_replace('[...]', '...', $excerpt); 
-	}
-	add_filter('wp_trim_excerpt', 'ag_excerpt_more');
+
+    function ag_excerpt_more($excerpt) {
+        return str_replace('[...]', '...', $excerpt);
+    }
+
+    add_filter('wp_trim_excerpt', 'ag_excerpt_more');
 endif;
 
-/*-----------------------------------------------------------------------------------*/
-/*	Add Browser Detection Body Class
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Add Browser Detection Body Class
+  /*----------------------------------------------------------------------------------- */
 
 if (!function_exists('ag_browser_body_class')) :
-	function ag_browser_body_class($classes) {
-		global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
 
-		if($is_lynx) $classes[] = 'lynx';
-		elseif($is_gecko) $classes[] = 'gecko';
-		elseif($is_opera) $classes[] = 'opera';
-		elseif($is_NS4) $classes[] = 'ns4';
-		elseif($is_safari) $classes[] = 'safari';
-		elseif($is_chrome) $classes[] = 'chrome';
-		elseif($is_IE) $classes[] = 'ie';
-		else $classes[] = 'unknown';
+    function ag_browser_body_class($classes) {
+        global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
 
-		if($is_iphone) $classes[] = 'iphone';
-		return $classes;
-	}
-	add_filter('body_class','ag_browser_body_class');
+        if ($is_lynx)
+            $classes[] = 'lynx';
+        elseif ($is_gecko)
+            $classes[] = 'gecko';
+        elseif ($is_opera)
+            $classes[] = 'opera';
+        elseif ($is_NS4)
+            $classes[] = 'ns4';
+        elseif ($is_safari)
+            $classes[] = 'safari';
+        elseif ($is_chrome)
+            $classes[] = 'chrome';
+        elseif ($is_IE)
+            $classes[] = 'ie';
+        else
+            $classes[] = 'unknown';
+
+        if ($is_iphone)
+            $classes[] = 'iphone';
+        return $classes;
+    }
+
+    add_filter('body_class', 'ag_browser_body_class');
 endif;
 
-/*-----------------------------------------------------------------------------------*/
-/*	Configure WP2.9+ Thumbnails
-/*-----------------------------------------------------------------------------------*/
-if ( function_exists( 'add_theme_support' ) ) {
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 56, 56, true ); // Normal post thumbnails tinyfeatured
-	add_image_size( 'tinyfeatured', 56, 56, true ); // Tiny Square thumbnail
-	add_image_size( 'sectionsmall', 514, '', true ); // Small Section thumbnail
-	add_image_size( 'sectionlarge', 820, '', true ); // Large Section thumbnail
-	add_image_size( 'homeslideshow', 1500, 600, true); // Homepage Slideshow
-	add_image_size( 'homeslideshowfixed', 940, 545, true); // Homepage Slideshow
-	add_image_size( 'homefeatured', 350, '', false); // Homepage Featured Image
-	add_image_size( 'postsidebar', 420, 260, true); // Post Image Cropped
-	add_image_size( 'post', 640, 375, true); // Post Image Cropped
-	add_image_size( 'postnc', 640, '', false);  // Post Image No Crop
-	add_image_size( 'postfull', 940, 475, true); // Post Full Cropped
-	add_image_size( 'postfullnc', 940, '', false);	// Post Full No Crop
-	add_image_size( 'portfolio-three', 426, 351, true);	// Portfolio Three Column
-	add_image_size( 'portfolio-three-nc', 426, '', false);	// Portfolio Three Column No Crop
-	add_image_size( 'portfolio-single', 640, 425, true); // Single Portfolio 
-	add_image_size( 'portfolio-single-nc', 640, '', false); // Single Portfolio No Crop
+/* ----------------------------------------------------------------------------------- */
+/* 	Configure WP2.9+ Thumbnails
+  /*----------------------------------------------------------------------------------- */
+if (function_exists('add_theme_support')) {
+    add_theme_support('post-thumbnails');
+    set_post_thumbnail_size(56, 56, true); // Normal post thumbnails tinyfeatured
+    add_image_size('tinyfeatured', 56, 56, true); // Tiny Square thumbnail
+    add_image_size('sectionsmall', 514, '', true); // Small Section thumbnail
+    add_image_size('sectionlarge', 820, '', true); // Large Section thumbnail
+    add_image_size('homeslideshow', 1500, 600, true); // Homepage Slideshow
+    add_image_size('homeslideshowfixed', 940, 545, true); // Homepage Slideshow
+    add_image_size('homefeatured', 350, '', false); // Homepage Featured Image
+    add_image_size('postsidebar', 420, 260, true); // Post Image Cropped
+    add_image_size('post', 640, 375, true); // Post Image Cropped
+    add_image_size('postnc', 640, '', false);  // Post Image No Crop
+    add_image_size('postfull', 940, 475, true); // Post Full Cropped
+    add_image_size('postfullnc', 940, '', false); // Post Full No Crop
+    add_image_size('portfolio-three', 426, 351, true); // Portfolio Three Column
+    add_image_size('portfolio-three-nc', 426, '', false); // Portfolio Three Column No Crop
+    add_image_size('portfolio-single', 640, 425, true); // Single Portfolio 
+    add_image_size('portfolio-single-nc', 640, '', false); // Single Portfolio No Crop
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*	Add PrettyPhoto to WordPress Galleries
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Add PrettyPhoto to WordPress Galleries
+  /*----------------------------------------------------------------------------------- */
 if (!function_exists('ag_prettyadd')) :
-	function ag_prettyadd($content) {
-		$content = preg_replace("/<a/","<a rel='prettyPhoto[slides]'",$content,1);
-		return $content;
-	}
-	add_filter( 'wp_get_attachment_link', 'ag_prettyadd');
+
+    function ag_prettyadd($content) {
+        $content = preg_replace("/<a/", "<a rel='prettyPhoto[slides]'", $content, 1);
+        return $content;
+    }
+
+    add_filter('wp_get_attachment_link', 'ag_prettyadd');
 endif;
 
-/*-----------------------------------------------------------------------------------*/
-/*	Comment Reply Javascript Action
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Comment Reply Javascript Action
+  /*----------------------------------------------------------------------------------- */
 if (!function_exists('ag_enqueue_comment_reply')) :
-	function ag_enqueue_comment_reply() {
-	    // on single blog post pages with comments open and threaded comments
-	    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) { 
-	        // enqueue the javascript that performs in-link comment reply fanciness
-	        wp_enqueue_script( 'comment-reply' ); 
-	    }
-	}
-	// Hook into wp_enqueue_scripts
-	add_action( 'wp_enqueue_scripts', 'ag_enqueue_comment_reply' );
+
+    function ag_enqueue_comment_reply() {
+        // on single blog post pages with comments open and threaded comments
+        if (is_singular() && comments_open() && get_option('thread_comments')) {
+            // enqueue the javascript that performs in-link comment reply fanciness
+            wp_enqueue_script('comment-reply');
+        }
+    }
+
+    // Hook into wp_enqueue_scripts
+    add_action('wp_enqueue_scripts', 'ag_enqueue_comment_reply');
 endif;
 
-/*-----------------------------------------------------------------------------------*/
-/*	Add Widgets
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
+/* 	Add Widgets
+  /*----------------------------------------------------------------------------------- */
 // Add the News Custom Widget
 include("functions/widgets/widget-news.php");
 // Add the Contact Custom Widget
@@ -536,817 +575,853 @@ include("functions/widgets/widget-tab.php");
 // Add the Recent Projects Widget
 include("functions/widgets/widget-recent-projects.php");
 
-/*-----------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------- */
 /* Register Widget Sidebars
-/*-----------------------------------------------------------------------------------*/
-if ( function_exists('register_sidebar') ) {
- register_sidebar(array(
-  'name' => 'Blog Sidebar',
-  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  'after_widget' => '</div><div class="clear"></div>',
-  'before_title' => '<h4 class="widget-title">',
-  'after_title' => '</h4>',
- ));
- register_sidebar(array(
-  'name' => 'Single Post Sidebar',
-  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  'after_widget' => '</div><div class="clear"></div>',
-  'before_title' => '<h4 class="widget-title">',
-  'after_title' => '</h4>',
- ));
- register_sidebar(array(
-  'name' => 'Page Sidebar',
-  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  'after_widget' => '</div><div class="clear"></div>',
-  'before_title' => '<h4 class="widget-title">',
-  'after_title' => '</h4>',
- ));
- register_sidebar(array(
-  'name' => 'Contact Sidebar',
-  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  'after_widget' => '</div><div class="clear"></div>',
-  'before_title' => '<h4 class="widget-title">',
-  'after_title' => '</h4>',
- ));
- register_sidebar(array( 
-  'name' => 'Footer Left',
-  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  'after_widget' => '</div><div class="clear"></div>',
-  'before_title' => '<h3 class="widget-title">',
-  'after_title' => '</h3>',
- ));
- register_sidebar(array( 
-  'name' => 'Footer Left Center',
-  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  'after_widget' => '</div><div class="clear"></div>',
-  'before_title' => '<h3 class="widget-title">',
-  'after_title' => '</h3>',
- ));
- register_sidebar(array( 
-  'name' => 'Footer Right Center',
-  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  'after_widget' => '</div><div class="clear"></div>',
-  'before_title' => '<h3 class="widget-title">',
-  'after_title' => '</h3>',
- ));
- register_sidebar(array( 
-  'name' => 'Footer Right',
-  'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  'after_widget' => '</div><div class="clear"></div>',
-  'before_title' => '<h3 class="widget-title">',
-  'after_title' => '</h3>',
- ));
+  /*----------------------------------------------------------------------------------- */
+if (function_exists('register_sidebar')) {
+    register_sidebar(array(
+        'name' => 'Blog Sidebar',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div><div class="clear"></div>',
+        'before_title' => '<h4 class="widget-title">',
+        'after_title' => '</h4>',
+    ));
+    register_sidebar(array(
+        'name' => 'Single Post Sidebar',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div><div class="clear"></div>',
+        'before_title' => '<h4 class="widget-title">',
+        'after_title' => '</h4>',
+    ));
+    register_sidebar(array(
+        'name' => 'Page Sidebar',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div><div class="clear"></div>',
+        'before_title' => '<h4 class="widget-title">',
+        'after_title' => '</h4>',
+    ));
+    register_sidebar(array(
+        'name' => 'Contact Sidebar',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div><div class="clear"></div>',
+        'before_title' => '<h4 class="widget-title">',
+        'after_title' => '</h4>',
+    ));
+    register_sidebar(array(
+        'name' => 'Footer Left',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div><div class="clear"></div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
+    register_sidebar(array(
+        'name' => 'Footer Left Center',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div><div class="clear"></div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
+    register_sidebar(array(
+        'name' => 'Footer Right Center',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div><div class="clear"></div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
+    register_sidebar(array(
+        'name' => 'Footer Right',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div><div class="clear"></div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
 }
 
-/*------------------------------------------------------------------------------*/
-/*	Comments Template
-/*------------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------ */
+/* 	Comments Template
+  /*------------------------------------------------------------------------------ */
 if (!function_exists('ag_comment')) :
-	function ag_comment($comment, $args, $depth) {
 
-	    $isByAuthor = false;
+    function ag_comment($comment, $args, $depth) {
 
-	    if($comment->comment_author_email == get_the_author_meta('email')) {
-	        $isByAuthor = true;
-	    }
+        $isByAuthor = false;
 
-	    $GLOBALS['comment'] = $comment; ?>
-	   <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
-	   <div id="comment-<?php comment_ID(); ?>" class="singlecomment">
-	        <p class="commentsmetadata">
-	        	<cite><?php comment_date('F j, Y'); ?></cite>
-	        </p>
-	    	<div class="author">
-	            <div class="reply"><?php echo comment_reply_link(array('depth' => $depth, 'max_depth' => $args['max_depth'])); ?></div>
-	            <div class="name"><?php comment_author_link() ?></div>
-	        </div>
-	      <?php if ($comment->comment_approved == '0') : ?>
-	         <p class="moderation"><?php _e('Your comment is awaiting moderation.', 'framework') ?></p>
-	      <?php endif; ?>
-	        <div class="commenttext">
-	            <?php comment_text() ?>
-	        </div>
-		</div>
-	<?php
-	}
-endif;
+        if ($comment->comment_author_email == get_the_author_meta('email')) {
+            $isByAuthor = true;
+        }
 
-/*-----------------------------------------------------------------------------------*/
-/*	Load Text Domain
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('theme_init')) :
-	function theme_init(){
-	    load_theme_textdomain('framework', get_template_directory() . '/lang');
-	}
-	add_action ('init', 'theme_init');
-endif;
+        $GLOBALS['comment'] = $comment;
+        ?>
+        <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
+            <div id="comment-<?php comment_ID(); ?>" class="singlecomment">
+                <p class="commentsmetadata">
+                    <cite><?php comment_date('F j, Y'); ?></cite>
+                </p>
+                <div class="author">
+                    <div class="reply"><?php echo comment_reply_link(array('depth' => $depth, 'max_depth' => $args['max_depth'])); ?></div>
+                    <div class="name"><?php comment_author_link() ?></div>
+                </div>
+            <?php if ($comment->comment_approved == '0') : ?>
+                    <p class="moderation"><?php _e('Your comment is awaiting moderation.', 'framework') ?></p>
+            <?php endif; ?>
+                <div class="commenttext">
+            <?php comment_text() ?>
+                </div>
+            </div>
+            <?php
+        }
 
-/*-----------------------------------------------------------------------------------*/
-/*	Add deconstructed URI as <body> classes in Admin
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('add_to_admin_body_class')) :
-	function add_to_admin_body_class($classes) {
-		// get the global post variable
-		global $post;
-		// instantiate, should be overwritten
-		$mode = '';
-		// get the current page's URI (the part /after/ your domain name)
-		$uri = $_SERVER["REQUEST_URI"];
-		// get the post type from WP
-		$post_type = get_post_type($post->ID);
-		// set the $mode variable to reflect the editorial /list/ page...
-		if (strstr($uri,'edit.php')) {
-			$mode = 'edit-list-';
-		}
-		// or the actual editor page
-		if (strstr($uri,'post.php')) {
-			$mode = 'edit-page-';
-		}
-		// append our new mode/post_type class to any existing classes
-		$classes .= $mode . $post_type;
-		// and send them back to WP
-		return $classes;
-	}
-	// add this filter to the admin_body_class hook
-	add_filter('admin_body_class', 'add_to_admin_body_class');
-endif;
+    endif;
 
-/*-----------------------------------------------------------------------------------*/
-/*	Create Section Post Type
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('create_section_post_types')) :
-	function create_section_post_types() {
-		register_post_type( 'section',
-			array(
-				  'labels' => array(
-				  'name' => __( 'Section', 'framework'),
-				  'singular_name' => __( 'Section', 'framework'),
-				  'add_new' => __( 'Add New', 'framework' ),
-			   	  'add_new_item' => __( 'Add Section', 'framework'),
-				  'edit' => __( 'Edit', 'framework' ),
-		  		  'edit_item' => __( 'Edit Section', 'framework'),
-		          'new_item' => __( 'New Section', 'framework'),
-				  'view' => __( 'View Section', 'framework'),
-				  'view_item' => __( 'View Section', 'framework'),
-				  'search_items' => __( 'Search Sections', 'framework'),
-		  		  'not_found' => __( 'No Sections found', 'framework'),
-		  		  'not_found_in_trash' => __( 'No Section Items found in Trash', 'framework'),
-				  'parent' => __( 'Parent Section', 'framework'),
-				),
-				'menu_icon' => get_template_directory_uri() . '/admin/images/section.png',
-				'public' => true,
-				'exclude_from_search' => true, // we don't want sections to show up in search
-				'rewrite' => array( 'slug' => 'section'), //  Change this to change the url of your "portfolio".
-				'supports' => array( 
-					'title', 
-					'editor',  
-					'thumbnail',
-					'revisions'),
-			)
-		);
-	}
-	add_action( 'init', 'create_section_post_types' );
-endif;
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Load Text Domain
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('theme_init')) :
 
-/*-----------------------------------------------------------------------------------*/
-/*	Create Slide Post Type
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('create_slide_post_types')) :
-	function create_slide_post_types() {
-		register_post_type( 'slide',
-			array(
-				  'labels' => array(
-				  'name' => __( 'Slide', 'framework'),
-				  'singular_name' => __( 'Slide', 'framework'),
-				  'add_new' => __( 'Add New', 'framework' ),
-			   	  'add_new_item' => __( 'Add Slide', 'framework'),
-				  'edit' => __( 'Edit', 'framework' ),
-		  		  'edit_item' => __( 'Edit Slide', 'framework'),
-		          'new_item' => __( 'New Slide', 'framework'),
-				  'view' => __( 'View Slide', 'framework'),
-				  'view_item' => __( 'View Slide', 'framework'),
-				  'search_items' => __( 'Search Slides', 'framework'),
-		  		  'not_found' => __( 'No Slides found', 'framework'),
-		  		  'not_found_in_trash' => __( 'No Slide Items found in Trash', 'framework'),
-				  'parent' => __( 'Parent Slide', 'framework'),
-				),
-				'menu_icon' => get_template_directory_uri() . '/admin/images/slides.png',
-				'public' => true,
-				'exclude_from_search' => true, // we don't want Slides to show up in search
-				'rewrite' => array( 'slug' => 'slide'), //  Change this to change the url of your "portfolio".
-				'supports' => array( 
-					'title',   
-					'thumbnail',
-					'editor', // Need this for qtranslate, hiding with custom css
-					'revisions'),
-			)
-		);
-	}
-	add_action( 'init', 'create_slide_post_types' );
-endif;
+        function theme_init() {
+            load_theme_textdomain('framework', get_template_directory() . '/lang');
+        }
 
-/*-----------------------------------------------------------------------------------*/
-/*	Add Custom Portfolio Post Type
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('create_portfolio_post_types')) :
-	function create_portfolio_post_types() {
-		register_post_type( 'portfolio',
-			array(
-				  'labels' => array(
-				  'name' => __( 'Portfolio', 'framework'),
-				  'singular_name' => __( 'Portfolio Item', 'framework'),
-				  'add_new' => __( 'Add New', 'framework' ),
-			   	  'add_new_item' => __( 'Add New Portfolio Item', 'framework'),
-				  'edit' => __( 'Edit', 'framework' ),
-		  		  'edit_item' => __( 'Edit Portfolio Item', 'framework'),
-		          'new_item' => __( 'New Portfolio Item', 'framework'),
-				  'view' => __( 'View Portfolio', 'framework'),
-				  'view_item' => __( 'View Portfolio Item', 'framework'),
-				  'search_items' => __( 'Search Portfolio Items', 'framework'),
-		  		  'not_found' => __( 'No Portfolios found', 'framework'),
-		  		  'not_found_in_trash' => __( 'No Portfolio Items found in Trash', 'framework'),
-				  'parent' => __( 'Parent Portfolio', 'framework'),
-				),
-				'menu_icon' => get_template_directory_uri() . '/admin/images/portfolio.png',
-				'public' => true,
-				'rewrite' => array( 'slug' => 'portfolio'), //  Change this to change the url of your "portfolio".
-				'supports' => array( 
-					'title', 
-					'editor',  
-					'thumbnail',
-					'revisions'),
-			)
-		);
-	}
-	add_action( 'init', 'create_portfolio_post_types' );
-endif;
+        add_action('init', 'theme_init');
+    endif;
 
-/*-----------------------------------------------------------------------------------*/
-/*	Add Custom Icons for Post Types
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('custom_icon')) :
-	function custom_icon() {
-		   echo '<style type="text/css">
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Add deconstructed URI as <body> classes in Admin
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('add_to_admin_body_class')) :
+
+        function add_to_admin_body_class($classes) {
+            // get the global post variable
+            global $post;
+            // instantiate, should be overwritten
+            $mode = '';
+            // get the current page's URI (the part /after/ your domain name)
+            $uri = $_SERVER["REQUEST_URI"];
+            // get the post type from WP
+            $post_type = get_post_type($post->ID);
+            // set the $mode variable to reflect the editorial /list/ page...
+            if (strstr($uri, 'edit.php')) {
+                $mode = 'edit-list-';
+            }
+            // or the actual editor page
+            if (strstr($uri, 'post.php')) {
+                $mode = 'edit-page-';
+            }
+            // append our new mode/post_type class to any existing classes
+            $classes .= $mode . $post_type;
+            // and send them back to WP
+            return $classes;
+        }
+
+        // add this filter to the admin_body_class hook
+        add_filter('admin_body_class', 'add_to_admin_body_class');
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Create Section Post Type
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('create_section_post_types')) :
+
+        function create_section_post_types() {
+            register_post_type('section', array(
+                'labels' => array(
+                    'name' => __('Section', 'framework'),
+                    'singular_name' => __('Section', 'framework'),
+                    'add_new' => __('Add New', 'framework'),
+                    'add_new_item' => __('Add Section', 'framework'),
+                    'edit' => __('Edit', 'framework'),
+                    'edit_item' => __('Edit Section', 'framework'),
+                    'new_item' => __('New Section', 'framework'),
+                    'view' => __('View Section', 'framework'),
+                    'view_item' => __('View Section', 'framework'),
+                    'search_items' => __('Search Sections', 'framework'),
+                    'not_found' => __('No Sections found', 'framework'),
+                    'not_found_in_trash' => __('No Section Items found in Trash', 'framework'),
+                    'parent' => __('Parent Section', 'framework'),
+                ),
+                'menu_icon' => get_template_directory_uri() . '/admin/images/section.png',
+                'public' => true,
+                'exclude_from_search' => true, // we don't want sections to show up in search
+                'rewrite' => array('slug' => 'section'), //  Change this to change the url of your "portfolio".
+                'supports' => array(
+                    'title',
+                    'editor',
+                    'thumbnail',
+                    'revisions'),
+                    )
+            );
+        }
+
+        add_action('init', 'create_section_post_types');
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Create Slide Post Type
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('create_slide_post_types')) :
+
+        function create_slide_post_types() {
+            register_post_type('slide', array(
+                'labels' => array(
+                    'name' => __('Slide', 'framework'),
+                    'singular_name' => __('Slide', 'framework'),
+                    'add_new' => __('Add New', 'framework'),
+                    'add_new_item' => __('Add Slide', 'framework'),
+                    'edit' => __('Edit', 'framework'),
+                    'edit_item' => __('Edit Slide', 'framework'),
+                    'new_item' => __('New Slide', 'framework'),
+                    'view' => __('View Slide', 'framework'),
+                    'view_item' => __('View Slide', 'framework'),
+                    'search_items' => __('Search Slides', 'framework'),
+                    'not_found' => __('No Slides found', 'framework'),
+                    'not_found_in_trash' => __('No Slide Items found in Trash', 'framework'),
+                    'parent' => __('Parent Slide', 'framework'),
+                ),
+                'menu_icon' => get_template_directory_uri() . '/admin/images/slides.png',
+                'public' => true,
+                'exclude_from_search' => true, // we don't want Slides to show up in search
+                'rewrite' => array('slug' => 'slide'), //  Change this to change the url of your "portfolio".
+                'supports' => array(
+                    'title',
+                    'thumbnail',
+                    'editor', // Need this for qtranslate, hiding with custom css
+                    'revisions'),
+                    )
+            );
+        }
+
+        add_action('init', 'create_slide_post_types');
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Add Custom Portfolio Post Type
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('create_portfolio_post_types')) :
+
+        function create_portfolio_post_types() {
+            register_post_type('portfolio', array(
+                'labels' => array(
+                    'name' => __('Portfolio', 'framework'),
+                    'singular_name' => __('Portfolio Item', 'framework'),
+                    'add_new' => __('Add New', 'framework'),
+                    'add_new_item' => __('Add New Portfolio Item', 'framework'),
+                    'edit' => __('Edit', 'framework'),
+                    'edit_item' => __('Edit Portfolio Item', 'framework'),
+                    'new_item' => __('New Portfolio Item', 'framework'),
+                    'view' => __('View Portfolio', 'framework'),
+                    'view_item' => __('View Portfolio Item', 'framework'),
+                    'search_items' => __('Search Portfolio Items', 'framework'),
+                    'not_found' => __('No Portfolios found', 'framework'),
+                    'not_found_in_trash' => __('No Portfolio Items found in Trash', 'framework'),
+                    'parent' => __('Parent Portfolio', 'framework'),
+                ),
+                'menu_icon' => get_template_directory_uri() . '/admin/images/portfolio.png',
+                'public' => true,
+                'rewrite' => array('slug' => 'portfolio'), //  Change this to change the url of your "portfolio".
+                'supports' => array(
+                    'title',
+                    'editor',
+                    'thumbnail',
+                    'revisions'),
+                    )
+            );
+        }
+
+        add_action('init', 'create_portfolio_post_types');
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Add Custom Icons for Post Types
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('custom_icon')) :
+
+        function custom_icon() {
+            echo '<style type="text/css">
 			  #icon-edit.icon32.icon32-posts-portfolio {
-				background: url('. get_template_directory_uri() . '/admin/images/portfolio-large.png) no-repeat; 
+				background: url(' . get_template_directory_uri() . '/admin/images/portfolio-large.png) no-repeat; 
 			  }
 			  #icon-edit.icon32.icon32-posts-section {
-				background: url('. get_template_directory_uri() . '/admin/images/section-large.png) no-repeat; 
+				background: url(' . get_template_directory_uri() . '/admin/images/section-large.png) no-repeat; 
 			  }
 			  #icon-edit.icon32.icon32-posts-slide {
-				background: url('. get_template_directory_uri() . '/admin/images/slides-large.png) no-repeat; 
+				background: url(' . get_template_directory_uri() . '/admin/images/slides-large.png) no-repeat; 
 			  }
 			 </style>';
-	}
-	add_action('admin_enqueue_scripts', 'custom_icon', 1);
-endif;
+        }
+
+        add_action('admin_enqueue_scripts', 'custom_icon', 1);
+    endif;
 
 //create the taxonomies function
-if (!function_exists('ag_create_taxonomies')) :
-	function ag_create_taxonomies() {
-	  // Add new taxonomy, make it hierarchical (like categories)
-	  $labels = array(
-	    'name' => _x( 'Filter', 'taxonomy general name', 'framework'),
-	    'singular_name' => _x( 'Filter', 'taxonomy singular name', 'framework'),
-	    'search_items' =>  __( 'Search Filters', 'framework'),
-	    'all_items' => __( 'All Filters', 'framework'),
-	    'parent_item' => __( 'Parent Filter', 'framework'),
-	    'parent_item_colon' => __( 'Parent Filter:', 'framework'),
-	    'edit_item' => __( 'Edit Filter', 'framework'), 
-	    'update_item' => __( 'Update Filter', 'framework'),
-	    'add_new_item' => __( 'Add New Filter', 'framework'),
-	    'new_item_name' => __( 'New Filter Name', 'framework'),
-	    'menu_name' => __( 'Filters', 'framework'),
-	  ); 	
+    if (!function_exists('ag_create_taxonomies')) :
 
-	  register_taxonomy('filter',array('portfolio'), array(
-	    'hierarchical' => false,
-	    'labels' => $labels,
-	    'show_ui' => true,
-	    'query_var' => true,
-	    'rewrite' => array( 'slug' => 'filter' ), // This is the url slug
-	  ));
+        function ag_create_taxonomies() {
+            // Add new taxonomy, make it hierarchical (like categories)
+            $labels = array(
+                'name' => _x('Filter', 'taxonomy general name', 'framework'),
+                'singular_name' => _x('Filter', 'taxonomy singular name', 'framework'),
+                'search_items' => __('Search Filters', 'framework'),
+                'all_items' => __('All Filters', 'framework'),
+                'parent_item' => __('Parent Filter', 'framework'),
+                'parent_item_colon' => __('Parent Filter:', 'framework'),
+                'edit_item' => __('Edit Filter', 'framework'),
+                'update_item' => __('Update Filter', 'framework'),
+                'add_new_item' => __('Add New Filter', 'framework'),
+                'new_item_name' => __('New Filter Name', 'framework'),
+                'menu_name' => __('Filters', 'framework'),
+            );
 
-	}
-	//hook into the init action and call the taxonomy when it fires
-	add_action( 'init', 'ag_create_taxonomies', 0 );
-endif;
+            register_taxonomy('filter', array('portfolio'), array(
+                'hierarchical' => false,
+                'labels' => $labels,
+                'show_ui' => true,
+                'query_var' => true,
+                'rewrite' => array('slug' => 'filter'), // This is the url slug
+            ));
+        }
 
-/**
- * Add additional functionality for Qtranslate
- */
-if (function_exists('qtrans_modifyTermFormFor')) {
-	add_action('filter_add_form', 'qtrans_modifyTermFormFor');
-	add_action('filter_edit_form', 'qtrans_modifyTermFormFor');
-}
+        //hook into the init action and call the taxonomy when it fires
+        add_action('init', 'ag_create_taxonomies', 0);
+    endif;
 
-if (!function_exists('ag_admin_css')) :
-	function ag_admin_css() {
-		$getposttype = '';
-		if (isset($_GET['post_type'])) $getposttype = $_GET['post_type'];
-		global $post_type; 
-		
-		if (($getposttype == 'section') || ($post_type == 'section')) :		
-			echo "<link type='text/css' rel='stylesheet' href='" . get_template_directory_uri() ."/functions/css/section-slide.css' />";
-		endif;
-		
-		if (($getposttype == 'slide') || ($post_type == 'slide')) :	
-			echo "<link type='text/css' rel='stylesheet' href='" . get_template_directory_uri() ."/functions/css/section-slide.css' />";
-		endif;
-	}
-	// Add Css for Seciton of Slide
-	add_action('admin_head', 'ag_admin_css');
-endif;
+    /**
+     * Add additional functionality for Qtranslate
+     */
+    if (function_exists('qtrans_modifyTermFormFor')) {
+        add_action('filter_add_form', 'qtrans_modifyTermFormFor');
+        add_action('filter_edit_form', 'qtrans_modifyTermFormFor');
+    }
 
-/*-----------------------------------------------------------------------------------*/
-/*	
-/*   Theme Functions
-/*
-/*-----------------------------------------------------------------------------------*/
+    if (!function_exists('ag_admin_css')) :
 
-/*-----------------------------------------------------------------------------------*/
-/*	Get Post Slides
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_post_slideshow')) :
-	function ag_post_slideshow($image_size, $id, $thumbnum, $arrows_outside, $slidelink='false') {
-		
-		// Add one to the thumbnail number for the loop
-		$thumbnum++; 
-		// Set the slideshow variable	
-		$slideshow = '';
-		
-		// Get The Post Type
-		$posttype = get_post_type( $id );
-		
-		// Check whether the slide should link
-		if ($slidelink == 'true') {
-			$permalink = get_permalink($id);
-			$title = get_the_title($id);
-			$permalink = '<a href="'.$permalink.'" title="'.$title.'">';
-			$permalinkend = '</a>';
-		} else {
-			$permalink = '';
-			$permalinkend = '';
-		}
-		
-		$counter = 2; //start counter at 2			  
-		
-		$full = get_post_meta($id,'_thumbnail_id',false); // Get Image ID 
-		
-		
-		/* If there's a featured image
-		================================================== */
-		if($full) {
-		  
-			$caption = get_post($full[0])->post_excerpt; 
-			
-			$alt = get_post_meta($full, '_wp_attachment_image_alt', true); // Alt text of image
-			$full = wp_get_attachment_image_src($full[0], 'full', false);  // URL of Featured Full Image
-					  
-			$thumb = get_post_meta($id,'_thumbnail_id',false); 
-			$thumb = wp_get_attachment_image_src($thumb[0], $image_size, false);  // URL of Featured first slide
-			
-			
-			// Get all slides
-			while ($counter < ($thumbnum)) {
-				
-				${"full" . $counter} = MultiPostThumbnails::get_post_thumbnail_id($posttype, $counter . '-slide', $id); // Get Image ID
-				// The thumbnail caption:
-				${"caption" . $counter} = get_post(${"full" . $counter})->post_excerpt;
-				${"alt" . $counter} = get_post_meta(${"full" . $counter} , '_wp_attachment_image_alt', true); // Alt text of image			 
-				${"full" . $counter} = wp_get_attachment_image_src(${"full" . $counter}, false); // URL of Second Slide Full Image
-				
-				${"thumb" . $counter} = MultiPostThumbnails::get_post_thumbnail_id($posttype, $counter . '-slide', $id); 
-				${"thumb" . $counter} = wp_get_attachment_image_src(${"thumb" . $counter}, $image_size, false); // URL of next Slide 
-			 
-			$counter++;
-			
-			}
-				
-			// If there's a thumbnail set
-				$slideshow .= '<div class="featured-image ';
-				
-				$slideshow .= (isset($thumb2[0]) && $thumb2[0] != '' && $arrows_outside == true) ? ' outsidearrows' : '';
-				
-				$slideshow .=  '">';
-			
-			// If there's a slide 2
-			$slideshow .= (isset($thumb2[0]) && $thumb2[0] != '') ? '<ul class="bxslider"><li>' : '';
-			
-			// If there's a slide 2 and outside arrows are set to true
-			$slideshow .= $permalink . '<img src="' . $thumb[0] .'" alt="';
-			// If there's an image alt info, set it
-			$slideshow .= ($alt) ? str_replace('"', "", $alt) : get_the_title();
-			$slideshow .= '"';
-			// If there's a caption, add it.
-			$slideshow .= ($caption && $caption != '') ? ' title="' . strip_tags (apply_filters('the_content', $caption)) .'"' : ''; 
-			
-			$slideshow .= ' class="scale-with-grid"/>' .$permalinkend;
-			
-			$slideshow .= (isset($thumb2[0]) && $thumb2[0] != '') ? '</li>' : '';
-			
-			// Loop through thumbnails and set them
-			if (isset($thumb2[0]) && $thumb2[0] != '') {	
-				$tcounter = 2;
-				while ($tcounter < ($thumbnum)) :
-					if ( ${'thumb' . $tcounter}) : 
-					   $slideshow .= '<li>' . $permalink . '<img src="' . ${'thumb' . $tcounter}[0] .'" alt="';
-					   $slideshow .= (${'alt' . $tcounter}) ? str_replace('"', "", ${'alt' . $tcounter}) : get_the_title();
-					   $slideshow .= '" ';
-					   if (${'caption' . $tcounter} &&  ${'caption' . $tcounter} != '') { $slideshow .= ' title="' . strip_tags (apply_filters('the_content', ${'caption' . $tcounter}))  .'"'; }
-					   $slideshow .= ' class="scale-with-grid" data-thumb="' . ${'thumb' . $tcounter}[0] . '"/>'. $permalinkend . '</li>';
-					endif; $tcounter++;
-				endwhile; 
-			}
-			
-			// Add caption if there's no slideshow
-			if (!(isset($thumb2[0]) && $thumb2[0] != '') && $caption) $slideshow .= '<div class="bx-caption"><span>' . strip_tags (apply_filters('the_content', $caption)) . '</span></div>';
-			$slideshow .= (isset($thumb2[0]) && $thumb2[0] != '') ? '</ul>' : '';
-			// Close slideshow divs
-			$slideshow .= '</div>';
-			
-		} // End if $full
-		  
-		return $slideshow;
+        function ag_admin_css() {
+            $getposttype = '';
+            if (isset($_GET['post_type']))
+                $getposttype = $_GET['post_type'];
+            global $post_type;
 
-	} 
-endif;
+            if (($getposttype == 'section') || ($post_type == 'section')) :
+                echo "<link type='text/css' rel='stylesheet' href='" . get_template_directory_uri() . "/functions/css/section-slide.css' />";
+            endif;
 
-/*-----------------------------------------------------------------------------------*/
-/*	Display Post Video Function
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_post_video')) :
-	function ag_post_video($postvideo) {
-		
-		  // Get Video URL that was entered
-		  if ($postvideo != '') : $vendor = parse_url($postvideo); 
-			  $video = '';
-			  $video .= '<div class="featured-image"><div class="videocontainer">';
-			
-			 // If it's a legitimate url
-			 if (isset($vendor['host'])) {	
-				 if ($vendor['host'] == 'www.youtube.com' || $vendor['host'] == 'youtu.be' || $vendor['host'] == 'www.youtu.be' || $vendor['host'] == 'youtube.com'){ // If from Youtube.com 
-					 if ($vendor['host'] == 'www.youtube.com') { parse_str( parse_url( $postvideo, PHP_URL_QUERY ), $my_array_of_vars );
-						$video .= '<iframe width="620" height="350" src="http://www.youtube.com/embed/' . $my_array_of_vars['v']. '?modestbranding=1;rel=0;showinfo=0;autoplay=0;autohide=1;yt:stretch=16:9;wmode=transparent;" frameborder="0" allowfullscreen></iframe>';
-					 } else { 
-						$video .= '<iframe width="620" height="350" src="http://www.youtube.com/embed' . parse_url($postvideo, PHP_URL_PATH) . '?modestbranding=1;rel=0;showinfo=0;autoplay=0;autohide=1;yt:stretch=16:9;wmode=transparent;" frameborder="0" allowfullscreen></iframe>';
-					 } 
-				 } else 
-				if ($vendor['host'] == 'vimeo.com'){ // If from Vimeo.com 
-					$video .= '<iframe src="http://player.vimeo.com/video' . parse_url($postvideo, PHP_URL_PATH) . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="620" height="350" frameborder="0"></iframe>';
-				} else {
-					$video .= do_shortcode($postvideo);	
-				}
-			
-			 // Otherwise echo shortcode content	
-			 } else {
-				$video .= do_shortcode($postvideo);
-			 }
-				
-				$video .= '</div></div>';
-			endif;
-	return $video;
-	}
-endif;
+            if (($getposttype == 'slide') || ($post_type == 'slide')) :
+                echo "<link type='text/css' rel='stylesheet' href='" . get_template_directory_uri() . "/functions/css/section-slide.css' />";
+            endif;
+        }
 
-/*-----------------------------------------------------------------------------------*/
-/*	Display Slide Video Function
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_slide_video')) :
-	function ag_slide_video($slidevideo) {
-		  if ($slidevideo != '') : $vendor = parse_url($slidevideo); 
-			  $video = '';
-			  $video .= '<div class="videocontainer">';
-				
-				 if ($vendor['host'] == 'www.youtube.com' || $vendor['host'] == 'youtu.be' || $vendor['host'] == 'www.youtu.be' || $vendor['host'] == 'youtube.com'){ // If from Youtube.com 
-					 if ($vendor['host'] == 'www.youtube.com') { parse_str( parse_url( $slidevideo, PHP_URL_QUERY ), $my_array_of_vars );
-						$video .= '<iframe width="620" height="350" src="http://www.youtube.com/embed/' . $my_array_of_vars['v']. '?modestbranding=1;rel=0;showinfo=0;autoplay=0;autohide=1;yt:stretch=16:9;wmode=transparent;" frameborder="0" allowfullscreen></iframe>';
-					 } else { 
-						$video .= '<iframe width="620" height="350" src="http://www.youtube.com/embed' . parse_url($slidevideo, PHP_URL_PATH) . '?modestbranding=1;rel=0;showinfo=0;autoplay=0;autohide=1;yt:stretch=16:9;wmode=transparent;" frameborder="0" allowfullscreen></iframe>';
-					 } 
-				 }
-			
-				if ($vendor['host'] == 'vimeo.com'){ // If from Vimeo.com 
-					$video .= '<iframe src="http://player.vimeo.com/video' . parse_url($slidevideo, PHP_URL_PATH) . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="620" height="350" frameborder="0"></iframe>';
-				} 
-				
-				$video .= '</div>';
-			endif;
-	return $video;
-	}
-endif;
+        // Add Css for Seciton of Slide
+        add_action('admin_head', 'ag_admin_css');
+    endif;
 
-/*-----------------------------------------------------------------------------------*/
-/* WP Customizer
-/*-----------------------------------------------------------------------------------*/
+    /* ----------------------------------------------------------------------------------- */
+    /* 	
+      /*   Theme Functions
+      /*
+      /*----------------------------------------------------------------------------------- */
 
-if (!function_exists('ag_color_customizer')) :
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Get Post Slides
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_post_slideshow')) :
 
-	function ag_color_customizer($wp_customize) {
-	  $colors = array();
-	  
-	  $colors[] = array( 
-	  	'slug'=>'highlight_color', 
-		'default' => '#00a498',
-	  	'label' => __( 'Theme Highlight Color', 'framework' ),
-		'priority' => 20 
-		);
-	  
-	  $colors[] = array( 
-	  	'slug'=>'content_bg_color', 
-		'default' => '#ffffff',
-	  	'label' => __( 'Site Background Color', 'framework' ),
-		'priority' => 30 
-		);
-	  
-	  $colors[] = array( 
-	  	'slug'=>'page_bg_color', 
-		'default' => '#f3f3f3',
-	  	'label' => __( 'Page Background Color', 'framework' ),
-		'priority' => 40 
-		);
-	  
-	  $colors[] = array( 
-	  	'slug'=>'heading_color', 
-	  	'default' => '#222222',
-	  	'label' => __( 'Site Headings and Titles Color', 'framework' ),
-	    'priority' => 50 
-		);
-	  
-	  $colors[] = array( 
-	  	'slug'=>'body_color', 
-		'default' => '#555555',
-	  	'label' => __( 'General Site Text Color', 'framework' ),
-		'priority' => 60 
-		);
-	  
-	  $colors[] = array( 
-	  	'slug'=>'content_li_color', 
-		'default' => '#555555',
-	  	'label' => __( 'Dropdown Navigation Color', 'framework' ),
-		'priority' => 70 
-		); 
+        function ag_post_slideshow($image_size, $id, $thumbnum, $arrows_outside, $slidelink = 'false') {
 
-	  $colors[] = array( 
-		'slug'=>'content_li_bg_color', 
-		'default' => '#fff',
-		'label' => __( 'Dropdown Navigation Background Color', 'framework' ),
-		'priority' => 60 
-		); 
-	  
-	  foreach($colors as $color)
-	  {
+            // Add one to the thumbnail number for the loop
+            $thumbnum++;
+            // Set the slideshow variable	
+            $slideshow = '';
 
-	    // SETTINGS
-	    $wp_customize->add_setting( $color['slug'], array( 'default' => $color['default'],
-	    'type' => 'option', 'capability' => 'edit_theme_options' ));
+            // Get The Post Type
+            $posttype = get_post_type($id);
 
-	    // CONTROLS
-	    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize,
-	     $color['slug'], array( 'label' => $color['label'], 'section' => 'colors',
-	     'settings' => $color['slug'] )));
-	  }
-	  
+            // Check whether the slide should link
+            if ($slidelink == 'true') {
+                $permalink = get_permalink($id);
+                $title = get_the_title($id);
+                $permalink = '<a href="' . $permalink . '" title="' . $title . '">';
+                $permalinkend = '</a>';
+            } else {
+                $permalink = '';
+                $permalinkend = '';
+            }
 
-	}
-	add_action('customize_register', 'ag_color_customizer');
-endif;
+            $counter = 2; //start counter at 2			  
 
-if (!function_exists('ag_background_theme_customizer')) :
-	function ag_background_theme_customizer( $wp_customize ) {
-	    $wp_customize->add_section( 'ag_background', array(
-	        'title' => 'Background Image', // The title of section
-	        'description' => 'Background Image For Your Site', // The description of section
-	    ) );
-	 
-	  // ADD BACKGROUND IMAGE UPLOAD
-	  $wp_customize->add_setting( 'uploaded_image', array(
-	    'type' => 'option',
-	  ) );
-	  
-	  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 
-	  	'uploaded_image', array( 'label'   => 'Background Image', 'section' => 'ag_background',
-	  )));
-	  
-	  // Remove the Title Tagline Section
-	  $wp_customize->remove_section( 'title_tagline'); 
-	}
-	add_action( 'customize_register', 'ag_background_theme_customizer', 11 );
-endif;
+            $full = get_post_meta($id, '_thumbnail_id', false); // Get Image ID 
 
 
-if (!function_exists('ag_customize_css')) :
-	function ag_customize_css() { ?>
-	<style type="text/css">
+            /* If there's a featured image
+              ================================================== */
+            if ($full) {
 
-	body { 
-		background-color: <?php echo ($content_bg_color = get_option('content_bg_color')) ? $content_bg_color : '#ffffff';?>; 
-		background-image: <?php echo ($content_bg_image = get_option('uploaded_image')) ? 'url('.$content_bg_image.')' : 'none';?>;
-	}
+                $caption = get_post($full[0])->post_excerpt;
 
-	h1, h1 a,
-	h2, h2 a,
-	h3, h3 a,
-	h4, h4 a,
-	h5, h5 a,
-	h6, h6 a,
-	.widget h1 a,
-	.widget h2 a,
-	.widget h3 a,
-	.widget h4 a,
-	.widget h5 a,
-	.widget h6 a,
-	.tabswrap .tabpost a,
-	.more-posts a,
-	ul li a.rsswidget { 
-		color: <?php echo ($heading_color = get_option('heading_color')) ? $heading_color : '#222222';?>; 
-	} 
+                $alt = get_post_meta($full, '_wp_attachment_image_alt', true); // Alt text of image
+                $full = wp_get_attachment_image_src($full[0], 'full', false);  // URL of Featured Full Image
 
-	.sf-menu li li li li a, 
-	.sf-menu li li li a, 
-	.sf-menu li li a, 
-	.sf-menu li li a:visited,
-	.sf-menu li li li a:visited, 
-	.sf-menu li li li li a:visited,
-	.sf-menu a, .sf-menu a:visited  {
-		color:<?php echo ($content_li_color = get_option('content_li_color')) ? $content_li_color : '#555555';?>; 
-	} 
-	.sf-menu ul.sub-menu,
-	.sf-menu li li li li a, 
-	.sf-menu li li li a, 
-	.sf-menu li li a, 
-	.sf-menu li li li li a:visited, 
-	.sf-menu li li li a:visited, 
-	.sf-menu li li a:visited {
-		background: <?php echo ($content_li_bg_color = get_option('content_li_bg_color')) ? $content_li_bg_color : '#ffffff';?>; 
-	} 
+                $thumb = get_post_meta($id, '_thumbnail_id', false);
+                $thumb = wp_get_attachment_image_src($thumb[0], $image_size, false);  // URL of Featured first slide
+                // Get all slides
+                while ($counter < ($thumbnum)) {
 
-	.avatar-info .comment-counter,
-	.categories a:hover, .tagcloud a, .widget .tagcloud a, .single .categories a, .single .sidebar .categories a:hover, 
-	.tabswrap ul.tabs li a.active, .tabswrap ul.tabs li a:hover, #footer .tabswrap ul.tabs li a:hover, #footer .tabswrap ul.tabs li a.active, 
-	.pagination a.button.share:hover, #commentsubmit #submit, #cancel-comment-reply-link, ul.filter li a.active, .categories a, .widget .categories a,
-	ul.filter li a:hover, .button, a.button, .widget a.button, a.more-link, .widget a.more-link, #footer .button, #footer a.button, #footer a.more-link, .cancel-reply p a,
-	#footer .button:hover, #footer a.button:hover, #footer a.more-link:hover, .ag-pricing-table .featured .ag-pricing-header  { 
-		background-color: <?php echo ($highlight_color = get_option('highlight_color')) ? $highlight_color : '#00a498';?>;  
-		color:#fff; 
-	}
+                    ${"full" . $counter} = MultiPostThumbnails::get_post_thumbnail_id($posttype, $counter . '-slide', $id); // Get Image ID
+                    // The thumbnail caption:
+                    ${"caption" . $counter} = get_post(${"full" . $counter})->post_excerpt;
+                    ${"alt" . $counter} = get_post_meta(${"full" . $counter}, '_wp_attachment_image_alt', true); // Alt text of image			 
+                    ${"full" . $counter} = wp_get_attachment_image_src(${"full" . $counter}, false); // URL of Second Slide Full Image
 
-	p a, a, blockquote, blockquote p, .pagetitle h2, .tabswrap .tabpost a:hover, .articleinner h2 a:hover, span.date a:hover, .highlight, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, .post h2.title a:hover, #wp-calendar tbody td a,
-	.author p a:hover, .date p a:hover, .widget a:hover, .widget.ag_twitter_widget span a, #footer h1 a:hover, #footer h2 a:hover, #footer h3 a:hover, #footer h3 a:hover, #footer h4 a:hover, #footer h5 a:hover, a:hover, #footer a:hover, .blogpost h2 a:hover, .blogpost .smalldetails a:hover {
-		 color: <?php echo ($highlight_color = get_option('highlight_color')) ? $highlight_color : '#00a498';?>;
-	}
+                    ${"thumb" . $counter} = MultiPostThumbnails::get_post_thumbnail_id($posttype, $counter . '-slide', $id);
+                    ${"thumb" . $counter} = wp_get_attachment_image_src(${"thumb" . $counter}, $image_size, false); // URL of next Slide 
 
-	.recent-project:hover,
-	#footer .recent-project:hover {
-		border-color: <?php echo ($highlight_color = get_option('highlight_color')) ? $highlight_color : '#00a498';?>;
-	}
-	.pagecontent {
-		background-color: <?php echo ($page_bg_color = get_option('page_bg_color')) ? $page_bg_color : '#f3f3f3'; ?>;	
-	}
+                    $counter++;
+                }
 
-	<?php 
-	// If Page Content is White, make some corrections
-	if (get_option('page_bg_color') == '#fff' || get_option('page_bg_color') == '#ffffff') { ?>
-	.singlecomment {
-		background:#f3f3f3;
-		background: rgba(0,0,0,0.05);	
-	}
-	.#wp-calendar tbody td {
-		background: #f3f3f3;
-		border: 1px solid #ffffff;
-	}
+                // If there's a thumbnail set
+                $slideshow .= '<div class="featured-image ';
 
-	<?php } ?>
+                $slideshow .= (isset($thumb2[0]) && $thumb2[0] != '' && $arrows_outside == true) ? ' outsidearrows' : '';
 
-	body, p, ul, ol, ul.filter li a, .author p a, .date p a, .widget a, .widget_nav_menu a:hover, .widget_recent_entries a:hover,
-	.sf-menu a, .sf-menu a:visited {
-		color: <?php echo ($body_color = get_option('body_color')) ? $body_color : '#555555'; ?>
-	} 
+                $slideshow .= '">';
 
-	<?php
-	// Custom CSS Box
-	//==========================
-	echo ($customcss = of_get_option('of_custom_css')) ? "/* Custom CSS */ \n" . $customcss : ''; ?>
+                // If there's a slide 2
+                $slideshow .= (isset($thumb2[0]) && $thumb2[0] != '') ? '<ul class="bxslider"><li>' : '';
 
-	</style>
-	    <?php
-	}
-	add_action( 'wp_head', 'ag_customize_css');
+                // If there's a slide 2 and outside arrows are set to true
+                $slideshow .= $permalink . '<img src="' . $thumb[0] . '" alt="';
+                // If there's an image alt info, set it
+                $slideshow .= ($alt) ? str_replace('"', "", $alt) : get_the_title();
+                $slideshow .= '"';
+                // If there's a caption, add it.
+                $slideshow .= ($caption && $caption != '') ? ' title="' . strip_tags(apply_filters('the_content', $caption)) . '"' : '';
 
-endif;
+                $slideshow .= ' class="scale-with-grid"/>' . $permalinkend;
 
-/*-----------------------------------------------------------------------------------*/
-/* Convert Hex to RGBA Function
-/*-----------------------------------------------------------------------------------*/
+                $slideshow .= (isset($thumb2[0]) && $thumb2[0] != '') ? '</li>' : '';
 
-if (!function_exists('ag_hex2rgba')) :
-	function ag_hex2rgba($hex, $opacity) {
-		$ohex = $hex;
-	   $hex = str_replace("#", "", $hex);
+                // Loop through thumbnails and set them
+                if (isset($thumb2[0]) && $thumb2[0] != '') {
+                    $tcounter = 2;
+                    while ($tcounter < ($thumbnum)) :
+                        if (${'thumb' . $tcounter}) :
+                            $slideshow .= '<li>' . $permalink . '<img src="' . ${'thumb' . $tcounter}[0] . '" alt="';
+                            $slideshow .= (${'alt' . $tcounter}) ? str_replace('"', "", ${'alt' . $tcounter}) : get_the_title();
+                            $slideshow .= '" ';
+                            if (${'caption' . $tcounter} && ${'caption' . $tcounter} != '') {
+                                $slideshow .= ' title="' . strip_tags(apply_filters('the_content', ${'caption' . $tcounter})) . '"';
+                            }
+                            $slideshow .= ' class="scale-with-grid" data-thumb="' . ${'thumb' . $tcounter}[0] . '"/>' . $permalinkend . '</li>';
+                        endif;
+                        $tcounter++;
+                    endwhile;
+                }
 
-	   if(strlen($hex) == 3) {
-	      $r = hexdec(substr($hex,0,1).substr($hex,0,1));
-	      $g = hexdec(substr($hex,1,1).substr($hex,1,1));
-	      $b = hexdec(substr($hex,2,1).substr($hex,2,1));
-	   } else {
-	      $r = hexdec(substr($hex,0,2));
-	      $g = hexdec(substr($hex,2,2));
-	      $b = hexdec(substr($hex,4,2));
-	   }
-	   $rgb = array($r, $g, $b);
-	   
-	   $output = 'style="background:'.$ohex .'; background: rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].','.$opacity.'); box-shadow: 20px 0 0 rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].','.$opacity.'), -20px 0 0 rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].','.$opacity.'); "';
-	   //return implode(",", $rgb); // returns the rgb values separated by commas
-	   return $output; // returns an array with the rgb values
-	}
-endif;
+                // Add caption if there's no slideshow
+                if (!(isset($thumb2[0]) && $thumb2[0] != '') && $caption)
+                    $slideshow .= '<div class="bx-caption"><span>' . strip_tags(apply_filters('the_content', $caption)) . '</span></div>';
+                $slideshow .= (isset($thumb2[0]) && $thumb2[0] != '') ? '</ul>' : '';
+                // Close slideshow divs
+                $slideshow .= '</div>';
+            } // End if $full
 
-/*-----------------------------------------------------------------------------------*/
-/* Add HTTP to links function
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_addhttp')) :
-	function ag_addhttp($url) {
-	    if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
-	        $url = "http://" . $url;
-	    }
-	    return $url;
-	}
-endif;
+            return $slideshow;
+        }
 
-/*-----------------------------------------------------------------------------------*/
-/* Get a Specific Amount of Categories
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_get_cats')) :
-	function ag_get_cats($num){
-		
-	    $t=get_the_category();
-	    $count=count($t); 
-		
-		if ($count < $num) $num = $count;
-		
-		$cat_string = '';
-	    for($i=0; $i<$num; $i++){
-	        $cat_string.= '<a href="'.get_category_link( $t[$i]->cat_ID  ).'">'.$t[$i]->cat_name.'</a>';
-	    }
-		
-		$cat_string .= '<div class="clear"></div>';
-		
-		if ($cat_string) return $cat_string;
-	}
-endif;
+    endif;
 
-/*-----------------------------------------------------------------------------------*/
-/* Load Google Fonts
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_load_fonts')) :
-	function ag_load_fonts() {
-		
-		$cyrillic = of_get_option('of_cyrillic_chars');
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Display Post Video Function
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_post_video')) :
 
-		// Initialize Variables
-		$fonts = '';
-		$font_faces = array();
-		$cyrillic_chars = '';
-		
-		// Get All Font Options
-		$option_fonts = array(
-			of_get_option('of_nav_font'),
-			of_get_option('of_heading_font'),
-			of_get_option('of_page_subtitle_font'),
-			of_get_option('of_secondary_font'),
-			of_get_option('of_content_heading_font'),
-			of_get_option('of_button_font'),
-			of_get_option('of_tiny_font'),
-			of_get_option('of_p_font')
-			);
+        function ag_post_video($postvideo) {
 
-		foreach ($option_fonts as $option) {
-			 // Make sure the font face isn't a non-google font.
-			 if (!ag_is_default($option['face'])){
-				// Store all font typefaces in an array
-			 	array_push($font_faces, $option['face']); 
-			 };
-		}
-		
-	  // Remove duplicate values
-	  $font_faces = array_unique($font_faces); 
+            // Get Video URL that was entered
+            if ($postvideo != '') : $vendor = parse_url($postvideo);
+                $video = '';
+                $video .= '<div class="featured-image"><div class="videocontainer">';
 
-	  // Check for cyrillic character option
-	  if ($cyrillic == 'Yes') $cyrillic_chars = '::cyrillic,latin'; 
-	  
-	  $fonts .= "
+                // If it's a legitimate url
+                if (isset($vendor['host'])) {
+                    if ($vendor['host'] == 'www.youtube.com' || $vendor['host'] == 'youtu.be' || $vendor['host'] == 'www.youtu.be' || $vendor['host'] == 'youtube.com') { // If from Youtube.com 
+                        if ($vendor['host'] == 'www.youtube.com') {
+                            parse_str(parse_url($postvideo, PHP_URL_QUERY), $my_array_of_vars);
+                            $video .= '<iframe width="620" height="350" src="http://www.youtube.com/embed/' . $my_array_of_vars['v'] . '?modestbranding=1;rel=0;showinfo=0;autoplay=0;autohide=1;yt:stretch=16:9;wmode=transparent;" frameborder="0" allowfullscreen></iframe>';
+                        } else {
+                            $video .= '<iframe width="620" height="350" src="http://www.youtube.com/embed' . parse_url($postvideo, PHP_URL_PATH) . '?modestbranding=1;rel=0;showinfo=0;autoplay=0;autohide=1;yt:stretch=16:9;wmode=transparent;" frameborder="0" allowfullscreen></iframe>';
+                        }
+                    } else
+                    if ($vendor['host'] == 'vimeo.com') { // If from Vimeo.com 
+                        $video .= '<iframe src="http://player.vimeo.com/video' . parse_url($postvideo, PHP_URL_PATH) . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="620" height="350" frameborder="0"></iframe>';
+                    } else {
+                        $video .= do_shortcode($postvideo);
+                    }
+
+                    // Otherwise echo shortcode content	
+                } else {
+                    $video .= do_shortcode($postvideo);
+                }
+
+                $video .= '</div></div>';
+            endif;
+            return $video;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* 	Display Slide Video Function
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_slide_video')) :
+
+        function ag_slide_video($slidevideo) {
+            if ($slidevideo != '') : $vendor = parse_url($slidevideo);
+                $video = '';
+                $video .= '<div class="videocontainer">';
+
+                if ($vendor['host'] == 'www.youtube.com' || $vendor['host'] == 'youtu.be' || $vendor['host'] == 'www.youtu.be' || $vendor['host'] == 'youtube.com') { // If from Youtube.com 
+                    if ($vendor['host'] == 'www.youtube.com') {
+                        parse_str(parse_url($slidevideo, PHP_URL_QUERY), $my_array_of_vars);
+                        $video .= '<iframe width="620" height="350" src="http://www.youtube.com/embed/' . $my_array_of_vars['v'] . '?modestbranding=1;rel=0;showinfo=0;autoplay=0;autohide=1;yt:stretch=16:9;wmode=transparent;" frameborder="0" allowfullscreen></iframe>';
+                    } else {
+                        $video .= '<iframe width="620" height="350" src="http://www.youtube.com/embed' . parse_url($slidevideo, PHP_URL_PATH) . '?modestbranding=1;rel=0;showinfo=0;autoplay=0;autohide=1;yt:stretch=16:9;wmode=transparent;" frameborder="0" allowfullscreen></iframe>';
+                    }
+                }
+
+                if ($vendor['host'] == 'vimeo.com') { // If from Vimeo.com 
+                    $video .= '<iframe src="http://player.vimeo.com/video' . parse_url($slidevideo, PHP_URL_PATH) . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="620" height="350" frameborder="0"></iframe>';
+                }
+
+                $video .= '</div>';
+            endif;
+            return $video;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* WP Customizer
+      /*----------------------------------------------------------------------------------- */
+
+    if (!function_exists('ag_color_customizer')) :
+
+        function ag_color_customizer($wp_customize) {
+            $colors = array();
+
+            $colors[] = array(
+                'slug' => 'highlight_color',
+                'default' => '#00a498',
+                'label' => __('Theme Highlight Color', 'framework'),
+                'priority' => 20
+            );
+
+            $colors[] = array(
+                'slug' => 'content_bg_color',
+                'default' => '#ffffff',
+                'label' => __('Site Background Color', 'framework'),
+                'priority' => 30
+            );
+
+            $colors[] = array(
+                'slug' => 'page_bg_color',
+                'default' => '#f3f3f3',
+                'label' => __('Page Background Color', 'framework'),
+                'priority' => 40
+            );
+
+            $colors[] = array(
+                'slug' => 'heading_color',
+                'default' => '#222222',
+                'label' => __('Site Headings and Titles Color', 'framework'),
+                'priority' => 50
+            );
+
+            $colors[] = array(
+                'slug' => 'body_color',
+                'default' => '#555555',
+                'label' => __('General Site Text Color', 'framework'),
+                'priority' => 60
+            );
+
+            $colors[] = array(
+                'slug' => 'content_li_color',
+                'default' => '#555555',
+                'label' => __('Dropdown Navigation Color', 'framework'),
+                'priority' => 70
+            );
+
+            $colors[] = array(
+                'slug' => 'content_li_bg_color',
+                'default' => '#fff',
+                'label' => __('Dropdown Navigation Background Color', 'framework'),
+                'priority' => 60
+            );
+
+            foreach ($colors as $color) {
+
+                // SETTINGS
+                $wp_customize->add_setting($color['slug'], array('default' => $color['default'],
+                    'type' => 'option', 'capability' => 'edit_theme_options'));
+
+                // CONTROLS
+                $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, $color['slug'], array('label' => $color['label'], 'section' => 'colors',
+                    'settings' => $color['slug'])));
+            }
+        }
+
+        add_action('customize_register', 'ag_color_customizer');
+    endif;
+
+    if (!function_exists('ag_background_theme_customizer')) :
+
+        function ag_background_theme_customizer($wp_customize) {
+            $wp_customize->add_section('ag_background', array(
+                'title' => 'Background Image', // The title of section
+                'description' => 'Background Image For Your Site', // The description of section
+            ));
+
+            // ADD BACKGROUND IMAGE UPLOAD
+            $wp_customize->add_setting('uploaded_image', array(
+                'type' => 'option',
+            ));
+
+            $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'uploaded_image', array('label' => 'Background Image', 'section' => 'ag_background',
+            )));
+
+            // Remove the Title Tagline Section
+            $wp_customize->remove_section('title_tagline');
+        }
+
+        add_action('customize_register', 'ag_background_theme_customizer', 11);
+    endif;
+
+
+    if (!function_exists('ag_customize_css')) :
+
+        function ag_customize_css() {
+            ?>
+            <style type="text/css">
+
+                body { 
+                    background-color: <?php echo ($content_bg_color = get_option('content_bg_color')) ? $content_bg_color : '#ffffff'; ?>; 
+                    background-image: <?php echo ($content_bg_image = get_option('uploaded_image')) ? 'url(' . $content_bg_image . ')' : 'none'; ?>;
+                }
+
+                h1, h1 a,
+                h2, h2 a,
+                h3, h3 a,
+                h4, h4 a,
+                h5, h5 a,
+                h6, h6 a,
+                .widget h1 a,
+                .widget h2 a,
+                .widget h3 a,
+                .widget h4 a,
+                .widget h5 a,
+                .widget h6 a,
+                .tabswrap .tabpost a,
+                .more-posts a,
+                ul li a.rsswidget { 
+                    color: <?php echo ($heading_color = get_option('heading_color')) ? $heading_color : '#222222'; ?>; 
+                } 
+
+                .sf-menu li li li li a, 
+                .sf-menu li li li a, 
+                .sf-menu li li a, 
+                .sf-menu li li a:visited,
+                .sf-menu li li li a:visited, 
+                .sf-menu li li li li a:visited,
+                .sf-menu a, .sf-menu a:visited  {
+                    color:<?php echo ($content_li_color = get_option('content_li_color')) ? $content_li_color : '#555555'; ?>; 
+                } 
+                .sf-menu ul.sub-menu,
+                .sf-menu li li li li a, 
+                .sf-menu li li li a, 
+                .sf-menu li li a, 
+                .sf-menu li li li li a:visited, 
+                .sf-menu li li li a:visited, 
+                .sf-menu li li a:visited {
+                    background: <?php echo ($content_li_bg_color = get_option('content_li_bg_color')) ? $content_li_bg_color : '#ffffff'; ?>; 
+                } 
+
+                .avatar-info .comment-counter,
+                .categories a:hover, .tagcloud a, .widget .tagcloud a, .single .categories a, .single .sidebar .categories a:hover, 
+                .tabswrap ul.tabs li a.active, .tabswrap ul.tabs li a:hover, #footer .tabswrap ul.tabs li a:hover, #footer .tabswrap ul.tabs li a.active, 
+                .pagination a.button.share:hover, #commentsubmit #submit, #cancel-comment-reply-link, ul.filter li a.active, .categories a, .widget .categories a,
+                ul.filter li a:hover, .button, a.button, .widget a.button, a.more-link, .widget a.more-link, #footer .button, #footer a.button, #footer a.more-link, .cancel-reply p a,
+                #footer .button:hover, #footer a.button:hover, #footer a.more-link:hover, .ag-pricing-table .featured .ag-pricing-header  { 
+                    background-color: <?php echo ($highlight_color = get_option('highlight_color')) ? $highlight_color : '#00a498'; ?>;  
+                    color:#fff; 
+                }
+
+                p a, a, blockquote, blockquote p, .pagetitle h2, .tabswrap .tabpost a:hover, .articleinner h2 a:hover, span.date a:hover, .highlight, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, .post h2.title a:hover, #wp-calendar tbody td a,
+                .author p a:hover, .date p a:hover, .widget a:hover, .widget.ag_twitter_widget span a, #footer h1 a:hover, #footer h2 a:hover, #footer h3 a:hover, #footer h3 a:hover, #footer h4 a:hover, #footer h5 a:hover, a:hover, #footer a:hover, .blogpost h2 a:hover, .blogpost .smalldetails a:hover {
+                    color: <?php echo ($highlight_color = get_option('highlight_color')) ? $highlight_color : '#00a498'; ?>;
+                }
+
+                .recent-project:hover,
+                #footer .recent-project:hover {
+                    border-color: <?php echo ($highlight_color = get_option('highlight_color')) ? $highlight_color : '#00a498'; ?>;
+                }
+                .pagecontent {
+                    background-color: <?php echo ($page_bg_color = get_option('page_bg_color')) ? $page_bg_color : '#f3f3f3'; ?>;	
+                }
+
+            <?php
+            // If Page Content is White, make some corrections
+            if (get_option('page_bg_color') == '#fff' || get_option('page_bg_color') == '#ffffff') {
+                ?>
+                    .singlecomment {
+                        background:#f3f3f3;
+                        background: rgba(0,0,0,0.05);	
+                    }
+                    .#wp-calendar tbody td {
+                        background: #f3f3f3;
+                        border: 1px solid #ffffff;
+                    }
+
+            <?php } ?>
+
+                body, p, ul, ol, ul.filter li a, .author p a, .date p a, .widget a, .widget_nav_menu a:hover, .widget_recent_entries a:hover,
+                .sf-menu a, .sf-menu a:visited {
+                    color: <?php echo ($body_color = get_option('body_color')) ? $body_color : '#555555'; ?>
+                } 
+
+            <?php
+            // Custom CSS Box
+            //==========================
+            echo ($customcss = of_get_option('of_custom_css')) ? "/* Custom CSS */ \n" . $customcss : '';
+            ?>
+
+            </style>
+            <?php
+        }
+
+        add_action('wp_head', 'ag_customize_css');
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Convert Hex to RGBA Function
+      /*----------------------------------------------------------------------------------- */
+
+    if (!function_exists('ag_hex2rgba')) :
+
+        function ag_hex2rgba($hex, $opacity) {
+            $ohex = $hex;
+            $hex = str_replace("#", "", $hex);
+
+            if (strlen($hex) == 3) {
+                $r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
+                $g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
+                $b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+            } else {
+                $r = hexdec(substr($hex, 0, 2));
+                $g = hexdec(substr($hex, 2, 2));
+                $b = hexdec(substr($hex, 4, 2));
+            }
+            $rgb = array($r, $g, $b);
+
+            $output = 'style="background:' . $ohex . '; background: rgba(' . $rgb[0] . ',' . $rgb[1] . ',' . $rgb[2] . ',' . $opacity . '); box-shadow: 20px 0 0 rgba(' . $rgb[0] . ',' . $rgb[1] . ',' . $rgb[2] . ',' . $opacity . '), -20px 0 0 rgba(' . $rgb[0] . ',' . $rgb[1] . ',' . $rgb[2] . ',' . $opacity . '); "';
+            //return implode(",", $rgb); // returns the rgb values separated by commas
+            return $output; // returns an array with the rgb values
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Add HTTP to links function
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_addhttp')) :
+
+        function ag_addhttp($url) {
+            if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+                $url = "http://" . $url;
+            }
+            return $url;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Get a Specific Amount of Categories
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_get_cats')) :
+
+        function ag_get_cats($num) {
+
+            $t = get_the_category();
+            $count = count($t);
+
+            if ($count < $num)
+                $num = $count;
+
+            $cat_string = '';
+            for ($i = 0; $i < $num; $i++) {
+                $cat_string .= '<a href="' . get_category_link($t[$i]->cat_ID) . '">' . $t[$i]->cat_name . '</a>';
+            }
+
+            $cat_string .= '<div class="clear"></div>';
+
+            if ($cat_string)
+                return $cat_string;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Load Google Fonts
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_load_fonts')) :
+
+        function ag_load_fonts() {
+
+            $cyrillic = of_get_option('of_cyrillic_chars');
+
+            // Initialize Variables
+            $fonts = '';
+            $font_faces = array();
+            $cyrillic_chars = '';
+
+            // Get All Font Options
+            $option_fonts = array(
+                of_get_option('of_nav_font'),
+                of_get_option('of_heading_font'),
+                of_get_option('of_page_subtitle_font'),
+                of_get_option('of_secondary_font'),
+                of_get_option('of_content_heading_font'),
+                of_get_option('of_button_font'),
+                of_get_option('of_tiny_font'),
+                of_get_option('of_p_font')
+            );
+
+            foreach ($option_fonts as $option) {
+                // Make sure the font face isn't a non-google font.
+                if (!ag_is_default($option['face'])) {
+                    // Store all font typefaces in an array
+                    array_push($font_faces, $option['face']);
+                };
+            }
+
+            // Remove duplicate values
+            $font_faces = array_unique($font_faces);
+
+            // Check for cyrillic character option
+            if ($cyrillic == 'Yes')
+                $cyrillic_chars = '::cyrillic,latin';
+
+            $fonts .= "
 	    <!-- Embed Google Web Fonts Via API -->
 	    <script type='text/javascript'>
 	          WebFontConfig = {
 	            google: { families: [ ";
-					// Store the font list.
-					$fontlist = '';
-					foreach ($font_faces as $font) {
-						$fontlist .= ($font) ? "'" . $font . $cyrillic_chars . "', " : "'" . 'Source Sans Pro' . $cyrillic_chars . "', ";
-					}
-					// Trim the last comma and space for IE and store in fonts
-					$fonts .= rtrim($fontlist, ', ');
-	    $fonts .=  " ] }   };
+            // Store the font list.
+            $fontlist = '';
+            foreach ($font_faces as $font) {
+                $fontlist .= ($font) ? "'" . $font . $cyrillic_chars . "', " : "'" . 'Source Sans Pro' . $cyrillic_chars . "', ";
+            }
+            // Trim the last comma and space for IE and store in fonts
+            $fonts .= rtrim($fontlist, ', ');
+            $fonts .= " ] }   };
 	          (function() {
 	            var wf = document.createElement('script');
 	            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
@@ -1357,1465 +1432,1513 @@ if (!function_exists('ag_load_fonts')) :
 	            s.parentNode.insertBefore(wf, s);
 	          })();
 	    </script>";
-		
-		return $fonts;
-	}
-endif;
 
-/*-----------------------------------------------------------------------------------*/
-/* Add Theme Customizer Under Appearance
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('add_customizer_to_appearance')) :
-	function add_customizer_to_appearance() {
-	  add_submenu_page('themes.php', 'Customizer', 'Theme Customizer', 'edit_theme_options', 'customize.php', '', '', 6);
-	}
-	add_action('admin_menu', 'add_customizer_to_appearance');
-endif;
+            return $fonts;
+        }
 
-/*-----------------------------------------------------------------------------------*/
-/* Get Popular Posts
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('getPostViews')) :
-	function getPostViews($postID){
-	    $count_key = 'post_views_count';
-	    $count = get_post_meta($postID, $count_key, true);
-	    if($count==''){
-	        delete_post_meta($postID, $count_key);
-	        add_post_meta($postID, $count_key, '0');
-	        return "<span>0</span> Views";
-	    }
-	    return '<span>'. $count.'</span> '. __('Views', 'framework');
-	}
-endif;
+    endif;
 
-if (!function_exists('setPostViews')) :
-	function setPostViews($postID) {
-	    $count_key = 'post_views_count';
-	    $count = get_post_meta($postID, $count_key, true);
-	    if($count==''){
-	        $count = 0;
-	        delete_post_meta($postID, $count_key);
-	        add_post_meta($postID, $count_key, '0');
-	    }else{
-	        $count++;
-	        update_post_meta($postID, $count_key, $count);
-	    }
-	}
-endif;
+    /* ----------------------------------------------------------------------------------- */
+    /* Add Theme Customizer Under Appearance
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('add_customizer_to_appearance')) :
 
-/*-----------------------------------------------------------------------------------*/
-/*    New category walker for portfolio filter
-/*-----------------------------------------------------------------------------------*/
+        function add_customizer_to_appearance() {
+            add_submenu_page('themes.php', 'Customizer', 'Theme Customizer', 'edit_theme_options', 'customize.php', '', '', 6);
+        }
 
-if (!class_exists('Walker_Portfolio_Filter')) :
-	class Walker_Portfolio_Filter extends Walker_Category {
-	   function start_el(&$output, $category, $depth, $args) {
+        add_action('admin_menu', 'add_customizer_to_appearance');
+    endif;
 
-	      extract($args);
-	      $cat_name = esc_attr( $category->name);
-	      $cat_slug = $category->slug;
-	      $cat_name = apply_filters( 'list_cats', $cat_name, $category );
-	      $link = '<a href="#" data-filter=".'.strtolower(preg_replace('/\s+/', '-', $cat_slug)).'" ';
-	      if ( $use_desc_for_title == 0 || empty($category->description) )
-	         $link .= 'title="' . sprintf(__( 'View all projects filed under %s', 'framework'), $cat_name) . '"';
-	      else
-	         $link .= 'title="' . esc_attr( strip_tags( apply_filters( 'category_description', $category->description, $category ) ) ) . '"';
-	      $link .= '>';
-	      $link .= strip_tags (apply_filters('the_content', $cat_name));
-	      $link .= '</a>';
-	      if ( (! empty($feed_image)) || (! empty($feed)) ) {
-	         $link .= ' ';
-	         if ( empty($feed_image) )
-	            $link .= '(';
-	         $link .= '<a href="' . get_category_feed_link($category->term_id, $feed_type) . '"';
-	         if ( empty($feed) )
-	            $alt = ' alt="' . sprintf(__( 'Feed for all posts filed under %s', 'framework'), $cat_name ) . '"';
-	         else {
-	            $title = ' title="' . $feed . '"';
-	            $alt = ' alt="' . $feed . '"';
-	            $name = $feed;
-	            $link .= $title;
-	         }
-	         $link .= '>';
-	         if ( empty($feed_image) )
-	            $link .= $name;
-	         else
-	            $link .= "<img src='$feed_image'$alt$title" . ' />';
-	         $link .= '</a>';
-	         if ( empty($feed_image) )
-	            $link .= ')';
-	      }
-	      if ( isset($show_count) && $show_count )
-	         $link .= ' (' . intval($category->count) . ')';
-	      if ( isset($show_date) && $show_date ) {
-	         $link .= ' ' . gmdate('Y-m-d', $category->last_update_timestamp);
-	      }
-	      if ( isset($current_category) && $current_category )
-	         $_current_category = get_category( $current_category );
-	      if ( 'list' == $args['style'] ) {
-	          $output .= '<li class="segment-2"';
-	          $class = 'cat-item cat-item-'.$category->term_id;
-	          if ( isset($current_category) && $current_category && ($category->term_id == $current_category) )
-	             $class .=  ' current-cat';
-	          elseif ( isset($_current_category) && $_current_category && ($category->term_id == $_current_category->parent) )
-	             $class .=  ' current-cat-parent';
-	          $output .=  '';
-	          $output .= ">$link\n";
-	       } else {
-	          $output .= "\t$link<br />\n";
-	       }
-	   }
-	}
-endif;
+    /* ----------------------------------------------------------------------------------- */
+    /* Get Popular Posts
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('getPostViews')) :
 
-/*-----------------------------------------------------------------------------------*/
-/* Remove Dimensions from Thumbnails (for responsivity) and Gallery
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('remove_thumbnail_dimensions')) :
-	function remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
-	    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-	    return $html;
-	}
-	add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10, 3 );
-endif;
+        function getPostViews($postID) {
+            $count_key = 'post_views_count';
+            $count = get_post_meta($postID, $count_key, true);
+            if ($count == '') {
+                delete_post_meta($postID, $count_key);
+                add_post_meta($postID, $count_key, '0');
+                return "<span>0</span> Views";
+            }
+            return '<span>' . $count . '</span> ' . __('Views', 'framework');
+        }
 
-if (!function_exists('remove_img_width_height')) :
-	function remove_img_width_height($html) {
-	    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-	    return $html;
-	}
-	add_filter('wp_get_attachment_link', 'remove_img_width_height', 10, 1);
-endif;
+    endif;
 
-/*-----------------------------------------------------------------------------------*/
-/* Remove More Link Jump
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_remove_more_jump_link')) :
-	function ag_remove_more_jump_link($link) { 
-		$offset = strpos($link, '#more-');
-		if ($offset) { $end = strpos($link, '"',$offset); }
-		if ($end) { $link = substr_replace($link, '', $offset, $end-$offset); }
-		return $link;
-	}
-	add_filter('the_content_more_link', 'ag_remove_more_jump_link');
-endif;
+    if (!function_exists('setPostViews')) :
 
-/*-----------------------------------------------------------------------------------*/
-/* Get Attachment ID from the source
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('get_attachment_id_from_src')) :
-	function get_attachment_id_from_src($image_src) {
-		global $wpdb;
-		$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_src'";
-		$id = $wpdb->get_var($query);
-		return $id;
-	}
-endif;
-	
-/*-----------------------------------------------------------------------------------*/
-/* Wrap All Read More Tags In A Span
-/*-----------------------------------------------------------------------------------*/	
-if (!function_exists('wrap_readmore')) :
-	function wrap_readmore($more_link) {
-		return '<span class="more-link">'.$more_link.'</span>';
-	}
-	add_filter('the_content_more_link', 'wrap_readmore', 10, 1);
-endif;
+        function setPostViews($postID) {
+            $count_key = 'post_views_count';
+            $count = get_post_meta($postID, $count_key, true);
+            if ($count == '') {
+                $count = 0;
+                delete_post_meta($postID, $count_key);
+                add_post_meta($postID, $count_key, '0');
+            } else {
+                $count++;
+                update_post_meta($postID, $count_key, $count);
+            }
+        }
 
-/*-----------------------------------------------------------------------------------*/
-/* Check for a Default Font
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_is_default')) :
-	function ag_is_default($font) {
-	  if ($font == 'Arial' || $font == 'Georgia' || $font == 'Tahoma' || $font == 'Verdana' || $font == 'Helvetica') {
-	    $font = true;
-	  } else {
-		$font = false;  
-	  }
-	  return $font;
-	}
-endif;
+    endif;
 
-/*-----------------------------------------------------------------------------------*/
-/* Function to Get Slide Options
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_get_slide_variables')) :
-	function ag_get_slide_variables($id, $fixed) {
-		// Get Slide Variables
-		$ag_slide = array();
-		
-		// Slide Background Image
-		$ag_slide['image_id'] = get_post_meta($id, 'ag_slide_background_image', true);
-		
-		if ($fixed == true) {
-			$ag_slide['image'] = wp_get_attachment_image_src( $ag_slide['image_id'], 'homeslideshowfixed');
-		} else {
-			$ag_slide['image'] = wp_get_attachment_image_src( $ag_slide['image_id'], 'homeslideshow');
-		}
-		$ag_slide['image_src'] = $ag_slide['image'][0];
-		
-		// Slide Text
-		$ag_slide['caption_show'] = get_post_meta($id, 'ag_slide_text_show', true);
-		$ag_slide['caption_color'] = get_post_meta($id, 'ag_slide_text_color', true);
-		$ag_slide['caption_bg_color'] = get_post_meta($id, 'ag_slide_text_bg_color', true);
-		
-		
-		// Slide Button
-		$ag_slide['button_show'] = get_post_meta($id, 'ag_slide_button_show', true);
-		$ag_slide['button_color'] = get_post_meta($id, 'ag_slide_button_color', true);
-		$ag_slide['button_text_color'] = get_post_meta($id, 'ag_slide_button_text_color', true);
-		$ag_slide['button_text'] = get_post_meta($id, 'ag_slide_button_text', true);
-		$ag_slide['button_link'] = get_post_meta($id, 'ag_slide_button_link', true); 
-			// Apply Content Filters for Translation
-			$ag_slide['button_link'] = apply_filters('the_content', $ag_slide['button_link']);
-			$ag_slide['button_link'] = str_replace('<p>', '', $ag_slide['button_link']);
-			$ag_slide['button_link'] = str_replace('</p>', '', $ag_slide['button_link']);
-		
-		// Slide Transition
-		$ag_slide['transition'] = get_post_meta($id, 'ag_slide_transition', true);
-		
-		// Set Button Style
-		$ag_slide['button_style'] = 'style="';
-		$ag_slide['button_style'] .= ($ag_slide['button_color']) ? 'background-color: ' . $ag_slide['button_color'] . ';  ' : '';
-		$ag_slide['button_style'] .= ($ag_slide['button_text_color']) ? 'color: ' . $ag_slide['button_text_color'] . ';  ' : '';
-		$ag_slide['button_style'] .= '"';
-		
-		// Slide Link
-		$ag_slide['slide_link'] = get_post_meta($id, 'ag_slide_link', true);
-		
-		// Video URL
-		$ag_slide['video'] = get_post_meta($id, 'ag_slide_video', true);
-		
-		// Slider Height
-		if (!($ag_slide['caption_height'] = (of_get_option('of_home_slider_height'))/2)) $ag_slide['caption_height'] = '275';
-		
-		return $ag_slide;
-	}
-endif;
+    /* ----------------------------------------------------------------------------------- */
+    /*    New category walker for portfolio filter
+      /*----------------------------------------------------------------------------------- */
 
-/*-----------------------------------------------------------------------------------*/
-/* Function to Get Section Options
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_get_section_variables')) :
-	function ag_get_section_variables($id) {
-		
-			$sq = "'";
-			$ag_section = array();
-			
-			// Get Section Options
-			$ag_section['section_layout'] = get_post_meta($id, 'ag_section_layout', true);
-			$ag_section['background_color'] = get_post_meta($id, 'ag_background_color', true);
-			$ag_section['background_image'] = get_post_meta($id, 'ag_background_image', true); $ag_section['background_image'] = wp_get_attachment_image_src( $ag_section['background_image'], 'full');
-			$ag_section['section_text'] = get_post_meta($id, 'ag_text_color', true);
-			$ag_section['section_button_show'] = get_post_meta($id, 'ag_section_button_show', true); 
-			$ag_section['background_repeat'] = get_post_meta($id, 'ag_background_repeat', true);
-			
-			// Create Background Style
-			$ag_section['backgroundstyle'] = 'style="';
-			$ag_section['backgroundstyle'] .= ($ag_section['background_color']) ? 'background-color: ' . $ag_section['background_color'] . ';  ' : '';
-			$ag_section['backgroundstyle'] .= ($ag_section['background_image']) ? 'background-image: url(' . $ag_section['background_image'][0] . ');  background-position:center;' : '';
-			$ag_section['backgroundstyle'] .= '"';
-			
-			//Get Button Options
-			if ($ag_section['section_button_show'] == 'Yes') {
-				$ag_section['section_button_color'] = get_post_meta($id, 'ag_section_button_color', true);
-					$ag_section['section_button_color'] = ($ag_section['section_button_color']) ? 'background:' . $ag_section['section_button_color'] .';' : '';
-				$ag_section['section_button_text'] = get_post_meta($id, 'ag_section_button_text', true);
-				$ag_section['section_text_color'] = get_post_meta($id, 'ag_section_text_color', true);
-				$ag_section['section_button_link'] = get_post_meta($id, 'ag_section_button_link', true);
-				
-				$ag_section['section_button'] = '<a href="' . $ag_section['section_button_link'] . '" class="button" style="' . $ag_section['section_button_color'] .' color: ' . $ag_section['section_text_color'] . ';">' . $ag_section['section_button_text'] . '</a>';
-			} else {
-				$ag_section['section_button'] = '';	
-			}
-			
-			
-			$ag_section['sectionvideo'] = get_post_meta($id, 'ag_section_video', true);
-			
-			$ag_section['sectionpadding'] = get_post_meta($id, 'ag_bottom_padding', true);
-			
-			$ag_section['background_repeat'] = get_post_meta($id, 'ag_background_repeat', true);
-			
-			
-			return $ag_section;
-		
-	}
-endif;
+    if (!class_exists('Walker_Portfolio_Filter')) :
 
-/*-----------------------------------------------------------------------------------*/
-/* Function to Get Page Options
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_get_page_variables')) :
-	function ag_get_page_variables($pageID) {
-		
-		$ag_page = array();
-		
-		$ag_page['button_show'] =  get_post_meta($pageID, 'ag_page_button_show', true);
-		$ag_page['button_text'] = get_post_meta($pageID, 'ag_page_button_text', true);
-		
-		// Get Page Description
-		$ag_page['page_desc'] = get_post_meta($pageID, 'ag_page_desc', true);
-		$ag_page['page_desc_color'] = get_post_meta($pageID, 'ag_page_desc_color', true);
-		
-		//Get Button Options
-		if ($ag_page['button_show'] == 'Yes' && $ag_page['button_text'] != '') {
-			$ag_page['button_color'] = get_post_meta($pageID, 'ag_page_button_color', true);
-			$ag_page['button_text_color'] = get_post_meta($pageID, 'ag_page_button_text_color', true);
-			$ag_page['button_link'] = get_post_meta($pageID, 'ag_page_button_link', true);
-			
-			$ag_page['button'] = '<a href="' . $ag_page['button_link'] . '" class="button huge alignright" style="';
-			$ag_page['button'] .= ($ag_page['button_color']) ? 'background:' . $ag_page['button_color'] .'; ' : '';
-			$ag_page['button'] .= ($ag_page['button_text_color']) ? 'color: ' . $ag_page['button_text_color'] .'; ' : '';
-			$ag_page['button'] .= '">' . strip_tags (apply_filters('the_content', $ag_page['button_text'])) . '</a>';
-		} else {
-			$ag_page['button'] = '';	
-		}
-		
-		// Get Page Content Color
-		$ag_page['page_title_bg_color'] = get_post_meta($pageID, 'ag_page_title_bg_color', true); 
-		$ag_page['page_title_color'] = get_post_meta($pageID, 'ag_page_title_color', true);
-		$ag_page['page_content_color'] = get_post_meta($pageID, 'ag_page_content_bg_color', true);
-		$ag_page['thumb'] = wp_get_attachment_image_src( get_post_thumbnail_id($pageID), 'homeslideshow' );
-		$ag_page['thumburl'] = $ag_page['thumb']['0'];
-		
-		// Create Background Style
-		if ($ag_page['thumburl'] || $ag_page['page_title_bg_color']){
-		$ag_page['background_style'] = 'style="';
-		$ag_page['background_style'] .= ($ag_page['page_title_bg_color']) ? 'background-color: ' . $ag_page['page_title_bg_color'] . '; padding-top:35px;' : '';
-		$ag_page['background_style'] .= ($ag_page['thumburl']) ? 'background-image: url(' . $ag_page['thumburl'] . ');  background-position:center; padding-top:35px;' : '';
-		$ag_page['background_style'] .= '"';
-		} else {
-			$ag_page['background_style'] = '';	
-		}
-		
-		return $ag_page;
+        class Walker_Portfolio_Filter extends Walker_Category {
 
-	}
-endif;
+            function start_el(&$output, $category, $depth, $args) {
 
-/*-----------------------------------------------------------------------------------*/
-/* Function to Get Portfolio Options
-/*-----------------------------------------------------------------------------------*/
-if (!function_exists('ag_get_portfolio_variables')) :
-	function ag_get_portfolio_variables($pageID, $portfolio_page_id) {
-		
-		// Set Up Array
-		$ag_portfolio = array();
-		
-		// Get Page Description
-		$ag_portfolio['portfolio_desc'] = get_post_meta($pageID, 'ag_portfolio_desc', true);
-		$ag_portfolio['portfolio_desc_color'] =  get_post_meta($portfolio_page_id, 'ag_page_desc_color', true);
-		
-		// Get Page Content Color
-		$ag_portfolio['page_title_bg_color'] = get_post_meta($portfolio_page_id, 'ag_page_title_bg_color', true); 
-		$ag_portfolio['page_title_color'] = get_post_meta($portfolio_page_id, 'ag_page_title_color', true);
-		$ag_portfolio['page_content_color'] = get_post_meta($portfolio_page_id, 'ag_page_content_bg_color', true);
-		$ag_portfolio['thumb'] = wp_get_attachment_image_src( get_post_thumbnail_id($portfolio_page_id), 'homeslideshow' );
-		$ag_portfolio['thumburl'] = $ag_portfolio['thumb']['0'];
-		
-		// Create Background Style
-		if ($ag_portfolio['thumburl'] || $ag_portfolio['page_title_bg_color']){
-			$ag_portfolio['background_style'] = 'style="';
-			$ag_portfolio['background_style'] .= ($ag_portfolio['page_title_bg_color']) ? 'background-color: ' . $ag_portfolio['page_title_bg_color'] . '; padding-top:35px;' : '';
-			$ag_portfolio['background_style'] .= ($ag_portfolio['thumburl']) ? 'background-image: url(' . $ag_portfolio['thumburl'] . ');  background-position:center; padding-top:35px;' : '';
-			$ag_portfolio['background_style'] .= '"';
-		} else {
-			$ag_portfolio['background_style'] = '';	
-		}
-		
-		// Get Portfolio Page Button Options
-		$ag_portfolio['button_color'] = get_post_meta($portfolio_page_id, 'ag_page_button_color', true);
-		$ag_portfolio['button_text_color'] = get_post_meta($portfolio_page_id, 'ag_page_button_text_color', true);
-		
-		// Get Page Content Color
-		$ag_portfolio['portfolio_content_color'] = get_post_meta($portfolio_page_id, 'ag_page_content_bg_color', true);
-		$ag_portfolio['video'] = get_post_meta($pageID, 'ag_portfolio_video', true);
-		$ag_portfolio['content_title'] = get_post_meta($pageID, 'ag_portfolio_content_title', true);
-		
-		$ag_portfolio['project_button'] = (of_get_option('of_project_button')) ? of_get_option('of_project_button') : 'on';
-		$ag_portfolio['project_button_text'] = (of_get_option('of_project_button_text')) ? of_get_option('of_project_button_text') : 'Back To Projects';
-		
-		$ag_portfolio['thumbsize'] = (of_get_option('of_portfolio_crop') == 'crop') ? 'portfolio-single' : 'portfolio-single-nc';
-		$ag_portfolio['slide_number'] = (of_get_option('of_thumbnail_number')) ? of_get_option('of_thumbnail_number') : '6';
-		
-		return $ag_portfolio;
-		
-	}
-endif;
+                extract($args);
+                $cat_name = esc_attr($category->name);
+                $cat_slug = $category->slug;
+                $cat_name = apply_filters('list_cats', $cat_name, $category);
+                $link = '<a href="#" data-filter=".' . strtolower(preg_replace('/\s+/', '-', $cat_slug)) . '" ';
+                if ($use_desc_for_title == 0 || empty($category->description))
+                    $link .= 'title="' . sprintf(__('View all projects filed under %s', 'framework'), $cat_name) . '"';
+                else
+                    $link .= 'title="' . esc_attr(strip_tags(apply_filters('category_description', $category->description, $category))) . '"';
+                $link .= '>';
+                $link .= strip_tags(apply_filters('the_content', $cat_name));
+                $link .= '</a>';
+                if ((!empty($feed_image)) || (!empty($feed))) {
+                    $link .= ' ';
+                    if (empty($feed_image))
+                        $link .= '(';
+                    $link .= '<a href="' . get_category_feed_link($category->term_id, $feed_type) . '"';
+                    if (empty($feed))
+                        $alt = ' alt="' . sprintf(__('Feed for all posts filed under %s', 'framework'), $cat_name) . '"';
+                    else {
+                        $title = ' title="' . $feed . '"';
+                        $alt = ' alt="' . $feed . '"';
+                        $name = $feed;
+                        $link .= $title;
+                    }
+                    $link .= '>';
+                    if (empty($feed_image))
+                        $link .= $name;
+                    else
+                        $link .= "<img src='$feed_image'$alt$title" . ' />';
+                    $link .= '</a>';
+                    if (empty($feed_image))
+                        $link .= ')';
+                }
+                if (isset($show_count) && $show_count)
+                    $link .= ' (' . intval($category->count) . ')';
+                if (isset($show_date) && $show_date) {
+                    $link .= ' ' . gmdate('Y-m-d', $category->last_update_timestamp);
+                }
+                if (isset($current_category) && $current_category)
+                    $_current_category = get_category($current_category);
+                if ('list' == $args['style']) {
+                    $output .= '<li class="segment-2"';
+                    $class = 'cat-item cat-item-' . $category->term_id;
+                    if (isset($current_category) && $current_category && ($category->term_id == $current_category))
+                        $class .= ' current-cat';
+                    elseif (isset($_current_category) && $_current_category && ($category->term_id == $_current_category->parent))
+                        $class .= ' current-cat-parent';
+                    $output .= '';
+                    $output .= ">$link\n";
+                } else {
+                    $output .= "\t$link<br />\n";
+                }
+            }
 
-if(!is_admin())
-{
+        }
+
+        endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Remove Dimensions from Thumbnails (for responsivity) and Gallery
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('remove_thumbnail_dimensions')) :
+
+        function remove_thumbnail_dimensions($html, $post_id, $post_image_id) {
+            $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
+            return $html;
+        }
+
+        add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10, 3);
+    endif;
+
+    if (!function_exists('remove_img_width_height')) :
+
+        function remove_img_width_height($html) {
+            $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
+            return $html;
+        }
+
+        add_filter('wp_get_attachment_link', 'remove_img_width_height', 10, 1);
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Remove More Link Jump
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_remove_more_jump_link')) :
+
+        function ag_remove_more_jump_link($link) {
+            $offset = strpos($link, '#more-');
+            if ($offset) {
+                $end = strpos($link, '"', $offset);
+            }
+            if ($end) {
+                $link = substr_replace($link, '', $offset, $end - $offset);
+            }
+            return $link;
+        }
+
+        add_filter('the_content_more_link', 'ag_remove_more_jump_link');
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Get Attachment ID from the source
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('get_attachment_id_from_src')) :
+
+        function get_attachment_id_from_src($image_src) {
+            global $wpdb;
+            $query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_src'";
+            $id = $wpdb->get_var($query);
+            return $id;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Wrap All Read More Tags In A Span
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('wrap_readmore')) :
+
+        function wrap_readmore($more_link) {
+            return '<span class="more-link">' . $more_link . '</span>';
+        }
+
+        add_filter('the_content_more_link', 'wrap_readmore', 10, 1);
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Check for a Default Font
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_is_default')) :
+
+        function ag_is_default($font) {
+            if ($font == 'Arial' || $font == 'Georgia' || $font == 'Tahoma' || $font == 'Verdana' || $font == 'Helvetica') {
+                $font = true;
+            } else {
+                $font = false;
+            }
+            return $font;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Function to Get Slide Options
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_get_slide_variables')) :
+
+        function ag_get_slide_variables($id, $fixed) {
+            // Get Slide Variables
+            $ag_slide = array();
+
+            // Slide Background Image
+            $ag_slide['image_id'] = get_post_meta($id, 'ag_slide_background_image', true);
+
+            if ($fixed == true) {
+                $ag_slide['image'] = wp_get_attachment_image_src($ag_slide['image_id'], 'homeslideshowfixed');
+            } else {
+                $ag_slide['image'] = wp_get_attachment_image_src($ag_slide['image_id'], 'homeslideshow');
+            }
+            $ag_slide['image_src'] = $ag_slide['image'][0];
+
+            // Slide Text
+            $ag_slide['caption_show'] = get_post_meta($id, 'ag_slide_text_show', true);
+            $ag_slide['caption_color'] = get_post_meta($id, 'ag_slide_text_color', true);
+            $ag_slide['caption_bg_color'] = get_post_meta($id, 'ag_slide_text_bg_color', true);
+
+
+            // Slide Button
+            $ag_slide['button_show'] = get_post_meta($id, 'ag_slide_button_show', true);
+            $ag_slide['button_color'] = get_post_meta($id, 'ag_slide_button_color', true);
+            $ag_slide['button_text_color'] = get_post_meta($id, 'ag_slide_button_text_color', true);
+            $ag_slide['button_text'] = get_post_meta($id, 'ag_slide_button_text', true);
+            $ag_slide['button_link'] = get_post_meta($id, 'ag_slide_button_link', true);
+            // Apply Content Filters for Translation
+            $ag_slide['button_link'] = apply_filters('the_content', $ag_slide['button_link']);
+            $ag_slide['button_link'] = str_replace('<p>', '', $ag_slide['button_link']);
+            $ag_slide['button_link'] = str_replace('</p>', '', $ag_slide['button_link']);
+
+            // Slide Transition
+            $ag_slide['transition'] = get_post_meta($id, 'ag_slide_transition', true);
+
+            // Set Button Style
+            $ag_slide['button_style'] = 'style="';
+            $ag_slide['button_style'] .= ($ag_slide['button_color']) ? 'background-color: ' . $ag_slide['button_color'] . ';  ' : '';
+            $ag_slide['button_style'] .= ($ag_slide['button_text_color']) ? 'color: ' . $ag_slide['button_text_color'] . ';  ' : '';
+            $ag_slide['button_style'] .= '"';
+
+            // Slide Link
+            $ag_slide['slide_link'] = get_post_meta($id, 'ag_slide_link', true);
+
+            // Video URL
+            $ag_slide['video'] = get_post_meta($id, 'ag_slide_video', true);
+
+            // Slider Height
+            if (!($ag_slide['caption_height'] = (of_get_option('of_home_slider_height')) / 2))
+                $ag_slide['caption_height'] = '275';
+
+            return $ag_slide;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Function to Get Section Options
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_get_section_variables')) :
+
+        function ag_get_section_variables($id) {
+
+            $sq = "'";
+            $ag_section = array();
+
+            // Get Section Options
+            $ag_section['section_layout'] = get_post_meta($id, 'ag_section_layout', true);
+            $ag_section['background_color'] = get_post_meta($id, 'ag_background_color', true);
+            $ag_section['background_image'] = get_post_meta($id, 'ag_background_image', true);
+            $ag_section['background_image'] = wp_get_attachment_image_src($ag_section['background_image'], 'full');
+            $ag_section['section_text'] = get_post_meta($id, 'ag_text_color', true);
+            $ag_section['section_button_show'] = get_post_meta($id, 'ag_section_button_show', true);
+            $ag_section['background_repeat'] = get_post_meta($id, 'ag_background_repeat', true);
+
+            // Create Background Style
+            $ag_section['backgroundstyle'] = 'style="';
+            $ag_section['backgroundstyle'] .= ($ag_section['background_color']) ? 'background-color: ' . $ag_section['background_color'] . ';  ' : '';
+            $ag_section['backgroundstyle'] .= ($ag_section['background_image']) ? 'background-image: url(' . $ag_section['background_image'][0] . ');  background-position:center;' : '';
+            $ag_section['backgroundstyle'] .= '"';
+
+            //Get Button Options
+            if ($ag_section['section_button_show'] == 'Yes') {
+                $ag_section['section_button_color'] = get_post_meta($id, 'ag_section_button_color', true);
+                $ag_section['section_button_color'] = ($ag_section['section_button_color']) ? 'background:' . $ag_section['section_button_color'] . ';' : '';
+                $ag_section['section_button_text'] = get_post_meta($id, 'ag_section_button_text', true);
+                $ag_section['section_text_color'] = get_post_meta($id, 'ag_section_text_color', true);
+                $ag_section['section_button_link'] = get_post_meta($id, 'ag_section_button_link', true);
+
+                $ag_section['section_button'] = '<a href="' . $ag_section['section_button_link'] . '" class="button" style="' . $ag_section['section_button_color'] . ' color: ' . $ag_section['section_text_color'] . ';">' . $ag_section['section_button_text'] . '</a>';
+            } else {
+                $ag_section['section_button'] = '';
+            }
+
+
+            $ag_section['sectionvideo'] = get_post_meta($id, 'ag_section_video', true);
+
+            $ag_section['sectionpadding'] = get_post_meta($id, 'ag_bottom_padding', true);
+
+            $ag_section['background_repeat'] = get_post_meta($id, 'ag_background_repeat', true);
+
+
+            return $ag_section;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Function to Get Page Options
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_get_page_variables')) :
+
+        function ag_get_page_variables($pageID) {
+
+            $ag_page = array();
+
+            $ag_page['button_show'] = get_post_meta($pageID, 'ag_page_button_show', true);
+            $ag_page['button_text'] = get_post_meta($pageID, 'ag_page_button_text', true);
+
+            // Get Page Description
+            $ag_page['page_desc'] = get_post_meta($pageID, 'ag_page_desc', true);
+            $ag_page['page_desc_color'] = get_post_meta($pageID, 'ag_page_desc_color', true);
+
+            //Get Button Options
+            if ($ag_page['button_show'] == 'Yes' && $ag_page['button_text'] != '') {
+                $ag_page['button_color'] = get_post_meta($pageID, 'ag_page_button_color', true);
+                $ag_page['button_text_color'] = get_post_meta($pageID, 'ag_page_button_text_color', true);
+                $ag_page['button_link'] = get_post_meta($pageID, 'ag_page_button_link', true);
+
+                $ag_page['button'] = '<a href="' . $ag_page['button_link'] . '" class="button huge alignright" style="';
+                $ag_page['button'] .= ($ag_page['button_color']) ? 'background:' . $ag_page['button_color'] . '; ' : '';
+                $ag_page['button'] .= ($ag_page['button_text_color']) ? 'color: ' . $ag_page['button_text_color'] . '; ' : '';
+                $ag_page['button'] .= '">' . strip_tags(apply_filters('the_content', $ag_page['button_text'])) . '</a>';
+            } else {
+                $ag_page['button'] = '';
+            }
+
+            // Get Page Content Color
+            $ag_page['page_title_bg_color'] = get_post_meta($pageID, 'ag_page_title_bg_color', true);
+            $ag_page['page_title_color'] = get_post_meta($pageID, 'ag_page_title_color', true);
+            $ag_page['page_content_color'] = get_post_meta($pageID, 'ag_page_content_bg_color', true);
+            $ag_page['thumb'] = wp_get_attachment_image_src(get_post_thumbnail_id($pageID), 'homeslideshow');
+            $ag_page['thumburl'] = $ag_page['thumb']['0'];
+
+            // Create Background Style
+            if ($ag_page['thumburl'] || $ag_page['page_title_bg_color']) {
+                $ag_page['background_style'] = 'style="';
+                $ag_page['background_style'] .= ($ag_page['page_title_bg_color']) ? 'background-color: ' . $ag_page['page_title_bg_color'] . '; padding-top:35px;' : '';
+                $ag_page['background_style'] .= ($ag_page['thumburl']) ? 'background-image: url(' . $ag_page['thumburl'] . ');  background-position:center; padding-top:35px;' : '';
+                $ag_page['background_style'] .= '"';
+            } else {
+                $ag_page['background_style'] = '';
+            }
+
+            return $ag_page;
+        }
+
+    endif;
+
+    /* ----------------------------------------------------------------------------------- */
+    /* Function to Get Portfolio Options
+      /*----------------------------------------------------------------------------------- */
+    if (!function_exists('ag_get_portfolio_variables')) :
+
+        function ag_get_portfolio_variables($pageID, $portfolio_page_id) {
+
+            // Set Up Array
+            $ag_portfolio = array();
+
+            // Get Page Description
+            $ag_portfolio['portfolio_desc'] = get_post_meta($pageID, 'ag_portfolio_desc', true);
+            $ag_portfolio['portfolio_desc_color'] = get_post_meta($portfolio_page_id, 'ag_page_desc_color', true);
+
+            // Get Page Content Color
+            $ag_portfolio['page_title_bg_color'] = get_post_meta($portfolio_page_id, 'ag_page_title_bg_color', true);
+            $ag_portfolio['page_title_color'] = get_post_meta($portfolio_page_id, 'ag_page_title_color', true);
+            $ag_portfolio['page_content_color'] = get_post_meta($portfolio_page_id, 'ag_page_content_bg_color', true);
+            $ag_portfolio['thumb'] = wp_get_attachment_image_src(get_post_thumbnail_id($portfolio_page_id), 'homeslideshow');
+            $ag_portfolio['thumburl'] = $ag_portfolio['thumb']['0'];
+
+            // Create Background Style
+            if ($ag_portfolio['thumburl'] || $ag_portfolio['page_title_bg_color']) {
+                $ag_portfolio['background_style'] = 'style="';
+                $ag_portfolio['background_style'] .= ($ag_portfolio['page_title_bg_color']) ? 'background-color: ' . $ag_portfolio['page_title_bg_color'] . '; padding-top:35px;' : '';
+                $ag_portfolio['background_style'] .= ($ag_portfolio['thumburl']) ? 'background-image: url(' . $ag_portfolio['thumburl'] . ');  background-position:center; padding-top:35px;' : '';
+                $ag_portfolio['background_style'] .= '"';
+            } else {
+                $ag_portfolio['background_style'] = '';
+            }
+
+            // Get Portfolio Page Button Options
+            $ag_portfolio['button_color'] = get_post_meta($portfolio_page_id, 'ag_page_button_color', true);
+            $ag_portfolio['button_text_color'] = get_post_meta($portfolio_page_id, 'ag_page_button_text_color', true);
+
+            // Get Page Content Color
+            $ag_portfolio['portfolio_content_color'] = get_post_meta($portfolio_page_id, 'ag_page_content_bg_color', true);
+            $ag_portfolio['video'] = get_post_meta($pageID, 'ag_portfolio_video', true);
+            $ag_portfolio['content_title'] = get_post_meta($pageID, 'ag_portfolio_content_title', true);
+
+            $ag_portfolio['project_button'] = (of_get_option('of_project_button')) ? of_get_option('of_project_button') : 'on';
+            $ag_portfolio['project_button_text'] = (of_get_option('of_project_button_text')) ? of_get_option('of_project_button_text') : 'Back To Projects';
+
+            $ag_portfolio['thumbsize'] = (of_get_option('of_portfolio_crop') == 'crop') ? 'portfolio-single' : 'portfolio-single-nc';
+            $ag_portfolio['slide_number'] = (of_get_option('of_thumbnail_number')) ? of_get_option('of_thumbnail_number') : '6';
+
+            return $ag_portfolio;
+        }
+
+    endif;
+
+    if (!is_admin()) {
+
 // Function to check starting char of a string
-function startsWith($haystack, $needle)
-{
-return $needle === '' || strpos($haystack, $needle) === 0;
-}
+        function startsWith($haystack, $needle) {
+            return $needle === '' || strpos($haystack, $needle) === 0;
+        }
+
 // Custom function to display the Billing Address form to registration page
-function my_custom_function()
-{
-global $woocommerce;
-$checkout = $woocommerce->checkout();
-?>
-<h3><?php _e( 'User Information', 'woocommerce' ); ?></h3>
-<?php
-foreach ($checkout->checkout_fields['billing'] as $key => $field) :
-woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
-endforeach;
-}
-add_action('woocommerce_register_form_start','my_custom_function');
+        function my_custom_function() {
+            global $woocommerce;
+            $checkout = $woocommerce->checkout();
+            ?>
+            <h3><?php _e('User Information', 'woocommerce'); ?></h3>
+            <?php
+            foreach ($checkout->checkout_fields['billing'] as $key => $field) :
+                woocommerce_form_field($key, $field, $checkout->get_value($key));
+            endforeach;
+        }
+
+        add_action('woocommerce_register_form_start', 'my_custom_function');
 
 // Custom function to save Usermeta or Billing Address of registered user
-function save_address($user_id)
-{
-global $woocommerce;
-$address = $_POST;
-foreach ($address as $key => $field) :
-if(startsWith($key,'billing_'))
-{
+        function save_address($user_id) {
+            global $woocommerce;
+            $address = $_POST;
+            foreach ($address as $key => $field) :
+                if (startsWith($key, 'billing_')) {
 // Condition to add firstname and last name to user meta table
-if($key == 'billing_first_name' || $key == 'billing_last_name')
-{
-$new_key = explode('billing_',$key);
-update_user_meta( $user_id, $new_key[1], $_POST[$key] );
-}
-update_user_meta( $user_id, $key, $_POST[$key] );
-}
-endforeach;
+                    if ($key == 'billing_first_name' || $key == 'billing_last_name') {
+                        $new_key = explode('billing_', $key);
+                        update_user_meta($user_id, $new_key[1], $_POST[$key]);
+                    }
+                    update_user_meta($user_id, $key, $_POST[$key]);
+                }
+            endforeach;
+        }
 
-}
-add_action('woocommerce_created_customer','save_address');
+        add_action('woocommerce_created_customer', 'save_address');
 
 // Registration page billing address form Validation
-function custom_validation()
-{
-global $woocommerce;
-$address = $_POST;
-foreach ($address as $key => $field) :
+        function custom_validation() {
+            global $woocommerce;
+            $address = $_POST;
+            foreach ($address as $key => $field) :
 // Validation: Required fields
-if(startsWith($key,'billing_'))
-{
-if($key == 'billing_country' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please select a country.', 'woocommerce' ) );
-}
-if($key == 'billing_first_name' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please enter first name.', 'woocommerce' ) );
-}
-if($key == 'billing_last_name' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please enter last name.', 'woocommerce' ) );
-}
-if($key == 'billing_address_1' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please enter address.', 'woocommerce' ) );
-}
-if($key == 'billing_city' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please enter city.', 'woocommerce' ) );
-}
-if($key == 'billing_state' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please enter state.', 'woocommerce' ) );
-}
-if($key == 'billing_postcode' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please enter a postcode.', 'woocommerce' ) );
-}
-if($key == 'billing_email' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please enter billing email address.', 'woocommerce' ) );
-}
-if($key == 'billing_phone' && $field == '')
-{
-$woocommerce->add_error( '<strong>' . __( 'ERROR', 'woocommerce' ) . '</strong>: ' . __( 'Please enter phone number.', 'woocommerce' ) );
-}
+                if (startsWith($key, 'billing_')) {
+                    if ($key == 'billing_country' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please select a country.', 'woocommerce'));
+                    }
+                    if ($key == 'billing_first_name' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please enter first name.', 'woocommerce'));
+                    }
+                    if ($key == 'billing_last_name' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please enter last name.', 'woocommerce'));
+                    }
+                    if ($key == 'billing_address_1' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please enter address.', 'woocommerce'));
+                    }
+                    if ($key == 'billing_city' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please enter city.', 'woocommerce'));
+                    }
+                    if ($key == 'billing_state' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please enter state.', 'woocommerce'));
+                    }
+                    if ($key == 'billing_postcode' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please enter a postcode.', 'woocommerce'));
+                    }
+                    if ($key == 'billing_email' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please enter billing email address.', 'woocommerce'));
+                    }
+                    if ($key == 'billing_phone' && $field == '') {
+                        $woocommerce->add_error('<strong>' . __('ERROR', 'woocommerce') . '</strong>: ' . __('Please enter phone number.', 'woocommerce'));
+                    }
+                }
+            endforeach;
+        }
 
-}
-endforeach;
-}
-add_action('register_post','custom_validation');
-}
-
-add_action( 'woocommerce_account_ready-to-send_endpoint', 'ready_to_send_endpoint_content' );
-
-/**
- * Replace 'customer' role (WooCommerce use by default) with your own one.
-
-add_filter('woocommerce_new_customer_data', 'wc_custom_product_categ', 10, 1);*/
-
-add_action( 'user_register', 'wc_custom_product_categ', 10, 1 );
-
-function wc_custom_product_categ( $user_id ) {
-    $user_data = get_userdata($user_id);
-    $user_login = $user_data->user_login;
-    
-    $user_id = sprintf('%04d',$user_id);
-    
-    $term = wp_insert_term( 'apt'.$user_id.'-category', 'product_cat', [
-	'description'=> $email .' Product Category',
-	'slug' => 'apt'.$user_id.'-category' ]
-    );
-    
-    /** update options ignitewoo restrict categ user*/
-     $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
-     
-    /** restrict user to general and its own product categ**/
-    $new_key = array($user_login.'_user_cats'=>array('0'=>'apt'.$user_id.'-category','1'=>'general','2'=>'RestrictCategoriesDefault'));
-    $new_values = array_merge($new_key,$categ_array);
-    update_option('IgniteWoo_RestrictCats_user_options',$new_values);
-
-}
-
-
-function wpse_131562_redirect() {
-    if (
-        ! is_user_logged_in()
-        && (is_woocommerce() || is_cart() || is_checkout())
-    ) {
-        // feel free to customize the following line to suit your needs
-        wp_redirect(site_url('my-account/'));
-        exit;
+        add_action('register_post', 'custom_validation');
     }
-}
-add_action('template_redirect', 'wpse_131562_redirect');
 
-add_filter('woocommerce_login_redirect', 'wc_custom_redirect',10,2);
+    add_action('woocommerce_account_ready-to-send_endpoint', 'ready_to_send_endpoint_content');
 
-function wc_custom_redirect( $redirect, $user ) {
-    $bought=false;
-    $userid = $user->ID;
-    $bought = has_woocommerce_subscription($user->ID);
-    
-    if (!$bought) {
-        $redirect ='/product-category/general';
-    }else{
-        $redirect ='/my-account';
+    /**
+     * Replace 'customer' role (WooCommerce use by default) with your own one.
+
+      add_filter('woocommerce_new_customer_data', 'wc_custom_product_categ', 10, 1); */
+    add_action('user_register', 'wc_custom_product_categ', 10, 1);
+
+    function wc_custom_product_categ($user_id) {
+        $user_data = get_userdata($user_id);
+        $user_login = $user_data->user_login;
+
+        $user_id = sprintf('%04d', $user_id);
+
+        $term = wp_insert_term('apt' . $user_id . '-category', 'product_cat', [
+            'description' => $email . ' Product Category',
+            'slug' => 'apt' . $user_id . '-category']
+        );
+
+        /** update options ignitewoo restrict categ user */
+        $categ_array = get_option('IgniteWoo_RestrictCats_user_options');
+
+        /** restrict user to general and its own product categ* */
+        $new_key = array($user_login . '_user_cats' => array('0' => 'apt' . $user_id . '-category', '1' => 'general', '2' => 'RestrictCategoriesDefault'));
+        $new_values = array_merge($new_key, $categ_array);
+        update_option('IgniteWoo_RestrictCats_user_options', $new_values);
     }
-    return $redirect;
-}
 
-add_action( 'woocommerce_email_before_order_table', 'add_order_email_instructions', 10, 2 );
- 
-function add_order_email_instructions( $order, $sent_to_admin ) {
-  
-  if ( ! $sent_to_admin ) {
-        global $posts; 
-        global $woocommerce;
-        
-        $order = new WC_Order($order->ID);
-        if ($order->status == 'completed'){
-            $user_id = (int)$order->user_id;
-            $user_info = get_userdata($user_id);
-            $firstname = $user_info->first_name;
-            $lastname = $user_info->last_name;
-            $items = $order->get_items();
-               foreach ($items as $item) {
-                   if ( $item['product_id' ]== 83  || $item['product_id' ]== 84  || $item['product_id' ]== 85 ){ 
+    function wpse_131562_redirect() {
+        if (
+                !is_user_logged_in() && (is_woocommerce() || is_cart() || is_checkout())
+        ) {
+            // feel free to customize the following line to suit your needs
+            wp_redirect(site_url('my-account/'));
+            exit;
+        }
+    }
+
+    add_action('template_redirect', 'wpse_131562_redirect');
+
+    add_filter('woocommerce_login_redirect', 'wc_custom_redirect', 10, 2);
+
+    function wc_custom_redirect($redirect, $user) {
+        $bought = false;
+        $userid = $user->ID;
+        $bought = has_woocommerce_subscription($user->ID);
+
+        if (!$bought) {
+            $redirect = '/product-category/general';
+        } else {
+            $redirect = '/my-account';
+        }
+        return $redirect;
+    }
+
+    add_action('woocommerce_email_before_order_table', 'add_order_email_instructions', 10, 2);
+
+    function add_order_email_instructions($order, $sent_to_admin) {
+
+        if (!$sent_to_admin) {
+            global $posts;
+            global $woocommerce;
+
+            $order = new WC_Order($order->ID);
+            if ($order->status == 'completed') {
+                $user_id = (int) $order->user_id;
+                $user_info = get_userdata($user_id);
+                $firstname = $user_info->first_name;
+                $lastname = $user_info->last_name;
+                $items = $order->get_items();
+                foreach ($items as $item) {
+                    if ($item['product_id'] == 83 || $item['product_id'] == 84 || $item['product_id'] == 85) {
                         echo '<p></p>';
                         echo '<p><strong>Thank you for subscribing.<br/>This will be your assigned Shipping Address:</strong></p>';
                         echo '<p></p>';
-                        echo '<p>PACIFIC PROCUREMENT SERVICES LTD<br/>Attn: '.strtoupper($firstname).' '.strtoupper($lastname).'<br/>127 Elmore Road 0793<br/>Albany Apt # '.$user_id.', Auckland<br/>New Zealand<br/>(64 9) 414 6477</p>';
+                        echo '<p>PACIFIC PROCUREMENT SERVICES LTD<br/>Attn: ' . strtoupper($firstname) . ' ' . strtoupper($lastname) . '<br/>127 Elmore Road 0793<br/>Albany Apt # ' . $user_id . ', Auckland<br/>New Zealand<br/>(64 9) 414 6477</p>';
                         break;
-                   }
-               }
+                    }
+                }
+            }
         }
-  }
-}
-
-// remove default sorting dropdown
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-// remove default sorting dropdown in StoreFront Theme
-add_action('init','delay_remove');
- 
-function delay_remove() {
-remove_action( 'woocommerce_after_shop_loop', 'woocommerce_catalog_ordering', 10 );
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10 );
-}
-
-// remove single page
-remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
-remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
-
-add_filter("woocommerce_checkout_fields", "order_fields");
-
-function order_fields($fields) {
-
-    $order = array(
-        "billing_first_name", 
-        "billing_last_name", 
-        "billing_company", 
-        "billing_address_1", 
-        "billing_address_2",
-        "billing_city", 
-        "billing_postcode", 
-        "billing_country", 
-        "billing_email", 
-        "billing_phone"
-
-    );
-    foreach($order as $field)
-    {
-        $ordered_fields[$field] = $fields["billing"][$field];
     }
 
-    $fields["billing"] = $ordered_fields;
-    return $fields;
-
-}
-
-function has_woocommerce_subscription($user_id=null ) {
-
-    // if the user_id is not set in function argument we get the current user ID
-    if( null == $user_id )
-        $user_id = get_current_user_id();
-
-    // Get all active subscrptions for a user ID
-    $active_subscriptions = get_posts( array(
-        'numberposts' => -1,
-        'meta_key'    => '_customer_user',
-        'meta_value'  => $user_id,
-        'post_type'   => 'shop_subscription', // Subscription post type
-        'post_status' => 'wc-active', // Active subscription
-
-    ) );
-    if(($active_subscriptions)) return true;
-    else return false;
-}
-
-add_action('wp_logout','auto_redirect_after_logout');
-function auto_redirect_after_logout(){
-  if( function_exists('WC') ){
-    global $woocommerce;
-    // get user details
-    global $current_user;
-    get_currentuserinfo();
-    $user_id = $current_user->ID;
-    $cart_contents = $woocommerce->cart->get_cart();
-    $meta_key = 'cart-'.$user_id;
-    $meta_value = $cart_contents;
-    //update_user_meta( $user_id, $meta_key, $meta_value);
-    update_option( $meta_key, $meta_value );
-    WC()->cart->empty_cart();
-  }
-  wp_safe_redirect( home_url() );
-  exit();
-}
-?>
-<?php
-
-/*
- * Change the entry title of the endpoints that appear in My Account Page - WooCommerce 2.6
- * Using the_title filter
- */
-function wpb_woo_endpoint_title( $title, $id ) {
- if ( is_wc_endpoint_url( 'orders' ) && in_the_loop() ) {
-    $title = "Shipments";
- }
- return $title;
-}
-add_filter( 'the_title', 'wpb_woo_endpoint_title', 10, 2 );
-
-/*
- * Change the order of the endpoints that appear in My Account Page - WooCommerce 2.6
- * The first item in the array is the custom endpoint URL - ie http://mydomain.com/my-account/my-custom-endpoint
- * Alongside it are the names of the list item Menu name that corresponds to the URL, change these to suit
- */
-function wpb_woo_my_account_order() {
- $myorder = array(
- 'dashboard' => __( 'Dashboard', 'woocommerce' ),
- 'edit-account' => __( 'Change My Details', 'woocommerce' ),
- 'edit-address' => __( 'Addresses', 'woocommerce' ),  
- '../product-category/'.'apt'.sprintf('%04d',get_current_user_id()).'-category' => __( 'Your Action is Required', 'woocommerce' ),
- 'in-review' => __( 'In Process', 'woocommerce' ),
- 'ready-to-send' => __( 'Ready to Send', 'woocommerce' ),
- 'shipped' => __( 'For Pick-up', 'woocommerce' ),
- 'picked-up' => __( 'Picked Up', 'woocommerce' ),    
- 'subscriptions' => __( 'Subscriptions', 'woocommerce' ), 
- 'orders' => __( 'All Transactions', 'woocommerce' ),
- 'customer-logout' => __( 'Logout', 'woocommerce' ),
- );
- return $myorder;
-}
-add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
-
-function add_my_account_endpoint() {
-    add_rewrite_endpoint( 'in-review', EP_PAGES );
-    add_rewrite_endpoint( 'ready-to-send', EP_PAGES );
-    add_rewrite_endpoint( 'subscriptions', EP_PAGES );
-    add_rewrite_endpoint( 'shipped', EP_PAGES );
-    add_rewrite_endpoint( 'picked-up', EP_PAGES );
-}
- 
-add_action( 'init', 'add_my_account_endpoint' );
-
-function action_required_endpoint_content() {
-    $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
-	'numberposts' => $order_count,
-	'meta_key'    => '_customer_user',
-	'meta_value'  => get_current_user_id(),
-	'post_type'   => wc_get_order_types( 'view-orders' ),
-	'post_status' => 'wc-pending',
-    ) ) );
-    $customer = wp_get_current_user();
-    if ( $customer_orders ) : ?>
-
-	<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-		<thead>
-			<tr>
-				<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-					<th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
-				<?php endforeach; ?>
-			</tr>
-		</thead>
-
-		<tbody>
-			<?php foreach ( $customer_orders as $customer_order ) :
-				$order      = wc_get_order( $customer_order );
-				$item_count = $order->get_item_count();
-				?>
-				<tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr( $order->get_status() ); ?> order">
-					<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-						<td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
-							<?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
-								<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
-
-							<?php elseif ( 'order-number' === $column_id ) : ?>
-								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
-									<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
-								</a>
-
-							<?php elseif ( 'order-date' === $column_id ) : ?>
-								<time datetime="<?php echo esc_attr( $order->get_date_created()->date( 'c' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
-
-							<?php elseif ( 'order-status' === $column_id ) : ?>
-								<?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
-
-							<?php elseif ( 'order-total' === $column_id ) : ?>
-								<?php
-								/* translators: 1: formatted order total 2: total order items */
-								printf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count );
-								?>
-
-							<?php elseif ( 'order-actions' === $column_id ) : ?>
-								<?php
-									$actions = array(
-										'pay'    => array(
-											'url'  => $order->get_checkout_payment_url(),
-											'name' => __( 'Pay', 'woocommerce' ),
-										),
-										'view'   => array(
-											'url'  => $order->get_view_order_url(),
-											'name' => __( 'View', 'woocommerce' ),
-										),
-										'cancel' => array(
-											'url'  => $order->get_cancel_order_url( wc_get_page_permalink( 'myaccount' ) ),
-											'name' => __( 'Cancel', 'woocommerce' ),
-										),
-									);
-
-									if ( !$order->needs_payment() ) {
-										unset( $actions['pay'] );
-									}
-
-									if ( ! in_array( $order->get_status(), apply_filters( 'woocommerce_valid_order_statuses_for_cancel', array( 'pending', 'failed' ), $order ) ) ) {
-										unset( $actions['cancel'] );
-									}
-
-									if ( $actions = apply_filters( 'woocommerce_my_account_my_orders_actions', $actions, $order ) ) {
-										foreach ( $actions as $key => $action ) {
-											echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
-										}
-									}
-								?>
-							<?php endif; ?>
-						</td>
-					<?php endforeach; ?>
-				</tr>
-			<?php endforeach; ?>
-		</tbody>
-        </table>
-        <?php do_action( 'woocommerce_before_account_orders_pagination' ); ?>
-
-	<?php if ( 1 < $customer_orders->max_num_pages ) : ?>
-		<div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-			<?php if ( 1 !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php _e( 'Previous', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-
-			<?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php _e( 'Next', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-		</div>
-	<?php endif; ?>
-
-        <?php else : ?>
-	<div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-		<?php _e( 'No transaction that requires action.', 'woocommerce' ); ?>
-	</div>
-        <?php endif; ?>
-
-        <?php do_action( 'woocommerce_after_account_orders', $has_orders ); ?>
-    <?php
-}
- 
-add_action( 'woocommerce_account_action-required_endpoint', 'action_required_endpoint_content' );
-
-function in_review_endpoint_content() {
-   $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
-	'numberposts' => $order_count,
-	'meta_key'    => '_customer_user',
-	'meta_value'  => get_current_user_id(),
-	'post_type'   => wc_get_order_types( 'view-orders' ),
-	'post_status' => 'wc-processing',
-    ) ) );
-    $customer = wp_get_current_user();
-    if ( $customer_orders ) : ?>
-
-	<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-		<thead>
-			<tr>
-				<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-					<th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
-				<?php endforeach; ?>
-			</tr>
-		</thead>
-
-		<tbody>
-			<?php foreach ( $customer_orders as $customer_order ) :
-				$order      = wc_get_order( $customer_order );
-				$item_count = $order->get_item_count();
-				?>
-				<tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr( $order->get_status() ); ?> order">
-					<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-						<td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
-							<?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
-								<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
-
-							<?php elseif ( 'order-number' === $column_id ) : ?>
-								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
-									<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
-								</a>
-
-							<?php elseif ( 'order-date' === $column_id ) : ?>
-								<time datetime="<?php echo esc_attr( $order->get_date_created()->date( 'c' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
-
-							<?php elseif ( 'order-status' === $column_id ) : ?>
-								<?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
-
-							<?php elseif ( 'order-total' === $column_id ) : ?>
-								<?php
-								/* translators: 1: formatted order total 2: total order items */
-								printf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count );
-								?>
-
-							<?php elseif ( 'order-actions' === $column_id ) : ?>
-								<?php
-									$actions = array(
-										'pay'    => array(
-											'url'  => $order->get_checkout_payment_url(),
-											'name' => __( 'Pay', 'woocommerce' ),
-										),
-										'view'   => array(
-											'url'  => $order->get_view_order_url(),
-											'name' => __( 'View', 'woocommerce' ),
-										),
-										'cancel' => array(
-											'url'  => $order->get_cancel_order_url( wc_get_page_permalink( 'myaccount' ) ),
-											'name' => __( 'Cancel', 'woocommerce' ),
-										),
-									);
-
-									if ( !$order->needs_payment() ) {
-										unset( $actions['pay'] );
-									}
-
-									if ( ! in_array( $order->get_status(), apply_filters( 'woocommerce_valid_order_statuses_for_cancel', array( 'pending', 'failed' ), $order ) ) ) {
-										unset( $actions['cancel'] );
-									}
-
-									if ( $actions = apply_filters( 'woocommerce_my_account_my_orders_actions', $actions, $order ) ) {
-										foreach ( $actions as $key => $action ) {
-											echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
-										}
-									}
-								?>
-							<?php endif; ?>
-						</td>
-					<?php endforeach; ?>
-				</tr>
-			<?php endforeach; ?>
-		</tbody>
-        </table>
-        <?php do_action( 'woocommerce_before_account_orders_pagination' ); ?>
-
-	<?php if ( 1 < $customer_orders->max_num_pages ) : ?>
-		<div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-			<?php if ( 1 !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php _e( 'Previous', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-
-			<?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php _e( 'Next', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-		</div>
-	<?php endif; ?>
-
-        <?php else : ?>
-	<div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-		<?php _e( 'No transaction that is currently in-process.', 'woocommerce' ); ?>
-	</div>
-        <?php endif; ?>
-
-        <?php do_action( 'woocommerce_after_account_orders', $has_orders ); ?>
-    <?php
-}
- 
-add_action( 'woocommerce_account_in-review_endpoint', 'in_review_endpoint_content' );
-
-function shipped_endpoint_content() {
-   $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
-	'numberposts' => $order_count,
-	'meta_key'    => '_customer_user',
-	'meta_value'  => get_current_user_id(),
-	'post_type'   => wc_get_order_types( 'view-orders' ),
-	'post_status' => 'wc-shipped',
-    ) ) );
-    $customer = wp_get_current_user();
-    if ( $customer_orders ) : ?>
-
-	<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-		<thead>
-			<tr>
-				<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-					<th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
-				<?php endforeach; ?>
-			</tr>
-		</thead>
-
-		<tbody>
-			<?php foreach ( $customer_orders as $customer_order ) :
-				$order      = wc_get_order( $customer_order );
-				$item_count = $order->get_item_count();
-				?>
-				<tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr( $order->get_status() ); ?> order">
-					<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-						<td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
-							<?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
-								<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
-
-							<?php elseif ( 'order-number' === $column_id ) : ?>
-								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
-									<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
-								</a>
-
-							<?php elseif ( 'order-date' === $column_id ) : ?>
-								<time datetime="<?php echo esc_attr( $order->get_date_created()->date( 'c' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
-
-							<?php elseif ( 'order-status' === $column_id ) : ?>
-								<?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
-
-							<?php elseif ( 'order-total' === $column_id ) : ?>
-								<?php
-								/* translators: 1: formatted order total 2: total order items */
-								printf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count );
-								?>
-
-							<?php elseif ( 'order-actions' === $column_id ) : ?>
-								<?php
-									$actions = array(
-										'pay'    => array(
-											'url'  => $order->get_checkout_payment_url(),
-											'name' => __( 'Pay', 'woocommerce' ),
-										),
-										'view'   => array(
-											'url'  => $order->get_view_order_url(),
-											'name' => __( 'View', 'woocommerce' ),
-										),
-										'cancel' => array(
-											'url'  => $order->get_cancel_order_url( wc_get_page_permalink( 'myaccount' ) ),
-											'name' => __( 'Cancel', 'woocommerce' ),
-										),
-									);
-
-									if ( !$order->needs_payment() ) {
-										unset( $actions['pay'] );
-									}
-
-									if ( ! in_array( $order->get_status(), apply_filters( 'woocommerce_valid_order_statuses_for_cancel', array( 'pending', 'failed' ), $order ) ) ) {
-										unset( $actions['cancel'] );
-									}
-
-									if ( $actions = apply_filters( 'woocommerce_my_account_my_orders_actions', $actions, $order ) ) {
-										foreach ( $actions as $key => $action ) {
-											echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
-										}
-									}
-								?>
-							<?php endif; ?>
-						</td>
-					<?php endforeach; ?>
-				</tr>
-			<?php endforeach; ?>
-		</tbody>
-        </table>
-        <?php do_action( 'woocommerce_before_account_orders_pagination' ); ?>
-
-	<?php if ( 1 < $customer_orders->max_num_pages ) : ?>
-		<div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-			<?php if ( 1 !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php _e( 'Previous', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-
-			<?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php _e( 'Next', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-		</div>
-	<?php endif; ?>
-
-        <?php else : ?>
-	<div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-		<?php _e( 'No transaction that is for pick up.', 'woocommerce' ); ?>
-	</div>
-        <?php endif; ?>
-
-        <?php do_action( 'woocommerce_after_account_orders', $has_orders ); ?>
-    <?php
-}
- 
-add_action( 'woocommerce_account_shipped_endpoint', 'shipped_endpoint_content' );
-
-function picked_up_endpoint_content() {
-   $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
-	'numberposts' => $order_count,
-	'meta_key'    => '_customer_user',
-	'meta_value'  => get_current_user_id(),
-	'post_type'   => wc_get_order_types( 'view-orders' ),
-	'post_status' => 'wc-picked-up',
-    ) ) );
-    $customer = wp_get_current_user();
-    if ( $customer_orders ) : ?>
-
-	<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-		<thead>
-			<tr>
-				<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-					<th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
-				<?php endforeach; ?>
-			</tr>
-		</thead>
-
-		<tbody>
-			<?php foreach ( $customer_orders as $customer_order ) :
-				$order      = wc_get_order( $customer_order );
-				$item_count = $order->get_item_count();
-				?>
-				<tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr( $order->get_status() ); ?> order">
-					<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-						<td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
-							<?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
-								<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
-
-							<?php elseif ( 'order-number' === $column_id ) : ?>
-								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
-									<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
-								</a>
-
-							<?php elseif ( 'order-date' === $column_id ) : ?>
-								<time datetime="<?php echo esc_attr( $order->get_date_created()->date( 'c' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
-
-							<?php elseif ( 'order-status' === $column_id ) : ?>
-								<?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
-
-							<?php elseif ( 'order-total' === $column_id ) : ?>
-								<?php
-								/* translators: 1: formatted order total 2: total order items */
-								printf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count );
-								?>
-
-							<?php elseif ( 'order-actions' === $column_id ) : ?>
-								<?php
-									$actions = array(
-										'pay'    => array(
-											'url'  => $order->get_checkout_payment_url(),
-											'name' => __( 'Pay', 'woocommerce' ),
-										),
-										'view'   => array(
-											'url'  => $order->get_view_order_url(),
-											'name' => __( 'View', 'woocommerce' ),
-										),
-										'cancel' => array(
-											'url'  => $order->get_cancel_order_url( wc_get_page_permalink( 'myaccount' ) ),
-											'name' => __( 'Cancel', 'woocommerce' ),
-										),
-									);
-
-									if ( !$order->needs_payment() ) {
-										unset( $actions['pay'] );
-									}
-
-									if ( ! in_array( $order->get_status(), apply_filters( 'woocommerce_valid_order_statuses_for_cancel', array( 'pending', 'failed' ), $order ) ) ) {
-										unset( $actions['cancel'] );
-									}
-
-									if ( $actions = apply_filters( 'woocommerce_my_account_my_orders_actions', $actions, $order ) ) {
-										foreach ( $actions as $key => $action ) {
-											echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
-										}
-									}
-								?>
-							<?php endif; ?>
-						</td>
-					<?php endforeach; ?>
-				</tr>
-			<?php endforeach; ?>
-		</tbody>
-        </table>
-        <?php do_action( 'woocommerce_before_account_orders_pagination' ); ?>
-
-	<?php if ( 1 < $customer_orders->max_num_pages ) : ?>
-		<div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-			<?php if ( 1 !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php _e( 'Previous', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-
-			<?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php _e( 'Next', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-		</div>
-	<?php endif; ?>
-
-        <?php else : ?>
-	<div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-		<?php _e( 'You don\'t have items that are picked up.', 'woocommerce' ); ?>
-	</div>
-        <?php endif; ?>
-
-        <?php do_action( 'woocommerce_after_account_orders', $has_orders ); ?>
-    <?php
-}
- 
-add_action( 'woocommerce_account_picked-up_endpoint', 'picked_up_endpoint_content' );
-
-
-function ready_to_send_endpoint_content() {
-    
-    // Get all customer orders
-    $customer_orders = get_posts( apply_filters( 'woocommerce_my_account_my_orders_query', array(
-	'numberposts' => $order_count,
-	'meta_key'    => '_customer_user',
-	'meta_value'  => get_current_user_id(),
-	'post_type'   => wc_get_order_types( 'view-orders' ),
-	'post_status' => 'wc-completed',
-        'post_not_in' => array($customer_subscriptions_orders)
-    ) ) );
-    $customer = wp_get_current_user();
-    if ( $customer_orders ) : ?>
-        
-        <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+// remove default sorting dropdown
+    remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
+// remove default sorting dropdown in StoreFront Theme
+    add_action('init', 'delay_remove');
+
+    function delay_remove() {
+        remove_action('woocommerce_after_shop_loop', 'woocommerce_catalog_ordering', 10);
+        remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10);
+    }
+
+// remove single page
+    remove_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);
+    remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
+
+    add_filter("woocommerce_checkout_fields", "order_fields");
+
+    function order_fields($fields) {
+
+        $order = array(
+            "billing_first_name",
+            "billing_last_name",
+            "billing_company",
+            "billing_address_1",
+            "billing_address_2",
+            "billing_city",
+            "billing_postcode",
+            "billing_country",
+            "billing_email",
+            "billing_phone"
+        );
+        foreach ($order as $field) {
+            $ordered_fields[$field] = $fields["billing"][$field];
+        }
+
+        $fields["billing"] = $ordered_fields;
+        return $fields;
+    }
+
+    function has_woocommerce_subscription($user_id = null) {
+
+        // if the user_id is not set in function argument we get the current user ID
+        if (null == $user_id)
+            $user_id = get_current_user_id();
+
+        // Get all active subscrptions for a user ID
+        $active_subscriptions = get_posts(array(
+            'numberposts' => -1,
+            'meta_key' => '_customer_user',
+            'meta_value' => $user_id,
+            'post_type' => 'shop_subscription', // Subscription post type
+            'post_status' => 'wc-active', // Active subscription
+                ));
+        if (($active_subscriptions))
+            return true;
+        else
+            return false;
+    }
+
+    add_action('wp_logout', 'auto_redirect_after_logout');
+
+    function auto_redirect_after_logout() {
+        if (function_exists('WC')) {
+            global $woocommerce;
+            // get user details
+            global $current_user;
+            get_currentuserinfo();
+            $user_id = $current_user->ID;
+            $cart_contents = $woocommerce->cart->get_cart();
+            $meta_key = 'cart-' . $user_id;
+            $meta_value = $cart_contents;
+            //update_user_meta( $user_id, $meta_key, $meta_value);
+            update_option($meta_key, $meta_value);
+            WC()->cart->empty_cart();
+        }
+        wp_safe_redirect(home_url());
+        exit();
+    }
+    ?>
+                    <?php
+                    /*
+                     * Change the entry title of the endpoints that appear in My Account Page - WooCommerce 2.6
+                     * Using the_title filter
+                     */
+
+                    function wpb_woo_endpoint_title($title, $id) {
+                        if (is_wc_endpoint_url('orders') && in_the_loop()) {
+                            $title = "Shipments";
+                        }
+                        return $title;
+                    }
+
+                    add_filter('the_title', 'wpb_woo_endpoint_title', 10, 2);
+
+                    /*
+                     * Change the order of the endpoints that appear in My Account Page - WooCommerce 2.6
+                     * The first item in the array is the custom endpoint URL - ie http://mydomain.com/my-account/my-custom-endpoint
+                     * Alongside it are the names of the list item Menu name that corresponds to the URL, change these to suit
+                     */
+
+                    function wpb_woo_my_account_order() {
+                        $myorder = array(
+                            'dashboard' => __('Dashboard', 'woocommerce'),
+                            'edit-account' => __('Change My Details', 'woocommerce'),
+                            'edit-address' => __('Addresses', 'woocommerce'),
+                            '../product-category/' . 'apt' . sprintf('%04d', get_current_user_id()) . '-category' => __('Your Action is Required', 'woocommerce'),
+                            'in-review' => __('In Process', 'woocommerce'),
+                            'ready-to-send' => __('Ready to Send', 'woocommerce'),
+                            'shipped' => __('For Pick-up', 'woocommerce'),
+                            'picked-up' => __('Picked Up', 'woocommerce'),
+                            'subscriptions' => __('Subscriptions', 'woocommerce'),
+                            'orders' => __('All Transactions', 'woocommerce'),
+                            'customer-logout' => __('Logout', 'woocommerce'),
+                        );
+                        return $myorder;
+                    }
+
+                    add_filter('woocommerce_account_menu_items', 'wpb_woo_my_account_order');
+
+                    function add_my_account_endpoint() {
+                        add_rewrite_endpoint('in-review', EP_PAGES);
+                        add_rewrite_endpoint('ready-to-send', EP_PAGES);
+                        add_rewrite_endpoint('subscriptions', EP_PAGES);
+                        add_rewrite_endpoint('shipped', EP_PAGES);
+                        add_rewrite_endpoint('picked-up', EP_PAGES);
+                    }
+
+                    add_action('init', 'add_my_account_endpoint');
+
+                    function action_required_endpoint_content() {
+                        $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+                            'numberposts' => $order_count,
+                            'meta_key' => '_customer_user',
+                            'meta_value' => get_current_user_id(),
+                            'post_type' => wc_get_order_types('view-orders'),
+                            'post_status' => 'wc-pending',
+                                )));
+                        $customer = wp_get_current_user();
+                        if ($customer_orders) :
+                            ?>
+
+            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
                 <thead>
-                        <tr>
-                                <?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-                                        <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
+                    <tr>
+            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
+            <?php endforeach; ?>
+                    </tr>
+                </thead>
+
+                <tbody>
+            <?php
+            foreach ($customer_orders as $customer_order) :
+                $order = wc_get_order($customer_order);
+                $item_count = $order->get_item_count();
+                ?>
+                        <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
+            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
+                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+
+                                <?php elseif ('order-number' === $column_id) : ?>
+                                        <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
+                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                        </a>
+
+                            <?php elseif ('order-date' === $column_id) : ?>
+                                        <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
+
+                            <?php elseif ('order-status' === $column_id) : ?>
+                                <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+
+                                <?php elseif ('order-total' === $column_id) : ?>
+                                        <?php
+                                        /* translators: 1: formatted order total 2: total order items */
+                                        printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                        ?>
+
+                                        <?php elseif ('order-actions' === $column_id) : ?>
+                                            <?php
+                                            $actions = array(
+                                                'pay' => array(
+                                                    'url' => $order->get_checkout_payment_url(),
+                                                    'name' => __('Pay', 'woocommerce'),
+                                                ),
+                                                'view' => array(
+                                                    'url' => $order->get_view_order_url(),
+                                                    'name' => __('View', 'woocommerce'),
+                                                ),
+                                                'cancel' => array(
+                                                    'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                                                    'name' => __('Cancel', 'woocommerce'),
+                                                ),
+                                            );
+
+                                            if (!$order->needs_payment()) {
+                                                unset($actions['pay']);
+                                            }
+
+                                            if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                                                unset($actions['cancel']);
+                                            }
+
+                                            if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                                                foreach ($actions as $key => $action) {
+                                                    echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                                                }
+                                            }
+                                            ?>
+                                    <?php endif; ?>
+                                </td>
                                 <?php endforeach; ?>
                         </tr>
-                </thead>
-                <?php foreach ( $customer_orders as $customer_order ) :
-                            $order      = wc_get_order( $customer_order );
-                            $item_count = $order->get_item_count();
-                            ?>
-                            <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr( $order->get_status() ); ?> order">
-                                    <?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
-                                                    <?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
-                                                            <?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
+                            <?php endforeach; ?>
+                </tbody>
+            </table>
+                            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                                                    <?php elseif ( 'order-number' === $column_id ) : ?>
-                                                            <a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
-                                                                    <?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
-                                                            </a>
-
-                                                    <?php elseif ( 'order-date' === $column_id ) : ?>
-                                                            <time datetime="<?php echo esc_attr( $order->get_date_created()->date( 'c' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
-
-                                                    <?php elseif ( 'order-status' === $column_id ) : ?>
-                                                            <?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
-
-                                                    <?php elseif ( 'order-total' === $column_id ) : ?>
-                                                            <?php
-                                                            /* translators: 1: formatted order total 2: total order items */
-                                                            printf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count );
-                                                            ?>
-
-                                                    <?php elseif ( 'order-actions' === $column_id ) : ?>
-                                                            <?php
-                                                                    $actions = array(
-                                                                            'pay'    => array(
-                                                                                    'url'  => $order->get_checkout_payment_url(),
-                                                                                    'name' => __( 'Pay', 'woocommerce' ),
-                                                                            ),
-                                                                            'view'   => array(
-                                                                                    'url'  => $order->get_view_order_url(),
-                                                                                    'name' => __( 'View', 'woocommerce' ),
-                                                                            ),
-                                                                            'cancel' => array(
-                                                                                    'url'  => $order->get_cancel_order_url( wc_get_page_permalink( 'myaccount' ) ),
-                                                                                    'name' => __( 'Cancel', 'woocommerce' ),
-                                                                            ),
-                                                                    );
-
-                                                                    if ( !$order->needs_payment() ) {
-                                                                            unset( $actions['pay'] );
-                                                                    }
-
-                                                                    if ( ! in_array( $order->get_status(), apply_filters( 'woocommerce_valid_order_statuses_for_cancel', array( 'pending', 'failed' ), $order ) ) ) {
-                                                                            unset( $actions['cancel'] );
-                                                                    }
-
-                                                                    if ( $actions = apply_filters( 'woocommerce_my_account_my_orders_actions', $actions, $order ) ) {
-                                                                            foreach ( $actions as $key => $action ) {
-                                                                                    echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
-                                                                            }
-                                                                    }
-                                                            ?>
-                                                    <?php endif; ?>
-                                            </td>
-                                    <?php endforeach; ?>
-                            </tr>
-                    <?php endforeach; ?>
-            </tbody>
-
-        </table>
-        <?php do_action( 'woocommerce_before_account_orders_pagination' ); ?>
-
-        <?php if ( 1 < $customer_orders->max_num_pages ) : ?>
+                            <?php if (1 < $customer_orders->max_num_pages) : ?>
                 <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-                        <?php if ( 1 !== $current_page ) : ?>
-                                <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php _e( 'Previous', 'woocommerce' ); ?></a>
-                        <?php endif; ?>
+                                <?php if (1 !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
+                                <?php endif; ?>
 
-                        <?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
-                                <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php _e( 'Next', 'woocommerce' ); ?></a>
+                                <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
+                            <?php endif; ?>
+                </div>
+                    <?php endif; ?>
+
+    <?php else : ?>
+            <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+            <?php _e('No transaction that requires action.', 'woocommerce'); ?>
+            </div>
+        <?php endif; ?>
+
+            <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+            <?php
+        }
+
+        add_action('woocommerce_account_action-required_endpoint', 'action_required_endpoint_content');
+
+        function in_review_endpoint_content() {
+            $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+                'numberposts' => $order_count,
+                'meta_key' => '_customer_user',
+                'meta_value' => get_current_user_id(),
+                'post_type' => wc_get_order_types('view-orders'),
+                'post_status' => 'wc-processing',
+                    )));
+            $customer = wp_get_current_user();
+            if ($customer_orders) :
+                ?>
+
+            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                <thead>
+                    <tr>
+            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
+            <?php endforeach; ?>
+                    </tr>
+                </thead>
+
+                <tbody>
+            <?php
+            foreach ($customer_orders as $customer_order) :
+                $order = wc_get_order($customer_order);
+                $item_count = $order->get_item_count();
+                ?>
+                        <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
+            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
+                                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+
+                <?php elseif ('order-number' === $column_id) : ?>
+                                        <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
+                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                        </a>
+
+                            <?php elseif ('order-date' === $column_id) : ?>
+                                        <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
+
+                                <?php elseif ('order-status' === $column_id) : ?>
+                                    <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+
+                                    <?php elseif ('order-total' === $column_id) : ?>
+                                        <?php
+                                        /* translators: 1: formatted order total 2: total order items */
+                                        printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                        ?>
+
+                <?php elseif ('order-actions' === $column_id) : ?>
+                                        <?php
+                                        $actions = array(
+                                            'pay' => array(
+                                                'url' => $order->get_checkout_payment_url(),
+                                                'name' => __('Pay', 'woocommerce'),
+                                            ),
+                                            'view' => array(
+                                                'url' => $order->get_view_order_url(),
+                                                'name' => __('View', 'woocommerce'),
+                                            ),
+                                            'cancel' => array(
+                                                'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                                                'name' => __('Cancel', 'woocommerce'),
+                                            ),
+                                        );
+
+                                        if (!$order->needs_payment()) {
+                                            unset($actions['pay']);
+                                        }
+
+                                        if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                                            unset($actions['cancel']);
+                                        }
+
+                                        if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                                            foreach ($actions as $key => $action) {
+                                                echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                                            }
+                                        }
+                                        ?>
+                                    <?php endif; ?>
+                                </td>
+                                <?php endforeach; ?>
+                        </tr>
+                            <?php endforeach; ?>
+                </tbody>
+            </table>
+                            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+
+                            <?php if (1 < $customer_orders->max_num_pages) : ?>
+                <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
+                                <?php if (1 !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
+                                <?php endif; ?>
+
+                            <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
                         <?php endif; ?>
                 </div>
         <?php endif; ?>
 
-    <?php else : ?>
-    <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-            <?php _e( 'No completed transaction.', 'woocommerce' ); ?>
-    </div>
-    <?php endif; ?>
+        <?php else : ?>
+            <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+            <?php _e('No transaction that is currently in-process.', 'woocommerce'); ?>
+            </div>
+            <?php endif; ?>
 
-    <?php do_action( 'woocommerce_after_account_orders', $has_orders ); ?>
-<?php
+            <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+            <?php
+        }
+
+        add_action('woocommerce_account_in-review_endpoint', 'in_review_endpoint_content');
+
+        function shipped_endpoint_content() {
+            $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+                'numberposts' => $order_count,
+                'meta_key' => '_customer_user',
+                'meta_value' => get_current_user_id(),
+                'post_type' => wc_get_order_types('view-orders'),
+                'post_status' => 'wc-shipped',
+                    )));
+            $customer = wp_get_current_user();
+            if ($customer_orders) :
+                ?>
+
+            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                <thead>
+                    <tr>
+            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
+            <?php endforeach; ?>
+                    </tr>
+                </thead>
+
+                <tbody>
+            <?php
+            foreach ($customer_orders as $customer_order) :
+                $order = wc_get_order($customer_order);
+                $item_count = $order->get_item_count();
+                ?>
+                        <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
+                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
+                                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+
+                <?php elseif ('order-number' === $column_id) : ?>
+                                        <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
+                                <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                        </a>
+
+                            <?php elseif ('order-date' === $column_id) : ?>
+                                        <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
+
+                                    <?php elseif ('order-status' === $column_id) : ?>
+                                        <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+
+                                    <?php elseif ('order-total' === $column_id) : ?>
+                                        <?php
+                                        /* translators: 1: formatted order total 2: total order items */
+                                        printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                        ?>
+
+                                    <?php elseif ('order-actions' === $column_id) : ?>
+                    <?php
+                    $actions = array(
+                        'pay' => array(
+                            'url' => $order->get_checkout_payment_url(),
+                            'name' => __('Pay', 'woocommerce'),
+                        ),
+                        'view' => array(
+                            'url' => $order->get_view_order_url(),
+                            'name' => __('View', 'woocommerce'),
+                        ),
+                        'cancel' => array(
+                            'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                            'name' => __('Cancel', 'woocommerce'),
+                        ),
+                    );
+
+                    if (!$order->needs_payment()) {
+                        unset($actions['pay']);
+                    }
+
+                    if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                        unset($actions['cancel']);
+                    }
+
+                    if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                        foreach ($actions as $key => $action) {
+                            echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                        }
+                    }
+                    ?>
+                                    <?php endif; ?>
+                                </td>
+                                <?php endforeach; ?>
+                        </tr>
+                            <?php endforeach; ?>
+                </tbody>
+            </table>
+                            <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+
+                            <?php if (1 < $customer_orders->max_num_pages) : ?>
+                <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
+                                <?php if (1 !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
+                            <?php endif; ?>
+
+                        <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
+            <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
+        <?php else : ?>
+            <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+                <?php _e('No transaction that is for pick up.', 'woocommerce'); ?>
+            </div>
+            <?php endif; ?>
+
+            <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+            <?php
+        }
+
+        add_action('woocommerce_account_shipped_endpoint', 'shipped_endpoint_content');
+
+        function picked_up_endpoint_content() {
+            $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+                'numberposts' => $order_count,
+                'meta_key' => '_customer_user',
+                'meta_value' => get_current_user_id(),
+                'post_type' => wc_get_order_types('view-orders'),
+                'post_status' => 'wc-picked-up',
+                    )));
+            $customer = wp_get_current_user();
+            if ($customer_orders) :
+                ?>
+
+            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                <thead>
+                    <tr>
+            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
+            <?php endforeach; ?>
+                    </tr>
+                </thead>
+
+                <tbody>
+            <?php
+            foreach ($customer_orders as $customer_order) :
+                $order = wc_get_order($customer_order);
+                $item_count = $order->get_item_count();
+                ?>
+                        <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
+            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
+                                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+
+                <?php elseif ('order-number' === $column_id) : ?>
+                                        <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
+                            <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                        </a>
+
+                        <?php elseif ('order-date' === $column_id) : ?>
+                                        <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
+
+                                <?php elseif ('order-status' === $column_id) : ?>
+                                    <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+
+                                <?php elseif ('order-total' === $column_id) : ?>
+                                    <?php
+                                    /* translators: 1: formatted order total 2: total order items */
+                                    printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                    ?>
+
+                                <?php elseif ('order-actions' === $column_id) : ?>
+                    <?php
+                    $actions = array(
+                        'pay' => array(
+                            'url' => $order->get_checkout_payment_url(),
+                            'name' => __('Pay', 'woocommerce'),
+                        ),
+                        'view' => array(
+                            'url' => $order->get_view_order_url(),
+                            'name' => __('View', 'woocommerce'),
+                        ),
+                        'cancel' => array(
+                            'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                            'name' => __('Cancel', 'woocommerce'),
+                        ),
+                    );
+
+                    if (!$order->needs_payment()) {
+                        unset($actions['pay']);
+                    }
+
+                    if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                        unset($actions['cancel']);
+                    }
+
+                    if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                        foreach ($actions as $key => $action) {
+                            echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                        }
+                    }
+                    ?>
+                                <?php endif; ?>
+                                </td>
+                            <?php endforeach; ?>
+                        </tr>
+                        <?php endforeach; ?>
+                </tbody>
+            </table>
+                        <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+
+                        <?php if (1 < $customer_orders->max_num_pages) : ?>
+                <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
+                            <?php if (1 !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
+                        <?php endif; ?>
+
+                    <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                        <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
+            <?php endif; ?>
+                </div>
+        <?php endif; ?>
+
+    <?php else : ?>
+            <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+            <?php _e('You don\'t have items that are picked up.', 'woocommerce'); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+        <?php
+    }
+
+    add_action('woocommerce_account_picked-up_endpoint', 'picked_up_endpoint_content');
+
+    function ready_to_send_endpoint_content() {
+
+        // Get all customer orders
+        $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_query', array(
+            'numberposts' => $order_count,
+            'meta_key' => '_customer_user',
+            'meta_value' => get_current_user_id(),
+            'post_type' => wc_get_order_types('view-orders'),
+            'post_status' => 'wc-completed',
+            'post_not_in' => array($customer_subscriptions_orders)
+                )));
+        $customer = wp_get_current_user();
+        if ($customer_orders) :
+            ?>
+
+            <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                <thead>
+                    <tr>
+        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
+        <?php endforeach; ?>
+                    </tr>
+                </thead>
+        <?php
+        foreach ($customer_orders as $customer_order) :
+            $order = wc_get_order($customer_order);
+            $item_count = $order->get_item_count();
+            ?>
+                    <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
+                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
+                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
+
+                        <?php elseif ('order-number' === $column_id) : ?>
+                                    <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
+                            <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                    </a>
+
+                            <?php elseif ('order-date' === $column_id) : ?>
+                                    <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
+
+                                <?php elseif ('order-status' === $column_id) : ?>
+                                    <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
+
+                                <?php elseif ('order-total' === $column_id) : ?>
+                                        <?php
+                                        /* translators: 1: formatted order total 2: total order items */
+                                        printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                                        ?>
+
+                <?php elseif ('order-actions' === $column_id) : ?>
+                                    <?php
+                                    $actions = array(
+                                        'pay' => array(
+                                            'url' => $order->get_checkout_payment_url(),
+                                            'name' => __('Pay', 'woocommerce'),
+                                        ),
+                                        'view' => array(
+                                            'url' => $order->get_view_order_url(),
+                                            'name' => __('View', 'woocommerce'),
+                                        ),
+                                        'cancel' => array(
+                                            'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                                            'name' => __('Cancel', 'woocommerce'),
+                                        ),
+                                    );
+
+                                    if (!$order->needs_payment()) {
+                                        unset($actions['pay']);
+                                    }
+
+                                    if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                                        unset($actions['cancel']);
+                                    }
+
+                                    if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                                        foreach ($actions as $key => $action) {
+                                            echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                                        }
+                                    }
+                                    ?>
+                                <?php endif; ?>
+                            </td>
+                            <?php endforeach; ?>
+                    </tr>
+                        <?php endforeach; ?>
+            </tbody>
+
+        </table>
+                        <?php do_action('woocommerce_before_account_orders_pagination'); ?>
+
+                        <?php if (1 < $customer_orders->max_num_pages) : ?>
+            <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
+                        <?php if (1 !== $current_page) : ?>
+                    <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
+                    <?php endif; ?>
+
+            <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                    <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
+            <?php endif; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php else : ?>
+        <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+            <?php _e('No completed transaction.', 'woocommerce'); ?>
+        </div>
+        <?php endif; ?>
+
+        <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
+    <?php
 }
 
 function subscriptions_endpoint_content() {
-   if( null == $user_id )
-        $user_id = get_current_user_id();             
-   $customer_orders = get_posts( array(
+    if (null == $user_id)
+        $user_id = get_current_user_id();
+    $customer_orders = get_posts(array(
         'numberposts' => -1,
-        'meta_key'    => '_customer_user',
-        'meta_value'  => $user_id,
-        'post_type'   => 'shop_subscription', // Subscription post type
+        'meta_key' => '_customer_user',
+        'meta_value' => $user_id,
+        'post_type' => 'shop_subscription', // Subscription post type
         'post_status' => 'wc-active', // Active subscription
+            ));
 
-    ) );
-    
     $customer = wp_get_current_user();
-    if ( $customer_orders ) : ?>
-	<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-		<thead>
-			<tr>
-				<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-					<th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
-				<?php endforeach; ?>
-			</tr>
-		</thead>
+    if ($customer_orders) :
+        ?>
+        <table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+            <thead>
+                <tr>
+        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                        <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
+        <?php endforeach; ?>
+                </tr>
+            </thead>
 
-		<tbody>
-			<?php foreach ( $customer_orders as $customer_order ) :
-				$order      = wc_get_order( $customer_order );
-				$item_count = $order->get_item_count();
-				?>
-				<tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr( $order->get_status() ); ?> order">
-					<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-						<td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr( $column_id ); ?>" data-title="<?php echo esc_attr( $column_name ); ?>">
-							<?php if ( has_action( 'woocommerce_my_account_my_orders_column_' . $column_id ) ) : ?>
-								<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
+            <tbody>
+        <?php
+        foreach ($customer_orders as $customer_order) :
+            $order = wc_get_order($customer_order);
+            $item_count = $order->get_item_count();
+            ?>
+                    <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
+            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
+                <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
+                    <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-							<?php elseif ( 'order-number' === $column_id ) : ?>
-								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
-									<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
-								</a>
+                <?php elseif ('order-number' === $column_id) : ?>
+                                    <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
+                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                    </a>
 
-							<?php elseif ( 'order-date' === $column_id ) : ?>
-								<time datetime="<?php echo esc_attr( $order->get_date_created()->date( 'c' ) ); ?>"><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></time>
+                <?php elseif ('order-date' === $column_id) : ?>
+                                    <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
-							<?php elseif ( 'order-status' === $column_id ) : ?>
-								<?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
+                <?php elseif ('order-status' === $column_id) : ?>
+                    <?php echo esc_html(wc_get_order_status_name($order->get_status())); ?>
 
-							<?php elseif ( 'order-total' === $column_id ) : ?>
-								<?php
-								/* translators: 1: formatted order total 2: total order items */
-								printf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count );
-								?>
+                <?php elseif ('order-total' === $column_id) : ?>
+                    <?php
+                    /* translators: 1: formatted order total 2: total order items */
+                    printf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count);
+                    ?>
 
-							<?php elseif ( 'order-actions' === $column_id ) : ?>
-								<?php
-									$actions = array(
-										'pay'    => array(
-											'url'  => $order->get_checkout_payment_url(),
-											'name' => __( 'Pay', 'woocommerce' ),
-										),
-										'view'   => array(
-											'url'  => $order->get_view_order_url(),
-											'name' => __( 'View', 'woocommerce' ),
-										),
-										'cancel' => array(
-											'url'  => $order->get_cancel_order_url( wc_get_page_permalink( 'myaccount' ) ),
-											'name' => __( 'Cancel', 'woocommerce' ),
-										),
-									);
+                <?php elseif ('order-actions' === $column_id) : ?>
+                    <?php
+                    $actions = array(
+                        'pay' => array(
+                            'url' => $order->get_checkout_payment_url(),
+                            'name' => __('Pay', 'woocommerce'),
+                        ),
+                        'view' => array(
+                            'url' => $order->get_view_order_url(),
+                            'name' => __('View', 'woocommerce'),
+                        ),
+                        'cancel' => array(
+                            'url' => $order->get_cancel_order_url(wc_get_page_permalink('myaccount')),
+                            'name' => __('Cancel', 'woocommerce'),
+                        ),
+                    );
 
-									if ( !$order->needs_payment() ) {
-										unset( $actions['pay'] );
-									}
+                    if (!$order->needs_payment()) {
+                        unset($actions['pay']);
+                    }
 
-									if ( ! in_array( $order->get_status(), apply_filters( 'woocommerce_valid_order_statuses_for_cancel', array( 'pending', 'failed' ), $order ) ) ) {
-										unset( $actions['cancel'] );
-									}
+                    if (!in_array($order->get_status(), apply_filters('woocommerce_valid_order_statuses_for_cancel', array('pending', 'failed'), $order))) {
+                        unset($actions['cancel']);
+                    }
 
-									if ( $actions = apply_filters( 'woocommerce_my_account_my_orders_actions', $actions, $order ) ) {
-										foreach ( $actions as $key => $action ) {
-											echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
-										}
-									}
-								?>
-							<?php endif; ?>
-						</td>
-					<?php endforeach; ?>
-				</tr>
-			<?php endforeach; ?>
-		</tbody>
+                    if ($actions = apply_filters('woocommerce_my_account_my_orders_actions', $actions, $order)) {
+                        foreach ($actions as $key => $action) {
+                            echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+                        }
+                    }
+                    ?>
+                <?php endif; ?>
+                            </td>
+            <?php endforeach; ?>
+                    </tr>
+        <?php endforeach; ?>
+            </tbody>
         </table>
-        <?php do_action( 'woocommerce_before_account_orders_pagination' ); ?>
+        <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-	<?php if ( 1 < $customer_orders->max_num_pages ) : ?>
-		<div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-			<?php if ( 1 !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php _e( 'Previous', 'woocommerce' ); ?></a>
-			<?php endif; ?>
+        <?php if (1 < $customer_orders->max_num_pages) : ?>
+            <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
+            <?php if (1 !== $current_page) : ?>
+                    <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
+            <?php endif; ?>
 
-			<?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php _e( 'Next', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-		</div>
-	<?php endif; ?>
-
-        <?php else : ?>
-	<div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-		<?php _e( 'No subscription.', 'woocommerce' ); ?>
-	</div>
+            <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
+                    <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
+            <?php endif; ?>
+            </div>
         <?php endif; ?>
 
-        <?php do_action( 'woocommerce_after_account_orders', $has_orders ); ?>
+    <?php else : ?>
+        <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
+        <?php _e('No subscription.', 'woocommerce'); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php do_action('woocommerce_after_account_orders', $has_orders); ?>
     <?php
 }
- 
-add_action( 'woocommerce_account_subscriptions_endpoint', 'subscriptions_endpoint_content' );
- 
-/*** Additional Fees on Cart ***/
-add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
-function woocommerce_custom_surcharge() {
-global $woocommerce;
-$type = 'no';
-$storage_fee =0;
 
-if ( is_admin() && ! defined( 'DOING_AJAX' ) )
-    return;
+add_action('woocommerce_account_subscriptions_endpoint', 'subscriptions_endpoint_content');
+
+/* * * Additional Fees on Cart ** */
+add_action('woocommerce_cart_calculate_fees', 'woocommerce_custom_surcharge');
+
+function woocommerce_custom_surcharge() {
+    global $woocommerce;
+    $type = 'no';
+    $storage_fee = 0;
+
+    if (is_admin() && !defined('DOING_AJAX'))
+        return;
 
     //loop on cart and get product regular price
     $items = $woocommerce->cart->get_cart();
-    foreach($items as $item => $values) { 
-        $_product =  wc_get_product( $values['data']->get_id());  
-        $price = get_post_meta($values['product_id'] , '_regular_price', true);
-        $type = get_post_meta($values['product_id'] , '_ywsbs_subscription', true);
-    } 
-    
+    foreach ($items as $item => $values) {
+        $_product = wc_get_product($values['data']->get_id());
+        $price = get_post_meta($values['product_id'], '_regular_price', true);
+        $type = get_post_meta($values['product_id'], '_ywsbs_subscription', true);
+    }
+
     //if cart contains subscription product skip
-    if ($type != 'yes'){
+    if ($type != 'yes') {
         // Make sure that you return false here.  We can't double tax people!
         $commission = $price * 0.05;
 
         if ($price < 1000) {
             $customs_fee = 15;
-        }else{
+        } else {
             $customs_fee = 30;
         }
-        $woocommerce->cart->add_fee( 'Commission', $commission, true, '' );
-        $woocommerce->cart->add_fee( 'Customs Exportation Fee', $customs_fee, true, '' );
+        $woocommerce->cart->add_fee('Commission', $commission, true, '');
+        $woocommerce->cart->add_fee('Customs Exportation Fee', $customs_fee, true, '');
     }
 }
+
 // hide out of stock product
-add_action( 'pre_get_posts', 'iconic_hide_out_of_stock_products' );
+add_action('pre_get_posts', 'iconic_hide_out_of_stock_products');
 
-function iconic_hide_out_of_stock_products( $q ) {
+function iconic_hide_out_of_stock_products($q) {
 
-    if ( ! $q->is_main_query() || is_admin() ) {
+    if (!$q->is_main_query() || is_admin()) {
         return;
     }
 
-    if ( $outofstock_term = get_term_by( 'name', 'outofstock', 'product_visibility' ) ) {
+    if ($outofstock_term = get_term_by('name', 'outofstock', 'product_visibility')) {
 
         $tax_query = (array) $q->get('tax_query');
 
         $tax_query[] = array(
             'taxonomy' => 'product_visibility',
             'field' => 'term_taxonomy_id',
-            'terms' => array( $outofstock_term->term_taxonomy_id ),
+            'terms' => array($outofstock_term->term_taxonomy_id),
             'operator' => 'NOT IN'
         );
 
-        $q->set( 'tax_query', $tax_query );
-
+        $q->set('tax_query', $tax_query);
     }
 
-    remove_action( 'pre_get_posts', 'iconic_hide_out_of_stock_products' );
-
+    remove_action('pre_get_posts', 'iconic_hide_out_of_stock_products');
 }
 
-add_action( 'init', 'custom_fix_thumbnail' );
- 
+add_action('init', 'custom_fix_thumbnail');
+
 function custom_fix_thumbnail() {
-  add_filter('woocommerce_placeholder_img_src', 'custom_woocommerce_placeholder_img_src');
-   
-	function custom_woocommerce_placeholder_img_src( $src ) {
-	$upload_dir = wp_upload_dir();
-	$uploads = untrailingslashit( $upload_dir['baseurl'] );
-	$src = $uploads . '/2017/05/default.jpg';
-	 
-	return $src;
-	}
+    add_filter('woocommerce_placeholder_img_src', 'custom_woocommerce_placeholder_img_src');
+
+    function custom_woocommerce_placeholder_img_src($src) {
+        $upload_dir = wp_upload_dir();
+        $uploads = untrailingslashit($upload_dir['baseurl']);
+        $src = $uploads . '/2017/05/default.jpg';
+
+        return $src;
+    }
+
 }
 
-add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
 
 // Our hooked in function - $fields is passed via the filter!
-function custom_override_checkout_fields( $fields ) {
-     $fields['billing']['billing_email']['label'] = 'Billing Email address';
-     return $fields;
+function custom_override_checkout_fields($fields) {
+    $fields['billing']['billing_email']['label'] = 'Billing Email address';
+    return $fields;
 }
 
-/*** redirect to checkout for subscription ***/
+/* * * redirect to checkout for subscription ** */
 
-function eg_redirect_to_cart_page( $url ) {
+function eg_redirect_to_cart_page($url) {
 
-	// If product is of the subscription type
-	if ( is_numeric( $_REQUEST['add-to-cart'] ) && WC_Subscriptions_Product::is_subscription( (int) $_REQUEST['add-to-cart'] ) ) {
-		// Redirect to cart instead
-		$url = WC()->cart->get_checkout_url();
-	}
-	return $url;
+    // If product is of the subscription type
+    if (is_numeric($_REQUEST['add-to-cart']) && WC_Subscriptions_Product::is_subscription((int) $_REQUEST['add-to-cart'])) {
+        // Redirect to cart instead
+        $url = WC()->cart->get_checkout_url();
+    }
+    return $url;
 }
-add_filter( 'woocommerce_add_to_cart_redirect', 'eg_redirect_to_cart_page', 20 );
+
+add_filter('woocommerce_add_to_cart_redirect', 'eg_redirect_to_cart_page', 20);
+
+// Add Stock Quantity on Shop Page
+
+function show_stock() {
+    global $product;
+    if ($product->stock) { // if manage stock is enabled 
+        if (number_format($product->stock, 0, '', '') < 3) { // if stock is low
+            echo '<br><br>';
+            echo '<div class="remaining"><strong>' . number_format($product->stock, 0, '', '') . ' in stock!</strong></div>';
+        } else {
+            echo '<br><br>';
+            echo '<div class="remaining"><strong>' . number_format($product->stock, 0, '', '') . ' in stock</strong></div>';
+        }
+    }
+}
+
+add_action('woocommerce_after_shop_loop_item', 'show_stock', 10);
