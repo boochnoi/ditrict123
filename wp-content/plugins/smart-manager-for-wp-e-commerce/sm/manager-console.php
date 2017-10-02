@@ -322,7 +322,7 @@ $products_cols['salePrice']['actionType']='salesprice_actions';
 $products_cols['salePrice']['tableName']="{$wpdb->prefix}postmeta";
 $products_cols['salePrice']['updateColName']='meta_value';
 	
-$products_cols['inventory']['name']=__( 'Inventory', $sm_text_domain );
+$products_cols['inventory']['name']=__( 'Quantity', $sm_text_domain );
 $products_cols['inventory']['actionType']='modIntActions';
 $products_cols['inventory']['tableName']="{$wpdb->prefix}postmeta";
 $products_cols['inventory']['updateColName']='meta_value';
@@ -817,7 +817,7 @@ if (WPSC_RUNNING === true && IS_WPSC38) {
 				$wpec_products_search_cols [$index]['key'] = __('Length Unit',$sm_text_domain);				
 			}
 
-			if ($products_col['name'] == 'Price' || $products_col['name'] == 'Sale Price' || $products_col['name'] == 'Inventory'
+			if ($products_col['name'] == 'Price' || $products_col['name'] == 'Sale Price' || $products_col['name'] == 'Quantity'
 				|| $products_col['name'] == 'Weight' || $products_col['name'] == 'Height' || $products_col['name'] == 'Width'
 				|| $products_col['name'] == 'Length' || $products_col['name'] == 'Local Shipping Fee'
 				|| $products_col['name'] == 'International Shipping Fee' ) {
@@ -966,7 +966,7 @@ if (WPSC_RUNNING === true && IS_WPSC38) {
 			
 			$products_search_cols [$index]['key'] = $products_col['name'];
 
-			if ($products_col['name'] == 'Price' || $products_col['name'] == 'Sale Price' || $products_col['name'] == 'Inventory'
+			if ($products_col['name'] == 'Price' || $products_col['name'] == 'Sale Price' || $products_col['name'] == 'Quantity'
 				|| $products_col['name'] == 'Weight' || $products_col['name'] == 'Height' || $products_col['name'] == 'Width'
 				|| $products_col['name'] == 'Length' ) {
 
@@ -1460,7 +1460,7 @@ if (WPSC_RUNNING === true) {
 		lang.sale_price			= '" . __('Sale Price',$sm_text_domain) . "';
 		lang.sale_price_from	= '" . __('Sale Price From',$sm_text_domain) . "';
 		lang.sale_price_to		= '" . __('Sale Price To',$sm_text_domain) . "';
-		lang.inventory	        = '" . __('Inventory',$sm_text_domain) . "';
+		lang.inventory	        = '" . __('Quantity',$sm_text_domain) . "';
 		lang.sku	            = '" . __('SKU',$sm_text_domain) . "';
 		lang.category	        = '" . __('Category',$sm_text_domain) . "';
 		lang.attributes	        = '" . __('Attributes',$sm_text_domain) . "';
