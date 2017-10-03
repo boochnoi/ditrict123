@@ -2159,7 +2159,7 @@ if (!function_exists('ag_comment')) :
                     <tr>
                         <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-        <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </tr>
                 </thead>
 
@@ -2170,17 +2170,17 @@ if (!function_exists('ag_comment')) :
                         $item_count = $order->get_item_count();
                         ?>
                         <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-                                <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
                                     <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
                                         <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                                        <?php elseif ('order-number' === $column_id) : ?>
+                                    <?php elseif ('order-number' === $column_id) : ?>
                                         <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                            <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                         </a>
 
-                <?php elseif ('order-date' === $column_id) : ?>
+                                    <?php elseif ('order-date' === $column_id) : ?>
                                         <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
                                     <?php elseif ('order-status' === $column_id) : ?>
@@ -2223,16 +2223,16 @@ if (!function_exists('ag_comment')) :
                                             }
                                         }
                                         ?>
-                                <?php endif; ?>
+                                    <?php endif; ?>
                                 </td>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </tr>
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                <?php if (1 < $customer_orders->max_num_pages) : ?>
+            <?php if (1 < $customer_orders->max_num_pages) : ?>
                 <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
                     <?php if (1 !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
@@ -2240,13 +2240,13 @@ if (!function_exists('ag_comment')) :
 
                     <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-                <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
 
-            <?php else : ?>
+        <?php else : ?>
             <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-            <?php _e('No transaction that requires action.', 'woocommerce'); ?>
+                <?php _e('No transaction that requires action.', 'woocommerce'); ?>
             </div>
         <?php endif; ?>
 
@@ -2273,7 +2273,7 @@ if (!function_exists('ag_comment')) :
                     <tr>
                         <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-        <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </tr>
                 </thead>
 
@@ -2284,17 +2284,17 @@ if (!function_exists('ag_comment')) :
                         $item_count = $order->get_item_count();
                         ?>
                         <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-                                <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
                                     <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
                                         <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                                        <?php elseif ('order-number' === $column_id) : ?>
+                                    <?php elseif ('order-number' === $column_id) : ?>
                                         <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                            <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                         </a>
 
-                <?php elseif ('order-date' === $column_id) : ?>
+                                    <?php elseif ('order-date' === $column_id) : ?>
                                         <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
                                     <?php elseif ('order-status' === $column_id) : ?>
@@ -2337,16 +2337,16 @@ if (!function_exists('ag_comment')) :
                                             }
                                         }
                                         ?>
-                                <?php endif; ?>
+                                    <?php endif; ?>
                                 </td>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </tr>
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                <?php if (1 < $customer_orders->max_num_pages) : ?>
+            <?php if (1 < $customer_orders->max_num_pages) : ?>
                 <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
                     <?php if (1 !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
@@ -2354,13 +2354,13 @@ if (!function_exists('ag_comment')) :
 
                     <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-                <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
 
-            <?php else : ?>
+        <?php else : ?>
             <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-            <?php _e('No transaction that is currently in-process.', 'woocommerce'); ?>
+                <?php _e('No transaction that is currently in-process.', 'woocommerce'); ?>
             </div>
         <?php endif; ?>
 
@@ -2387,7 +2387,7 @@ if (!function_exists('ag_comment')) :
                     <tr>
                         <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-        <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </tr>
                 </thead>
 
@@ -2398,17 +2398,17 @@ if (!function_exists('ag_comment')) :
                         $item_count = $order->get_item_count();
                         ?>
                         <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-                                <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
                                     <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
                                         <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                                        <?php elseif ('order-number' === $column_id) : ?>
+                                    <?php elseif ('order-number' === $column_id) : ?>
                                         <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                            <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                         </a>
 
-                <?php elseif ('order-date' === $column_id) : ?>
+                                    <?php elseif ('order-date' === $column_id) : ?>
                                         <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
                                     <?php elseif ('order-status' === $column_id) : ?>
@@ -2451,16 +2451,16 @@ if (!function_exists('ag_comment')) :
                                             }
                                         }
                                         ?>
-                                <?php endif; ?>
+                                    <?php endif; ?>
                                 </td>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </tr>
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                <?php if (1 < $customer_orders->max_num_pages) : ?>
+            <?php if (1 < $customer_orders->max_num_pages) : ?>
                 <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
                     <?php if (1 !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
@@ -2468,13 +2468,13 @@ if (!function_exists('ag_comment')) :
 
                     <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-                <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
 
-            <?php else : ?>
+        <?php else : ?>
             <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-            <?php _e('No transaction that is for pick up.', 'woocommerce'); ?>
+                <?php _e('No transaction that is for pick up.', 'woocommerce'); ?>
             </div>
         <?php endif; ?>
 
@@ -2501,7 +2501,7 @@ if (!function_exists('ag_comment')) :
                     <tr>
                         <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-        <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </tr>
                 </thead>
 
@@ -2512,17 +2512,17 @@ if (!function_exists('ag_comment')) :
                         $item_count = $order->get_item_count();
                         ?>
                         <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-                                <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
                                     <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
                                         <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                                        <?php elseif ('order-number' === $column_id) : ?>
+                                    <?php elseif ('order-number' === $column_id) : ?>
                                         <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                            <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                         </a>
 
-                <?php elseif ('order-date' === $column_id) : ?>
+                                    <?php elseif ('order-date' === $column_id) : ?>
                                         <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
                                     <?php elseif ('order-status' === $column_id) : ?>
@@ -2565,16 +2565,16 @@ if (!function_exists('ag_comment')) :
                                             }
                                         }
                                         ?>
-                                <?php endif; ?>
+                                    <?php endif; ?>
                                 </td>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </tr>
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-                <?php if (1 < $customer_orders->max_num_pages) : ?>
+            <?php if (1 < $customer_orders->max_num_pages) : ?>
                 <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
                     <?php if (1 !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
@@ -2582,13 +2582,13 @@ if (!function_exists('ag_comment')) :
 
                     <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                         <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-                <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
 
-            <?php else : ?>
+        <?php else : ?>
             <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-            <?php _e('You don\'t have items that are picked up.', 'woocommerce'); ?>
+                <?php _e('You don\'t have items that are picked up.', 'woocommerce'); ?>
             </div>
         <?php endif; ?>
 
@@ -2618,7 +2618,7 @@ if (!function_exists('ag_comment')) :
                     <tr>
                         <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-        <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </tr>
                 </thead>
                 <?php
@@ -2627,17 +2627,17 @@ if (!function_exists('ag_comment')) :
                     $item_count = $order->get_item_count();
                     ?>
                     <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
                                 <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
                                     <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                                    <?php elseif ('order-number' === $column_id) : ?>
+                                <?php elseif ('order-number' === $column_id) : ?>
                                     <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                        <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                     </a>
 
-                <?php elseif ('order-date' === $column_id) : ?>
+                                <?php elseif ('order-date' === $column_id) : ?>
                                     <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
                                 <?php elseif ('order-status' === $column_id) : ?>
@@ -2680,17 +2680,17 @@ if (!function_exists('ag_comment')) :
                                         }
                                     }
                                     ?>
-                            <?php endif; ?>
+                                <?php endif; ?>
                             </td>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </tr>
-        <?php endforeach; ?>
+                <?php endforeach; ?>
             </tbody>
 
         </table>
         <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-            <?php if (1 < $customer_orders->max_num_pages) : ?>
+        <?php if (1 < $customer_orders->max_num_pages) : ?>
             <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
                 <?php if (1 !== $current_page) : ?>
                     <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
@@ -2698,13 +2698,13 @@ if (!function_exists('ag_comment')) :
 
                 <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                     <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-            <?php endif; ?>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
 
-        <?php else : ?>
+    <?php else : ?>
         <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-        <?php _e('No completed transaction.', 'woocommerce'); ?>
+            <?php _e('No completed transaction.', 'woocommerce'); ?>
         </div>
     <?php endif; ?>
 
@@ -2731,7 +2731,7 @@ function subscriptions_endpoint_content() {
                 <tr>
                     <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                         <th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>"><span class="nobr"><?php echo esc_html($column_name); ?></span></th>
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </tr>
             </thead>
 
@@ -2742,17 +2742,17 @@ function subscriptions_endpoint_content() {
                     $item_count = $order->get_item_count();
                     ?>
                     <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
-                            <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
+                        <?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
                             <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?php echo esc_attr($column_id); ?>" data-title="<?php echo esc_attr($column_name); ?>">
                                 <?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
                                     <?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-                                    <?php elseif ('order-number' === $column_id) : ?>
+                                <?php elseif ('order-number' === $column_id) : ?>
                                     <a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-                    <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
+                                        <?php echo _x('#', 'hash before order number', 'woocommerce') . $order->get_order_number(); ?>
                                     </a>
 
-                <?php elseif ('order-date' === $column_id) : ?>
+                                <?php elseif ('order-date' === $column_id) : ?>
                                     <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
 
                                 <?php elseif ('order-status' === $column_id) : ?>
@@ -2795,16 +2795,16 @@ function subscriptions_endpoint_content() {
                                         }
                                     }
                                     ?>
-                            <?php endif; ?>
+                                <?php endif; ?>
                             </td>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </tr>
-        <?php endforeach; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
         <?php do_action('woocommerce_before_account_orders_pagination'); ?>
 
-            <?php if (1 < $customer_orders->max_num_pages) : ?>
+        <?php if (1 < $customer_orders->max_num_pages) : ?>
             <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
                 <?php if (1 !== $current_page) : ?>
                     <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page - 1)); ?>"><?php _e('Previous', 'woocommerce'); ?></a>
@@ -2812,13 +2812,13 @@ function subscriptions_endpoint_content() {
 
                 <?php if (intval($customer_orders->max_num_pages) !== $current_page) : ?>
                     <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url('orders', $current_page + 1)); ?>"><?php _e('Next', 'woocommerce'); ?></a>
-            <?php endif; ?>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
 
-        <?php else : ?>
+    <?php else : ?>
         <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">
-        <?php _e('No subscription.', 'woocommerce'); ?>
+            <?php _e('No subscription.', 'woocommerce'); ?>
         </div>
     <?php endif; ?>
 
@@ -2927,20 +2927,6 @@ add_filter('woocommerce_add_to_cart_redirect', 'eg_redirect_to_cart_page', 20);
 
 // Add Stock Quantity on Shop Page
 
-function show_stock() {
-    global $product;
-    if ($product->stock) { // if manage stock is enabled 
-        if (number_format($product->stock, 0, '', '') < 3) { // if stock is low
-            echo '<br><br>';
-            echo '<div class="remaining"><strong> Quantity: ' . number_format($product->stock, 0, '', '') . '</strong></div>';
-        } else {
-            echo '<br><br>';
-            echo '<div class="remaining"><strong> Quantity: ' . number_format($product->stock, 0, '', '') . '</strong></div>';
-        }
-    }
-}
-
-add_action('woocommerce_after_shop_loop_item', 'show_stock', 10);
 
 
 /**
@@ -2949,31 +2935,61 @@ add_action('woocommerce_after_shop_loop_item', 'show_stock', 10);
  * @param string[] $columns
  * @return string[] $new_columns
  */
-function sv_wc_cogs_add_order_profit_column_header( $columns ) {
+function sv_wc_cogs_add_order_profit_column_header($columns) {
 
     $new_columns = array();
 
-    foreach ( $columns as $column_name => $column_info ) {
+    foreach ($columns as $column_name => $column_info) {
 
-        $new_columns[ $column_name ] = $column_info;
+        $new_columns[$column_name] = $column_info;
 
-        if ( 'shipping_address' === $column_name ) {
-            $new_columns['order_profit'] = __( 'Apt Number', 'my-textdomain' );
+        if ('shipping_address' === $column_name) {
+            $new_columns['order_profit'] = __('Apt Number', 'my-textdomain');
         }
     }
 
     return $new_columns;
 }
-add_filter( 'manage_edit-shop_order_columns', 'sv_wc_cogs_add_order_profit_column_header', 20 );
 
-function sv_wc_cogs_add_order_profit_column_content( $column ) {
+add_filter('manage_edit-shop_order_columns', 'sv_wc_cogs_add_order_profit_column_header', 20);
+
+function sv_wc_cogs_add_order_profit_column_content($column) {
     global $post;
 
-    if ( 'order_profit' === $column ) {
+    if ('order_profit' === $column) {
         $order = $post->ID;
-        $user_id = get_post_meta($order,'_customer_user',true);
-        $profit = 'Apt-' . sprintf('%04d',$user_id);
+        $user_id = get_post_meta($order, '_customer_user', true);
+        $profit = 'Apt-' . sprintf('%04d', $user_id);
         echo $profit;
     }
 }
-add_action( 'manage_shop_order_posts_custom_column', 'sv_wc_cogs_add_order_profit_column_content' );
+
+add_action('manage_shop_order_posts_custom_column', 'sv_wc_cogs_add_order_profit_column_content');
+
+add_action('woocommerce_after_shop_loop_item_title', 'bbloomer_show_product_dimensions_loop', 20);
+
+function bbloomer_show_product_dimensions_loop() {
+
+    global $product;
+    
+    if ($product->stock) { // if manage stock is enabled 
+        if (number_format($product->stock, 0, '', '') < 3) { // if stock is low
+            echo '<br>';
+            echo '<div class="remaining"><strong>Item Available Quantity</strong>';
+            echo 'Quantity: ' . number_format($product->stock, 0, '', '') . '</div>';
+        } else {
+            echo '<br>';
+            echo '<div class="remaining"><strong>Item Available Quantity</strong>';
+            echo 'Quantity: </strong>' . number_format($product->stock, 0, '', '') . '</div>';
+        }
+    }
+
+    $dimensions = $product->get_dimensions();
+    if (($dimensions > 0)) {
+        echo '<br><div class="dimensions"> <strong>Product Dimension</strong>';
+        echo 'Height:' . $product->get_height() . get_option('woocommerce_dimension_unit') . '<br>';
+        echo 'Width: ' . $product->get_width() . get_option('woocommerce_dimension_unit') . '<br>';
+        echo 'Length: ' . $product->get_length() . get_option('woocommerce_dimension_unit');
+        echo '</div>';
+    }
+}
