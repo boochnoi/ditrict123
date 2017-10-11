@@ -327,7 +327,7 @@ $products_cols['inventory']['actionType']='modIntActions';
 $products_cols['inventory']['tableName']="{$wpdb->prefix}postmeta";
 $products_cols['inventory']['updateColName']='meta_value';
 
-$products_cols['sku']['name']=__( 'SKU', $sm_text_domain );
+$products_cols['sku']['name']=__( 'FLIGHT DETAILS', $sm_text_domain );
 $products_cols['sku']['actionType']='modStrActions';
 $products_cols['sku']['tableName']="{$wpdb->prefix}postmeta";
 $products_cols['sku']['updateColName']='meta_value';
@@ -1461,7 +1461,7 @@ if (WPSC_RUNNING === true) {
 		lang.sale_price_from	= '" . __('Sale Price From',$sm_text_domain) . "';
 		lang.sale_price_to		= '" . __('Sale Price To',$sm_text_domain) . "';
 		lang.inventory	        = '" . __('Quantity',$sm_text_domain) . "';
-		lang.sku	            = '" . __('SKU',$sm_text_domain) . "';
+		lang.sku	            = '" . __('FLIGHT DETAILS',$sm_text_domain) . "';
 		lang.category	        = '" . __('Category',$sm_text_domain) . "';
 		lang.attributes	        = '" . __('Attributes',$sm_text_domain) . "';
 		lang.product_type	    = '" . __('Product Type',$sm_text_domain) . "';
@@ -1680,7 +1680,7 @@ if (WPSC_RUNNING === true) {
 			SM.productsCols.inventory.colName          = 'quantity'; 
 			SM.productsCols.inventory.tableName        = '" . (WPSC_RUNNING === true ? WPSC_TABLE_PRODUCT_LIST : '') . "';
 			
-			SM.productsCols.sku.colName                = 'sku';
+			SM.productsCols.sku.colName                = 'FLIGHT DETAILS';
 			SM.productsCols.sku.tableName              = '" . (WPSC_RUNNING === true ? WPSC_TABLE_PRODUCTMETA : '') . "';	
 			SM.productsCols.sku.updateColName    	   = 'meta_value';
 		
