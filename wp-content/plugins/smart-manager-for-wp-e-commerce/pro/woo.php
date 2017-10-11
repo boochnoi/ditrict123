@@ -246,7 +246,7 @@ function sm_woo_get_packing_slip( $purchase_ids, $purchase_id_arr ) {
                     <tr><td class="address_border"><b>'.__('Tel', $sm_text_domain).' :</b> '.$order->billing_phone.'</td></tr></table> </span></td></tr>';
             echo '</table>';
             echo '<div class="datagrid"><table><tr class="column1">
-                    <td class="producthead">'.__('Product', $sm_text_domain).'</td><td>'.__('FLIGHT DETAILS', $sm_text_domain).'</td>
+                    <td class="producthead">'.__('Product', $sm_text_domain).'</td><td>'.__('Flight Details', $sm_text_domain).'</td>
                     <td>'.__('Quantity', $sm_text_domain).'</td><td class="pricehead">'.__('Price', $sm_text_domain).'</td></tr>';
                     
             $total_order = 0;
