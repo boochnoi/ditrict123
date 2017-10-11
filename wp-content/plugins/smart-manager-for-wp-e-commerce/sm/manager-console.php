@@ -1615,6 +1615,9 @@ if (WPSC_RUNNING === true) {
 		lang.refunded			            = '" . __('Refunded',$sm_text_domain) . "';
 		lang.cancelled			            = '" . __('Cancelled',$sm_text_domain) . "';
 		lang.pending_payment			    = '" . __('Pending payment',$sm_text_domain) . "';
+                lang.shipped            		    = '" . __('Shipped',$sm_text_domain) . "';   
+                lang.received   			    = '" . __('Received',$sm_text_domain) . "'; 
+                lang.picked_up			    = '" . __('Picked up',$sm_text_domain) . "';    
 
 		lang.publish			    = '" . __('Publish',$sm_text_domain) . "';
 		lang.pending_review			    = '" . __('Pending Review',$sm_text_domain) . "';

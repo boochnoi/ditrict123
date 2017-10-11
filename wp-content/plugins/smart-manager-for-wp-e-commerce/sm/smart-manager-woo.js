@@ -2704,7 +2704,10 @@ var orderStatusStoreData = new Array();
                             ['processing',getText('Processing')],
                             ['completed', getText('Completed')],
                             ['refunded', getText('Refunded')],
-                            ['cancelled', getText('Cancelled')]
+                            ['cancelled', getText('Cancelled')],
+                            ['received', getText('Received')],
+                            ['shipped', getText('Shipped')],
+                            ['picked-up', getText('Pciked-up')],
                           ];
 
 var orderStatusStore = new Ext.data.ArrayStore({
@@ -2717,7 +2720,10 @@ var orderStatusStore = new Ext.data.ArrayStore({
 			['processing',  'Processing'],
 			['completed',   'Completed'],
 			['refunded',    'Refunded'],
-			['cancelled', 	'Cancelled']
+			['cancelled', 	'Cancelled'],
+                        ['received', 	'Received'],
+                        ['shipped', 	'Shipped'],
+                        ['picked-up', 	'Picked up'],
 			]
 	});
 	
@@ -3316,6 +3322,9 @@ var batchUpdateToolbarInstance = Ext.extend(Ext.Toolbar, {
                                                         temp[4] = 'Completed';
                                                         temp[5] = 'Refunded';
                                                         temp[6] = 'Cancelled';
+                                                        temp[7] = 'Received';
+                                                        temp[8] = 'Shipped';
+                                                        temp[9] = 'Picked-up';
                                                         
                                                         
 //							comboRegionCmp.hide();
